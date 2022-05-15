@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="stylesheet.css">
+    <SCRIPT LANGUAGE="Javascript">
+        function affi(form) {
+        parent.sortie.document.form1.en.value=document.form2.out.value
+        }
+        </SCRIPT>
+</head>
+<body>
+    Entrez une valeur et cliquez sur "Envoyer".
+<FORM NAME="form2" >
+<INPUT TYPE="TEXT" NAME="out">
+<INPUT TYPE="button" VALUE="Envoyer" onClick="affi(this.form)">
+</body>
