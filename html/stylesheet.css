@@ -9,15 +9,28 @@ p {
     text-align: center;
 }
 img.displayed {
-    display: block;
+    display: inline;
     margin-left: auto;
     margin-right: auto;
 }
-iframe.displayed {
+iframe.sortie {
     display: block;
     margin-left: auto;
     margin-right: auto;
     border : 1px solid rgb(255, 0, 0);
     width : 50%;
     
+}
+iframe.entrée {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border : 1px solid rgb(255, 0, 0);
+    width : 50%;
+    
+}
+header.pagetitle{
+    text-align: center;
+    font-size: 30px;
+
 }
