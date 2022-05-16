@@ -11,9 +11,9 @@ options {
 }
 
 @header {           
-import java.io.IOException;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
+  import java.io.IOException;
+  import java.io.DataInputStream;
+  import java.io.FileInputStream;
 } 
 
 
@@ -58,15 +58,15 @@ statement   : 'CLOSE' '#' Integer
                 | 'SPC' Integer
                 | 'READ' idList  
                 | 'LIST' 
-                | 'ABS' expression                                              // absolute value
-                | 'ATN' expression                                              // arctangent (result in radians)
-                | 'COS' expression                                              // cosine (argument in radians)
-                | 'EXP' expression                                              // exponential function
-                | 'INT' expression                                              // integer part (typically floor function)
-                | 'LOG' expression                                              // natural logarithm
-                | 'RND' expression                                              // random number generation
-                | 'SIN' expression                                              // sine (argument in radians)
-                | 'SQR' expression                                              // square root
+                | 'ABS' expression
+                | 'ATN' expression
+                | 'COS' expression
+                | 'EXP' expression
+                | 'INT' expression
+                | 'LOG' expression
+                | 'RND' expression
+                | 'SIN' expression
+                | 'SQR' expression
                 | 'TAN' expression           
                 | 'RETURN'
                 | 'RESTORE'
