@@ -1,5 +1,4 @@
 img.displayed {
-    display: inline;
     margin-left: auto;
     margin-right: auto;
 }
@@ -7,25 +6,24 @@ iframe.sortie {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border : 1px solid rgb(54, 35, 129);
-    width : 50%;
-    
-}
-iframe.entrée {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border : 1px solid rgb(54, 35, 129);
-    width : 50%;
-    word-wrap: break-word;
+    border : 1px solid rgb(0, 0, 0);
+    background-color: rgb(140, 107, 155);
+    width : 100%;
+    height : 50%;
     
 }
 header.pagetitle{
-    text-align: center;
+    text-align : center ;
     font-size: 30px;
 
 }
 
-body {
-    background-color: rgb(171, 209, 222);
+textarea.input{
+    height: 1000%;
+    width: 100%;
+    font-size: 18px;
+}
+
+body.main {
+    background-color: rgb(111, 186, 199);
 }
