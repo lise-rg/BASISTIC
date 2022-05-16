@@ -3,29 +3,61 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+        <script type="text/javascript" src="../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../modules/jquery-3.6.0.min.js"></script>
         <script type="text/javascript" src="../modules/jquery-ui-1.13.1.custom/jquery-ui.min.js"></script>
         <title>BASISTIC</title>
     </head>
     <body>
-        <header class="pagetitle"><strong>Bienvenue sur BASISTIC le site d'interprétation de BASIC en ligne</strong> </header>
-        <img class="displayed" src="./img/logonul.png" style="width:20%;">
-        <h1>Channel messaging demo</h1>
-        <p class="output" id="output">My body</p>
-        <!--<iframe class= "entrée" id="INPUT"
-            title="entrée"
-            width="300"
-            height="200"
-            src="entrée.html">
-        </iframe> -->
-        <iframe class="sortie" id="sortie"
-            width="300"
-            height="200"
-            src="sortie.html">
-        </iframe>
-        <input id="textfield">
-        <input id="post" type="button" value="envoyer">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-3">
+            <img class="displayed" src="./img/logonul.png" style="width:20%;">
+          </div>
+
+          <div class="col-9">
+            <header class="pagetitle"><strong>Bienvenue sur BASISTIC le site d'interprétation de BASIC en ligne</strong></header>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <h1>Channel messaging demo</h1>
+          <p class="output" id="output">My body</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-6">
+
+            <div class="row">
+              <input id="textfield">
+            </div>
+
+            <div class="row">
+              <input id="post" type="button" value="envoyer">
+            </div>
+            
+          </div>
+
+          <div class="col-6">
+            <iframe class="sortie" id="sortie"
+                width="300"
+                height="200"
+                src="sortie.html">
+            </iframe>
+          </div>
+
+        </div>
+
+      </div>
+
     </body>
+
     <script>
       $( document ).ready(function() {
         var channel = new MessageChannel();
@@ -43,7 +75,10 @@
         function onLoad() {
           // Listen for messages on port1
           channel.port1.onmessage = onMessage;
+
+          //Gets the value in the text field input
           var textValue = document.getElementById("textfield").value;
+
           // Transfer port2 to the iframe
           iframe.contentWindow.postMessage(textValue, '*', [channel.port2]);
         }
