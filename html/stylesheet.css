@@ -1,13 +1,3 @@
-h1 {
-    color: rgb(255, 0, 0);
-    font-size:18px;
-    text-align: center;
-}
-p {
-    color: rgb(255, 0, 0);
-    font-size:14px;
-    text-align: center;
-}
 img.displayed {
     display: inline;
     margin-left: auto;
@@ -17,7 +7,7 @@ iframe.sortie {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border : 1px solid rgb(255, 0, 0);
+    border : 1px solid rgb(54, 35, 129);
     width : 50%;
     
 }
@@ -25,12 +15,17 @@ iframe.entrée {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border : 1px solid rgb(255, 0, 0);
+    border : 1px solid rgb(54, 35, 129);
     width : 50%;
+    word-wrap: break-word;
     
 }
 header.pagetitle{
     text-align: center;
     font-size: 30px;
 
+}
+
+body {
+    background-color: rgb(171, 209, 222);
 }
