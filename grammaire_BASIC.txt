@@ -1,0 +1,52 @@
+GRAMMAIRE DU LANGAGE BASIC :
+
+lines           : Integer statements NewLine lines | Integer statements NewLine ;
+statements      : statement ':' statements |statement ;
+statement       : 'CLOSE' '#' Integer
+                    | 'DATA' constantList 
+                    | 'DIM' ID '(' integerList ')'
+                    | 'END'          
+                    | 'FOR' ID '=' expression 'TO' expression     
+                    | 'FOR' ID '=' expression 'TO' expression 'STEP' Integer      
+                    | 'GOTO' expression 
+                    | 'GOSUB' expression 
+                    | 'IF' expression 'THEN' statement         
+                    | 'INPUT' idList       
+                    | 'INPUT' '#' Integer ',' idList       
+                    | 'LET' ID '=' expression 
+                    | 'NEXT' idList               
+                    | 'OPEN' value 'FOR' access 'AS' '#' Integer
+                    | 'POKE' valueList
+                    | 'PRINT' printList
+                    | 'PRINT' '#' Integer ',' printList
+                    | 'READ' idList           
+                    | 'RETURN'
+                    | 'RESTORE'
+                    | 'RUN'
+                    | 'STOP'
+                    | 'SYS' value
+                    | 'WAIT' valueList ;
+access          : 'INPUT' | 'OUPUT' ;
+idList          : ID ',' idList | ID ;
+valueList       : value ',' valueList | value ;
+constantList    : constant ',' constantList | constant ;
+integerList     : Integer ',' integerList | Integer ;
+expressionList  : expression ',' expressionList | expression ;
+printList       : expression ';' printList | expression |  ;
+expression      : andExp 'OR' expression | andExp ;
+andExp          : notExp 'AND' andExp | notExp ;
+notExp          : 'NOT' compareExp | compareExp ;
+compareExp      : addExp '='  compareExp 
+                    | addExp '<>' compareExp 
+                    | addExp '><' compareExp 
+                    | addExp '>'  compareExp 
+                    | addExp '>=' compareExp 
+                    | addExp '<'  compareExp 
+                    | addExp '<=' compareExp 
+                    | addExp ;
+addExp          : multExp '+' addExp | multExp '-' addExp | multExp ;
+multExp         : negateExp '*' multExp | negateExp '/' multExp | negateExp ;
+negateExp       : '-' powerExp | powerExp ;
+powerExp        : powerExp '^' value | value ;
+value           : '(' expression ')' | ID | ID '(' expressionList ')' | constant ;
+constant        : Integer | String | Real ;
