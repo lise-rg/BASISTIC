@@ -42,27 +42,35 @@ statements  : statement ':' statements
 statement   : 'CLOSE' '#' Integer
                 | 'DATA' constantList 
                 | 'DIM' ID '(' integerList ')'
-                | 'END'          
-                | 'FOR' ID '=' expression 'TO' expression     
-                | 'FOR' ID '=' expression 'TO' expression 'STEP' Integer      
+                | 'END'             
+                | 'FOR' ID '=' expression 'TO' expression ('STEP' Integer)?      
                 | 'GOTO' expression 
                 | 'GOSUB' expression 
-                | 'IF' expression 'THEN' statement         
-                | 'INPUT' idList       
-                | 'INPUT' '#' Integer ',' idList       
+                | 'ON' expression 'GOTO' expression
+                | 'ON' expression 'GOSUB' expression
+                | 'IF' expression 'THEN' statement ('ELSE' statement)?  
+                | 'WHILE' expression 'DO' statement 'WEND'
+                | 'DO' statement 'LOOP WHILE' expression 
+                | 'INPUT' idList             
                 | 'LET' ID '=' expression 
                 | 'NEXT' idList               
-                | 'OPEN' value 'FOR' access 'AS' '#' Integer
-                | 'POKE' valueList
                 | 'PRINT' printList
-                | 'PRINT' '#' Integer ',' printList
-                | 'READ' idList           
+                | 'SPC' Integer
+                | 'READ' idList  
+                | 'LIST' 
+                | 'ABS' expression                                              // absolute value
+                | 'ATN' expression                                              // arctangent (result in radians)
+                | 'COS' expression                                              // cosine (argument in radians)
+                | 'EXP' expression                                              // exponential function
+                | 'INT' expression                                              // integer part (typically floor function)
+                | 'LOG' expression                                              // natural logarithm
+                | 'RND' expression                                              // random number generation
+                | 'SIN' expression                                              // sine (argument in radians)
+                | 'SQR' expression                                              // square root
+                | 'TAN' expression           
                 | 'RETURN'
                 | 'RESTORE'
-                | 'RUN'
                 | 'STOP'
-                | 'SYS' value
-                | 'WAIT' valueList
               ;
 
 access   : 'INPUT'

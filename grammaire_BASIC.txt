@@ -1,31 +1,39 @@
-GRAMMAIRE DU LANGAGE BASIC :
+BASIC LANGUAGE GRAMMAR :
 
 lines           : Integer statements NewLine lines | Integer statements NewLine ;
 statements      : statement ':' statements |statement ;
 statement       : 'CLOSE' '#' Integer
-                    | 'DATA' constantList 
-                    | 'DIM' ID '(' integerList ')'
-                    | 'END'          
-                    | 'FOR' ID '=' expression 'TO' expression     
-                    | 'FOR' ID '=' expression 'TO' expression 'STEP' Integer      
-                    | 'GOTO' expression 
-                    | 'GOSUB' expression 
-                    | 'IF' expression 'THEN' statement         
-                    | 'INPUT' idList       
-                    | 'INPUT' '#' Integer ',' idList       
-                    | 'LET' ID '=' expression 
+                    | 'DATA' constantList                                           // Holds a list of values (assigned using the READ command)
+                    | 'DIM' ID '(' integerList ')'                                  // Sets up an array
+                    | 'END'                                                         // end of a program   
+                    | 'FOR' ID '=' expression 'TO' expression ('STEP' Integer)?      
+                    | 'GOTO' expression                                             // jump a section of code 
+                    | 'GOSUB' expression                                            // jump a section of code (expecting to come back to current section later)
+                    | 'ON' expression 'GOTO' expression
+                    | 'ON' expression 'GOSUB' expression
+                    | 'IF' expression 'THEN' statement ('ELSE' statement)?       
+                    | 'WHILE' expression 'DO' statement 'WEND'
+                    | 'DO' statement 'LOOP WHILE' expression 
+                    | 'INPUT' idList                                                // ask user to enter value of a variable       
+                    | 'LET' ID '=' expression                                       // asign a value to a variable
                     | 'NEXT' idList               
-                    | 'OPEN' value 'FOR' access 'AS' '#' Integer
-                    | 'POKE' valueList
-                    | 'PRINT' printList
-                    | 'PRINT' '#' Integer ',' printList
-                    | 'READ' idList           
+                    | 'PRINT' printList                                             // display a message on the screen
+                    | 'SPC' Integer                                                 // prints out a number of space characters
+                    | 'READ' idList                                                 // reads a valueu from a DATA statement and assigns it to a variable
+                    | 'LIST'                                                        // display the full source code of the current program
+                    | 'ABS' expression                                              // absolute value
+                    | 'ATN' expression                                              // arctangent (result in radians)
+                    | 'COS' expression                                              // cosine (argument in radians)
+                    | 'EXP' expression                                              // exponential function
+                    | 'INT' expression                                              // integer part (typically floor function)
+                    | 'LOG' expression                                              // natural logarithm
+                    | 'RND' expression                                              // random number generation
+                    | 'SIN' expression                                              // sine (argument in radians)
+                    | 'SQR' expression                                              // square root
+                    | 'TAN' expression                                              // tangent (argument in radians)
                     | 'RETURN'
-                    | 'RESTORE'
-                    | 'RUN'
-                    | 'STOP'
-                    | 'SYS' value
-                    | 'WAIT' valueList ;
+                    | 'RESTORE'                                                     // resets internal pointer to the first DATA statement
+                    | 'STOP' ;                                                      // stop a program before textual end
 access          : 'INPUT' | 'OUPUT' ;
 idList          : ID ',' idList | ID ;
 valueList       : value ',' valueList | value ;
@@ -50,3 +58,15 @@ negateExp       : '-' powerExp | powerExp ;
 powerExp        : powerExp '^' value | value ;
 value           : '(' expression ')' | ID | ID '(' expressionList ')' | constant ;
 constant        : Integer | String | Real ;
+
+
+
+NON INCLUDED STATEMENTS :
+'REPEAT' statement 'UNTIL' expression               // same as 'WHILE LOOP'
+'DEF FN'                                            // defines a function
+'SYS' value
+'WAIT' valueList
+'OPEN' value 'FOR' access 'AS' '#' Integer
+'INPUT' '#' Integer ',' idList
+'PRINT' '#' Integer ',' printList
+'RUN'
