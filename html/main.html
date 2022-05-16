@@ -7,7 +7,7 @@
     </head>
     <body>
         <header class="pagetitle"><strong> Bienvenue sur BASISTIC le site d'interprétation de BASIC en ligne</strong> </header>
-        <img class="displayed" src="../BASISTIC/html/img/logonul.png">
+        <img class="displayed" src="./img/logonul.png">
         <h1>Channel messaging demo</h1>
         <p class="output">My body</p>
         <!--<iframe class= "entrée" id="INPUT"
@@ -21,19 +21,22 @@
             height="200"
             src="sortie.html">
         </iframe>
-        <input id="test">
+        <input  id="test">
+        <input type="button" value="envoyer">
     </body>
     <script>
         var channel = new MessageChannel();
         var output = document.querySelector('.output');
         var iframe = document.querySelector('iframe');
+        var btn = document.querySelector('input');
     
         // Wait for the iframe to load
-        iframe.addEventListener("load", onLoad);
-        var bis = document.getElementById("test").innerHTML;	
+        //iframe.addEventListener("load", onLoad);
+        btn.addEventListener('click', onload);
         function onLoad() {
-          // Listen for messages on port1
-          channel.port1.onmessage = onMessage;
+            // Listen for messages on port1
+            channel.port1.onmessage = onMessage;
+            var bis = document.getElementById("test").innerHTML;	
           // Transfer port2 to the iframe
           iframe.contentWindow.postMessage(bis, '*', [channel.port2]);
         }
