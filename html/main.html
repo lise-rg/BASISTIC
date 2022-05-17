@@ -27,8 +27,8 @@
         </div>
 
         <div class="row" style="display:flex; flex:1; flex-direction: row; justify-content: center;">
-          <h1>Channel messaging demo</h1>
-          <p class="output" id="output">My body</p>
+          <h1>Saisir du code</h1>
+          <p class="output" id="output">En attente d'envoi</p>
         </div>
 
         <div class="row" style="display:flex; flex:6; flex-direction: row; justify-content: center;">
@@ -40,7 +40,7 @@
             </div>
 
             <div class="row" style="flex:1;">
-              <input id="post" type="button" value="envoyer">
+              <input id="post" type="button" value="Envoyer">
             </div>
             
           </div>
@@ -61,25 +61,26 @@
     </body>
 
     <script>
+      //Wait for the document to be loaded and ready
       $( document ).ready(function() {
-        var channel = new MessageChannel();
-        var output = document.getElementById("output");
-        var iframe = document.getElementById("sortie");
-        var textfield = document.getElementById("textfield");
-        var btn = document.getElementById("post");
 
-        // Wait for the iframe to load
-        //iframe.addEventListener("load", onLoad);
+        //Attach a listener on the "Send" button
+        var btn = document.getElementById("post");
         btn.addEventListener('click', event => {
           onLoad();
         });
 
+        //Defines the actions to take when the "Send" button is pressed
         function onLoad() {
+          var iframe = document.getElementById("sortie");
+          var textfield = document.getElementById("textfield");
+          var channel = new MessageChannel();
+
           // Listen for messages on port1
           channel.port1.onmessage = onMessage;
 
           //Gets the value in the text field input
-          var textValue = document.getElementById("textfield").value;
+          var textValue = textfield.value;
 
           // Transfer port2 to the iframe
           iframe.contentWindow.postMessage(textValue, '*', [channel.port2]);
@@ -87,6 +88,7 @@
     
         // Handle messages received on port1
         function onMessage(e) {
+          var output = document.getElementById("output");
           output.innerHTML = e.data;
         }
       });

@@ -5,17 +5,17 @@
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <p class="output">iFrame body</p>
+    <p id="output" class="output">iFrame body</p>
 </body>
 <script>
-    var output = document.querySelector('.output');
+    var output = document.getElementById("output");
   
     window.addEventListener('message', onMessage);
     
     function onMessage(e) {
         output.innerHTML = e.data;
       // Use the transfered port to post a message back to the main frame
-        e.ports[0].postMessage('Message back from the IFrame');
+        e.ports[0].postMessage('Message transféré');
     }
     </script>
     </html>
