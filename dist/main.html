@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+        <script type="text/javascript" src="../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../modules/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="../modules/jquery-ui-1.13.1.custom/jquery-ui.min.js"></script>
+        <title>BASISTIC</title>
+    </head>
+    
+    <body class="main" style="height: 100%; min-height: 100%; padding: 2% 0% 5% 0%;">
+
+      <div class="container" style="height: 100%; min-height: 100%; display:flex; flex-direction:column; flex:1;">
+
+        <div class="row" style="display:flex; flex:1;">
+
+          <div class="col-3" style="text-align:center;">
+            <img src="../resources/img/logo.png" style="width:50%;">
+          </div>
+
+          <div class="col-9" style="display: flex;flex-direction: row;align-items: center;">
+            <header class="pagetitle"><strong>Bienvenue sur BASISTIC le site d'interprétation de BASIC en ligne</strong></header>
+          </div>
+
+        </div>
+
+        <div class="row" style="display:flex; flex:1; flex-direction: row; justify-content: center;">
+          <h1>Saisir du code</h1>
+          <p class="output" id="output">En attente d'envoi</p>
+        </div>
+
+        <div class="row" style="display:flex; flex:6; flex-direction: row; justify-content: center;">
+
+          <div class="col-6" style="display:flex; flex-direction: column;">
+
+            <div class="row" style="flex:10;">
+              <textarea class="input" id="textfield" style="height:100%; resize: none;"></textarea>
+            </div>
+
+            <div class="row" style="flex:1;">
+              <input id="post" type="button" value="Envoyer">
+            </div>
+            
+          </div>
+
+          <div class="col-6" style="display:flex; flex-direction: column;">
+            <!--<iframe class="sortie" id="sortie"
+                width="300"
+                height="200"
+                src="sortie.html"
+                style="flex:1;"> 
+            </iframe>-->
+            <textarea class="output" id="textfieldo" style="height:100%; resize: none;"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+
+    </body>
+
+    <script>
+      //Wait for the document to be loaded and ready
+      $( document ).ready(function() {
+
+        //Attach a listener on the "Send" button
+        var btn = document.getElementById("post");
+        btn.addEventListener('click', event => {
+          onLoad();
+        });
+
+        //Defines the actions to take when the "Send" button is pressed
+        function onLoad() {
+          var iframe = document.getElementById("sortie");
+          var textfield = document.getElementById("textfield");
+          var channel = new MessageChannel();
+
+          // Listen for messages on port1
+          channel.port1.onmessage = onMessage;
+
+          //Gets the value in the text field input
+          var textValue = textfield.value;
+
+          // Transfer port2 to the iframe
+          iframe.contentWindow.postMessage(textValue, '*', [channel.port2]);
+        }
+    
+        // Handle messages received on port1
+        function onMessage(e) {
+          var output = document.getElementById("output");
+          output.innerHTML = e.data;
+        }
+      });
+    </script>
+</html>
