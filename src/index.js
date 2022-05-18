@@ -11,6 +11,7 @@ var tokens;
 var parser;
 var visitor;
 var tree;
+var result;
 
 window.run = function () {
 
@@ -25,6 +26,8 @@ window.run = function () {
   // Création du Visitor de l'AST
   visitor = new Visitor();
   visitor.visit(tree);
+  
+  return result;
 }
 
 class Visitor extends GrammarVisitor {
@@ -34,7 +37,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitStart(ctx) {
-    alert(this.visitChildren(ctx));
+    result = this.visitChildren(ctx);
   }
 
   visitOpExpr(ctx) {

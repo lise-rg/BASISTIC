@@ -95,7 +95,8 @@
         //Attach a listener on the "Run" button (of the interpreter)
         var btn = document.getElementById("post");
         btn.addEventListener('click', event => {
-          run();
+          var result = run();
+          document.getElementById("textoutput").value = result;
         });
         
         //Attach a listener on the "OK" button (of the console)
