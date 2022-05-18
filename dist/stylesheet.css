@@ -7,7 +7,7 @@ iframe.sortie {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border : 1px solid rgb(0, 0, 0);
+    border : 3px solid rgb(0, 0, 0);
     background-color: rgb(140, 107, 155);
     width : 100%;
     height : 50%;
@@ -25,11 +25,18 @@ textarea.input{
     font-size: 18px;
     height :100%; 
     resize : none;
+    border : 2px solid rgb(0, 0, 0);
 }
 
 textarea.output{
     height :100%; 
     resize : none;
+    background-color: rgb(0, 0, 0);
+    border : 2px solid rgb(0, 0, 0);
+    color : rgb(0, 255, 0);
+}
+canvas.graph{
+    border : 2px solid rgb(0, 0, 0);
 }
 
 body.main {
