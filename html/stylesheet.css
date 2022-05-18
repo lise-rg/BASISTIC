@@ -23,6 +23,13 @@ textarea.input{
     height: 1000%;
     width: 100%;
     font-size: 18px;
+    height :100%; 
+    resize : none;
+}
+
+textarea.output{
+    height :100%; 
+    resize : none;
 }
 
 body.main {
