@@ -2,13 +2,14 @@
 <html style="height:100%;">
     <head>
         <meta charset="UTF-8" />
+        <title>BASISTIC</title>
+        <link rel="icon" href="../resources/img/icon.png">
         <link rel="stylesheet" href="stylesheet.css">
         <link rel="stylesheet" href="../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
         <script type="text/javascript" src="../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../modules/jquery-3.6.0.min.js"></script>
         <script type="text/javascript" src="../modules/jquery-ui-1.13.1.custom/jquery-ui.min.js"></script>
         <script type="text/javascript" src="./main.js"></script>
-        <title>BASISTIC</title>
     </head>
     
     <body class="main" style="height: 100%; min-height: 100%; padding: 2% 0% 5% 0%;">
@@ -17,31 +18,53 @@
 
         <div class="row" style="display:flex; flex:1;">
 
-          <div class="col-3" style="text-align:center;">
-            <img src="../resources/img/logo.png" style="width:50%;">
-          </div>
-
-          <div class="col-9" style="display:flex; flex-direction:row; align-items:center;">
+          <div class="col-12" style="display:flex; flex-direction:column; align-items:center;">
             <header class="pagetitle"><strong>Bienvenue sur BASISTIC le site d'interprétation de BASIC en ligne</strong></header>
           </div>
 
         </div>
 
-        <div class="row" style="display:flex; flex:1; flex-direction:row; justify-content:center;">
-          <h1>Saisir du code</h1>
-          <p class="output" id="output">En attente d'envoi</p>
-        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius:5px; padding:15px;">
+          
+          <img class="logo" src="../resources/img/logo.png" alt="Logo de l'application">
+        
+          <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://github.com/lise-rg/BASISTIC/blob/master/README.md">README</a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="https://github.com/lise-rg/BASISTIC">Github</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://processing.org/tutorials/gettingstarted">Example</a>
+              </li>
+
+            </ul>
+          </div>
+          
+        </nav>
 
         <div class="row" style="display:flex; flex:6; flex-direction:row; justify-content:center;">
 
           <div class="col-7" style="display:flex; flex-direction: column;">
 
-            <div class="row" style="flex:10; padding:12px;">
+            <div class="row" style="flex:20; padding:12px;">
               <textarea class="input" id="input-area"></textarea>
             </div>
 
             <div class="row" style="flex:1; padding:12px;">
-              <input id="post" type="button" value="Run">
+                <input class="import" id="importfile" type="file" value="Upload file" accept="text/*">
+            </div>
+            <div class="row" style="flex:1; padding:12px;">
+                <input id="post" type="button" value="Run">
             </div>
             
           </div>
@@ -49,7 +72,7 @@
           <div class="col-5" style="display:flex; flex-direction: column;">
 
             <div class="row" style="flex:1; padding:12px;">
-              <canvas class="graph" id="graph" style="width:100%; height:100%; background-color:white;"></canvas>
+              <canvas class="graph" id="graph"></canvas>
             </div>
 
             <div class="row" style="flex:1; padding:12px;">
@@ -91,7 +114,7 @@
     <script>
       //Wait for the document to be loaded and ready
       $(document).ready(function() {
-
+        
         //Attach a listener on the "Run" button (of the interpreter)
         var btn = document.getElementById("post");
         btn.addEventListener('click', event => {
@@ -105,6 +128,12 @@
           onConsoleMessage();
         });
 
+        //Attach a listener on the "Upload file" button
+        var importfile = document.getElementById("importfile");
+        importfile.addEventListener('change', event => {
+          readFiles();
+        });
+
         //Defines the actions to take when the user runs the code
         function onRun() {
           var src = document.getElementById("input-area").value;
@@ -115,6 +144,19 @@
         function onConsoleMessage(){
           var src = document.getElementById("console").value;
 			    document.getElementById("textoutput").value += src + "\n";
+        }
+
+        //Defines the actions to take when the user uploads a file
+        function readFiles(filelist) {
+          const file = document.getElementById("importfile").files[0];
+          let inputarea = document.getElementById("input-area");
+          let fr = new FileReader();
+          
+          fr.readAsText(file);
+
+          fr.onload = function() {
+            inputarea.value = fr.result;
+          };
         }
       });
     </script>

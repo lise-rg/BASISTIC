@@ -1,17 +1,6 @@
-img.displayed {
-    margin-left: auto;
-    margin-right: auto;
-    width : 50%;
-}
-iframe.sortie {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border : 3px solid rgb(0, 0, 0);
-    background-color: rgb(140, 107, 155);
-    width : 100%;
-    height : 50%;
-    
+img.logo {
+    width:10%; 
+    margin: 0px 25px 0px 25px;
 }
 header.pagetitle{
     text-align : center ;
@@ -37,8 +26,16 @@ textarea.output{
 }
 canvas.graph{
     border : 2px solid rgb(0, 0, 0);
+    width  :480px; 
+    height : 360px; 
+    background-color :white; 
+    margin : auto;
 }
 
 body.main {
     background-color: rgb(111, 186, 199);
+}
+
+input.import{
+    padding:0px;
 }
