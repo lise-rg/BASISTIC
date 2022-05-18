@@ -21,39 +21,65 @@
             <img src="../resources/img/logo.png" style="width:50%;">
           </div>
 
-          <div class="col-9" style="display: flex;flex-direction: row;align-items: center;">
+          <div class="col-9" style="display:flex; flex-direction:row; align-items:center;">
             <header class="pagetitle"><strong>Bienvenue sur BASISTIC le site d'interprétation de BASIC en ligne</strong></header>
           </div>
 
         </div>
 
-        <div class="row" style="display:flex; flex:1; flex-direction: row; justify-content: center;">
+        <div class="row" style="display:flex; flex:1; flex-direction:row; justify-content:center;">
           <h1>Saisir du code</h1>
           <p class="output" id="output">En attente d'envoi</p>
         </div>
 
-        <div class="row" style="display:flex; flex:6; flex-direction: row; justify-content: center;">
+        <div class="row" style="display:flex; flex:6; flex-direction:row; justify-content:center;">
 
-          <div class="col-6" style="display:flex; flex-direction: column;">
+          <div class="col-7" style="display:flex; flex-direction: column;">
 
-            <div class="row" style="flex:10;">
-              <textarea class="input" id="input"></textarea>
+            <div class="row" style="flex:10; padding:12px;">
+              <textarea class="input" id="input-area"></textarea>
             </div>
 
-            <div class="row" style="flex:1;">
-              <input id="post" type="button" value="Envoyer">
+            <div class="row" style="flex:1; padding:12px;">
+              <input id="post" type="button" value="Run">
             </div>
             
           </div>
 
-          <div class="col-6" style="display:flex; flex-direction: column;">
-            <!--<iframe class="sortie" id="sortie"
-                width="300"
-                height="200"
-                src="sortie.html"
-                style="flex:1;"> 
-            </iframe>-->
-            <textarea class="output" id="output"></textarea>
+          <div class="col-5" style="display:flex; flex-direction: column;">
+
+            <div class="row" style="flex:1; padding:12px;">
+              <canvas class="graph" id="graph" style="width:100%; height:100%; background-color:white;"></canvas>
+            </div>
+
+            <div class="row" style="flex:1; padding:12px;">
+
+              <div class="col-12" style="display:flex; flex-direction: column;">
+
+                <div class="row" style="flex:10;">
+                  <textarea class="output" id="textoutput" readonly></textarea>
+                </div>
+
+                <div class="row" style="flex:1;">
+
+                  <div class="col-10" style="display:flex; flex-direction: column;">
+                    <div class="row" style="flex:1;">
+                      <input class="console" id="console"></textarea>
+                    </div>
+                  </div>
+                  
+                  <div class="col-2" style="display:flex; flex-direction: column;">
+                    <div class="row" style="flex:1;">
+                      <input id="postconsole" type="button" value="OK">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+            
           </div>
 
         </div>
@@ -66,16 +92,28 @@
       //Wait for the document to be loaded and ready
       $(document).ready(function() {
 
-        //Attach a listener on the "Send" button
+        //Attach a listener on the "Run" button (of the interpreter)
         var btn = document.getElementById("post");
         btn.addEventListener('click', event => {
-          onLoad();
+          run();
+        });
+        
+        //Attach a listener on the "OK" button (of the console)
+        var post = document.getElementById("postconsole");
+        post.addEventListener('click', event => {
+          onConsoleMessage();
         });
 
-        //Defines the actions to take when the "Send" button is pressed
-        function onLoad() {
-          let src = document.getElementById("input").value;
-			    document.getElementById("output").value = src;
+        //Defines the actions to take when the user runs the code
+        function onRun() {
+          var src = document.getElementById("input-area").value;
+			    document.getElementById("textoutput").value = src;
+        }
+
+        //Defines the actions to take when the user sends data to the console
+        function onConsoleMessage(){
+          var src = document.getElementById("console").value;
+			    document.getElementById("textoutput").value += src + "\n";
         }
       });
     </script>
