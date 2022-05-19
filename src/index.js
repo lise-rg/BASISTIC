@@ -60,4 +60,8 @@ window.onload = function () {
 function clean() {
   $('#output-area').val('');
   $('#console').val('');
+
+  var c = document.getElementById("draw-output");
+  var ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, c.width, c.height); 
 }
