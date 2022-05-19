@@ -50,6 +50,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#read.
+	enterRead(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#read.
+	exitRead(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#printExpr.
 	enterPrintExpr(ctx) {
 	}

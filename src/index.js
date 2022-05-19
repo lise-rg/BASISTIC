@@ -3,6 +3,7 @@ import GrammarLexer from './antlr/GrammarLexer.js';
 import GrammarParser from './antlr/GrammarParser.js';
 import { Visitor } from './visitor.js';
 
+var visitor;
 
 //Wait for the document to be loaded and ready
 window.onload = function () {
@@ -25,19 +26,8 @@ window.onload = function () {
       let tree = parser.start();
 
       // Creates the Visitor and starts the interpretation
-      let visitor = new Visitor();
+      visitor = new Visitor();
       visitor.visit(tree);
-    }
-  );
-
-  // Attach a listener on the "OK" button (of the console)
-  $('#console-button').click(
-    function () {
-      let input = $('#console').val();
-      if (input == null || input.length < 1)
-        return;
-      $('#output-area').val($('#output-area').val() + input + '\n');
-      $('#console').val('');
     }
   );
 
@@ -59,7 +49,6 @@ window.onload = function () {
 // Clean the IO interface
 function clean() {
   $('#output-area').val('');
-  $('#console').val('');
 
   $('#draw-output').get(0).width = $('#draw-output').get(0).width;
 }

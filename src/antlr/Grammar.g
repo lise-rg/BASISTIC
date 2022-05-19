@@ -13,6 +13,7 @@ instruction:
   | whilecond
   | drawline
   | print
+  | read
   | initialization
   | assignement
   ;
@@ -23,6 +24,10 @@ initialization:
 
 assignement:
   ident=IDENT '=' value=expr
+  ;
+
+read:
+  'read(' ident=IDENT ')'
   ;
 
 print:

@@ -60,11 +60,18 @@
 
         <div class="row" style="flex:20; padding:12px;">
           <textarea class="input form-control" id="input-area">
-var x = 3 + 10 - 8;
-var y = 2;
-y = y + x;
-print(x);
-print(y);
+var x = 0;
+var y = 0;
+
+while y < 360 do
+x = 0;
+while x < 480 do
+drawline(x, y, x+30, y+30);
+drawline(x, y+30, x+30, y);
+x = x + 30;
+end;
+y = y + 30;
+            end;
               </textarea>
         </div>
 
@@ -95,23 +102,6 @@ print(y);
 
             <div class="row" style="flex:10;">
               <textarea class="output" id="output-area" readonly></textarea>
-            </div>
-
-            <div class="row" style="flex:1;">
-
-              <div class="col-10" style="display:flex; flex-direction: column;">
-                <div class="row" style="flex:1;">
-                  <input class="console" id="console"
-                    style="background-color: black; border: 2px solid black; color: green;"></textarea>
-                </div>
-              </div>
-
-              <div class="col-2" style="display:flex; flex-direction: column;">
-                <div class="row" style="flex:1;">
-                  <input class="btn btn-dark" id="console-button" type="button" value="OK" style="border-radius:0px;">
-                </div>
-              </div>
-
             </div>
 
           </div>

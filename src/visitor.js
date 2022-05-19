@@ -13,13 +13,7 @@ class Visitor extends GrammarVisitor {
 
   constructor() {
     super();
-
-    this.currentType = '';
-    this.currentNumber = 0;
-    this.currentString = '';
-
     this.varDict = new VariableDict();
-
     this.drawOut = new DrawOutput();
   }
 
@@ -72,6 +66,25 @@ class Visitor extends GrammarVisitor {
       this.abort('variable ' + arg + ' has not been declared.');
 
     printConsole(arg + ' = ' + this.varDict.getValue(arg));
+  }
+
+  waitForInput() {
+    if (this.consoleInput === '') {
+      setTimeout(this.waitForInput, 500);
+    }
+  }
+
+  visitRead(ctx) {
+    let arg = ctx.ident.text;
+    if (!this.varDict.contains(arg))
+      this.abort('variable ' + arg + ' does not exist.');
+
+    let input;
+    do {
+      input = prompt(arg + ' = ?');
+    } while (input == null || input === '');
+
+    this.varDict.assign(arg, parseInt(input));
   }
 
   visitAddExpr(ctx) {
@@ -136,16 +149,16 @@ class Visitor extends GrammarVisitor {
   }
 
   visitWhilecond(ctx) {
-    let cond=this.visit(ctx.cond);
+    let cond = this.visit(ctx.cond);
     while (cond == 1) {
       this.visit(ctx.inst);
-      cond=this.visit(ctx.cond);
+      cond = this.visit(ctx.cond);
     }
   }
 
   visitDrawline(ctx) {
     this.drawOut.drawLine(
-      this.visit(ctx.getChild(1)), 
+      this.visit(ctx.getChild(1)),
       this.visit(ctx.getChild(3)),
       this.visit(ctx.getChild(5)),
       this.visit(ctx.getChild(7))

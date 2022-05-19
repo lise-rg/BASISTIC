@@ -36,6 +36,12 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by GrammarParser#read.
+	visitRead(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by GrammarParser#printExpr.
 	visitPrintExpr(ctx) {
 	  return this.visitChildren(ctx);
