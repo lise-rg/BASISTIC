@@ -140,42 +140,18 @@ constant : Integer
 // zone lexicale //
 
 
-ID : [A-Za-z]+
+ID : [A-z]+
 ;
 
 Integer : [0-9]+
 ;
 
-String : '"'[A-Za-z]+'"'
+String : '"'[\u0020\u0021\u0023-\u00ff]+'"'
 ;
 
-Real : [0-9]+ '.' [0-9]+
+Real : Integer'.'Integer
 ;
 
 WS: 
   [\n\t\r ] -> skip
   ;
-
-
-
-
-
-
-//NewLine        : {CR}{LF}|{CR} ;
-
-//ID             : {Letter}[$%]? ;
-//String         : '"'(Chars)*'"' ;
-//Chars          : String Chars ;
-
-//Real           : {Integer}.{Integer} ;
-//Integer        : '0'..'9'+ ;
-//WS             : (' '|'\t' |'\r')+ {skip();} ; // definition des "blocs d'espaces"
-//RC             : ('\n') {UtilLex.incrementeLigne(); skip() ;} ; // definition d'un unique "passage a la ligne" et comptage des numeros de lignes
-
-//COMMENT
-//  :  '\{' (.)* '\}' {skip();}   // toute suite de caracteres entouree d'accolades est un commentaire
-//  |  '#' ~( '\r' | '\n' )* {skip();}  // tout ce qui suit un caractere diese sur une ligne est un commentaire
-//  ;
-
-// commentaires sur plusieurs lignes
-// ML_COMMENT    :   '/*' (options {greedy=false;} : .)* '*/' {$channel=HIDDEN;} ;
