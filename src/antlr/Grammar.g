@@ -11,6 +11,7 @@ instructions:
 instruction:
   ifcond
   | whilecond
+  | drawline
   | print
   | initialization
   | assignement
@@ -35,6 +36,10 @@ ifcond:
 
 whilecond:
   'while' cond=condition 'do' inst=instructions 'end'
+  ;
+
+drawline:
+  'drawline(' expr ',' expr ',' expr ',' expr ')'
   ;
 
 expr:

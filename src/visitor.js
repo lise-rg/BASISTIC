@@ -1,5 +1,6 @@
 export { Visitor };
 import { VariableDict } from './variableDict.js';
+import { DrawOutput } from './drawing.js';
 import GrammarVisitor from './antlr/GrammarVisitor.js';
 
 var outputArea = document.getElementById('output-area');
@@ -18,6 +19,8 @@ class Visitor extends GrammarVisitor {
     this.currentString = '';
 
     this.varDict = new VariableDict();
+
+    this.drawOut = new DrawOutput();
   }
 
   abort(msg) {
@@ -138,6 +141,15 @@ class Visitor extends GrammarVisitor {
       this.visit(ctx.inst);
       cond=this.visit(ctx.cond);
     }
+  }
+
+  visitDrawline(ctx) {
+    this.drawOut.drawLine(
+      this.visit(ctx.getChild(1)), 
+      this.visit(ctx.getChild(3)),
+      this.visit(ctx.getChild(5)),
+      this.visit(ctx.getChild(7))
+    );
   }
 
   visitNumber(ctx) {

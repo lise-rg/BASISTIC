@@ -1,125 +1,130 @@
 <!DOCTYPE html>
 <html style="height:100%;">
-    <head>
-        <meta charset="UTF-8" />
-        <title>BASISTIC</title>
-        <link rel="icon" href="../resources/img/icon.png">
-        <link rel="stylesheet" href="stylesheet.css">
-        <link rel="stylesheet" href="../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
-        <script type="text/javascript" src="../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../modules/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="../modules/jquery-ui-1.13.1.custom/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="./main.js"></script>
-    </head>
-    
-    <body class="main" style="height: 100%; min-height: 100%; padding: 2% 0% 2% 0%;">
 
-      <div class="container" style="height: 100%; min-height: 100%; display:flex; flex-direction:column; flex:1;">
+<head>
+  <meta charset="UTF-8" />
+  <title>BASISTIC</title>
+  <link rel="icon" href="../resources/img/icon.png">
+  <link rel="stylesheet" href="stylesheet.css">
+  <link rel="stylesheet" href="../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../modules/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="../modules/jquery-ui-1.13.1.custom/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
+</head>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius:5px; padding:0px; flex:1;">
-          
-          <img class="logo" src="../resources/img/logo.png" alt="Logo de l'application">
-        
-          <div class="navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+<body class="main" style="height: 100%; min-height: 100%; padding: 2% 0% 2% 0%;">
 
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-              </li>
+  <div class="container" style="height: 100%; min-height: 100%; display:flex; flex-direction:column; flex:1;">
 
-              <li class="nav-item">
-                <a class="nav-link" href="https://github.com/lise-rg/BASISTIC/blob/master/README.md">README</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link" href="https://github.com/lise-rg/BASISTIC">Github</a>
-              </li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius:5px; padding:0px; flex:1;">
 
-              <li class="nav-item">
-                <a class="nav-link" href="https://processing.org/tutorials/gettingstarted">Example</a>
-              </li>
+      <img class="logo" src="../resources/img/logo.png" alt="Logo de l'application">
 
-            </ul>
-          </div>
-          
-        </nav>
+      <div class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
 
-        <div class="row" style="display:flex; flex:1;">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
 
-          <div class="col-12" style="display:flex; flex-direction:row; align-items:center;">
-            <header class="pagetitle" style="flex:1;"><strong>Bienvenue sur BASISTIC le site d'interprétation de BASIC en ligne</strong></header>
-          </div>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC/blob/master/README.md">README</a>
+          </li>
 
-        </div>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC">Github</a>
+          </li>
 
-        <div class="row" style="display:flex; flex:10; flex-direction:row; justify-content:center;">
+          <li class="nav-item">
+            <a class="nav-link" href="https://processing.org/tutorials/gettingstarted">Example</a>
+          </li>
 
-          <div class="col-7" style="display:flex; flex-direction: column;">
+        </ul>
+      </div>
 
-            <div class="row" style="flex:20; padding:12px;">
-              <textarea class="input form-control" id="input-area">
+    </nav>
+
+    <div class="row" style="display:flex; flex:1;">
+
+      <div class="col-12" style="display:flex; flex-direction:row; align-items:center;">
+        <header class="pagetitle" style="flex:1;"><strong>Bienvenue sur BASISTIC le site d'interprétation de BASIC en
+            ligne</strong></header>
+      </div>
+
+    </div>
+
+    <div class="row" style="display:flex; flex:10; flex-direction:row; justify-content:center;">
+
+      <div class="col-7" style="display:flex; flex-direction: column;">
+
+        <div class="row" style="flex:20; padding:12px;">
+          <textarea class="input form-control" id="input-area">
 var x = 3 + 10 - 8;
 var y = 2;
 y = y + x;
 print(x);
 print(y);
               </textarea>
-            </div>
+        </div>
 
-            <div class="row" style="flex:1; padding:12px;">
-              <input class="import form-control" id="import-button" type="file" value="Upload file" accept="text/*" style="padding:6px; border: 2px solid black;">
-            </div>
+        <div class="row" style="flex:1; padding:12px;">
+          <input class="import form-control" id="import-button" type="file" value="Upload file" accept="text/*"
+            style="padding:6px; border: 2px solid black;">
+        </div>
 
-            <div class="row" style="flex:1; padding:12px;">
-                <input class="btn btn-dark" id="run-button" type="button" value="Run">
-            </div>
-            
+        <div class="row" style="flex:1; padding:12px;">
+          <input class="btn btn-dark" id="run-button" type="button" value="Run">
+        </div>
+
+      </div>
+
+      <div class="col-5" style="display:flex; flex-direction: column;">
+
+        <div class="row" style="flex:1; padding:12px; ">
+
+          <div class="col-12" style="display:flex; align-items:center; border-radius:.375rem; background-color:black;">
+            <canvas width="640px" height="480px" class="graph" id="draw-output"></canvas>
           </div>
 
-          <div class="col-5" style="display:flex; flex-direction: column;">
+        </div>
 
-            <div class="row" style="flex:1; padding:12px; ">
-              
-              <div class="col-12" style="display:flex; align-items:center; border-radius:.375rem; background-color:black;">
-                <canvas class="graph" id="draw-output"></canvas>
-              </div>
+        <div class="row" style="flex:1; padding:12px;">
 
+          <div class="col-12" style="display:flex; flex-direction: column;">
+
+            <div class="row" style="flex:10;">
+              <textarea class="output" id="output-area" readonly></textarea>
             </div>
 
-            <div class="row" style="flex:1; padding:12px;">
+            <div class="row" style="flex:1;">
 
-              <div class="col-12" style="display:flex; flex-direction: column;">
-
-                <div class="row" style="flex:10;">
-                  <textarea class="output" id="output-area" readonly></textarea>
-                </div>
-
+              <div class="col-10" style="display:flex; flex-direction: column;">
                 <div class="row" style="flex:1;">
-
-                  <div class="col-10" style="display:flex; flex-direction: column;">
-                    <div class="row" style="flex:1;">
-                      <input class="console" id="console" style="background-color: black; border: 2px solid black; color: green;"></textarea>
-                    </div>
-                  </div>
-                  
-                  <div class="col-2" style="display:flex; flex-direction: column;">
-                    <div class="row" style="flex:1;">
-                      <input class="btn btn-dark" id="console-button" type="button" value="OK" style="border-radius:0px;">
-                    </div>
-                  </div>
-
+                  <input class="console" id="console"
+                    style="background-color: black; border: 2px solid black; color: green;"></textarea>
                 </div>
+              </div>
 
+              <div class="col-2" style="display:flex; flex-direction: column;">
+                <div class="row" style="flex:1;">
+                  <input class="btn btn-dark" id="console-button" type="button" value="OK" style="border-radius:0px;">
+                </div>
               </div>
 
             </div>
-            
+
           </div>
 
         </div>
 
       </div>
 
-    </body>
-    <script src="./main.js"></script>
+    </div>
+
+  </div>
+
+</body>
+<script src="./main.js"></script>
+
 </html>
