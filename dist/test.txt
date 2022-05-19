@@ -1,1 +1,5 @@
-2 + 2
+var x = 3 + 10 - 8;
+var y = 2;
+y = y + x;
+print(x);
+print(y);

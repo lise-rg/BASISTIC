@@ -14,12 +14,75 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#opExpr.
-	enterOpExpr(ctx) {
+	// Enter a parse tree produced by GrammarParser#instructions.
+	enterInstructions(ctx) {
 	}
 
-	// Exit a parse tree produced by GrammarParser#opExpr.
-	exitOpExpr(ctx) {
+	// Exit a parse tree produced by GrammarParser#instructions.
+	exitInstructions(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#instruction.
+	enterInstruction(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#instruction.
+	exitInstruction(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#initialization.
+	enterInitialization(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#initialization.
+	exitInitialization(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#assignement.
+	enterAssignement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#assignement.
+	exitAssignement(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#printExpr.
+	enterPrintExpr(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#printExpr.
+	exitPrintExpr(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#printIdent.
+	enterPrintIdent(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#printIdent.
+	exitPrintIdent(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#identExpr.
+	enterIdentExpr(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#identExpr.
+	exitIdentExpr(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#addExpr.
+	enterAddExpr(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#addExpr.
+	exitAddExpr(ctx) {
 	}
 
 
@@ -29,6 +92,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by GrammarParser#atomExpr.
 	exitAtomExpr(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#number.
+	enterNumber(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#number.
+	exitNumber(ctx) {
 	}
 
 
