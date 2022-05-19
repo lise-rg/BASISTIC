@@ -2,6 +2,12 @@ export { Visitor };
 import { VariableDict } from './variableDict.js';
 import GrammarVisitor from './antlr/GrammarVisitor.js';
 
+var outputArea = document.getElementById('output-area');
+
+function printConsole(msg) {
+  outputArea.value += msg + '\n';
+}
+
 class Visitor extends GrammarVisitor {
 
   constructor() {
@@ -50,7 +56,7 @@ class Visitor extends GrammarVisitor {
 
   visitPrintExpr(ctx) {
     let arg = this.visit(ctx.argExpr);
-    alert(arg);
+    printConsole(arg);
   }
 
   visitPrintIdent(ctx) {
@@ -59,7 +65,7 @@ class Visitor extends GrammarVisitor {
     if (!this.varDict.contains(arg))
       this.abort('variable ' + arg + ' has not been declared.');
 
-    alert(arg + ' = ' + this.varDict.getValue(arg));
+    printConsole(arg + ' = ' + this.varDict.getValue(arg));
   }
 
   visitAddExpr(ctx) {

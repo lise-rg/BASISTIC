@@ -90,7 +90,7 @@
               <div class="col-12" style="display:flex; flex-direction: column;">
 
                 <div class="row" style="flex:10;">
-                  <textarea class="output" id="textoutput" readonly></textarea>
+                  <textarea class="output" id="output-area" readonly></textarea>
                 </div>
 
                 <div class="row" style="flex:1;">
@@ -124,12 +124,13 @@
     <script>
       //Wait for the document to be loaded and ready
       $(document).ready(function() {
+
+        document.getElementById('output-area').value = '';
         
         //Attach a listener on the "Run" button (of the interpreter)
         var btn = document.getElementById("post");
         btn.addEventListener('click', event => {
-          var result = run();
-          document.getElementById("textoutput").value = result;
+          run();
         });
         
         //Attach a listener on the "OK" button (of the console)
@@ -147,13 +148,13 @@
         //Defines the actions to take when the user runs the code
         function onRun() {
           var src = document.getElementById("input-area").value;
-			    document.getElementById("textoutput").value = src;
+			    document.getElementById("output-area").value = src;
         }
 
         //Defines the actions to take when the user sends data to the console
         function onConsoleMessage(){
           var src = document.getElementById("console").value;
-			    document.getElementById("textoutput").value += src + "\n";
+			    document.getElementById("output-area").value += src + "\n";
         }
 
         //Defines the actions to take when the user uploads a file
