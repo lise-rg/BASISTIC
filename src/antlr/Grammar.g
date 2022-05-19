@@ -9,9 +9,10 @@ instructions:
   ;
 
 instruction:
-  assignement
-  | initialization
+  ifcond
   | print
+  | initialization
+  | assignement
   ;
 
 initialization:
@@ -27,10 +28,18 @@ print:
   | 'print(' argIdent = IDENT ')'              #printIdent
   ;
 
+ifcond:
+  'if' cond=condition 'then' ifInstructions=instructions ('else' elseInstructions=instructions)? 'endif'
+  ;
+
 expr:
   left=expr op=('+'|'-') right=expr #addExpr
   | atom=number                     #atomExpr
   | ident=IDENT                     #identExpr
+  ;
+
+condition:
+  left=expr op=('>'|'<'|'>='|'<='|'=='|'!=') right=expr
   ;
 
 number:
