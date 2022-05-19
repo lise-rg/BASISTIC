@@ -11,8 +11,9 @@ header.pagetitle{
 textarea.input{
     height: 1000%;
     width: 100%;
-    font-size: 18px;
+    font-size: 14px;
     height :100%; 
+    text-align : left ;
     resize : none;
     border : 2px solid rgb(0, 0, 0);
 }
