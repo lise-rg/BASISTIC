@@ -68,6 +68,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#ifcond.
+	enterIfcond(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#ifcond.
+	exitIfcond(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#identExpr.
 	enterIdentExpr(ctx) {
 	}
@@ -92,6 +101,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by GrammarParser#atomExpr.
 	exitAtomExpr(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#condition.
+	enterCondition(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#condition.
+	exitCondition(ctx) {
 	}
 
 

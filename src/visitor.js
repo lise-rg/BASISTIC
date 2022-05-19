@@ -64,7 +64,7 @@ class Visitor extends GrammarVisitor {
 
   visitPrintIdent(ctx) {
     let arg = ctx.argIdent.text;
-    
+
     if (!this.varDict.contains(arg))
       this.abort('variable ' + arg + ' has not been declared.');
 
@@ -82,7 +82,7 @@ class Visitor extends GrammarVisitor {
         return left - right;
     }
   }
-  
+
 
   visitAtomExpr(ctx) {
     return this.visit(ctx.atom);
@@ -93,6 +93,43 @@ class Visitor extends GrammarVisitor {
     if (!this.varDict.contains(ident))
       this.abort('variable ' + ident + ' has not been declared.');
     return this.varDict.getValue(ident)
+  }
+
+  visitIfcond(ctx) {
+    let cond = this.visit(ctx.cond);
+    if (cond == 1)
+      this.visit(ctx.ifInstructions);
+    else
+      this.visit(ctx.elseInstructions);
+  }
+
+  visitCondition(ctx) {
+    let left = this.visit(ctx.left);
+    let right = this.visit(ctx.right);
+    let op = ctx.op.text;
+
+    switch (op) {
+      case '<':
+        if (left < right) return 1;
+        break;
+      case '>':
+        if (left > right) return 1;
+        break;
+      case '<=':
+        if (left <= right) return 1;
+        break;
+      case '>=':
+        if (left >= right) return 1;
+        break;
+      case '==':
+        if (left == right) return 1;
+        break;
+      case '!=':
+        if (left != right) return 1;
+        break;
+    }
+
+    return 0;
   }
 
   visitNumber(ctx) {

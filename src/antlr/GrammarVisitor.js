@@ -48,6 +48,12 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by GrammarParser#ifcond.
+	visitIfcond(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by GrammarParser#identExpr.
 	visitIdentExpr(ctx) {
 	  return this.visitChildren(ctx);
@@ -62,6 +68,12 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by GrammarParser#atomExpr.
 	visitAtomExpr(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#condition.
+	visitCondition(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
