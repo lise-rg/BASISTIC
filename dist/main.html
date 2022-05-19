@@ -125,6 +125,7 @@
       //Wait for the document to be loaded and ready
       $(document).ready(function() {
 
+        // Clean the console
         document.getElementById('output-area').value = '';
         
         //Attach a listener on the "Run" button (of the interpreter)
@@ -144,12 +145,6 @@
         importfile.addEventListener('change', event => {
           readFiles();
         });
-
-        //Defines the actions to take when the user runs the code
-        function onRun() {
-          var src = document.getElementById("input-area").value;
-			    document.getElementById("output-area").value = src;
-        }
 
         //Defines the actions to take when the user sends data to the console
         function onConsoleMessage(){

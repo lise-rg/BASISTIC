@@ -12,8 +12,8 @@ var visitor;
 var tree;
 
 window.run = function () {
-
-  // Génération de l'arbre de syntaxe abstraite avec le parser
+  
+  // Generates the AST
   input = document.getElementById('input-area').value;
   chars = new antlr4.InputStream(input);
   lexer = new GrammarLexer(chars);
@@ -21,7 +21,7 @@ window.run = function () {
   parser = new GrammarParser(tokens);
   tree = parser.start();
 
-  // Création du Visitor de l'AST
+  // Creates the Visitor and starts the interpretation
   visitor = new Visitor();
   visitor.visit(tree);
 }
