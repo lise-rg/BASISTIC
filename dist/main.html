@@ -71,10 +71,10 @@
             </div>
 
             <div class="row" style="flex:1; padding:12px;">
-                <input class="import" id="importfile" type="file" value="Upload file" accept="text/*">
+                <input class="import" id="import-button" type="file" value="Upload file" accept="text/*">
             </div>
             <div class="row" style="flex:1; padding:12px;">
-                <input id="post" type="button" value="Run">
+                <input id="run-button" type="button" value="Run">
             </div>
             
           </div>
@@ -101,13 +101,13 @@
 
                   <div class="col-10" style="display:flex; flex-direction: column;">
                     <div class="row" style="flex:1;">
-                      <input class="console" id="console"></textarea>
+                      <input class="console" id="console"></input>
                     </div>
                   </div>
                   
                   <div class="col-2" style="display:flex; flex-direction: column;">
                     <div class="row" style="flex:1;">
-                      <input id="postconsole" type="button" value="OK">
+                      <input id="console-button" type="button" value="OK">
                     </div>
                   </div>
 
@@ -124,51 +124,5 @@
       </div>
 
     </body>
-
-    <script>
-      //Wait for the document to be loaded and ready
-      $(document).ready(function() {
-
-        // Clean the console
-        document.getElementById('output-area').value = '';
-        
-        //Attach a listener on the "Run" button (of the interpreter)
-        var btn = document.getElementById("post");
-        btn.addEventListener('click', event => {
-          run();
-        });
-        
-        //Attach a listener on the "OK" button (of the console)
-        var post = document.getElementById("postconsole");
-        post.addEventListener('click', event => {
-          onConsoleMessage();
-        });
-
-        //Attach a listener on the "Upload file" button
-        var importfile = document.getElementById("importfile");
-        importfile.addEventListener('change', event => {
-          readFiles();
-        });
-
-        //Defines the actions to take when the user sends data to the console
-        function onConsoleMessage(){
-          var src = document.getElementById("console").value;
-			    document.getElementById("output-area").value += src + "\n";
-        }
-
-        //Defines the actions to take when the user uploads a file
-        function readFiles(filelist) {
-          const file = document.getElementById("importfile").files[0];
-          let inputarea = document.getElementById("input-area");
-          let fr = new FileReader();
-          
-          fr.readAsText(file);
-
-          fr.onload = function() {
-            inputarea.value = fr.result;
-          };
-        }
-      });
-    </script>
     <script src="./main.js"></script>
 </html>
