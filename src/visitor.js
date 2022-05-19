@@ -25,8 +25,11 @@ class Visitor extends GrammarVisitor {
   }
 
   visitStart(ctx) {
+    let date = new Date();
+    let time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    printConsole('Execution started - ' + time);
     this.visitChildren(ctx);
-    alert("Done.");
+    printConsole('Done.');
   }
 
   visitNumber(ctx) {
