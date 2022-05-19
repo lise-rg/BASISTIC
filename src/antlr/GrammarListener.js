@@ -77,6 +77,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#whilecond.
+	enterWhilecond(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#whilecond.
+	exitWhilecond(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#identExpr.
 	enterIdentExpr(ctx) {
 	}

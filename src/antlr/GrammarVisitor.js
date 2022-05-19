@@ -54,6 +54,12 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by GrammarParser#whilecond.
+	visitWhilecond(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by GrammarParser#identExpr.
 	visitIdentExpr(ctx) {
 	  return this.visitChildren(ctx);

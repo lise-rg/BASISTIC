@@ -4,28 +4,31 @@ import antlr4 from 'antlr4';
 import GrammarListener from './GrammarListener.js';
 import GrammarVisitor from './GrammarVisitor.js';
 
-const serializedATN = [4,1,20,83,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
-2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,1,0,1,0,1,1,1,1,1,1,4,1,26,8,1,11,
-1,12,1,27,1,2,1,2,1,2,1,2,3,2,34,8,2,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,
-1,5,1,5,1,5,1,5,1,5,1,5,1,5,3,5,52,8,5,1,6,1,6,1,6,1,6,1,6,1,6,3,6,60,8,
-6,1,6,1,6,1,7,1,7,1,7,3,7,67,8,7,1,7,1,7,1,7,5,7,72,8,7,10,7,12,7,75,9,7,
-1,8,1,8,1,8,1,8,1,9,1,9,1,9,0,1,14,10,0,2,4,6,8,10,12,14,16,18,0,2,1,0,10,
-11,1,0,12,17,80,0,20,1,0,0,0,2,25,1,0,0,0,4,33,1,0,0,0,6,35,1,0,0,0,8,40,
-1,0,0,0,10,51,1,0,0,0,12,53,1,0,0,0,14,66,1,0,0,0,16,76,1,0,0,0,18,80,1,
-0,0,0,20,21,3,2,1,0,21,1,1,0,0,0,22,23,3,4,2,0,23,24,5,1,0,0,24,26,1,0,0,
-0,25,22,1,0,0,0,26,27,1,0,0,0,27,25,1,0,0,0,27,28,1,0,0,0,28,3,1,0,0,0,29,
-34,3,12,6,0,30,34,3,10,5,0,31,34,3,6,3,0,32,34,3,8,4,0,33,29,1,0,0,0,33,
-30,1,0,0,0,33,31,1,0,0,0,33,32,1,0,0,0,34,5,1,0,0,0,35,36,5,2,0,0,36,37,
-5,19,0,0,37,38,5,3,0,0,38,39,3,14,7,0,39,7,1,0,0,0,40,41,5,19,0,0,41,42,
-5,3,0,0,42,43,3,14,7,0,43,9,1,0,0,0,44,45,5,4,0,0,45,46,3,14,7,0,46,47,5,
-5,0,0,47,52,1,0,0,0,48,49,5,4,0,0,49,50,5,19,0,0,50,52,5,5,0,0,51,44,1,0,
-0,0,51,48,1,0,0,0,52,11,1,0,0,0,53,54,5,6,0,0,54,55,3,16,8,0,55,56,5,7,0,
-0,56,59,3,2,1,0,57,58,5,8,0,0,58,60,3,2,1,0,59,57,1,0,0,0,59,60,1,0,0,0,
-60,61,1,0,0,0,61,62,5,9,0,0,62,13,1,0,0,0,63,64,6,7,-1,0,64,67,3,18,9,0,
-65,67,5,19,0,0,66,63,1,0,0,0,66,65,1,0,0,0,67,73,1,0,0,0,68,69,10,3,0,0,
-69,70,7,0,0,0,70,72,3,14,7,4,71,68,1,0,0,0,72,75,1,0,0,0,73,71,1,0,0,0,73,
-74,1,0,0,0,74,15,1,0,0,0,75,73,1,0,0,0,76,77,3,14,7,0,77,78,7,1,0,0,78,79,
-3,14,7,0,79,17,1,0,0,0,80,81,5,18,0,0,81,19,1,0,0,0,6,27,33,51,59,66,73];
+const serializedATN = [4,1,22,92,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
+2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,1,0,1,0,1,1,1,1,1,1,4,
+1,28,8,1,11,1,12,1,29,1,2,1,2,1,2,1,2,1,2,3,2,37,8,2,1,3,1,3,1,3,1,3,1,3,
+1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,1,5,1,5,3,5,55,8,5,1,6,1,6,1,6,1,6,1,
+6,1,6,3,6,63,8,6,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,1,8,1,8,1,8,3,8,76,8,8,
+1,8,1,8,1,8,5,8,81,8,8,10,8,12,8,84,9,8,1,9,1,9,1,9,1,9,1,10,1,10,1,10,0,
+1,16,11,0,2,4,6,8,10,12,14,16,18,20,0,2,1,0,12,13,1,0,14,19,89,0,22,1,0,
+0,0,2,27,1,0,0,0,4,36,1,0,0,0,6,38,1,0,0,0,8,43,1,0,0,0,10,54,1,0,0,0,12,
+56,1,0,0,0,14,66,1,0,0,0,16,75,1,0,0,0,18,85,1,0,0,0,20,89,1,0,0,0,22,23,
+3,2,1,0,23,1,1,0,0,0,24,25,3,4,2,0,25,26,5,1,0,0,26,28,1,0,0,0,27,24,1,0,
+0,0,28,29,1,0,0,0,29,27,1,0,0,0,29,30,1,0,0,0,30,3,1,0,0,0,31,37,3,12,6,
+0,32,37,3,14,7,0,33,37,3,10,5,0,34,37,3,6,3,0,35,37,3,8,4,0,36,31,1,0,0,
+0,36,32,1,0,0,0,36,33,1,0,0,0,36,34,1,0,0,0,36,35,1,0,0,0,37,5,1,0,0,0,38,
+39,5,2,0,0,39,40,5,21,0,0,40,41,5,3,0,0,41,42,3,16,8,0,42,7,1,0,0,0,43,44,
+5,21,0,0,44,45,5,3,0,0,45,46,3,16,8,0,46,9,1,0,0,0,47,48,5,4,0,0,48,49,3,
+16,8,0,49,50,5,5,0,0,50,55,1,0,0,0,51,52,5,4,0,0,52,53,5,21,0,0,53,55,5,
+5,0,0,54,47,1,0,0,0,54,51,1,0,0,0,55,11,1,0,0,0,56,57,5,6,0,0,57,58,3,18,
+9,0,58,59,5,7,0,0,59,62,3,2,1,0,60,61,5,8,0,0,61,63,3,2,1,0,62,60,1,0,0,
+0,62,63,1,0,0,0,63,64,1,0,0,0,64,65,5,9,0,0,65,13,1,0,0,0,66,67,5,10,0,0,
+67,68,3,18,9,0,68,69,5,11,0,0,69,70,3,2,1,0,70,71,5,9,0,0,71,15,1,0,0,0,
+72,73,6,8,-1,0,73,76,3,20,10,0,74,76,5,21,0,0,75,72,1,0,0,0,75,74,1,0,0,
+0,76,82,1,0,0,0,77,78,10,3,0,0,78,79,7,0,0,0,79,81,3,16,8,4,80,77,1,0,0,
+0,81,84,1,0,0,0,82,80,1,0,0,0,82,83,1,0,0,0,83,17,1,0,0,0,84,82,1,0,0,0,
+85,86,3,16,8,0,86,87,7,1,0,0,87,88,3,16,8,0,88,19,1,0,0,0,89,90,5,20,0,0,
+90,21,1,0,0,0,6,29,36,54,62,75,82];
 
 
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -38,15 +41,15 @@ export default class GrammarParser extends antlr4.Parser {
 
     static grammarFileName = "Grammar.g";
     static literalNames = [ null, "';'", "'var'", "'='", "'print('", "')'", 
-                            "'if'", "'then'", "'else'", "'endif'", "'+'", 
-                            "'-'", "'>'", "'<'", "'>='", "'<='", "'=='", 
-                            "'!='" ];
+                            "'if'", "'then'", "'else'", "'end'", "'while'", 
+                            "'do'", "'+'", "'-'", "'>'", "'<'", "'>='", 
+                            "'<='", "'=='", "'!='" ];
     static symbolicNames = [ null, null, null, null, null, null, null, null, 
                              null, null, null, null, null, null, null, null, 
-                             null, null, "NB", "IDENT", "WS" ];
+                             null, null, null, null, "NB", "IDENT", "WS" ];
     static ruleNames = [ "start", "instructions", "instruction", "initialization", 
-                         "assignement", "print", "ifcond", "expr", "condition", 
-                         "number" ];
+                         "assignement", "print", "ifcond", "whilecond", 
+                         "expr", "condition", "number" ];
 
     constructor(input) {
         super(input);
@@ -62,7 +65,7 @@ export default class GrammarParser extends antlr4.Parser {
 
     sempred(localctx, ruleIndex, predIndex) {
     	switch(ruleIndex) {
-    	case 7:
+    	case 8:
     	    		return this.expr_sempred(localctx, predIndex);
         default:
             throw "No predicate with index:" + ruleIndex;
@@ -86,7 +89,7 @@ export default class GrammarParser extends antlr4.Parser {
 	    this.enterRule(localctx, 0, GrammarParser.RULE_start);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 20;
+	        this.state = 22;
 	        this.instructions();
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -110,18 +113,18 @@ export default class GrammarParser extends antlr4.Parser {
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 25; 
+	        this.state = 27; 
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        do {
-	            this.state = 22;
+	            this.state = 24;
 	            this.instruction();
-	            this.state = 23;
+	            this.state = 25;
 	            this.match(GrammarParser.T__0);
-	            this.state = 27; 
+	            this.state = 29; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	        } while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__1) | (1 << GrammarParser.T__3) | (1 << GrammarParser.T__5) | (1 << GrammarParser.IDENT))) !== 0));
+	        } while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__1) | (1 << GrammarParser.T__3) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__9) | (1 << GrammarParser.IDENT))) !== 0));
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -142,27 +145,32 @@ export default class GrammarParser extends antlr4.Parser {
 	    let localctx = new InstructionContext(this, this._ctx, this.state);
 	    this.enterRule(localctx, 4, GrammarParser.RULE_instruction);
 	    try {
-	        this.state = 33;
+	        this.state = 36;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
 	        case GrammarParser.T__5:
 	            this.enterOuterAlt(localctx, 1);
-	            this.state = 29;
+	            this.state = 31;
 	            this.ifcond();
 	            break;
-	        case GrammarParser.T__3:
+	        case GrammarParser.T__9:
 	            this.enterOuterAlt(localctx, 2);
-	            this.state = 30;
+	            this.state = 32;
+	            this.whilecond();
+	            break;
+	        case GrammarParser.T__3:
+	            this.enterOuterAlt(localctx, 3);
+	            this.state = 33;
 	            this.print();
 	            break;
 	        case GrammarParser.T__1:
-	            this.enterOuterAlt(localctx, 3);
-	            this.state = 31;
+	            this.enterOuterAlt(localctx, 4);
+	            this.state = 34;
 	            this.initialization();
 	            break;
 	        case GrammarParser.IDENT:
-	            this.enterOuterAlt(localctx, 4);
-	            this.state = 32;
+	            this.enterOuterAlt(localctx, 5);
+	            this.state = 35;
 	            this.assignement();
 	            break;
 	        default:
@@ -189,13 +197,13 @@ export default class GrammarParser extends antlr4.Parser {
 	    this.enterRule(localctx, 6, GrammarParser.RULE_initialization);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 35;
-	        this.match(GrammarParser.T__1);
-	        this.state = 36;
-	        localctx.ident = this.match(GrammarParser.IDENT);
-	        this.state = 37;
-	        this.match(GrammarParser.T__2);
 	        this.state = 38;
+	        this.match(GrammarParser.T__1);
+	        this.state = 39;
+	        localctx.ident = this.match(GrammarParser.IDENT);
+	        this.state = 40;
+	        this.match(GrammarParser.T__2);
+	        this.state = 41;
 	        localctx.value = this.expr(0);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -218,11 +226,11 @@ export default class GrammarParser extends antlr4.Parser {
 	    this.enterRule(localctx, 8, GrammarParser.RULE_assignement);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 40;
+	        this.state = 43;
 	        localctx.ident = this.match(GrammarParser.IDENT);
-	        this.state = 41;
+	        this.state = 44;
 	        this.match(GrammarParser.T__2);
-	        this.state = 42;
+	        this.state = 45;
 	        localctx.value = this.expr(0);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -244,29 +252,29 @@ export default class GrammarParser extends antlr4.Parser {
 	    let localctx = new PrintContext(this, this._ctx, this.state);
 	    this.enterRule(localctx, 10, GrammarParser.RULE_print);
 	    try {
-	        this.state = 51;
+	        this.state = 54;
 	        this._errHandler.sync(this);
 	        var la_ = this._interp.adaptivePredict(this._input,2,this._ctx);
 	        switch(la_) {
 	        case 1:
 	            localctx = new PrintExprContext(this, localctx);
 	            this.enterOuterAlt(localctx, 1);
-	            this.state = 44;
+	            this.state = 47;
 	            this.match(GrammarParser.T__3);
-	            this.state = 45;
+	            this.state = 48;
 	            localctx.argExpr = this.expr(0);
-	            this.state = 46;
+	            this.state = 49;
 	            this.match(GrammarParser.T__4);
 	            break;
 
 	        case 2:
 	            localctx = new PrintIdentContext(this, localctx);
 	            this.enterOuterAlt(localctx, 2);
-	            this.state = 48;
+	            this.state = 51;
 	            this.match(GrammarParser.T__3);
-	            this.state = 49;
+	            this.state = 52;
 	            localctx.argIdent = this.match(GrammarParser.IDENT);
-	            this.state = 50;
+	            this.state = 53;
 	            this.match(GrammarParser.T__4);
 	            break;
 
@@ -293,25 +301,56 @@ export default class GrammarParser extends antlr4.Parser {
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 53;
-	        this.match(GrammarParser.T__5);
-	        this.state = 54;
-	        localctx.cond = this.condition();
-	        this.state = 55;
-	        this.match(GrammarParser.T__6);
 	        this.state = 56;
-	        localctx.ifInstructions = this.instructions();
+	        this.match(GrammarParser.T__5);
+	        this.state = 57;
+	        localctx.cond = this.condition();
+	        this.state = 58;
+	        this.match(GrammarParser.T__6);
 	        this.state = 59;
+	        localctx.ifInstructions = this.instructions();
+	        this.state = 62;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        if(_la===GrammarParser.T__7) {
-	            this.state = 57;
+	            this.state = 60;
 	            this.match(GrammarParser.T__7);
-	            this.state = 58;
+	            this.state = 61;
 	            localctx.elseInstructions = this.instructions();
 	        }
 
-	        this.state = 61;
+	        this.state = 64;
+	        this.match(GrammarParser.T__8);
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+
+
+
+	whilecond() {
+	    let localctx = new WhilecondContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 14, GrammarParser.RULE_whilecond);
+	    try {
+	        this.enterOuterAlt(localctx, 1);
+	        this.state = 66;
+	        this.match(GrammarParser.T__9);
+	        this.state = 67;
+	        localctx.cond = this.condition();
+	        this.state = 68;
+	        this.match(GrammarParser.T__10);
+	        this.state = 69;
+	        localctx.inst = this.instructions();
+	        this.state = 70;
 	        this.match(GrammarParser.T__8);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -336,12 +375,12 @@ export default class GrammarParser extends antlr4.Parser {
 	    const _parentState = this.state;
 	    let localctx = new ExprContext(this, this._ctx, _parentState);
 	    let _prevctx = localctx;
-	    const _startState = 14;
-	    this.enterRecursionRule(localctx, 14, GrammarParser.RULE_expr, _p);
+	    const _startState = 16;
+	    this.enterRecursionRule(localctx, 16, GrammarParser.RULE_expr, _p);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 66;
+	        this.state = 75;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
 	        case GrammarParser.NB:
@@ -349,21 +388,21 @@ export default class GrammarParser extends antlr4.Parser {
 	            this._ctx = localctx;
 	            _prevctx = localctx;
 
-	            this.state = 64;
+	            this.state = 73;
 	            localctx.atom = this.number();
 	            break;
 	        case GrammarParser.IDENT:
 	            localctx = new IdentExprContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 65;
+	            this.state = 74;
 	            localctx.ident = this.match(GrammarParser.IDENT);
 	            break;
 	        default:
 	            throw new antlr4.error.NoViableAltException(this);
 	        }
 	        this._ctx.stop = this._input.LT(-1);
-	        this.state = 73;
+	        this.state = 82;
 	        this._errHandler.sync(this);
 	        var _alt = this._interp.adaptivePredict(this._input,5,this._ctx)
 	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
@@ -375,24 +414,24 @@ export default class GrammarParser extends antlr4.Parser {
 	                localctx = new AddExprContext(this, new ExprContext(this, _parentctx, _parentState));
 	                localctx.left = _prevctx;
 	                this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_expr);
-	                this.state = 68;
+	                this.state = 77;
 	                if (!( this.precpred(this._ctx, 3))) {
 	                    throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 3)");
 	                }
-	                this.state = 69;
+	                this.state = 78;
 	                localctx.op = this._input.LT(1);
 	                _la = this._input.LA(1);
-	                if(!(_la===GrammarParser.T__9 || _la===GrammarParser.T__10)) {
+	                if(!(_la===GrammarParser.T__11 || _la===GrammarParser.T__12)) {
 	                    localctx.op = this._errHandler.recoverInline(this);
 	                }
 	                else {
 	                	this._errHandler.reportMatch(this);
 	                    this.consume();
 	                }
-	                this.state = 70;
+	                this.state = 79;
 	                localctx.right = this.expr(4); 
 	            }
-	            this.state = 75;
+	            this.state = 84;
 	            this._errHandler.sync(this);
 	            _alt = this._interp.adaptivePredict(this._input,5,this._ctx);
 	        }
@@ -415,23 +454,23 @@ export default class GrammarParser extends antlr4.Parser {
 
 	condition() {
 	    let localctx = new ConditionContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 16, GrammarParser.RULE_condition);
+	    this.enterRule(localctx, 18, GrammarParser.RULE_condition);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 76;
+	        this.state = 85;
 	        localctx.left = this.expr(0);
-	        this.state = 77;
+	        this.state = 86;
 	        localctx.op = this._input.LT(1);
 	        _la = this._input.LA(1);
-	        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__11) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__13) | (1 << GrammarParser.T__14) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__16))) !== 0))) {
+	        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__13) | (1 << GrammarParser.T__14) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__16) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__18))) !== 0))) {
 	            localctx.op = this._errHandler.recoverInline(this);
 	        }
 	        else {
 	        	this._errHandler.reportMatch(this);
 	            this.consume();
 	        }
-	        this.state = 78;
+	        this.state = 87;
 	        localctx.right = this.expr(0);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -451,10 +490,10 @@ export default class GrammarParser extends antlr4.Parser {
 
 	number() {
 	    let localctx = new NumberContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 18, GrammarParser.RULE_number);
+	    this.enterRule(localctx, 20, GrammarParser.RULE_number);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 80;
+	        this.state = 89;
 	        localctx.value = this.match(GrammarParser.NB);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -491,9 +530,11 @@ GrammarParser.T__13 = 14;
 GrammarParser.T__14 = 15;
 GrammarParser.T__15 = 16;
 GrammarParser.T__16 = 17;
-GrammarParser.NB = 18;
-GrammarParser.IDENT = 19;
-GrammarParser.WS = 20;
+GrammarParser.T__17 = 18;
+GrammarParser.T__18 = 19;
+GrammarParser.NB = 20;
+GrammarParser.IDENT = 21;
+GrammarParser.WS = 22;
 
 GrammarParser.RULE_start = 0;
 GrammarParser.RULE_instructions = 1;
@@ -502,9 +543,10 @@ GrammarParser.RULE_initialization = 3;
 GrammarParser.RULE_assignement = 4;
 GrammarParser.RULE_print = 5;
 GrammarParser.RULE_ifcond = 6;
-GrammarParser.RULE_expr = 7;
-GrammarParser.RULE_condition = 8;
-GrammarParser.RULE_number = 9;
+GrammarParser.RULE_whilecond = 7;
+GrammarParser.RULE_expr = 8;
+GrammarParser.RULE_condition = 9;
+GrammarParser.RULE_number = 10;
 
 class StartContext extends antlr4.ParserRuleContext {
 
@@ -615,6 +657,10 @@ class InstructionContext extends antlr4.ParserRuleContext {
 
 	ifcond() {
 	    return this.getTypedRuleContext(IfcondContext,0);
+	};
+
+	whilecond() {
+	    return this.getTypedRuleContext(WhilecondContext,0);
 	};
 
 	print() {
@@ -906,6 +952,55 @@ class IfcondContext extends antlr4.ParserRuleContext {
 
 
 
+class WhilecondContext extends antlr4.ParserRuleContext {
+
+    constructor(parser, parent, invokingState) {
+        if(parent===undefined) {
+            parent = null;
+        }
+        if(invokingState===undefined || invokingState===null) {
+            invokingState = -1;
+        }
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = GrammarParser.RULE_whilecond;
+        this.cond = null; // ConditionContext
+        this.inst = null; // InstructionsContext
+    }
+
+	condition() {
+	    return this.getTypedRuleContext(ConditionContext,0);
+	};
+
+	instructions() {
+	    return this.getTypedRuleContext(InstructionsContext,0);
+	};
+
+	enterRule(listener) {
+	    if(listener instanceof GrammarListener ) {
+	        listener.enterWhilecond(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof GrammarListener ) {
+	        listener.exitWhilecond(this);
+		}
+	}
+
+	accept(visitor) {
+	    if ( visitor instanceof GrammarVisitor ) {
+	        return visitor.visitWhilecond(this);
+	    } else {
+	        return visitor.visitChildren(this);
+	    }
+	}
+
+
+}
+
+
+
 class ExprContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
@@ -1154,6 +1249,7 @@ GrammarParser.InitializationContext = InitializationContext;
 GrammarParser.AssignementContext = AssignementContext; 
 GrammarParser.PrintContext = PrintContext; 
 GrammarParser.IfcondContext = IfcondContext; 
+GrammarParser.WhilecondContext = WhilecondContext; 
 GrammarParser.ExprContext = ExprContext; 
 GrammarParser.ConditionContext = ConditionContext; 
 GrammarParser.NumberContext = NumberContext; 

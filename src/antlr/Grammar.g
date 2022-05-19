@@ -10,6 +10,7 @@ instructions:
 
 instruction:
   ifcond
+  | whilecond
   | print
   | initialization
   | assignement
@@ -29,7 +30,11 @@ print:
   ;
 
 ifcond:
-  'if' cond=condition 'then' ifInstructions=instructions ('else' elseInstructions=instructions)? 'endif'
+  'if' cond=condition 'then' ifInstructions=instructions ('else' elseInstructions=instructions)? 'end'
+  ;
+
+whilecond:
+  'while' cond=condition 'do' inst=instructions 'end'
   ;
 
 expr:

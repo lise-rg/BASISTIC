@@ -132,6 +132,14 @@ class Visitor extends GrammarVisitor {
     return 0;
   }
 
+  visitWhilecond(ctx) {
+    let cond=this.visit(ctx.cond);
+    while (cond == 1) {
+      this.visit(ctx.inst);
+      cond=this.visit(ctx.cond);
+    }
+  }
+
   visitNumber(ctx) {
     let value = ctx.value.text;
     if (value.includes('.'))
