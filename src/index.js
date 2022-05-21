@@ -8,6 +8,12 @@ var visitor, listener;
 
 //Wait for the document to be loaded and ready
 window.onload = function () {
+
+  editAreaLoader.init({
+    id: "input-area", syntax: "Basic", start_highlight: true,
+    allow_toggle: false, toolbar: ''
+  });
+
   // Clean the console 
   clean();
 

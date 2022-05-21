@@ -4,7 +4,6 @@ import { DrawOutput } from './drawing.js';
 
 import GrammarVisitor from './antlr/GrammarVisitor.js';
 
-var outputArea = $('#output-area').get(0);
 class Visitor extends GrammarVisitor {
 
 
@@ -33,7 +32,7 @@ class Visitor extends GrammarVisitor {
    * @param {string} msg
    */
   printConsole(msg) {
-    outputArea.value += msg + '\n';
+    document.getElementById('output-area').value += msg + '\n';
   }
 
   /**

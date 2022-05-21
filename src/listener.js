@@ -2,8 +2,6 @@ import GrammarListener from "./antlr/GrammarListener";
 import { LabelDict } from "./labelDict.js";
 export { Listener };
 
-var outputArea = document.getElementById('output-area');
-
 class Listener extends GrammarListener {
   constructor() {
     super();
@@ -24,7 +22,7 @@ class Listener extends GrammarListener {
    * @param {string} msg
    */
    printConsole(msg) {
-    outputArea.value += msg + '\n';
+    document.getElementById('output-area').value += msg + '\n';
   }
 
   getLabelDict() {
