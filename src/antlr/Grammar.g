@@ -15,20 +15,19 @@ options {
 start       : statements
               ;
 
-statements:     statement ';' statements                                                            #statementStatements
-                | 'GOTO' label ';' statements                                                       #gotoStatements
-                | label ':' statements                                                              #labelStatements
-                | statement                                                                         #atomStatement
+statements:     statement (';' statements)?                                                         #statementStatements
+                | label ':' (statements)?                                                           #labelStatements
                 ;
 
 statement   : 
                 'DIM' ID '(' integerList ')'                                                        #dimStatement
                 | 'END'                                                                             #endStatement
                 | 'FOR' ID '=' expression 'TO' expression ('STEP' Integer)? statements 'FEND'       #forStatement
+                | 'GOTO' label (';' statements)?                                                    #gotoStatement
                 | 'GOSUB' label                                                                     #gosubStatement
                 | 'ON' expression 'GOTO' label                                                      #onGotoStatement
                 | 'ON' expression 'GOSUB' label                                                     #onGosubStatement
-                | 'IF' expression 'THEN' statement ('ELSE' statement)?                              #ifStatement
+                | 'IF' expression 'THEN' statements ('ELSE' statements)?                            #ifStatement
                 | 'WHILE' expression 'DO' statements 'WEND'                                         #whileStatement
                 | 'DO' statement 'LOOP WHILE' expression                                            #doWhileStatement
                 | 'INPUT' idList                                                                    #inputStatement

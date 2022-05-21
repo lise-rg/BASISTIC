@@ -4,8 +4,7 @@ import { DrawOutput } from './drawing.js';
 
 import GrammarVisitor from './antlr/GrammarVisitor.js';
 
-var outputArea = document.getElementById('output-area');
-
+var outputArea = $('#output-area').get(0);
 class Visitor extends GrammarVisitor {
 
 
@@ -76,10 +75,9 @@ class Visitor extends GrammarVisitor {
    * Statements
    */
 
-  visitGotoStatements(ctx) {
+  visitGotoStatement(ctx) {
     let label = ctx.getChild(1).getText();
     this.checkLabel(label);
-    alert(this.labelDict.getNode(label).getText());
     this.visit(this.labelDict.getNode(label));
   }
 
