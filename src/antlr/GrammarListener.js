@@ -14,12 +14,39 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#statements.
-	enterStatements(ctx) {
+	// Enter a parse tree produced by GrammarParser#statementStatements.
+	enterStatementStatements(ctx) {
 	}
 
-	// Exit a parse tree produced by GrammarParser#statements.
-	exitStatements(ctx) {
+	// Exit a parse tree produced by GrammarParser#statementStatements.
+	exitStatementStatements(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#gotoStatements.
+	enterGotoStatements(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#gotoStatements.
+	exitGotoStatements(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#labelStatements.
+	enterLabelStatements(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#labelStatements.
+	exitLabelStatements(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#atomStatement.
+	enterAtomStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#atomStatement.
+	exitAtomStatement(ctx) {
 	}
 
 
@@ -47,15 +74,6 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by GrammarParser#forStatement.
 	exitForStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#gotoStatement.
-	enterGotoStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#gotoStatement.
-	exitGotoStatement(ctx) {
 	}
 
 

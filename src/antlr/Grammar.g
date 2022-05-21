@@ -16,6 +16,7 @@ start       : statements
               ;
 
 statements:     statement ';' statements                                                            #statementStatements
+                | 'GOTO' label ';' statements                                                       #gotoStatements
                 | label ':' statements                                                              #labelStatements
                 | statement                                                                         #atomStatement
                 ;
@@ -24,7 +25,6 @@ statement   :
                 'DIM' ID '(' integerList ')'                                                        #dimStatement
                 | 'END'                                                                             #endStatement
                 | 'FOR' ID '=' expression 'TO' expression ('STEP' Integer)? statements 'FEND'       #forStatement
-                | 'GOTO' label                                                                      #gotoStatement
                 | 'GOSUB' label                                                                     #gosubStatement
                 | 'ON' expression 'GOTO' label                                                      #onGotoStatement
                 | 'ON' expression 'GOSUB' label                                                     #onGosubStatement

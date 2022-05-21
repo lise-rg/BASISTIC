@@ -1,6 +1,5 @@
 export { Visitor };
 import { VariableDict } from './variableDict.js';
-import { LabelDict } from './labelDict.js';
 import { DrawOutput } from './drawing.js';
 
 import GrammarVisitor from './antlr/GrammarVisitor.js';
@@ -77,7 +76,7 @@ class Visitor extends GrammarVisitor {
    * Statements
    */
 
-  visitGotoStatement(ctx) {
+  visitGotoStatements(ctx) {
     let label = ctx.getChild(1).getText();
     this.checkLabel(label);
     alert(this.labelDict.getNode(label).getText());
