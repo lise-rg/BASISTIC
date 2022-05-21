@@ -7,10 +7,11 @@ import { Listener } from './listener.js';
 import CodeFlask from 'codeflask';
 
 var visitor, listener;
-const flask = new CodeFlask('#input-area', { language: 'js', lineNumbers: true });
 
 //Wait for the document to be loaded and ready
 window.onload = function () {
+
+  const flask = new CodeFlask('#input-area', { language: 'js', lineNumbers: true });
 
   // Clean the console 
   clean();

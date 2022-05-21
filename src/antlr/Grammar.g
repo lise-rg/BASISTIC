@@ -16,7 +16,7 @@ start       : statements
               ;
 
 statements:     statement (';' statements)?                                                         #statementStatements
-                | label ':' (statements)?                                                           #labelStatements
+                | label (':')?tatements)?                                                           #labelStatements
                 ;
 
 statement   : 
@@ -29,11 +29,10 @@ statement   :
                 | 'ON' expression 'GOSUB' label                                                     #onGosubStatement
                 | 'IF' expression 'THEN' statements ('ELSE' statements)?                            #ifStatement
                 | 'WHILE' expression 'DO' statements 'WEND'                                         #whileStatement
-                | 'DO' statement 'LOOP WHILE' expression                                            #doWhileStatement
+                | 'DO' statements 'WHILE' expression                                                #doWhileStatement
                 | 'INPUT' idList                                                                    #inputStatement
                 | 'PRINT' printList                                                                 #printStatement
                 | 'SPC' Integer                                                                     #spcStatement
-                | 'READ' idList                                                                     #readStatement
                 | 'ABS' expression                                                                  #absStatement
                 | 'ATN' expression                                                                  #atnStatement
                 | 'COS' expression                                                                  #cosStatement
@@ -45,7 +44,7 @@ statement   :
                 | 'SQR' expression                                                                  #sqrStatement
                 | 'TAN' expression                                                                  #tanStatement
                 | 'RETURN'                                                                          #returnStatement
-		            | ID '=' expression                                                                 #idStatement
+		            | ('LET')? ID '=' expression                                                        #idStatement
               	;
                    
 idList  : ID ',' idList 
@@ -68,7 +67,7 @@ expressionList : expression ',' expressionList
                     | expression 
                   ;
 
-printList:  head=expression ',' tail=printList                            #listPrintList
+printList:  head=expression sep=(','|':') tail=printList                  #listPrintList
             | atom=expression                                             #atomPrintList
             ;
 
@@ -106,6 +105,7 @@ powerExp:   left=powerExp '^' right=value                                 #opPow
 
 value:      '(' expr=expression ')'                                       #exprValue
             | id=ID                                                       #IDValue
+            | array=ID '(' index=expressionList ')'                       #arrayValue
             | constv=constant                                             #constValue
             ;
 
@@ -130,7 +130,7 @@ ID : [A-Za-z]+
 Integer : [0-9]+
 ;
 
-String : '"'[\u0020\u0021\u0023-\u00ff]+'"'
+String : '"'[\u0020\u0021\u0023-\u00ff]*'"'
 ;
 
 Real : Integer'.'Integer

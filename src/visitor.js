@@ -31,8 +31,10 @@ class Visitor extends GrammarVisitor {
    * prints text to the console
    * @param {string} msg
    */
-  printConsole(msg) {
-    document.getElementById('output-area').value += msg + '\n';
+  printConsole(msg, nl = true) {
+    document.getElementById('output-area').value += msg;
+    if (nl)
+      document.getElementById('output-area').value += '\n';
   }
 
   /**
@@ -82,9 +84,9 @@ class Visitor extends GrammarVisitor {
 
   visitListPrintList(ctx) {
     let head = this.visit(ctx.head);
-    this.printConsole(head);
+    let separator = ctx.sep.text;
+    this.printConsole(head, separator === ',');
     let tail = this.visit(ctx.tail);
-    this.visit(tail);
   }
 
   visitAtomPrintList(ctx) {
@@ -102,7 +104,7 @@ class Visitor extends GrammarVisitor {
    * returns a logical or (||) with booleans, and a bitwise and (|) with numbers
    */
 
-   visitOpExpression(ctx) {
+  visitOpExpression(ctx) {
     let left = this.visit(ctx.left);
     this.checkNumber();
     let right = this.visit(ctx.right);
