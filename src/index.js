@@ -2,8 +2,9 @@ import antlr4 from 'antlr4';
 import GrammarLexer from './antlr/GrammarLexer.js';
 import GrammarParser from './antlr/GrammarParser.js';
 import { Visitor } from './visitor.js';
+import { Listener } from './listener.js';
 
-var visitor;
+var visitor, listener;
 
 //Wait for the document to be loaded and ready
 window.onload = function () {
@@ -25,8 +26,11 @@ window.onload = function () {
       let parser = new GrammarParser(tokens);
       let tree = parser.start();
 
+      // Creates the Listener and generates the labels' dictionnary
+      listener = new Listener();
+      antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, tree);
       // Creates the Visitor and starts the interpretation
-      visitor = new Visitor();
+      visitor = new Visitor(listener.getLabelDict());
       visitor.visit(tree);
     }
   );

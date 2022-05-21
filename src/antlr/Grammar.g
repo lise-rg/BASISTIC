@@ -3,7 +3,7 @@
 
 // relancer Antlr apres chaque modification
 
-grammar basic;
+grammar Grammar;
 
 options {
   language=Javascript; // k=1;
@@ -15,37 +15,38 @@ options {
 start       : statements
               ;
 
-statements  : statement ':' statements
-                | statement
-              ;
+statements:     statement ';' statements                                                            #statementStatements
+                | label ':' statements                                                              #labelStatements
+                | statement                                                                         #atomStatement
+                ;
 
 statement   : 
-                'DIM' ID '(' integerList ')'
-                | 'END'             
-                | 'FOR' ID '=' expression 'TO' expression ('STEP' Integer)?      
-                | 'GOTO' expression 
-                | 'GOSUB' expression 
-                | 'ON' expression 'GOTO' expression
-                | 'ON' expression 'GOSUB' expression
-                | 'IF' expression 'THEN' statement ('ELSE' statement)?  
-                | 'WHILE' expression 'DO' statement 'WEND'
-                | 'DO' statement 'LOOP WHILE' expression 
-                | 'INPUT' idList             
-                | 'PRINT' printList
-                | 'SPC' Integer
-                | 'READ' idList
-                | 'ABS' expression
-                | 'ATN' expression
-                | 'COS' expression
-                | 'EXP' expression
-                | 'INT' expression
-                | 'LOG' expression
-                | 'RND' expression
-                | 'SIN' expression
-                | 'SQR' expression
-                | 'TAN' expression           
-                | 'RETURN'
-		| ID '=' expression 
+                'DIM' ID '(' integerList ')'                                                        #dimStatement
+                | 'END'                                                                             #endStatement
+                | 'FOR' ID '=' expression 'TO' expression ('STEP' Integer)? statements 'FEND'       #forStatement
+                | 'GOTO' label                                                                      #gotoStatement
+                | 'GOSUB' label                                                                     #gosubStatement
+                | 'ON' expression 'GOTO' label                                                      #onGotoStatement
+                | 'ON' expression 'GOSUB' label                                                     #onGosubStatement
+                | 'IF' expression 'THEN' statement ('ELSE' statement)?                              #ifStatement
+                | 'WHILE' expression 'DO' statements 'WEND'                                         #whileStatement
+                | 'DO' statement 'LOOP WHILE' expression                                            #doWhileStatement
+                | 'INPUT' idList                                                                    #inputStatement
+                | 'PRINT' printList                                                                 #printStatement
+                | 'SPC' Integer                                                                     #spcStatement
+                | 'READ' idList                                                                     #readStatement
+                | 'ABS' expression                                                                  #absStatement
+                | 'ATN' expression                                                                  #atnStatement
+                | 'COS' expression                                                                  #cosStatement
+                | 'EXP' expression                                                                  #expStatement
+                | 'INT' expression                                                                  #intStatement
+                | 'LOG' expression                                                                  #logStatement
+                | 'RND' expression                                                                  #rndStatement
+                | 'SIN' expression                                                                  #sinStatement
+                | 'SQR' expression                                                                  #sqrStatement
+                | 'TAN' expression                                                                  #tanStatement
+                | 'RETURN'                                                                          #returnStatement
+		            | ID '=' expression                                                                 #idStatement
               	;
                    
 idList  : ID ',' idList 
@@ -68,59 +69,54 @@ expressionList : expression ',' expressionList
                     | expression 
                   ;
 
-printList      : expression ';' printList
-                    | expression 
-                    |  
-                  ;
+printList:  head=expression ',' tail=printList                            #listPrintList
+            | atom=expression                                             #atomPrintList
+            ;
 
-expression  : andExp 'OR' expression 
-                | andExp 
-              ;
+expression: left=andExp 'OR' right=expression                             #opExpression
+            | atom=andExp                                                 #atomExpression
+            ;
 
-andExp     : notExp 'AND' andExp 
-                | notExp 
-              ;
+andExp:     left=notExp 'AND' right=andExp                                #opAndExp
+            | atom=notExp                                                 #atomAndExp
+            ;
  
-notExp     : 'NOT' compareExp 
-                | compareExp 
-              ;
+notExp:     'NOT' compareExp                                        
+            | compareExp 
+            ;
 
-compareExp : addExp '='  compareExp 
-                | addExp '<>' compareExp 
-                | addExp '>'  compareExp 
-                | addExp '>=' compareExp 
-                | addExp '<'  compareExp 
-                | addExp '<=' compareExp 
-                | addExp 
-              ;
+compareExp: left=addExp op=('='|'<>'|'>'|'>='|'<'|'<=') right=compareExp  #opCompareExp
+            | atom=addExp                                                 #atomCompareExp
+            ;
 
-addExp     : multExp '+' addExp 
-                | multExp '-' addExp 
-                | multExp 
-              ;
+addExp:     left=multExp op=('+'|'-') right=addExp                        #opAddExp
+            | atom=multExp                                                #atomAddExp
+            ;
 
-multExp    : negateExp '*' multExp 
-                | negateExp '/' multExp 
-                | negateExp 
-              ;
+multExp:    left=negateExp op=('*'|'/') right=multExp                     #opMultExp
+            | atom=negateExp                                              #atomMultExp
+            ;
 
-negateExp  : '-' powerExp 
-                | powerExp 
-              ;
+negateExp:  '-' powerExp 
+            | powerExp 
+            ;
 
-powerExp   : powerExp '^' value 
-                | value 
-              ;
+powerExp:   left=powerExp '^' right=value                                 #opPowerExp
+            | atom=value                                                  #atomPowerExp
+            ;
 
-value       : '(' expression ')'
-                | ID 
-                | constant 
-              ;
+value:      '(' expr=expression ')'                                       #exprValue
+            | id=ID                                                       #IDValue
+            | constv=constant                                             #constValue
+            ;
 
-constant: Integer   #constInt
-          | String  #constString
-          | Real    #constReal
-          ;
+constant:   Integer                                                       #constInt
+            | String                                                      #constString
+            | Real                                                        #constReal
+            ;
+
+label:      '_' ID
+            ;
 
 // les unites lexicales de ANTLR doivent commencer par une majuscule
 // Attention : ANTLR n'autorise pas certains traitements sur les unites lexicales, 
@@ -129,7 +125,7 @@ constant: Integer   #constInt
 // zone lexicale //
 
 
-ID : [A-z]+
+ID : [A-Za-z]+
 ;
 
 Integer : [0-9]+
