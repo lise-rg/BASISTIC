@@ -10,7 +10,6 @@
   <script type="text/javascript" src="../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../modules/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="../modules/jquery-ui-1.13.1.custom/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="../modules/edit_area/edit_area_full.js"></script>
   <script type="text/javascript" src="./main.js"></script>
 </head>
 
@@ -59,22 +58,7 @@
 
       <div class="col-7" style="display:flex; flex-direction: column;">
 
-        <div class="row" style="flex:20; padding:12px;">
-          <textarea class="input form-control" id="input-area">
-var x = 0;
-var y = 0;
-
-while y < 360 do
-x = 0;
-while x < 480 do
-drawline(x, y, x+30, y+30);
-drawline(x, y+30, x+30, y);
-x = x + 30;
-end;
-y = y + 30;
-            end;
-              </textarea>
-        </div>
+        <div class="input" id="input-area"></div>
 
         <div class="row" style="flex:1; padding:12px;">
           <input class="import form-control" id="import-button" type="file" value="Upload file" accept="text/*"

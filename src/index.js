@@ -4,15 +4,13 @@ import GrammarParser from './antlr/GrammarParser.js';
 import { Visitor } from './visitor.js';
 import { Listener } from './listener.js';
 
+import CodeFlask from 'codeflask';
+
 var visitor, listener;
+const flask = new CodeFlask('#input-area', { language: 'js', lineNumbers: true });
 
 //Wait for the document to be loaded and ready
 window.onload = function () {
-
-  editAreaLoader.init({
-    id: "input-area", syntax: "Basic", start_highlight: true,
-    allow_toggle: false, toolbar: ''
-  });
 
   // Clean the console 
   clean();
@@ -25,7 +23,7 @@ window.onload = function () {
       clean();
 
       // Generates the AST
-      let input = $('#input-area').val();
+      let input = flask.getCode();
       let chars = new antlr4.InputStream(input);
       let lexer = new GrammarLexer(chars);
       let tokens = new antlr4.CommonTokenStream(lexer);

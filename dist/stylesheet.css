@@ -8,14 +8,16 @@ header.pagetitle{
 
 }
 
-textarea.input{
-    height: 1000%;
-    width: 100%;
-    font-size: 14px;
-    height :100%; 
-    text-align : left ;
-    resize : none;
-    border : 2px solid rgb(0, 0, 0);
+div.input {
+    height: 80%;
+    position: relative;
+    display: flex;
+    flex: 20;
+}
+
+div.codeflask {
+    border-radius: 20px;
+    border: 2px solid rgb(0, 0, 0);
 }
 
 textarea.output{
