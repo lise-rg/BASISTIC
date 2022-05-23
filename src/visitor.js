@@ -76,18 +76,6 @@ class Visitor extends GrammarVisitor {
    * Statements
    */
 
-  visitStatementStatements(ctx) {
-    this.visit(ctx.getChild(0));
-
-    if(ctx.getChild(1) != null) this.visit(ctx.getChild(1));
-  }
-
-  visitLabelStatements(ctx) {
-    // TODO - define use of label
-
-    if(ctx.getChild(1) != null) this.visit(ctx.getChild(1));
-  }
-
   visitDimStatement(ctx) {
     let name = ctx.id.text;
     let type = 'list';
@@ -182,9 +170,9 @@ class Visitor extends GrammarVisitor {
     this.visit(ctx.getChild(0));
   }
 
-  visitPrintStatement(ctx) {
-    this.visit(ctx.getChild(0));
-  }
+  // visitPrintStatement(ctx) {
+  //   this.visit(ctx.getChild(0));
+  // }
 
   visitSpcStatement(ctx) {
     let n = parseInt(ctx.getChild(0).getText());
@@ -282,6 +270,7 @@ class Visitor extends GrammarVisitor {
 
   visitAtomPrintList(ctx) {
     let atom = this.visit(ctx.atom);
+    alert("hello ?");
     this.printConsole(atom);
   }
 
