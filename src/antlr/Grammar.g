@@ -123,18 +123,17 @@ label:      '_' ID
      
 // zone lexicale //
 
-ID : [A-Za-z]+
-;
+ID :        [A-Za-z]+[0-9_]*
+            ;
 
-Integer : [0-9]+
-;
+Integer:    [0-9]+
+            ;
 
-String : '"'[\u0020\u0021\u0023-\u00ff]*'"'
-;
+String:     '"'[\u0020\u0021\u0023-\u00ff]*'"'
+            ;
 
-Real : Integer'.'Integer
-;
+Real:       Integer'.'Integer
+            ;
 
-WS: 
-  [\n\t\r ] -> skip
-  ;
+WS:         [\n\t\r ] -> skip
+            ;
