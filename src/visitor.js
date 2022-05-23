@@ -91,7 +91,7 @@ class Visitor extends GrammarVisitor {
 
   visitForStatement(ctx) {
     let name = ctx.id.text;
-    let value = ctx.getChild(3);
+    let value = this.visit(ctx.getChild(3));
     if(this.currentType != 'integer') this.abort('Not an integer.');
     
     this.varDict.add(name, 'integer', value);
@@ -118,7 +118,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitOnGotoStatement(ctx) {
-    let cond = ctx.getChild(1);
+    let cond = this.visit(ctx.getChild(1));
     if(this.currentType != 'boolean') this.abort('Not a valid condition.');
 
     if(cond == 1) {
@@ -129,7 +129,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitOnGosubStatement(ctx) {
-    let cond = ctx.getChild(1);
+    let cond = this.visit(ctx.getChild(1));
     if(this.currentType != 'boolean') this.abort('Not a valid condition.');
 
     if (cond == 1){
@@ -139,7 +139,7 @@ class Visitor extends GrammarVisitor {
   }
   
   visitIfStatement(ctx) {
-    let cond = ctx.getChild(1);
+    let cond = this.visit(ctx.getChild(1));
     if(this.currentType != 'boolean') this.abort('Not a valid condition.');
 
     if (cond == 1) this.visit(ctx.getChild(3));
@@ -147,12 +147,12 @@ class Visitor extends GrammarVisitor {
   }
 
   visitWhileStatement(ctx) {
-    let cond = ctx.getChild(1);
+    let cond = this.visit(ctx.getChild(1));
     if(this.currentType != 'boolean') this.abort('Not a valid condition.');
 
     while(cond == 1) {
       this.visit(ctx.getChild(3));
-      cond = ctx.getChild(1);
+      cond = this.visit(ctx.getChild(1));
     }
   }
 
@@ -162,7 +162,7 @@ class Visitor extends GrammarVisitor {
 
     do {
       this.visit(ctx.getChild(1));
-      cond = ctx.getChild(3);
+      cond = this.visit(ctx.getChild(1));
     } while(cond == 1)
   }
 
@@ -476,7 +476,6 @@ class Visitor extends GrammarVisitor {
     let id = ctx.id.text;
     this.checkVariableDeclared(id);
     this.currentType = this.varDict.getType(id);
-    alert(this.varDict.getValue(id));
     return this.varDict.getValue(id);
   }
 
