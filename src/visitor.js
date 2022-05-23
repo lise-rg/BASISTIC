@@ -289,6 +289,52 @@ class Visitor extends GrammarVisitor {
     return this.visit(ctx.constv);
   }
 
+  /**
+   * Drawing functions
+   */
+
+  visitDrawlineStatement(ctx) {
+    this.drawOut.drawLine(
+      this.visit(ctx.getChild(1)),
+      this.visit(ctx.getChild(3)),
+      this.visit(ctx.getChild(5)),
+      this.visit(ctx.getChild(7))
+    );
+  }
+
+  visitDrawrectStatement(ctx) {
+    this.drawOut.drawRectangle(
+      this.visit(ctx.getChild(1)), 
+      this.visit(ctx.getChild(3)), 
+      this.visit(ctx.getChild(5)),
+      this.visit(ctx.getChild(7))
+      );
+  }
+
+  visitDrawsquareStatement(ctx) {
+    this.drawOut.drawSquare(
+      this.visit(ctx.getChild(1)), 
+      this.visit(ctx.getChild(3)), 
+      this.visit(ctx.getChild(5))
+      );
+  }
+
+  visitDrawcircleStatement(ctx) {
+    this.drawOut.drawCircle(
+      this.visit(ctx.getChild(1)),
+      this.visit(ctx.getChild(3)),
+      this.visit(ctx.getChild(5))
+    );
+  }
+
+  visitDrawtriangleStatement(ctx) {
+    this.drawOut.drawTriangle(
+      this.visit(ctx.getChild(1)),
+      this.visit(ctx.getChild(3)),
+      this.visit(ctx.getChild(5))
+    );
+  }
+
   /* 
   ** visitConstant (Integer, Real, String)
   ** updates this.currentType and returns the constant's value
@@ -310,4 +356,5 @@ class Visitor extends GrammarVisitor {
     str = str.substring(1, str.length - 1); // Removes the quotation marks
     return str;
   }
+
 }
