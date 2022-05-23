@@ -16,7 +16,7 @@ start       : statements
               ;
 
 statements:     statement (';' statements)?                                                         #statementStatements
-                | label (':')?tatements)?                                                           #labelStatements
+                | label (':')? statements)?                                                           #labelStatements
                 ;
 
 statement   : 
