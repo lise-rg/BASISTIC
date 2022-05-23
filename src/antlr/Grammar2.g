@@ -33,6 +33,11 @@ statement   :
                 | 'INPUT' idList                                                                    #inputStatement
                 | 'PRINT' printList                                                                 #printStatement
                 | 'SPC' Integer                                                                     #spcStatement
+                | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'        #drawlineStatement
+                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'        #drawrectStatement
+                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                     #drawsquareStatement
+                | 'DRAWCIRLE' '(' expression ',' expression ',' expression ')'                      #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                   #drawtriangleStatement
                 | 'RETURN'                                                                          #returnStatement
 		            | ('LET')? ID '=' expression                                                        #idStatement
               	;
@@ -110,6 +115,7 @@ function:   'ABS' '(' expression ')'
             | 'SIN' '(' expression ')'                                                                  
             | 'SQR' '(' expression ')'                                                                   
             | 'TAN' '(' expression ')'                                                                 
+            ;
 
 constant:   Integer                                                       #constInt
             | String                                                      #constString

@@ -43,6 +43,11 @@ statement   :
                 | 'SIN' expression                                                                  #sinStatement
                 | 'SQR' expression                                                                  #sqrStatement
                 | 'TAN' expression                                                                  #tanStatement
+                | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'        #drawlineStatement
+                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'        #drawrectStatement
+                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                     #drawsquareStatement
+                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ')'                     #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                   #drawtriangleStatement
                 | 'RETURN'                                                                          #returnStatement
 		            | ('LET')? ID '=' expression                                                        #idStatement
               	;
