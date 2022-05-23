@@ -16,7 +16,7 @@ start       : statements
               ;
 
 statements:     statement (';' statements)?                                                         #statementStatements
-                | label (':')? statements)?                                                           #labelStatements
+                | label ':' (statements)?                                                           #labelStatements
                 ;
 
 statement   : 
@@ -94,22 +94,22 @@ powerExp:   left=powerExp '^' right=value                                 #opPow
             ;
 
 value:      '(' expr=expression ')'                                       #exprValue
-            | id=ID                                                       #IDValue
-            | array=ID '(' index=expressionList ')'                       #arrayValue
             | func=function
+            | array=ID '(' index=expressionList ')'                       #arrayValue
+            | id=ID                                                       #IDValue
             | constv=constant                                             #constValue
             ;
 
-function:   'ABS' '(' expression ')'
-            | 'ATN' '(' expression ')'                                    
-            | 'COS' '(' expression ')'                                    
-            | 'EXP' '(' expression ')'                                    
-            | 'INT' '(' expression ')'                                    
-            | 'LOG' '(' expression ')'                                    
-            | 'RND' '(' expression ')'                                    
-            | 'SIN' '(' expression ')'                                    
-            | 'SQR' '(' expression ')'                                    
-            | 'TAN' '(' expression ')'                                    
+function:   'ABS' '(' expression ')'                                                                  
+            | 'ATN' '(' expression ')'                                                                      
+            | 'COS' '(' expression ')'                                                                     
+            | 'EXP' '(' expression ')'                                                                    
+            | 'INT' '(' expression ')'                                                                    
+            | 'LOG' '(' expression ')'                                                                
+            | 'RND' '(' expression ')'                                                                   
+            | 'SIN' '(' expression ')'                                                                  
+            | 'SQR' '(' expression ')'                                                                   
+            | 'TAN' '(' expression ')'                                                                 
 
 constant:   Integer                                                       #constInt
             | String                                                      #constString
@@ -125,19 +125,17 @@ label:      '_' ID
      
 // zone lexicale //
 
+ID :        [A-Za-z]+[0-9_]*
+            ;
 
-ID : [A-Za-z]+
-;
+Integer:    [0-9]+
+            ;
 
-Integer : [0-9]+
-;
+String:     '"'[\u0020\u0021\u0023-\u00ff]*'"'
+            ;
 
-String : '"'[\u0020\u0021\u0023-\u00ff]*'"'
-;
+Real:       Integer'.'Integer
+            ;
 
-Real : Integer'.'Integer
-;
-
-WS: 
-  [\n\t\r ] -> skip
-  ;
+WS:         [\n\t\r ] -> skip
+            ;

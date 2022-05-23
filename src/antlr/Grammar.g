@@ -104,8 +104,8 @@ powerExp:   left=powerExp '^' right=value                                 #opPow
             ;
 
 value:      '(' expr=expression ')'                                       #exprValue
-            | id=ID                                                       #IDValue
             | array=ID '(' index=expressionList ')'                       #arrayValue
+            | id=ID                                                       #IDValue
             | constv=constant                                             #constValue
             ;
 
