@@ -239,6 +239,51 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#drawlineStatement.
+	enterDrawlineStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#drawlineStatement.
+	exitDrawlineStatement(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#drawrectStatement.
+	enterDrawrectStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#drawrectStatement.
+	exitDrawrectStatement(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#drawsquareStatement.
+	enterDrawsquareStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#drawsquareStatement.
+	exitDrawsquareStatement(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#drawcircleStatement.
+	enterDrawcircleStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#drawcircleStatement.
+	exitDrawcircleStatement(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#drawtriangleStatement.
+	enterDrawtriangleStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#drawtriangleStatement.
+	exitDrawtriangleStatement(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#returnStatement.
 	enterReturnStatement(ctx) {
 	}
@@ -455,21 +500,21 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#IDValue.
-	enterIDValue(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#IDValue.
-	exitIDValue(ctx) {
-	}
-
-
 	// Enter a parse tree produced by GrammarParser#arrayValue.
 	enterArrayValue(ctx) {
 	}
 
 	// Exit a parse tree produced by GrammarParser#arrayValue.
 	exitArrayValue(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#IDValue.
+	enterIDValue(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#IDValue.
+	exitIDValue(ctx) {
 	}
 
 

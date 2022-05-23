@@ -481,43 +481,43 @@ class Visitor extends GrammarVisitor {
 
   visitDrawlineStatement(ctx) {
     this.drawOut.drawLine(
-      this.visit(ctx.getChild(1)),
-      this.visit(ctx.getChild(3)),
-      this.visit(ctx.getChild(5)),
-      this.visit(ctx.getChild(7))
+      this.visit(ctx.getChild(2)),
+      this.visit(ctx.getChild(4)),
+      this.visit(ctx.getChild(6)),
+      this.visit(ctx.getChild(8))
     );
   }
 
   visitDrawrectStatement(ctx) {
     this.drawOut.drawRectangle(
-      this.visit(ctx.getChild(1)), 
-      this.visit(ctx.getChild(3)), 
-      this.visit(ctx.getChild(5)),
-      this.visit(ctx.getChild(7))
+      this.visit(ctx.getChild(2)), 
+      this.visit(ctx.getChild(4)), 
+      this.visit(ctx.getChild(6)),
+      this.visit(ctx.getChild(8))
       );
   }
 
   visitDrawsquareStatement(ctx) {
     this.drawOut.drawSquare(
-      this.visit(ctx.getChild(1)), 
-      this.visit(ctx.getChild(3)), 
-      this.visit(ctx.getChild(5))
+      this.visit(ctx.getChild(2)), 
+      this.visit(ctx.getChild(4)), 
+      this.visit(ctx.getChild(6))
       );
   }
 
   visitDrawcircleStatement(ctx) {
     this.drawOut.drawCircle(
-      this.visit(ctx.getChild(1)),
-      this.visit(ctx.getChild(3)),
-      this.visit(ctx.getChild(5))
+      this.visit(ctx.getChild(2)),
+      this.visit(ctx.getChild(4)),
+      this.visit(ctx.getChild(6))
     );
   }
 
   visitDrawtriangleStatement(ctx) {
     this.drawOut.drawTriangle(
-      this.visit(ctx.getChild(1)),
-      this.visit(ctx.getChild(3)),
-      this.visit(ctx.getChild(5))
+      this.visit(ctx.getChild(2)),
+      this.visit(ctx.getChild(4)),
+      this.visit(ctx.getChild(6))
     );
   }
 
