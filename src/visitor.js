@@ -91,19 +91,19 @@ class Visitor extends GrammarVisitor {
 
   visitForStatement(ctx) {
     let name = ctx.id.text;
-    let value = ctx.getChild(0);
+    let value = ctx.getChild(3);
     if(this.currentType != 'integer') this.abort('Not an integer.');
     
     this.varDict.add(name, 'integer', value);
     
-    let end = ctx.getChild(1);
+    let end = ctx.getChild(5);
     if(this.currentType != 'integer') this.abort('Not an integer.');
     
     let step = parseInt(ctx.step.getText());
     
     for(let i = value; i < end; i += step) {
       this.varDict.assign(name, i);
-      this.visit(ctx.getChild(2));
+      this.visit(ctx.st);
     }
   }
 
@@ -118,18 +118,18 @@ class Visitor extends GrammarVisitor {
   }
 
   visitOnGotoStatement(ctx) {
-    let cond = ctx.getChild(0);
+    let cond = ctx.getChild(1);
     if(this.currentType != 'boolean') this.abort('Not a valid condition.');
 
     if(cond == 1) {
-      let label = ctx.getChild(1).getText();
+      let label = ctx.getChild(3).getText();
       this.checkLabel(label);
       this.visit(this.labelDict.getNode(label));
     }
   }
 
   visitOnGosubStatement(ctx) {
-    let cond = ctx.getChild(0);
+    let cond = ctx.getChild(1);
     if(this.currentType != 'boolean') this.abort('Not a valid condition.');
 
     if (cond == 1){
@@ -139,20 +139,20 @@ class Visitor extends GrammarVisitor {
   }
   
   visitIfStatement(ctx) {
-    let cond = ctx.getChild(0);
+    let cond = ctx.getChild(1);
     if(this.currentType != 'boolean') this.abort('Not a valid condition.');
 
-    if (cond == 1) this.visit(ctx.getChild(1))
-    else this.visit(ctx.getChild(2));
+    if (cond == 1) this.visit(ctx.getChild(3));
+    else if(ctx.getChild(5) != null) this.visit(ctx.getChild(5));
   }
 
   visitWhileStatement(ctx) {
-    let cond = ctx.getChild(0);
+    let cond = ctx.getChild(1);
     if(this.currentType != 'boolean') this.abort('Not a valid condition.');
 
     while(cond == 1) {
-      this.visit(ctx.getChild(1));
-      cond = ctx.getChild(0);
+      this.visit(ctx.getChild(3));
+      cond = ctx.getChild(1);
     }
   }
 
@@ -162,12 +162,12 @@ class Visitor extends GrammarVisitor {
 
     do {
       this.visit(ctx.getChild(1));
-      cond = ctx.getChild(0);
+      cond = ctx.getChild(3);
     } while(cond == 1)
   }
 
   visitInputStatement(ctx) {
-    this.visit(ctx.getChild(0));
+    this.visit(ctx.getChild(1));
   }
 
   // visitPrintStatement(ctx) {
@@ -175,10 +175,10 @@ class Visitor extends GrammarVisitor {
   // }
 
   visitSpcStatement(ctx) {
-    let n = parseInt(ctx.getChild(0).getText());
+    let value = parseInt(ctx.value.getText());
     let spc = "";
 
-    for(let i = 0; i < n; i++) {
+    for(let i = 0; i < value; i++) {
       spc += " ";
     }
 
@@ -191,60 +191,64 @@ class Visitor extends GrammarVisitor {
 
   visitIdStatement(ctx) {
     let name = ctx.id.text;
-    let type = this.varDict.getType(name);
-    let value = ctx.getChild(0);
+    let type = '';
+    let value = this.visit(ctx.exp);
     
     if(this.varDict.contains(name)) { 
+      type = this.varDict.getType(name);
       if(type == this.currentType) this.varDict.assign(name, value);
       else this.abort('Incorrect type for variable ' + name)
     }
-    else this.add(name, type, value);
+    else {
+      type = this.currentType;
+      this.varDict.add(name, type, value);
+    }
   }
 
   visitAbsFunction(ctx) {
-    let value = ctx.getChild(0);
+    let value = ctx.expr(0);
     if(this.currentType != 'integer') this.abort('Not an integer.');
     return Math.abs(value);
   }
 
   visitAtnFunction(ctx) {
-    let value = ctx.getChild(0);
+    let value = ctx.expr(0);
     if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
     return Math.atan(value);
   }
 
   visitCosFunction(ctx) {
-    let value = ctx.getChild(0);
+    let value = ctx.expr(0);
     if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
     return Math.cos(value);
   }
 
   visitExpFunction(ctx) {
-    let value = ctx.getChild(0);
+    let value = ctx.expr(0);
     if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
     return Math.exp(value);
   }
 
   visitIntFunction(ctx) {
-    let value = ctx.getChild(0);
+    let value = ctx.expr(0);
     if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
     return Math.floor(value);
   }
 
   visitLogFunction(ctx) {
-    let value = ctx.getChild(0);
+    let value = ctx.expr(0);
     if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
     return Math.log(value);
   }
   
   visitRndFunction(ctx) {
-    let value = ctx.getChild(0);
+    let value = ctx.expr(0);
     if(this.currentType != 'integer') this.abort('Not an integer.');
     return Math.floor(Math.random() * value);
   }
 
   visitSinFunction(ctx) {
-    let value = ctx.getChild(0);
+    let value = ctx.expr(0);
     if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
     return Math.sin(value);
   }
@@ -256,7 +260,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitTanFunction(ctx) {
-    let value = ctx.getChild(0);
+    let value = ctx.expr(0);
     if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
     return Math.tan(value);
   }
@@ -270,7 +274,6 @@ class Visitor extends GrammarVisitor {
 
   visitAtomPrintList(ctx) {
     let atom = this.visit(ctx.atom);
-    alert("hello ?");
     this.printConsole(atom);
   }
 
@@ -461,6 +464,10 @@ class Visitor extends GrammarVisitor {
   ** returns the value of the expression / ID / constant
   */
 
+  visitFunctionValue(ctx) {
+    return this.visit(ctx.func);
+  }
+
   visitExprValue(ctx) {
     return this.visit(ctx.expr);
   }
@@ -469,6 +476,7 @@ class Visitor extends GrammarVisitor {
     let id = ctx.id.text;
     this.checkVariableDeclared(id);
     this.currentType = this.varDict.getType(id);
+    alert(this.varDict.getValue(id));
     return this.varDict.getValue(id);
   }
 
