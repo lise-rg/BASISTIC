@@ -149,15 +149,6 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#readStatement.
-	enterReadStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#readStatement.
-	exitReadStatement(ctx) {
-	}
-
-
 	// Enter a parse tree produced by GrammarParser#absStatement.
 	enterAbsStatement(ctx) {
 	}
@@ -470,6 +461,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by GrammarParser#IDValue.
 	exitIDValue(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#arrayValue.
+	enterArrayValue(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#arrayValue.
+	exitArrayValue(ctx) {
 	}
 
 

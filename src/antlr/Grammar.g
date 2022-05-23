@@ -16,7 +16,7 @@ start       : statements
               ;
 
 statements:     statement (';' statements)?                                                         #statementStatements
-                | label (':')? statements)?                                                         #labelStatements
+                | label ':' (statements)?                                                           #labelStatements
                 ;
 
 statement   : 
@@ -122,7 +122,6 @@ label:      '_' ID
 // il est alors ncessaire de passer par un non-terminal intermediaire 
      
 // zone lexicale //
-
 
 ID : [A-Za-z]+
 ;
