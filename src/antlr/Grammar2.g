@@ -15,26 +15,26 @@ options {
 start       : statements
               ;
 
-statements:     statement (';' statements)?                                                         #statementStatements
-                | label ':' (statements)?                                                           #labelStatements
+statements:     statement (';' statements)?                                                                           #statementStatements
+                | label ':' (statements)?                                                                             #labelStatements
                 ;
 
 statement   : 
-                'DIM' ID '(' integerList ')'                                                        #dimStatement
-                | 'END'                                                                             #endStatement
-                | 'FOR' ID '=' expression 'TO' expression ('STEP' Integer)? statements 'FEND'       #forStatement
-                | 'GOTO' label (';' statements)?                                                    #gotoStatement
-                | 'GOSUB' label                                                                     #gosubStatement
-                | 'ON' expression 'GOTO' label                                                      #onGotoStatement
-                | 'ON' expression 'GOSUB' label                                                     #onGosubStatement
-                | 'IF' expression 'THEN' statements ('ELSE' statements)?                            #ifStatement
-                | 'WHILE' expression 'DO' statements 'WEND'                                         #whileStatement
-                | 'DO' statements 'WHILE' expression                                                #doWhileStatement
-                | 'INPUT' idList                                                                    #inputStatement
-                | 'PRINT' printList                                                                 #printStatement
-                | 'SPC' Integer                                                                     #spcStatement
-                | 'RETURN'                                                                          #returnStatement
-		            | ('LET')? ID '=' expression                                                        #idStatement
+                'DIM' id=ID '(' list=integerList ')'                                                                  #dimStatement
+                | 'END'                                                                                               #endStatement
+                | 'FOR' id=ID '=' expression 'TO' expression ('STEP' step=Integer)? statements 'FEND'                 #forStatement
+                | 'GOTO' label (';' statements)?                                                                      #gotoStatement
+                | 'GOSUB' label                                                                                       #gosubStatement
+                | 'ON' expression 'GOTO' label                                                                        #onGotoStatement
+                | 'ON' expression 'GOSUB' label                                                                       #onGosubStatement
+                | 'IF' expression 'THEN' statements ('ELSE' statements)?                                              #ifStatement
+                | 'WHILE' expression 'DO' statements 'WEND'                                                           #whileStatement
+                | 'DO' statements 'WHILE' expression                                                                  #doWhileStatement
+                | 'INPUT' idList                                                                                      #inputStatement
+                | 'PRINT' printList                                                                                   #printStatement
+                | 'SPC' Integer                                                                                       #spcStatement
+                | 'RETURN'                                                                                            #returnStatement
+		            | ('LET')? id=ID '=' expression                                                                       #idStatement
               	;
                    
 idList  : ID ',' idList 
@@ -100,16 +100,17 @@ value:      '(' expr=expression ')'                                       #exprV
             | constv=constant                                             #constValue
             ;
 
-function:   'ABS' '(' expression ')'                                                                  
-            | 'ATN' '(' expression ')'                                                                      
-            | 'COS' '(' expression ')'                                                                     
-            | 'EXP' '(' expression ')'                                                                    
-            | 'INT' '(' expression ')'                                                                    
-            | 'LOG' '(' expression ')'                                                                
-            | 'RND' '(' expression ')'                                                                   
-            | 'SIN' '(' expression ')'                                                                  
-            | 'SQR' '(' expression ')'                                                                   
-            | 'TAN' '(' expression ')'                                                                 
+function:   'ABS' '(' expression ')'                                      #absFunction                         
+            | 'ATN' '(' expression ')'                                    #atnFunction                    
+            | 'COS' '(' expression ')'                                    #cosFunction                     
+            | 'EXP' '(' expression ')'                                    #expFunction                    
+            | 'INT' '(' expression ')'                                    #intFunction                    
+            | 'LOG' '(' expression ')'                                    #logFunction                            
+            | 'RND' '(' expression ')'                                    #rndFunction                               
+            | 'SIN' '(' expression ')'                                    #sinFunction                             
+            | 'SQR' '(' expression ')'                                    #sqrFunction                               
+            | 'TAN' '(' expression ')'                                    #tanFunction
+            ;                                                                 
 
 constant:   Integer                                                       #constInt
             | String                                                      #constString
