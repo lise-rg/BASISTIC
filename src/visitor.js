@@ -76,6 +76,18 @@ class Visitor extends GrammarVisitor {
    * Statements
    */
 
+  visitStatementStatements(ctx) {
+    this.visit(ctx.getChild(0));
+
+    if(ctx.getChild(1) != null) this.visit(ctx.getChild(1));
+  }
+
+  visitLabelStatements(ctx) {
+    // TODO - define use of label
+
+    if(ctx.getChild(1) != null) this.visit(ctx.getChild(1));
+  }
+
   visitDimStatement(ctx) {
     let name = ctx.id.text;
     let type = 'list';
