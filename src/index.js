@@ -3,7 +3,6 @@ import GrammarLexer from './antlr/GrammarLexer.js';
 import GrammarParser from './antlr/GrammarParser.js';
 import { Visitor } from './visitor.js';
 import { Listener } from './listener.js';
-
 import CodeFlask from 'codeflask';
 
 var visitor, listener;
@@ -49,7 +48,7 @@ window.onload = function () {
       fileRd.readAsText(file);
 
       fileRd.onload = function () {
-        $('#input-area').value = fileRd.result;
+        flask.updateCode(fileRd.result)
       }
     }
   );
