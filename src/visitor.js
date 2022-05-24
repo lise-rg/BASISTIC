@@ -35,6 +35,7 @@ class Visitor extends GrammarVisitor {
     document.getElementById('output-area').value += msg;
     if (nl)
       document.getElementById('output-area').value += '\n';
+      document.getElementById('output-area').scrollTop = document.getElementById('output-area').scrollHeight;
   }
 
   /**
@@ -60,7 +61,7 @@ class Visitor extends GrammarVisitor {
    * thrown an error if the last evaluated expression / ID / constant is not a number (i.e. integer or real)
    */
   checkNumber() {
-    if (this.currentType != 'integer' && this.currentType != 'real')
+    if (this.currentType !== 'integer' && this.currentType !== 'real' && this.currentType !== 'boolean')
       this.abort('number expected but got ' + this.currentType + ' instead.');
   }
 
