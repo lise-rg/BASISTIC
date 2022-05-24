@@ -31,7 +31,7 @@ statement   :
                 | 'WHILE' expression 'DO' statements 'WEND'                                                 #whileStatement
                 | 'DO' statements 'WHILE' expression                                                        #doWhileStatement
                 | 'INPUT' idList                                                                            #inputStatement
-                | 'PRINT' printList                                                                         #printStatement
+                | 'PRINT' '(' printList ')'                                                                 #printStatement
                 | 'SPC' value=Integer                                                                             #spcStatement
                 | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                #drawlineStatement
                 | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                #drawrectStatement
@@ -114,7 +114,8 @@ function:   'ABS' '(' expression ')'
             | 'RND' '(' expression ')'                                                                   
             | 'SIN' '(' expression ')'                                                                  
             | 'SQR' '(' expression ')'                                                                   
-            | 'TAN' '(' expression ')'                                  
+            | 'TAN' '(' expression ')'    
+            ;                              
 
 constant:   Integer                                                       #constInt
             | String                                                      #constString

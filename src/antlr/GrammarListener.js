@@ -41,15 +41,6 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#endStatement.
-	enterEndStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#endStatement.
-	exitEndStatement(ctx) {
-	}
-
-
 	// Enter a parse tree produced by GrammarParser#forStatement.
 	enterForStatement(ctx) {
 	}
@@ -74,24 +65,6 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by GrammarParser#gosubStatement.
 	exitGosubStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#onGotoStatement.
-	enterOnGotoStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#onGotoStatement.
-	exitOnGotoStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#onGosubStatement.
-	enterOnGosubStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#onGosubStatement.
-	exitOnGosubStatement(ctx) {
 	}
 
 
@@ -149,96 +122,6 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#absStatement.
-	enterAbsStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#absStatement.
-	exitAbsStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#atnStatement.
-	enterAtnStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#atnStatement.
-	exitAtnStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#cosStatement.
-	enterCosStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#cosStatement.
-	exitCosStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#expStatement.
-	enterExpStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#expStatement.
-	exitExpStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#intStatement.
-	enterIntStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#intStatement.
-	exitIntStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#logStatement.
-	enterLogStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#logStatement.
-	exitLogStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#rndStatement.
-	enterRndStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#rndStatement.
-	exitRndStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#sinStatement.
-	enterSinStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#sinStatement.
-	exitSinStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#sqrStatement.
-	enterSqrStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#sqrStatement.
-	exitSqrStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#tanStatement.
-	enterTanStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#tanStatement.
-	exitTanStatement(ctx) {
-	}
-
-
 	// Enter a parse tree produced by GrammarParser#drawlineStatement.
 	enterDrawlineStatement(ctx) {
 	}
@@ -293,6 +176,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#endStatement.
+	enterEndStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#endStatement.
+	exitEndStatement(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#idStatement.
 	enterIdStatement(ctx) {
 	}
@@ -302,12 +194,12 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#idList.
-	enterIdList(ctx) {
+	// Enter a parse tree produced by GrammarParser#listIdList.
+	enterListIdList(ctx) {
 	}
 
-	// Exit a parse tree produced by GrammarParser#idList.
-	exitIdList(ctx) {
+	// Exit a parse tree produced by GrammarParser#listIdList.
+	exitListIdList(ctx) {
 	}
 
 
@@ -500,6 +392,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#functionValue.
+	enterFunctionValue(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#functionValue.
+	exitFunctionValue(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#arrayValue.
 	enterArrayValue(ctx) {
 	}
@@ -524,6 +425,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by GrammarParser#constValue.
 	exitConstValue(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#function.
+	enterFunction(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#function.
+	exitFunction(ctx) {
 	}
 
 

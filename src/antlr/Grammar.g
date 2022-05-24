@@ -12,49 +12,36 @@ options {
 // partie syntaxique :  description de la grammaire //
 // les non-terminaux doivent commencer par une minuscule
 
-start       : statements
-              ;
+start:          statements
+                ;
 
-statements:     statement (';' statements)?                                                         #statementStatements
-                | label ':' (statements)?                                                           #labelStatements
+statements:     statement (';' statements)?                                                                 #statementStatements
+                | label ':' (statements)?                                                                   #labelStatements                                                                  
                 ;
 
 statement   : 
-                'DIM' ID '(' integerList ')'                                                        #dimStatement
-                | 'END'                                                                             #endStatement
-                | 'FOR' ID '=' expression 'TO' expression ('STEP' Integer)? statements 'FEND'       #forStatement
-                | 'GOTO' label (';' statements)?                                                    #gotoStatement
-                | 'GOSUB' label                                                                     #gosubStatement
-                | 'ON' expression 'GOTO' label                                                      #onGotoStatement
-                | 'ON' expression 'GOSUB' label                                                     #onGosubStatement
-                | 'IF' expression 'THEN' statements ('ELSE' statements)?                            #ifStatement
-                | 'WHILE' expression 'DO' statements 'WEND'                                         #whileStatement
-                | 'DO' statements 'WHILE' expression                                                #doWhileStatement
-                | 'INPUT' idList                                                                    #inputStatement
-                | 'PRINT' printList                                                                 #printStatement
-                | 'SPC' Integer                                                                     #spcStatement
-                | 'ABS' expression                                                                  #absStatement
-                | 'ATN' expression                                                                  #atnStatement
-                | 'COS' expression                                                                  #cosStatement
-                | 'EXP' expression                                                                  #expStatement
-                | 'INT' expression                                                                  #intStatement
-                | 'LOG' expression                                                                  #logStatement
-                | 'RND' expression                                                                  #rndStatement
-                | 'SIN' expression                                                                  #sinStatement
-                | 'SQR' expression                                                                  #sqrStatement
-                | 'TAN' expression                                                                  #tanStatement
-                | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'        #drawlineStatement
-                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'        #drawrectStatement
-                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                     #drawsquareStatement
-                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ')'                     #drawcircleStatement
-                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                   #drawtriangleStatement
-                | 'RETURN'                                                                          #returnStatement
-		            | ('LET')? ID '=' expression                                                        #idStatement
+                'DIM' id=ID '(' list=integerList ')'                                                        #dimStatement
+                | 'FOR' ident=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'    #forStatement
+                | 'GOTO' label (';' statements)?                                                            #gotoStatement
+                | 'GOSUB' label                                                                             #gosubStatement
+                | 'IF' expression 'THEN' statements ('ELSE' statements)? 'ENDIF'                            #ifStatement
+                | 'WHILE' expression 'DO' statements 'WEND'                                                 #whileStatement
+                | 'DO' statements 'WHILE' expression                                                        #doWhileStatement
+                | 'INPUT' '(' idList ')'                                                                    #inputStatement
+                | 'PRINT' '(' printList ')'                                                                 #printStatement
+                | 'SPC' arg=Integer                                                                         #spcStatement
+                | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                #drawlineStatement
+                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                #drawrectStatement
+                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                             #drawsquareStatement
+                | 'DRAWCIRLE' '(' expression ',' expression ',' expression ')'                              #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                           #drawtriangleStatement
+                | 'RETURN' (';' statements)?                                                                #returnStatement
+                | 'END' (';' statements)?                                                                   #endStatement
+		            | ('LET')? id=ID '=' exp=expression                                                         #idStatement
               	;
                    
-idList  : ID ',' idList 
-             | ID 
-            ;
+idList:         head=ID (',' tail=idList)*                                                                  #listIdList  
+                ;
 
 valueList      : value ',' valueList 
                     | value 
@@ -109,10 +96,23 @@ powerExp:   left=powerExp '^' right=value                                 #opPow
             ;
 
 value:      '(' expr=expression ')'                                       #exprValue
+            | func=function                                               #functionValue
             | array=ID '(' index=expressionList ')'                       #arrayValue
             | id=ID                                                       #IDValue
             | constv=constant                                             #constValue
             ;
+
+function:   'ABS' '(' expression ')'                                                                  
+            | 'ATN' '(' expression ')'                                                                      
+            | 'COS' '(' expression ')'                                                                     
+            | 'EXP' '(' expression ')'                                                                                                   
+            | 'INT' '(' expression ')'                                                                    
+            | 'LOG' '(' expression ')'                                                                
+            | 'RND' '(' expression ')'                                                                   
+            | 'SIN' '(' expression ')'                                                                  
+            | 'SQR' '(' expression ')'                                                                   
+            | 'TAN' '(' expression ')'     
+            ;                             
 
 constant:   Integer                                                       #constInt
             | String                                                      #constString
@@ -137,7 +137,7 @@ Integer:    [0-9]+
 String:     '"'[\u0020\u0021\u0023-\u00ff]*'"'
             ;
 
-Real:       Integer'.'Integer
+Real:       Integer.Integer
             ;
 
 WS:         [\n\t\r ] -> skip
