@@ -32,32 +32,11 @@ class DrawOutput {
   }
 
   drawTriangle(x, y, size) {
-
-    /*alert('x:'+ x + '\n' + 'y:'+ y + '\n' + 'size:'+ size);  
-    
-    let constX = 350;
-    let constY = 150;
-    let constSize = 50;
-
-    if (x == constX) {
-      alert("wtf?");
-    }
-    if (y == constY) {
-      alert("wtf2?");
-    }
-    if (size == constSize) {
-      alert("wtf3?");
-    }
-
-    x = constX;
-    y = constY;
-    size = constSize;*/
-
     this.ctx.beginPath();
     this.ctx.moveTo(x-(size/2), y+(size/2));
     this.ctx.lineTo(x, y-(size/2));
     this.ctx.lineTo(x+(size/2), y+(size/2));
     this.ctx.closePath();
-    this.ctx.stroke();
+    this.ctx.fill();
   }
 }
