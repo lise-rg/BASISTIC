@@ -76,12 +76,195 @@ class Visitor extends GrammarVisitor {
    * Statements
    */
 
+  visitDimStatement(ctx) {
+    let name = ctx.id.text;
+    let type = 'list';
+    let list = this.visit(ctx.list);
+
+    this.varDict.add(name, type, list);
+  }
+
+  visitEndStatement(ctx) {
+    // TODO
+    this.printConsole('Done');
+  }
+
+  visitForStatement(ctx) {
+    let name = ctx.id.text;
+    let value = this.visit(ctx.getChild(3));
+    if(this.currentType != 'integer') this.abort('Not an integer.');
+    
+    this.varDict.add(name, 'integer', value);
+    
+    let end = ctx.getChild(5);
+    if(this.currentType != 'integer') this.abort('Not an integer.');
+    
+    let step = parseInt(ctx.step.getText());
+    
+    for(let i = value; i < end; i += step) {
+      this.varDict.assign(name, i);
+      this.visit(ctx.st);
+    }
+  }
+
   visitGotoStatement(ctx) {
     let label = ctx.getChild(1).getText();
     this.checkLabel(label);
     this.visit(this.labelDict.getNode(label));
   }
 
+  visitGosubStatement(ctx) {
+    // TODO
+  }
+
+  visitOnGotoStatement(ctx) {
+    let cond = this.visit(ctx.getChild(1));
+    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
+
+    if(cond == 1) {
+      let label = ctx.getChild(3).getText();
+      this.checkLabel(label);
+      this.visit(this.labelDict.getNode(label));
+    }
+  }
+
+  visitOnGosubStatement(ctx) {
+    let cond = this.visit(ctx.getChild(1));
+    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
+
+    if (cond == 1){
+      
+    }
+    // TODO
+  }
+  
+  visitIfStatement(ctx) {
+    let cond = this.visit(ctx.getChild(1));
+    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
+
+    if (cond == 1) this.visit(ctx.getChild(3));
+    else if(ctx.getChild(5) != null) this.visit(ctx.getChild(5));
+  }
+
+  visitWhileStatement(ctx) {
+    let cond = this.visit(ctx.getChild(1));
+    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
+
+    while(cond == 1) {
+      this.visit(ctx.getChild(3));
+      cond = this.visit(ctx.getChild(1));
+    }
+  }
+
+  visitDoWhileStatement(ctx) {
+    let cond;
+    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
+
+    do {
+      this.visit(ctx.getChild(1));
+      cond = this.visit(ctx.getChild(1));
+    } while(cond == 1)
+  }
+
+  visitInputStatement(ctx) {
+    this.visit(ctx.getChild(1));
+  }
+
+  // visitPrintStatement(ctx) {
+  //   this.visit(ctx.getChild(0));
+  // }
+
+  visitSpcStatement(ctx) {
+    let value = parseInt(ctx.value.getText());
+    let spc = "";
+
+    for(let i = 0; i < value; i++) {
+      spc += " ";
+    }
+
+    this.printConsole(spc);
+  }
+
+  visitReturnStatement(ctx) {
+    // TODO
+  }
+
+  visitIdStatement(ctx) {
+    let name = ctx.id.text;
+    let type = '';
+    let value = this.visit(ctx.exp);
+    
+    if(this.varDict.contains(name)) { 
+      type = this.varDict.getType(name);
+      if(type == this.currentType) this.varDict.assign(name, value);
+      else this.abort('Incorrect type for variable ' + name)
+    }
+    else {
+      type = this.currentType;
+      this.varDict.add(name, type, value);
+    }
+  }
+
+  visitAbsFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'integer') this.abort('Not an integer.');
+    return Math.abs(value);
+  }
+
+  visitAtnFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.atan(value);
+  }
+
+  visitCosFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.cos(value);
+  }
+
+  visitExpFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.exp(value);
+  }
+
+  visitIntFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.floor(value);
+  }
+
+  visitLogFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.log(value);
+  }
+  
+  visitRndFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'integer') this.abort('Not an integer.');
+    return Math.floor(Math.random() * value);
+  }
+
+  visitSinFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.sin(value);
+  }
+
+  visitSqrFunction(ctx) {
+    let value = ctx.getChild(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.sqrt(value);
+  }
+
+  visitTanFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.tan(value);
+  }
+  
   visitListPrintList(ctx) {
     let head = this.visit(ctx.head);
     let separator = ctx.sep.text;
@@ -128,6 +311,8 @@ class Visitor extends GrammarVisitor {
     let right = this.visit(ctx.right);
     this.checkNumber();
 
+    this.currentType = 'boolean';
+
     return left & right;
   }
 
@@ -144,6 +329,9 @@ class Visitor extends GrammarVisitor {
     if (ctx.getChildCount() === 2) {
       let arg = this.visit(ctx.getChild(1));
       this.checkNumber();
+
+      this.currentType = 'boolean';
+
       if (arg <= 0)
         return 1;
       else
@@ -163,6 +351,8 @@ class Visitor extends GrammarVisitor {
     this.checkNumber();
     let right = this.visit(ctx.right);
     this.checkNumber();
+
+    this.currentType = 'boolean';
 
     let op = ctx.op.text;
 
@@ -274,6 +464,10 @@ class Visitor extends GrammarVisitor {
   ** returns the value of the expression / ID / constant
   */
 
+  visitFunctionValue(ctx) {
+    return this.visit(ctx.func);
+  }
+
   visitExprValue(ctx) {
     return this.visit(ctx.expr);
   }
@@ -287,6 +481,79 @@ class Visitor extends GrammarVisitor {
 
   visitConstValue(ctx) {
     return this.visit(ctx.constv);
+  }
+
+  /**
+   * Drawing functions
+   */
+
+  visitDrawlineStatement(ctx) {
+    
+    var x1 = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y1 = parseInt(this.visit(ctx.getChild(4)), 10);
+    var x2 = parseInt(this.visit(ctx.getChild(6)), 10);
+    var y2 = parseInt(this.visit(ctx.getChild(8)), 10);
+
+    if(Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
+    if(Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
+    if(Number.isNaN(x2)) { this.abort('x2 is not a number.'); }
+    if(Number.isNaN(y2)) { this.abort('y2 is not a number.'); }
+
+    this.drawOut.drawLine(x1, y1, x2, y2);
+  }
+
+  visitDrawrectStatement(ctx) {
+
+    var x = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y = parseInt(this.visit(ctx.getChild(4)), 10);
+    var width = parseInt(this.visit(ctx.getChild(6)), 10);
+    var height = parseInt(this.visit(ctx.getChild(8)), 10);
+
+    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if(Number.isNaN(width)) { this.abort('width is not a number.'); }
+    if(Number.isNaN(height)) { this.abort('height is not a number.'); }
+
+    this.drawOut.drawRectangle(x, y, width, height);
+  }
+
+  visitDrawsquareStatement(ctx) {
+
+    var x = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y = parseInt(this.visit(ctx.getChild(4)), 10);
+    var size = parseInt(this.visit(ctx.getChild(6)), 10);
+
+    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if(Number.isNaN(size)) { this.abort('size is not a number.'); }
+
+    this.drawOut.drawSquare(x, y, size);
+  }
+
+  visitDrawcircleStatement(ctx) {
+    
+    var x = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y = parseInt(this.visit(ctx.getChild(4)), 10);
+    var radius = parseInt(this.visit(ctx.getChild(6)), 10);
+
+    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if(Number.isNaN(radius)) { this.abort('radius is not a number.'); }
+
+    this.drawOut.drawCircle(x, y, radius);
+  }
+
+  visitDrawtriangleStatement(ctx) {
+    
+    var x = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y = parseInt(this.visit(ctx.getChild(4)), 10);
+    var size = parseInt(this.visit(ctx.getChild(6)), 10);
+
+    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if(Number.isNaN(size)) { this.abort('size is not a number.'); }
+
+    this.drawOut.drawTriangle(x, y, size);
   }
 
   /* 
@@ -310,4 +577,5 @@ class Visitor extends GrammarVisitor {
     str = str.substring(1, str.length - 1); // Removes the quotation marks
     return str;
   }
+
 }

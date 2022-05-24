@@ -1,5 +1,5 @@
-var x = 3 + 10 - 8;
-var y = 2;
-y = y + x;
-print(x);
-print(y);
+DRAWLINE(100,0,100,480);
+DRAWRECT(200,150,100,150);
+DRAWLINE(100,0,100,480);
+DRAWLINE(100,0,100,480);
+DRAWLINE(100,0,100,480);
