@@ -103,13 +103,13 @@ value:      '(' expr=expression ')'                                       #exprV
 function:   'ABS' '(' expression ')'                                                                  
             | 'ATN' '(' expression ')'                                                                      
             | 'COS' '(' expression ')'                                                                     
-            | 'EXP' '(' expression ')'                                                                    
+            | 'EXP' '(' expression ')'                                                                                                   
             | 'INT' '(' expression ')'                                                                    
             | 'LOG' '(' expression ')'                                                                
             | 'RND' '(' expression ')'                                                                   
             | 'SIN' '(' expression ')'                                                                  
             | 'SQR' '(' expression ')'                                                                   
-            | 'TAN' '(' expression ')'                                                                 
+            | 'TAN' '(' expression ')'                                  
 
 constant:   Integer                                                       #constInt
             | String                                                      #constString
