@@ -4,7 +4,7 @@ class Variable {
   /**
    * 
    * @param {string} name 
-   * @param {string} type ('integer', 'real', 'string', 'non')
+   * @param {string} type ('integer', 'real', 'string', 'non', 'list')
    * @param {*} value 
    */
   constructor(name, type, value) {
