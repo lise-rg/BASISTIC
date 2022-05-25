@@ -104,15 +104,6 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#spcStatement.
-	enterSpcStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#spcStatement.
-	exitSpcStatement(ctx) {
-	}
-
-
 	// Enter a parse tree produced by GrammarParser#drawlineStatement.
 	enterDrawlineStatement(ctx) {
 	}

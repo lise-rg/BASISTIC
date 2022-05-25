@@ -72,12 +72,6 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#spcStatement.
-	visitSpcStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by GrammarParser#drawlineStatement.
 	visitDrawlineStatement(ctx) {
 	  return this.visitChildren(ctx);

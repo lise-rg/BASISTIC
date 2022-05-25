@@ -31,7 +31,7 @@ statement   :
                 | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                    #drawlineStatement
                 | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                    #drawrectStatement
                 | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                                 #drawsquareStatement
-                | 'DRAWCIRLE' '(' expression ',' expression ',' expression ')'                                  #drawcircleStatement
+                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ')'                                 #drawcircleStatement
                 | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                               #drawtriangleStatement
                 | 'RETURN' (';' statements)?                                                                    #returnStatement
                 | 'END' (';' statements)?                                                                       #endStatement
