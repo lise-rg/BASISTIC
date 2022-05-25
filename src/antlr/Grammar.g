@@ -28,7 +28,6 @@ statement   :
                 | 'DO' statements 'WHILE' expression                                                            #doWhileStatement
                 | 'INPUT' '(' idList ')'                                                                        #inputStatement
                 | 'PRINT' '(' printList ')'                                                                     #printStatement
-                | 'SPC' arg=Integer                                                                             #spcStatement
                 | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                    #drawlineStatement
                 | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                    #drawrectStatement
                 | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                                 #drawsquareStatement
