@@ -470,65 +470,6 @@ class Visitor extends GrammarVisitor {
     return this.visit(ctx.atom);
   }
   
-  visitAbsFunction(ctx) {
-    let value = ctx.expr(0);
-    if(this.currentType != 'integer') this.abort('Not an integer.');
-    return Math.abs(value);
-  }
-
-  visitAtnFunction(ctx) {
-    let value = ctx.expr(0);
-    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
-    return Math.atan(value);
-  }
-
-  visitCosFunction(ctx) {
-    let value = ctx.expr(0);
-    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
-    return Math.cos(value);
-  }
-
-  visitExpFunction(ctx) {
-    let value = ctx.expr(0);
-    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
-    return Math.exp(value);
-  }
-
-  visitIntFunction(ctx) {
-    let value = ctx.expr(0);
-    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
-    return Math.floor(value);
-  }
-
-  visitLogFunction(ctx) {
-    let value = ctx.expr(0);
-    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
-    return Math.log(value);
-  }
-  
-  visitRndFunction(ctx) {
-    let value = ctx.expr(0);
-    if(this.currentType != 'integer') this.abort('Not an integer.');
-    return Math.floor(Math.random() * value);
-  }
-
-  visitSinFunction(ctx) {
-    let value = ctx.expr(0);
-    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
-    return Math.sin(value);
-  }
-
-  visitSqrFunction(ctx) {
-    let value = ctx.getChild(0);
-    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
-    return Math.sqrt(value);
-  }
-
-  visitTanFunction(ctx) {
-    let value = ctx.expr(0);
-    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
-    return Math.tan(value);
-  }
 
   /***************************************************************************************************/
   /***		Name                                                                                     ***/
