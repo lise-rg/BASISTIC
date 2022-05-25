@@ -603,7 +603,12 @@ class Visitor extends GrammarVisitor {
     let y2 = this.visit(ctx.getChild(8));
     checkNumber();
 
-    this.drawOut.drawLine(parseInt(x1, 10), parseInt(y1, 10), parseInt(x2, 10), parseInt(y2, 10));
+    if(Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
+    if(Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
+    if(Number.isNaN(x2)) { this.abort('x2 is not a number.'); }
+    if(Number.isNaN(y2)) { this.abort('y2 is not a number.'); }
+
+    this.drawOut.drawLine(x1, y1, x2, y2);
   }
 
   /**
@@ -612,16 +617,17 @@ class Visitor extends GrammarVisitor {
   */
   visitDrawrectStatement(ctx) {
 
-    let x = this.visit(ctx.getChild(2));
-    checkNumber();
-    let y = this.visit(ctx.getChild(4));
-    checkNumber();
-    let width = this.visit(ctx.getChild(6));
-    checkNumber();
-    let height = this.visit(ctx.getChild(8));
-    checkNumber();
+    var x = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y = parseInt(this.visit(ctx.getChild(4)), 10);
+    var width = parseInt(this.visit(ctx.getChild(6)), 10);
+    var height = parseInt(this.visit(ctx.getChild(8)), 10);
 
-    this.drawOut.drawRectangle(parseInt(x, 10), parseInt(y, 10), parseInt(width, 10), parseInt(height, 10));
+    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if(Number.isNaN(width)) { this.abort('width is not a number.'); }
+    if(Number.isNaN(height)) { this.abort('height is not a number.'); }
+
+    this.drawOut.drawRectangle(x, y, width, height);
   }
 
   /**
@@ -630,14 +636,15 @@ class Visitor extends GrammarVisitor {
   */
   visitDrawsquareStatement(ctx) {
 
-    let x = this.visit(ctx.getChild(2));
-    checkNumber();
-    let y = this.visit(ctx.getChild(4));
-    checkNumber();
-    let size = this.visit(ctx.getChild(6));
-    checkNumber();
+    var x = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y = parseInt(this.visit(ctx.getChild(4)), 10);
+    var size = parseInt(this.visit(ctx.getChild(6)), 10);
 
-    this.drawOut.drawSquare(parseInt(x, 10), parseInt(y, 10), parseInt(size, 10));
+    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if(Number.isNaN(size)) { this.abort('size is not a number.'); }
+
+    this.drawOut.drawSquare(x, y, size);
   }
 
   /**
@@ -653,7 +660,11 @@ class Visitor extends GrammarVisitor {
     let radius = this.visit(ctx.getChild(6));
     checkNumber();
 
-    this.drawOut.drawCircle(parseInt(x, 10), parseInt(y, 10), parseInt(radius, 10));
+    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if(Number.isNaN(radius)) { this.abort('radius is not a number.'); }
+
+    this.drawOut.drawCircle(x, y, radius);
   }
 
   /**
