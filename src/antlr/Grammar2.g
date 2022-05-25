@@ -22,7 +22,7 @@ statements:     statement (';' statements)?                                     
 statement   : 
                 'DIM' id=ID '(' list=integerList ')'                                                        #dimStatement
                 | 'END'                                                                                     #endStatement
-                | 'FOR' id=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'       #forStatement
+                | 'FOR' id=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'    #forStatement
                 | 'GOTO' label (';' statements)?                                                            #gotoStatement
                 | 'GOSUB' label                                                                             #gosubStatement
                 | 'ON' expression 'GOTO' label                                                              #onGotoStatement
@@ -32,14 +32,14 @@ statement   :
                 | 'DO' statements 'WHILE' expression                                                        #doWhileStatement
                 | 'INPUT' idList                                                                            #inputStatement
                 | 'PRINT' printList                                                                         #printStatement
-                | 'SPC' value=Integer                                                                             #spcStatement
+                | 'SPC' value=Integer                                                                       #spcStatement
                 | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                #drawlineStatement
                 | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                #drawrectStatement
                 | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                             #drawsquareStatement
                 | 'DRAWCIRLE' '(' expression ',' expression ',' expression ')'                              #drawcircleStatement
                 | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                           #drawtriangleStatement
                 | 'RETURN'                                                                                  #returnStatement
-		            | ('LET')? id=ID '=' exp=expression                                                                #idStatement
+		            | ('LET')? id=ID '=' exp=expression                                                         #idStatement
               	;
                    
 idList  : ID ',' idList 
