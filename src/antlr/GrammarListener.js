@@ -68,6 +68,24 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#onGotoStatement.
+	enterOnGotoStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#onGotoStatement.
+	exitOnGotoStatement(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#onGosubStatement.
+	enterOnGosubStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#onGosubStatement.
+	exitOnGosubStatement(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#ifStatement.
 	enterIfStatement(ctx) {
 	}

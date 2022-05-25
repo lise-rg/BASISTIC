@@ -66,7 +66,7 @@ class Visitor extends GrammarVisitor {
   }
 
   checkBoolean() {
-    if (this.currentType != 'boolean')
+    if (this.currentType !== 'boolean')
       this.abort('boolean expected but got ' + this.currentType + ' instead.');
   }
 
@@ -83,7 +83,7 @@ class Visitor extends GrammarVisitor {
    */
 
   visitDimStatement(ctx) {
-    let name = ctx.id.text;
+    let name = ctx.ident.text;
     let type = 'list';
     let list = this.visit(ctx.list);
 
@@ -108,12 +108,14 @@ class Visitor extends GrammarVisitor {
           name + ' with \'' + this.varDict.getType(name) + '\' type.');
     }
 
-    let end = ctx.getChild(5);
+    let end = this.visit(ctx.getChild(5));
     this.checkNumber();
 
-    let step = parseInt(ctx.step.getText());
+    let step = 1;
+    if(ctx.step !== null) step = parseInt(ctx.step.text);
 
-    for (let i = value; i < end; i += step) {
+    alert("value : " + value + "  --  end : " + end + "  --  step : " + step);
+    for (let i = value; i < end; i = i + step) {
       this.varDict.assign(name, i);
       this.visit(ctx.st);
     }
@@ -137,15 +139,15 @@ class Visitor extends GrammarVisitor {
 
   visitIfStatement(ctx) {
     let cond = this.visit(ctx.getChild(1));
-    if (this.currentType != 'boolean') this.abort('Not a valid condition.');
+    this.checkBoolean();
 
     if (cond == 1) this.visit(ctx.getChild(3));
-    else if (ctx.getChild(5) != null) this.visit(ctx.getChild(5));
+    else if (ctx.getChild(5) !== null) this.visit(ctx.getChild(5));
   }
 
   visitWhileStatement(ctx) {
     let cond = this.visit(ctx.getChild(1));
-    if (this.currentType != 'boolean') this.abort('Not a valid condition.');
+    this.checkBoolean();
 
     while (cond == 1) {
       this.visit(ctx.getChild(3));
@@ -155,7 +157,7 @@ class Visitor extends GrammarVisitor {
 
   visitDoWhileStatement(ctx) {
     let cond;
-    if (this.currentType != 'boolean') this.abort('Not a valid condition.');
+    this.checkBoolean();
 
     do {
       this.visit(ctx.getChild(1));
@@ -206,7 +208,7 @@ class Visitor extends GrammarVisitor {
         return Math.exp(expr);
       case 'INT':
         return Math.floor(expr);
-      case 'LOG':
+      case 'LN':
         return Math.log(expr);
       case 'RND':
         return Math.floor(Math.random() * expr);
@@ -216,6 +218,8 @@ class Visitor extends GrammarVisitor {
         return Math.sqrt(expr);
       case 'TAN':
         return Math.tan(expr);
+      case 'LOG':
+        return Math.log10(expr);
       default:
         this.abort('Unknown function ' + func + '.');
     }
@@ -472,7 +476,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitIDValue(ctx) {
-    let id = ctx.id.text;
+    let id = ctx.ident.text;
     this.checkVariableDeclared(id);
     this.currentType = this.varDict.getType(id);
     return this.varDict.getValue(id);

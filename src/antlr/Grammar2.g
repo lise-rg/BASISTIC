@@ -20,26 +20,26 @@ statements:     statement (';' statements)?                                     
                 ;
 
 statement   : 
-                'DIM' id=ID '(' list=integerList ')'                                                        #dimStatement
-                | 'END'                                                                                     #endStatement
-                | 'FOR' id=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'       #forStatement
-                | 'GOTO' label (';' statements)?                                                            #gotoStatement
-                | 'GOSUB' label                                                                             #gosubStatement
-                | 'ON' expression 'GOTO' label                                                              #onGotoStatement
-                | 'ON' expression 'GOSUB' label                                                             #onGosubStatement
-                | 'IF' expression 'THEN' statements ('ELSE' statements)?                                    #ifStatement
-                | 'WHILE' expression 'DO' statements 'WEND'                                                 #whileStatement
-                | 'DO' statements 'WHILE' expression                                                        #doWhileStatement
-                | 'INPUT' idList                                                                            #inputStatement
-                | 'PRINT' '(' printList ')'                                                                 #printStatement
-                | 'SPC' val=Integer                                                                             #spcStatement
-                | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                #drawlineStatement
-                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                #drawrectStatement
-                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                             #drawsquareStatement
-                | 'DRAWCIRLE' '(' expression ',' expression ',' expression ')'                              #drawcircleStatement
-                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                           #drawtriangleStatement
-                | 'RETURN'                                                                                  #returnStatement
-		            | ('LET')? ident=ID '=' exp=expression                                                                #idStatement
+                'DIM' ident=ID '(' list=integerList ')'                                                       #dimStatement
+                | 'END'                                                                                       #endStatement
+                | 'FOR' ident=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'   #forStatement
+                | 'GOTO' label (';' statements)?                                                              #gotoStatement
+                | 'GOSUB' label                                                                               #gosubStatement
+                | 'ON' expression 'GOTO' label                                                                #onGotoStatement
+                | 'ON' expression 'GOSUB' label                                                               #onGosubStatement
+                | 'IF' expression 'THEN' statements ('ELSE' statements)?                                      #ifStatement
+                | 'WHILE' expression 'DO' statements 'WEND'                                                   #whileStatement
+                | 'DO' statements 'WHILE' expression                                                          #doWhileStatement
+                | 'INPUT' idList                                                                              #inputStatement
+                | 'PRINT' '(' printList ')'                                                                   #printStatement
+                | 'SPC' val=Integer                                                                           #spcStatement
+                | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                  #drawlineStatement
+                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                  #drawrectStatement
+                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                               #drawsquareStatement
+                | 'DRAWCIRLE' '(' expression ',' expression ',' expression ')'                                #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                             #drawtriangleStatement
+                | 'RETURN'                                                                                    #returnStatement
+		            | ('LET')? ident=ID '=' exp=expression                                                        #idStatement
               	;
                    
 idList  : ID ',' idList 
@@ -101,7 +101,7 @@ powerExp:   left=powerExp '^' right=value                                 #opPow
 value:      '(' expr=expression ')'                                       #exprValue
             | func=function                                               #functionValue
             | array=ID '(' index=expressionList ')'                       #arrayValue
-            | id=ID                                                       #IDValue
+            | ident=ID                                                       #IDValue
             | constv=constant                                             #constValue
             ;
 

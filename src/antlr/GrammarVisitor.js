@@ -48,6 +48,18 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by GrammarParser#onGotoStatement.
+	visitOnGotoStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#onGosubStatement.
+	visitOnGosubStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by GrammarParser#ifStatement.
 	visitIfStatement(ctx) {
 	  return this.visitChildren(ctx);
