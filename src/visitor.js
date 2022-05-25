@@ -15,6 +15,8 @@ class Visitor extends GrammarVisitor {
     this.varDict = new VariableDict();
     this.labelDict = labelDict;
     this.drawOut = new DrawOutput();
+
+    this.subroutines = 0;
   }
 
 
@@ -129,10 +131,15 @@ class Visitor extends GrammarVisitor {
   visitGosubStatement(ctx) {
     let label = ctx.getChild(1).getText();
     this.checkLabel(label);
+    this.subroutines++;
     this.visit(this.labelDict.getNode(label));
   }
 
   visitReturnStatement(ctx) {
+    if (this.subroutines > 0)
+      this.subroutines--;
+    else
+      this.abort('Extraneous RETURN. No calling point could be found.');
     return;
   }
 
