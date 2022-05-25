@@ -31,15 +31,15 @@ statement   :
                 | 'WHILE' expression 'DO' statements 'WEND'                                                 #whileStatement
                 | 'DO' statements 'WHILE' expression                                                        #doWhileStatement
                 | 'INPUT' idList                                                                            #inputStatement
-                | 'PRINT' printList                                                                         #printStatement
-                | 'SPC' value=Integer                                                                       #spcStatement
+                | 'PRINT' '(' printList ')'                                                                 #printStatement
+                | 'SPC' val=Integer                                                                             #spcStatement
                 | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                #drawlineStatement
                 | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                #drawrectStatement
                 | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                             #drawsquareStatement
                 | 'DRAWCIRLE' '(' expression ',' expression ',' expression ')'                              #drawcircleStatement
                 | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                           #drawtriangleStatement
                 | 'RETURN'                                                                                  #returnStatement
-		            | ('LET')? id=ID '=' exp=expression                                                         #idStatement
+		            | ('LET')? ident=ID '=' exp=expression                                                                #idStatement
               	;
                    
 idList  : ID ',' idList 
@@ -105,17 +105,17 @@ value:      '(' expr=expression ')'                                       #exprV
             | constv=constant                                             #constValue
             ;
 
-function:   'ABS' '(' expression ')'                                      #absFunction                         
-            | 'ATN' '(' expression ')'                                    #atnFunction                    
-            | 'COS' '(' expression ')'                                    #cosFunction                     
-            | 'EXP' '(' expression ')'                                    #expFunction                    
-            | 'INT' '(' expression ')'                                    #intFunction                    
-            | 'LOG' '(' expression ')'                                    #logFunction                            
-            | 'RND' '(' expression ')'                                    #rndFunction                               
-            | 'SIN' '(' expression ')'                                    #sinFunction                             
-            | 'SQR' '(' expression ')'                                    #sqrFunction                               
-            | 'TAN' '(' expression ')'                                    #tanFunction
-            ;                                                                 
+function:   'ABS' '(' expression ')'                                                                  
+            | 'ATN' '(' expression ')'                                                                      
+            | 'COS' '(' expression ')'                                                                     
+            | 'EXP' '(' expression ')'                                                                                                   
+            | 'INT' '(' expression ')'                                                                    
+            | 'LOG' '(' expression ')'                                                                
+            | 'RND' '(' expression ')'                                                                   
+            | 'SIN' '(' expression ')'                                                                  
+            | 'SQR' '(' expression ')'                                                                   
+            | 'TAN' '(' expression ')'    
+            ;                              
 
 constant:   Integer                                                       #constInt
             | String                                                      #constString

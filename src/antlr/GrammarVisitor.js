@@ -30,12 +30,6 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#endStatement.
-	visitEndStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by GrammarParser#forStatement.
 	visitForStatement(ctx) {
 	  return this.visitChildren(ctx);
@@ -50,18 +44,6 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by GrammarParser#gosubStatement.
 	visitGosubStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#onGotoStatement.
-	visitOnGotoStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#onGosubStatement.
-	visitOnGosubStatement(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -102,66 +84,6 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#absStatement.
-	visitAbsStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#atnStatement.
-	visitAtnStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#cosStatement.
-	visitCosStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#expStatement.
-	visitExpStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#intStatement.
-	visitIntStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#logStatement.
-	visitLogStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#rndStatement.
-	visitRndStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#sinStatement.
-	visitSinStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#sqrStatement.
-	visitSqrStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#tanStatement.
-	visitTanStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by GrammarParser#drawlineStatement.
 	visitDrawlineStatement(ctx) {
 	  return this.visitChildren(ctx);
@@ -198,14 +120,20 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by GrammarParser#endStatement.
+	visitEndStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by GrammarParser#idStatement.
 	visitIdStatement(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#idList.
-	visitIdList(ctx) {
+	// Visit a parse tree produced by GrammarParser#listIdList.
+	visitListIdList(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -336,6 +264,12 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by GrammarParser#functionValue.
+	visitFunctionValue(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by GrammarParser#arrayValue.
 	visitArrayValue(ctx) {
 	  return this.visitChildren(ctx);
@@ -350,6 +284,12 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by GrammarParser#constValue.
 	visitConstValue(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#function.
+	visitFunction(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

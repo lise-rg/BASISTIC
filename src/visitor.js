@@ -35,6 +35,7 @@ class Visitor extends GrammarVisitor {
     document.getElementById('output-area').value += msg;
     if (nl)
       document.getElementById('output-area').value += '\n';
+      document.getElementById('output-area').scrollTop = document.getElementById('output-area').scrollHeight;
   }
 
   /**
@@ -60,8 +61,13 @@ class Visitor extends GrammarVisitor {
    * thrown an error if the last evaluated expression / ID / constant is not a number (i.e. integer or real)
    */
   checkNumber() {
-    if (this.currentType != 'integer' && this.currentType != 'real')
+    if (this.currentType !== 'integer' && this.currentType !== 'real' && this.currentType !== 'boolean')
       this.abort('number expected but got ' + this.currentType + ' instead.');
+  }
+
+  checkBoolean() {
+    if (this.currentType != 'boolean')
+      this.abort('boolean expected but got ' + this.currentType + ' instead.');
   }
 
   checkLabel(name) {
@@ -85,23 +91,29 @@ class Visitor extends GrammarVisitor {
   }
 
   visitEndStatement(ctx) {
-    // TODO
     this.printConsole('Done');
+    return;
   }
 
   visitForStatement(ctx) {
-    let name = ctx.id.text;
+    let name = ctx.ident.text;
     let value = this.visit(ctx.getChild(3));
-    if(this.currentType != 'integer') this.abort('Not an integer.');
-    
-    this.varDict.add(name, 'integer', value);
-    
+    this.checkNumber();
+
+    if (!this.varDict.contains(name))
+      this.varDict.add(name, this.currentType, value);
+    else {
+      if (this.currentType !== this.varDict.getType(name))
+        this.abort('Cannot assign \'' + this.currentType + '\' value to ' +
+          name + ' with \'' + this.varDict.getType(name) + '\' type.');
+    }
+
     let end = ctx.getChild(5);
-    if(this.currentType != 'integer') this.abort('Not an integer.');
-    
+    this.checkNumber();
+
     let step = parseInt(ctx.step.getText());
-    
-    for(let i = value; i < end; i += step) {
+
+    for (let i = value; i < end; i += step) {
       this.varDict.assign(name, i);
       this.visit(ctx.st);
     }
@@ -114,43 +126,28 @@ class Visitor extends GrammarVisitor {
   }
 
   visitGosubStatement(ctx) {
-    // TODO
+    let label = ctx.getChild(1).getText();
+    this.checkLabel(label);
+    this.visit(this.labelDict.getNode(label));
   }
 
-  visitOnGotoStatement(ctx) {
-    let cond = this.visit(ctx.getChild(1));
-    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
-
-    if(cond == 1) {
-      let label = ctx.getChild(3).getText();
-      this.checkLabel(label);
-      this.visit(this.labelDict.getNode(label));
-    }
+  visitReturnStatement(ctx) {
+    return;
   }
 
-  visitOnGosubStatement(ctx) {
-    let cond = this.visit(ctx.getChild(1));
-    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
-
-    if (cond == 1){
-      
-    }
-    // TODO
-  }
-  
   visitIfStatement(ctx) {
     let cond = this.visit(ctx.getChild(1));
-    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
+    if (this.currentType != 'boolean') this.abort('Not a valid condition.');
 
     if (cond == 1) this.visit(ctx.getChild(3));
-    else if(ctx.getChild(5) != null) this.visit(ctx.getChild(5));
+    else if (ctx.getChild(5) != null) this.visit(ctx.getChild(5));
   }
 
   visitWhileStatement(ctx) {
     let cond = this.visit(ctx.getChild(1));
-    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
+    if (this.currentType != 'boolean') this.abort('Not a valid condition.');
 
-    while(cond == 1) {
+    while (cond == 1) {
       this.visit(ctx.getChild(3));
       cond = this.visit(ctx.getChild(1));
     }
@@ -158,45 +155,33 @@ class Visitor extends GrammarVisitor {
 
   visitDoWhileStatement(ctx) {
     let cond;
-    if(this.currentType != 'boolean') this.abort('Not a valid condition.');
+    if (this.currentType != 'boolean') this.abort('Not a valid condition.');
 
     do {
       this.visit(ctx.getChild(1));
       cond = this.visit(ctx.getChild(1));
-    } while(cond == 1)
+    } while (cond == 1)
   }
-
-  visitInputStatement(ctx) {
-    this.visit(ctx.getChild(1));
-  }
-
-  // visitPrintStatement(ctx) {
-  //   this.visit(ctx.getChild(0));
-  // }
 
   visitSpcStatement(ctx) {
-    let value = parseInt(ctx.value.getText());
-    let spc = "";
+    let value = this.visit(ctx.val);
+    let spc = '';
 
-    for(let i = 0; i < value; i++) {
-      spc += " ";
+    for (let i = 0; i < value; i++) {
+      spc += ' ';
     }
 
     this.printConsole(spc);
   }
 
-  visitReturnStatement(ctx) {
-    // TODO
-  }
-
   visitIdStatement(ctx) {
-    let name = ctx.id.text;
+    let name = ctx.ident.text;
     let type = '';
     let value = this.visit(ctx.exp);
-    
-    if(this.varDict.contains(name)) { 
+
+    if (this.varDict.contains(name)) {
       type = this.varDict.getType(name);
-      if(type == this.currentType) this.varDict.assign(name, value);
+      if (type == this.currentType) this.varDict.assign(name, value);
       else this.abort('Incorrect type for variable ' + name)
     }
     else {
@@ -204,7 +189,81 @@ class Visitor extends GrammarVisitor {
       this.varDict.add(name, type, value);
     }
   }
-  
+
+  visitFunction(ctx) {
+    let func = ctx.getChild(0).getText();
+    let expr = this.visit(ctx.getChild(2));
+    this.checkNumber();
+
+    switch (func) {
+      case 'ABS':
+        return Math.abs(expr);
+      case 'ATN':
+        return Math.atan(expr);
+      case 'COS':
+        return Math.cos(expr);
+      case 'EXP':
+        return Math.exp(expr);
+      case 'INT':
+        return Math.floor(expr);
+      case 'LOG':
+        return Math.log(expr);
+      case 'RND':
+        return Math.floor(Math.random() * expr);
+      case 'SIN':
+        return Math.sin(expr);
+      case 'SQR':
+        return Math.sqrt(expr);
+      case 'TAN':
+        return Math.tan(expr);
+      default:
+        this.abort('Unknown function ' + func + '.');
+    }
+  }
+
+  visitListIdList(ctx) {
+    let head = ctx.head.text;
+    let tail = ctx.tail;
+
+    this.checkVariableDeclared(head);
+
+    let userinpt = '';
+
+    while (true) {
+      userinpt = prompt(head + ' = ?');
+      if (userinpt === null || userinpt === '')
+        continue;
+
+      switch (this.varDict.getType(head)) {
+        case 'integer':
+          if (!userinpt.match('[0-9]+')) {
+            alert('Integer expected.');
+            continue;
+          }
+          this.varDict.assign(head, parseInt(userinpt));
+          break;
+        case 'real':
+          if (!userinpt.match('[0-9]+(.[0-9]+)?')) {
+            alert('Real expected.');
+            continue;
+          }
+          this.varDict.assign(head, parseFloat(userinpt));
+          break;
+        case 'string':
+          this.varDict.assign(head, userinpt);
+          break;
+        default:
+          alert('Cannot reassign value for variables with type \'' + this.varDict.getType(head) + '\'.');
+          continue;
+      }
+
+      break;
+    }
+
+    if (tail !== null)
+      this.visit(tail);
+  }
+
   visitListPrintList(ctx) {
     let head = this.visit(ctx.head);
     let separator = ctx.sep.text;
@@ -480,12 +539,12 @@ class Visitor extends GrammarVisitor {
   ** returns the value of the expression / ID / constant
   */
 
-  visitFunctionValue(ctx) {
-    return this.visit(ctx.func);
-  }
-
   visitExprValue(ctx) {
     return this.visit(ctx.expr);
+  }
+
+  visitFunctionValue(ctx) {
+    return this.visit(ctx.func);
   }
 
   visitIDValue(ctx) {
