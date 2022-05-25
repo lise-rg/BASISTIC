@@ -164,17 +164,6 @@ class Visitor extends GrammarVisitor {
     } while (cond == 1)
   }
 
-  visitSpcStatement(ctx) {
-    let value = parseInt(ctx.arg.text);
-    let spc = '';
-
-    for (let i = 0; i < value; i++) {
-      spc += ' ';
-    }
-
-    this.printConsole(spc);
-  }
-
   visitIdStatement(ctx) {
     let name = ctx.ident.text;
     let type = '';
