@@ -33,8 +33,6 @@ class Listener extends GrammarListener {
     let label = ctx.getChild(0).getText();
     let statements = ctx.getChild(2);
 
-    alert(label);
-
     if (this.labelDict.contains(label))
       this.abort('label ' + label + ' used more than once.');
       

@@ -69,8 +69,8 @@ andExp:     left=notExp 'AND' right=andExp                                #opAnd
             | atom=notExp                                                 #atomAndExp
             ;
  
-notExp:     'NOT' compareExp                                        
-            | compareExp 
+notExp:     'NOT' expr=compareExp                                         #opNotExp
+            | atom=compareExp                                             #atomNotExp
             ;
 
 compareExp: left=addExp op=('='|'<>'|'>'|'>='|'<'|'<=') right=compareExp  #opCompareExp
@@ -85,8 +85,8 @@ multExp:    left=negateExp op=('*'|'/') right=multExp                     #opMul
             | atom=negateExp                                              #atomMultExp
             ;
 
-negateExp:  '-' powerExp 
-            | powerExp 
+negateExp:  '-' expr=powerExp                                             #opNegateExp
+            | atom=powerExp                                               #atomNegateExp
             ;
 
 powerExp:   left=powerExp '^' right=value                                 #opPowerExp
