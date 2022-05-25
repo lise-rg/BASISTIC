@@ -1,0 +1,6 @@
+LET A = 5;
+WHILE A <> 1 DO
+PRINT(A);
+A = A - 1
+WEND;
+PRINT(A)

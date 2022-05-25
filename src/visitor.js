@@ -66,7 +66,7 @@ class Visitor extends GrammarVisitor {
   }
 
   checkBoolean() {
-    if (this.currentType != 'boolean')
+    if (this.currentType !== 'boolean')
       this.abort('boolean expected but got ' + this.currentType + ' instead.');
   }
 
@@ -83,7 +83,7 @@ class Visitor extends GrammarVisitor {
    */
 
   visitDimStatement(ctx) {
-    let name = ctx.id.text;
+    let name = ctx.ident.text;
     let type = 'list';
     let list = this.visit(ctx.list);
 
@@ -108,12 +108,13 @@ class Visitor extends GrammarVisitor {
           name + ' with \'' + this.varDict.getType(name) + '\' type.');
     }
 
-    let end = ctx.getChild(5);
+    let end = this.visit(ctx.getChild(5));
     this.checkNumber();
 
-    let step = parseInt(ctx.step.getText());
+    let step = 1;
+    if(ctx.step !== null) step = parseInt(ctx.step.text);
 
-    for (let i = value; i < end; i += step) {
+    for (let i = parseInt(value); i < end; i = i + step) {
       this.varDict.assign(name, i);
       this.visit(ctx.st);
     }
@@ -137,10 +138,10 @@ class Visitor extends GrammarVisitor {
 
   visitIfStatement(ctx) {
     let cond = this.visit(ctx.getChild(1));
-    if (this.currentType != 'boolean') this.abort('Not a valid condition.');
+    this.checkNumber();
 
     if (cond == 1) this.visit(ctx.getChild(3));
-    else if (ctx.getChild(5) != null) this.visit(ctx.getChild(5));
+    else if (ctx.getChild(5) !== null) this.visit(ctx.getChild(5));
   }
 
   visitWhileStatement(ctx) {
@@ -164,7 +165,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitSpcStatement(ctx) {
-    let value = this.visit(ctx.val);
+    let value = parseInt(ctx.arg.text);
     let spc = '';
 
     for (let i = 0; i < value; i++) {
@@ -175,7 +176,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitIdStatement(ctx) {
-    let name = ctx.id.text;
+    let name = ctx.ident.text;
     let type = '';
     let value = this.visit(ctx.exp);
     
@@ -206,7 +207,7 @@ class Visitor extends GrammarVisitor {
         return Math.exp(expr);
       case 'INT':
         return Math.floor(expr);
-      case 'LOG':
+      case 'LN':
         return Math.log(expr);
       case 'RND':
         return Math.floor(Math.random() * expr);
@@ -216,6 +217,8 @@ class Visitor extends GrammarVisitor {
         return Math.sqrt(expr);
       case 'TAN':
         return Math.tan(expr);
+      case 'LOG':
+        return Math.log10(expr);
       default:
         this.abort('Unknown function ' + func + '.');
     }
@@ -299,6 +302,10 @@ class Visitor extends GrammarVisitor {
     return this.visit(ctx.atom);
   }
 
+  /***************************************************************************************************/
+  /***		Logical functions                                                                        ***/
+  /***************************************************************************************************/
+   
   /**
    * andExp
    * returns a logical and (&&) with booleans, and a bitwise and (&) with numbers
@@ -336,6 +343,10 @@ class Visitor extends GrammarVisitor {
     return this.visit(ctx.atom);
   }
 
+  /***************************************************************************************************/
+  /***		Comparaison functions                                                                    ***/
+  /***************************************************************************************************/
+   
   /**
    * compareExp
    */
@@ -372,6 +383,10 @@ class Visitor extends GrammarVisitor {
     return this.visit(ctx.atom);
   }
 
+  /***************************************************************************************************/
+  /***		Mathematical functions                                                                   ***/
+  /***************************************************************************************************/
+   
   /**
    * addExp
    */
@@ -454,7 +469,71 @@ class Visitor extends GrammarVisitor {
   visitAtomPowerExp(ctx) {
     return this.visit(ctx.atom);
   }
+  
+  visitAbsFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'integer') this.abort('Not an integer.');
+    return Math.abs(value);
+  }
 
+  visitAtnFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.atan(value);
+  }
+
+  visitCosFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.cos(value);
+  }
+
+  visitExpFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.exp(value);
+  }
+
+  visitIntFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.floor(value);
+  }
+
+  visitLogFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.log(value);
+  }
+  
+  visitRndFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'integer') this.abort('Not an integer.');
+    return Math.floor(Math.random() * value);
+  }
+
+  visitSinFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.sin(value);
+  }
+
+  visitSqrFunction(ctx) {
+    let value = ctx.getChild(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.sqrt(value);
+  }
+
+  visitTanFunction(ctx) {
+    let value = ctx.expr(0);
+    if(this.currentType != 'real' || this.currentType != 'integer') this.abort('Not an number.');
+    return Math.tan(value);
+  }
+
+  /***************************************************************************************************/
+  /***		Name                                                                                     ***/
+  /***************************************************************************************************/
+   
   /*
   ** visitValue
   ** returns the value of the expression / ID / constant
@@ -469,7 +548,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitIDValue(ctx) {
-    let id = ctx.id.text;
+    let id = ctx.ident.text;
     this.checkVariableDeclared(id);
     this.currentType = this.varDict.getType(id);
     return this.varDict.getValue(id);
@@ -506,72 +585,83 @@ class Visitor extends GrammarVisitor {
   */
 
   visitDrawlineStatement(ctx) {
+    
+    let x1 = this.visit(ctx.getChild(2));
+    checkNumber();
+    let y1 = this.visit(ctx.getChild(4));
+    checkNumber();
+    let x2 = this.visit(ctx.getChild(6));
+    checkNumber();
+    let y2 = this.visit(ctx.getChild(8));
+    checkNumber();
 
-    var x1 = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y1 = parseInt(this.visit(ctx.getChild(4)), 10);
-    var x2 = parseInt(this.visit(ctx.getChild(6)), 10);
-    var y2 = parseInt(this.visit(ctx.getChild(8)), 10);
-
-    if (Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
-    if (Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
-    if (Number.isNaN(x2)) { this.abort('x2 is not a number.'); }
-    if (Number.isNaN(y2)) { this.abort('y2 is not a number.'); }
-
-    this.drawOut.drawLine(x1, y1, x2, y2);
+    this.drawOut.drawLine(parseInt(x1, 10), parseInt(y1, 10), parseInt(x2, 10), parseInt(y2, 10));
   }
-
+  
+   /**
+   * checks the types and passes the values to the DrawOutput class to draw the rectangle
+   * @param {type} ctx context of the current call
+   */
   visitDrawrectStatement(ctx) {
 
-    var x = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y = parseInt(this.visit(ctx.getChild(4)), 10);
-    var width = parseInt(this.visit(ctx.getChild(6)), 10);
-    var height = parseInt(this.visit(ctx.getChild(8)), 10);
+    let x = this.visit(ctx.getChild(2));
+    checkNumber();
+    let y = this.visit(ctx.getChild(4));
+    checkNumber();
+    let width = this.visit(ctx.getChild(6));
+    checkNumber();
+    let height = this.visit(ctx.getChild(8));
+    checkNumber();
 
-    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if (Number.isNaN(width)) { this.abort('width is not a number.'); }
-    if (Number.isNaN(height)) { this.abort('height is not a number.'); }
-
-    this.drawOut.drawRectangle(x, y, width, height);
+    this.drawOut.drawRectangle(parseInt(x, 10), parseInt(y, 10), parseInt(width, 10), parseInt(height, 10));
   }
-
+  
+   /**
+   * checks the types and passes the values to the DrawOutput class to draw the square
+   * @param {type} ctx context of the current call
+   */
   visitDrawsquareStatement(ctx) {
 
-    var x = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y = parseInt(this.visit(ctx.getChild(4)), 10);
-    var size = parseInt(this.visit(ctx.getChild(6)), 10);
+    let x = this.visit(ctx.getChild(2));
+    checkNumber();
+    let y = this.visit(ctx.getChild(4));
+    checkNumber();
+    let size = this.visit(ctx.getChild(6));
+    checkNumber();
 
-    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if (Number.isNaN(size)) { this.abort('size is not a number.'); }
-
-    this.drawOut.drawSquare(x, y, size);
+    this.drawOut.drawSquare(parseInt(x, 10), parseInt(y, 10), parseInt(size, 10));
   }
-
+  
+   /**
+   * checks the types and passes the values to the DrawOutput class to draw the circle
+   * @param {type} ctx context of the current call
+   */
   visitDrawcircleStatement(ctx) {
+    
+    let x = this.visit(ctx.getChild(2));
+    checkNumber();
+    let y = this.visit(ctx.getChild(4));
+    checkNumber();
+    let radius = this.visit(ctx.getChild(6));
+    checkNumber();
 
-    var x = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y = parseInt(this.visit(ctx.getChild(4)), 10);
-    var radius = parseInt(this.visit(ctx.getChild(6)), 10);
-
-    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if (Number.isNaN(radius)) { this.abort('radius is not a number.'); }
-
-    this.drawOut.drawCircle(x, y, radius);
+    this.drawOut.drawCircle(parseInt(x, 10), parseInt(y, 10), parseInt(radius, 10));
   }
-
+  
+   /**
+   * checks the types and passes the values to the DrawOutput class to draw the triangle
+   * @param {type} ctx context of the current call
+   */
   visitDrawtriangleStatement(ctx) {
+    
+    let x = this.visit(ctx.getChild(2));
+    checkNumber();
+    let y = this.visit(ctx.getChild(4));
+    checkNumber();
+    let size = this.visit(ctx.getChild(6));
+    checkNumber();
 
-    var x = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y = parseInt(this.visit(ctx.getChild(4)), 10);
-    var size = parseInt(this.visit(ctx.getChild(6)), 10);
-
-    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if (Number.isNaN(size)) { this.abort('size is not a number.'); }
-
-    this.drawOut.drawTriangle(x, y, size);
+    this.drawOut.drawTriangle(parseInt(x, 10), parseInt(y, 10), parseInt(size, 10));
   }
 
 }
