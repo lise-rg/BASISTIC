@@ -12,6 +12,8 @@ class Visitor extends GrammarVisitor {
 
     this.currentType = 'none';
 
+    this.currentArray = null;
+
     this.varDict = new VariableDict();
     this.labelDict = labelDict;
     this.drawOut = new DrawOutput();
@@ -86,10 +88,41 @@ class Visitor extends GrammarVisitor {
 
   visitDimStatement(ctx) {
     let name = ctx.ident.text;
-    let type = 'list';
-    let list = this.visit(ctx.list);
+    if (this.varDict.contains(name))
+      this.abort('array ' + name + ' already declared.');
 
-    this.varDict.add(name, type, list);
+    let arr = [];
+    this.currentArray = arr;
+    this.visit(ctx.list);
+    this.varDict.add(name, 'array', arr);
+    console.table(arr);
+  }
+
+  visitListIntegerList(ctx) {
+    let head = parseInt(ctx.head.text);
+    let tail = ctx.tail;
+
+    let tmp;
+
+    for (let i = 0; i < head; i++) {
+      tmp = this.currentArray;
+      this.currentArray[i] = [];
+      this.currentArray = this.currentArray[i];
+      this.visit(tail);
+      this.currentArray = tmp;
+    }
+
+    return;
+  }
+
+  visitAtomIntegerList(ctx) {
+    let atom = parseInt(ctx.atom.text);
+
+    for (let i = 0; i < atom; i++) {
+      this.currentArray[i] = 0;
+    }
+
+    return;
   }
 
   visitEndStatement(ctx) {
@@ -114,7 +147,7 @@ class Visitor extends GrammarVisitor {
     this.checkNumber();
 
     let step = 1;
-    if(ctx.step !== null) step = parseInt(ctx.step.text);
+    if (ctx.step !== null) step = parseInt(ctx.step.text);
 
     for (let i = parseInt(value); i < end; i = i + step) {
       this.varDict.assign(name, i);
@@ -175,7 +208,7 @@ class Visitor extends GrammarVisitor {
     let name = ctx.ident.text;
     let type = '';
     let value = this.visit(ctx.exp);
-    
+
     if (this.varDict.contains(name)) {
       type = this.varDict.getType(name);
       if (type == this.currentType) this.varDict.assign(name, value);
@@ -301,7 +334,7 @@ class Visitor extends GrammarVisitor {
   /***************************************************************************************************/
   /***		Logical functions                                                                        ***/
   /***************************************************************************************************/
-   
+
   /**
    * andExp
    * returns a logical and (&&) with booleans, and a bitwise and (&) with numbers
@@ -340,7 +373,7 @@ class Visitor extends GrammarVisitor {
   /***************************************************************************************************/
   /***		Comparaison functions                                                                    ***/
   /***************************************************************************************************/
-   
+
   /**
    * compareExp
    */
@@ -380,7 +413,7 @@ class Visitor extends GrammarVisitor {
   /***************************************************************************************************/
   /***		Mathematical functions                                                                   ***/
   /***************************************************************************************************/
-   
+
   /**
    * addExp
    */
@@ -461,12 +494,12 @@ class Visitor extends GrammarVisitor {
   visitAtomPowerExp(ctx) {
     return this.visit(ctx.atom);
   }
-  
+
 
   /***************************************************************************************************/
   /***		Name                                                                                     ***/
   /***************************************************************************************************/
-   
+
   /*
   ** visitValue
   ** returns the value of the expression / ID / constant
@@ -485,6 +518,48 @@ class Visitor extends GrammarVisitor {
     this.checkVariableDeclared(id);
     this.currentType = this.varDict.getType(id);
     return this.varDict.getValue(id);
+  }
+
+  visitArrayValue(ctx) {
+    let id = ctx.array.text;
+    this.checkVariableDeclared(id);
+    this.currentType = this.varDict.getType(id);
+    this.currentArray = this.varDict.getValue(id);
+    return this.visit(ctx.index);
+  }
+
+  visitListExpressionList(ctx) {
+    let head = this.visit(ctx.head);
+    this.checkNumber();
+    let tail = ctx.tail;
+
+    if (this.currentArray.constructor.name !== 'Array') {
+      this.abort('invalid number of indices');
+    }
+
+    if (head < 0 || head >= this.currentArray.length) {
+      this.abort('index out of bounds (' + head + ')')
+    }
+
+    this.currentArray = this.currentArray[head];
+
+    return this.visit(tail);
+  }
+
+  visitAtomExpressionList(ctx) {
+    let atom = this.visit(ctx.atom);
+    this.checkNumber();
+
+    if (this.currentArray.constructor.name !== 'Array' ||
+      this.currentArray[atom].constructor.name === 'Array') {
+      this.abort('invalid number of indices');
+    }
+
+    if (atom < 0 || atom >= this.currentArray.length) {
+      this.abort('index out of bounds (' + atom + ')');
+    }
+
+    return this.currentArray[atom];
   }
 
   visitConstValue(ctx) {
@@ -518,7 +593,7 @@ class Visitor extends GrammarVisitor {
   */
 
   visitDrawlineStatement(ctx) {
-    
+
     let x1 = this.visit(ctx.getChild(2));
     checkNumber();
     let y1 = this.visit(ctx.getChild(4));
@@ -530,11 +605,11 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawLine(parseInt(x1, 10), parseInt(y1, 10), parseInt(x2, 10), parseInt(y2, 10));
   }
-  
-   /**
-   * checks the types and passes the values to the DrawOutput class to draw the rectangle
-   * @param {type} ctx context of the current call
-   */
+
+  /**
+  * checks the types and passes the values to the DrawOutput class to draw the rectangle
+  * @param {type} ctx context of the current call
+  */
   visitDrawrectStatement(ctx) {
 
     let x = this.visit(ctx.getChild(2));
@@ -548,11 +623,11 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawRectangle(parseInt(x, 10), parseInt(y, 10), parseInt(width, 10), parseInt(height, 10));
   }
-  
-   /**
-   * checks the types and passes the values to the DrawOutput class to draw the square
-   * @param {type} ctx context of the current call
-   */
+
+  /**
+  * checks the types and passes the values to the DrawOutput class to draw the square
+  * @param {type} ctx context of the current call
+  */
   visitDrawsquareStatement(ctx) {
 
     let x = this.visit(ctx.getChild(2));
@@ -564,13 +639,13 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawSquare(parseInt(x, 10), parseInt(y, 10), parseInt(size, 10));
   }
-  
-   /**
-   * checks the types and passes the values to the DrawOutput class to draw the circle
-   * @param {type} ctx context of the current call
-   */
+
+  /**
+  * checks the types and passes the values to the DrawOutput class to draw the circle
+  * @param {type} ctx context of the current call
+  */
   visitDrawcircleStatement(ctx) {
-    
+
     let x = this.visit(ctx.getChild(2));
     checkNumber();
     let y = this.visit(ctx.getChild(4));
@@ -580,13 +655,13 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawCircle(parseInt(x, 10), parseInt(y, 10), parseInt(radius, 10));
   }
-  
-   /**
-   * checks the types and passes the values to the DrawOutput class to draw the triangle
-   * @param {type} ctx context of the current call
-   */
+
+  /**
+  * checks the types and passes the values to the DrawOutput class to draw the triangle
+  * @param {type} ctx context of the current call
+  */
   visitDrawtriangleStatement(ctx) {
-    
+
     let x = this.visit(ctx.getChild(2));
     checkNumber();
     let y = this.visit(ctx.getChild(4));

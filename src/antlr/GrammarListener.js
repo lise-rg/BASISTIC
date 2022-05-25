@@ -104,15 +104,6 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#spcStatement.
-	enterSpcStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#spcStatement.
-	exitSpcStatement(ctx) {
-	}
-
-
 	// Enter a parse tree produced by GrammarParser#drawlineStatement.
 	enterDrawlineStatement(ctx) {
 	}
@@ -212,21 +203,39 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#integerList.
-	enterIntegerList(ctx) {
+	// Enter a parse tree produced by GrammarParser#listIntegerList.
+	enterListIntegerList(ctx) {
 	}
 
-	// Exit a parse tree produced by GrammarParser#integerList.
-	exitIntegerList(ctx) {
+	// Exit a parse tree produced by GrammarParser#listIntegerList.
+	exitListIntegerList(ctx) {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#expressionList.
-	enterExpressionList(ctx) {
+	// Enter a parse tree produced by GrammarParser#atomIntegerList.
+	enterAtomIntegerList(ctx) {
 	}
 
-	// Exit a parse tree produced by GrammarParser#expressionList.
-	exitExpressionList(ctx) {
+	// Exit a parse tree produced by GrammarParser#atomIntegerList.
+	exitAtomIntegerList(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#listExpressionList.
+	enterListExpressionList(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#listExpressionList.
+	exitListExpressionList(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#atomExpressionList.
+	enterAtomExpressionList(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#atomExpressionList.
+	exitAtomExpressionList(ctx) {
 	}
 
 

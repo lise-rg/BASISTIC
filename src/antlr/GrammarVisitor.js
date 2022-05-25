@@ -72,12 +72,6 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#spcStatement.
-	visitSpcStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by GrammarParser#drawlineStatement.
 	visitDrawlineStatement(ctx) {
 	  return this.visitChildren(ctx);
@@ -144,14 +138,26 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#integerList.
-	visitIntegerList(ctx) {
+	// Visit a parse tree produced by GrammarParser#listIntegerList.
+	visitListIntegerList(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#expressionList.
-	visitExpressionList(ctx) {
+	// Visit a parse tree produced by GrammarParser#atomIntegerList.
+	visitAtomIntegerList(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#listExpressionList.
+	visitListExpressionList(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#atomExpressionList.
+	visitAtomExpressionList(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

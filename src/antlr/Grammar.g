@@ -49,13 +49,13 @@ constantList   : constant ',' constantList
                     | constant 
                   ;
 
-integerList    : Integer ',' integerList
-                    | Integer
-                  ;
+integerList:    head=Integer ',' tail=integerList                         #listIntegerList
+                | atom=Integer                                            #atomIntegerList
+                ;
                  
-expressionList : expression ',' expressionList 
-                    | expression 
-                  ;
+expressionList: head=expression ',' tail=expressionList                   #listExpressionList
+                | atom=expression                                         #atomExpressionList
+                ;
 
 printList:  head=expression sep=(','|':') tail=printList                  #listPrintList
             | atom=expression                                             #atomPrintList
@@ -96,7 +96,7 @@ powerExp:   left=powerExp '^' right=value                                 #opPow
 value:      '(' expr=expression ')'                                       #exprValue
             | func=function                                               #functionValue
             | array=ID '(' index=expressionList ')'                       #arrayValue
-            | ident=ID                                                       #IDValue
+            | ident=ID                                                    #IDValue
             | constv=constant                                             #constValue
             ;
 
