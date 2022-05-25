@@ -35,7 +35,7 @@ class Visitor extends GrammarVisitor {
     document.getElementById('output-area').value += msg;
     if (nl)
       document.getElementById('output-area').value += '\n';
-      document.getElementById('output-area').scrollTop = document.getElementById('output-area').scrollHeight;
+    document.getElementById('output-area').scrollTop = document.getElementById('output-area').scrollHeight;
   }
 
   /**
@@ -145,22 +145,22 @@ class Visitor extends GrammarVisitor {
 
   visitWhileStatement(ctx) {
     let cond = this.visit(ctx.getChild(1));
-    if (this.currentType != 'boolean') this.abort('Not a valid condition.');
+    this.checkNumber();
 
-    while (cond == 1) {
+    while (cond > 0) {
       this.visit(ctx.getChild(3));
       cond = this.visit(ctx.getChild(1));
     }
   }
 
   visitDoWhileStatement(ctx) {
-    let cond;
-    if (this.currentType != 'boolean') this.abort('Not a valid condition.');
+    let cond = 0;
 
     do {
       this.visit(ctx.getChild(1));
-      cond = this.visit(ctx.getChild(1));
-    } while (cond == 1)
+      cond = this.visit(ctx.getChild(3));
+      this.checkNumber();
+    } while (cond === 1)
   }
 
   visitSpcStatement(ctx) {
@@ -178,7 +178,7 @@ class Visitor extends GrammarVisitor {
     let name = ctx.id.text;
     let type = '';
     let value = this.visit(ctx.exp);
-
+    
     if (this.varDict.contains(name)) {
       type = this.varDict.getType(name);
       if (type == this.currentType) this.varDict.assign(name, value);
@@ -310,13 +310,13 @@ class Visitor extends GrammarVisitor {
     let right = this.visit(ctx.right);
     this.checkNumber();
 
-    this.currentType = 'boolean';
-
     return left & right;
   }
 
   visitAtomAndtExp(ctx) {
-    return this.visit(ctx.atom);
+    let foo = this.visit(ctx.atom);
+    alert(foo + ', ' + typeof (foo));
+    return foo;
   }
 
   /**
@@ -324,21 +324,16 @@ class Visitor extends GrammarVisitor {
    * returns 1 if arg <= 0, 0 otherwise
    */
 
-  visitNotExp(ctx) {
-    if (ctx.getChildCount() === 2) {
-      let arg = this.visit(ctx.getChild(1));
-      this.checkNumber();
+  visitOpNotExp(ctx) {
+    let expr = this.visit(ctx.expr);
+    if (expr <= 0)
+      return 1;
+    else
+      return 0;
+  }
 
-      this.currentType = 'boolean';
-
-      if (arg <= 0)
-        return 1;
-      else
-        return 0;
-    }
-    else {
-      return this.visit(ctx.getChild(0));
-    }
+  visitAtomNotExp(ctx) {
+    return this.visit(ctx.atom);
   }
 
   /**
@@ -431,14 +426,16 @@ class Visitor extends GrammarVisitor {
    * negateExp
    */
 
-  visitNegateExp(ctx) {
-    if (ctx.getChildCount() === 2) {
-      let ret = -(this.visit(ctx.getChild(1)));
-      this.checkNumber();
-      return ret;
-    }
-    else
-      return this.visit(ctx.getChild(0));
+  visitOpNegateExp(ctx) {
+    let expr = this.visit(ctx.expr);
+    this.checkNumber();
+    return -expr;
+  }
+
+  visitAtomNegateExp(ctx) {
+    let foo = this.visit(ctx.atom);
+    alert(foo + ', ' + typeof foo);
+    return foo;
   }
 
   /**
@@ -482,9 +479,31 @@ class Visitor extends GrammarVisitor {
     return this.visit(ctx.constv);
   }
 
+  /* 
+  ** visitConstant (Integer, Real, String)
+  ** updates this.currentType and returns the constant's value
+  */
+
+  visitConstInt(ctx) {
+    this.currentType = 'integer';
+    return parseInt(ctx.getChild(0).getText());
+  }
+
+  visitConstReal(ctx) {
+    this.currentType = 'real';
+    return parseFloat(ctx.getChild(0).getText());
+  }
+
+  visitConstString(ctx) {
+    this.currentType = 'string';
+    let str = ctx.getChild(0).getText();
+    str = str.substring(1, str.length - 1); // Removes the quotation marks
+    return str;
+  }
+
   /**
-   * Drawing functions
-   */
+  * Drawing functions
+  */
 
   visitDrawlineStatement(ctx) {
 
@@ -553,28 +572,6 @@ class Visitor extends GrammarVisitor {
     if (Number.isNaN(size)) { this.abort('size is not a number.'); }
 
     this.drawOut.drawTriangle(x, y, size);
-  }
-
-  /* 
-  ** visitConstant (Integer, Real, String)
-  ** updates this.currentType and returns the constant's value
-  */
-
-  visitConstInt(ctx) {
-    this.currentType = 'integer';
-    return parseInt(ctx.getChild(0).getText());
-  }
-
-  visitConstReal(ctx) {
-    this.currentType = 'real';
-    return parseFloat(ctx.getChild(0).getText());
-  }
-
-  visitConstString(ctx) {
-    this.currentType = 'string';
-    let str = ctx.getChild(0).getText();
-    str = str.substring(1, str.length - 1); // Removes the quotation marks
-    return str;
   }
 
 }

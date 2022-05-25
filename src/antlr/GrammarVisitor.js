@@ -198,8 +198,14 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#notExp.
-	visitNotExp(ctx) {
+	// Visit a parse tree produced by GrammarParser#opNotExp.
+	visitOpNotExp(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#atomNotExp.
+	visitAtomNotExp(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

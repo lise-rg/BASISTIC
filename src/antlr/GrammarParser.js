@@ -972,11 +972,12 @@ export default class GrammarParser extends antlr4.Parser {
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
 	        case GrammarParser.T__33:
+	            localctx = new OpNotExpContext(this, localctx);
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 239;
 	            this.match(GrammarParser.T__33);
 	            this.state = 240;
-	            this.compareExp();
+	            localctx.expr = this.compareExp();
 	            break;
 	        case GrammarParser.T__3:
 	        case GrammarParser.T__40:
@@ -994,9 +995,10 @@ export default class GrammarParser extends antlr4.Parser {
 	        case GrammarParser.Integer:
 	        case GrammarParser.String:
 	        case GrammarParser.Real:
+	            localctx = new AtomNotExpContext(this, localctx);
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 241;
-	            this.compareExp();
+	            localctx.atom = this.compareExp();
 	            break;
 	        default:
 	            throw new antlr4.error.NoViableAltException(this);
@@ -3136,25 +3138,42 @@ class NotExpContext extends antlr4.ParserRuleContext {
         this.ruleIndex = GrammarParser.RULE_notExp;
     }
 
+
+	 
+		copyFrom(ctx) {
+			super.copyFrom(ctx);
+		}
+
+}
+
+
+class AtomNotExpContext extends NotExpContext {
+
+    constructor(parser, ctx) {
+        super(parser);
+        this.atom = null; // CompareExpContext;
+        super.copyFrom(ctx);
+    }
+
 	compareExp() {
 	    return this.getTypedRuleContext(CompareExpContext,0);
 	};
 
 	enterRule(listener) {
 	    if(listener instanceof GrammarListener ) {
-	        listener.enterNotExp(this);
+	        listener.enterAtomNotExp(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof GrammarListener ) {
-	        listener.exitNotExp(this);
+	        listener.exitAtomNotExp(this);
 		}
 	}
 
 	accept(visitor) {
 	    if ( visitor instanceof GrammarVisitor ) {
-	        return visitor.visitNotExp(this);
+	        return visitor.visitAtomNotExp(this);
 	    } else {
 	        return visitor.visitChildren(this);
 	    }
@@ -3163,7 +3182,44 @@ class NotExpContext extends antlr4.ParserRuleContext {
 
 }
 
+GrammarParser.AtomNotExpContext = AtomNotExpContext;
 
+class OpNotExpContext extends NotExpContext {
+
+    constructor(parser, ctx) {
+        super(parser);
+        this.expr = null; // CompareExpContext;
+        super.copyFrom(ctx);
+    }
+
+	compareExp() {
+	    return this.getTypedRuleContext(CompareExpContext,0);
+	};
+
+	enterRule(listener) {
+	    if(listener instanceof GrammarListener ) {
+	        listener.enterOpNotExp(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof GrammarListener ) {
+	        listener.exitOpNotExp(this);
+		}
+	}
+
+	accept(visitor) {
+	    if ( visitor instanceof GrammarVisitor ) {
+	        return visitor.visitOpNotExp(this);
+	    } else {
+	        return visitor.visitChildren(this);
+	    }
+	}
+
+
+}
+
+GrammarParser.OpNotExpContext = OpNotExpContext;
 
 class CompareExpContext extends antlr4.ParserRuleContext {
 

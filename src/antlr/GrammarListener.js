@@ -293,12 +293,21 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#notExp.
-	enterNotExp(ctx) {
+	// Enter a parse tree produced by GrammarParser#opNotExp.
+	enterOpNotExp(ctx) {
 	}
 
-	// Exit a parse tree produced by GrammarParser#notExp.
-	exitNotExp(ctx) {
+	// Exit a parse tree produced by GrammarParser#opNotExp.
+	exitOpNotExp(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#atomNotExp.
+	enterAtomNotExp(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#atomNotExp.
+	exitAtomNotExp(ctx) {
 	}
 
 
