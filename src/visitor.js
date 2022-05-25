@@ -114,8 +114,7 @@ class Visitor extends GrammarVisitor {
     let step = 1;
     if(ctx.step !== null) step = parseInt(ctx.step.text);
 
-    alert("value : " + value + "  --  end : " + end + "  --  step : " + step);
-    for (let i = value; i < end; i = i + step) {
+    for (let i = parseInt(value); i < end; i = i + step) {
       this.varDict.assign(name, i);
       this.visit(ctx.st);
     }
@@ -166,7 +165,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitSpcStatement(ctx) {
-    let value = this.visit(ctx.val);
+    let value = parseInt(ctx.arg.text);
     let spc = '';
 
     for (let i = 0; i < value; i++) {
