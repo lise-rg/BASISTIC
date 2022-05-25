@@ -320,10 +320,8 @@ class Visitor extends GrammarVisitor {
     return left & right;
   }
 
-  visitAtomAndtExp(ctx) {
-    let foo = this.visit(ctx.atom);
-    alert(foo + ', ' + typeof (foo));
-    return foo;
+  visitAtomAndExp(ctx) {
+    return this.visit(ctx.atom);
   }
 
   /**
@@ -448,9 +446,7 @@ class Visitor extends GrammarVisitor {
   }
 
   visitAtomNegateExp(ctx) {
-    let foo = this.visit(ctx.atom);
-    alert(foo + ', ' + typeof foo);
-    return foo;
+    return this.visit(ctx.atom);
   }
 
   /**

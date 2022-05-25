@@ -50,39 +50,12 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#gotoStatement.
-	enterGotoStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#gotoStatement.
-	exitGotoStatement(ctx) {
-	}
-
-
 	// Enter a parse tree produced by GrammarParser#gosubStatement.
 	enterGosubStatement(ctx) {
 	}
 
 	// Exit a parse tree produced by GrammarParser#gosubStatement.
 	exitGosubStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#onGotoStatement.
-	enterOnGotoStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#onGotoStatement.
-	exitOnGotoStatement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by GrammarParser#onGosubStatement.
-	enterOnGosubStatement(ctx) {
-	}
-
-	// Exit a parse tree produced by GrammarParser#onGosubStatement.
-	exitOnGosubStatement(ctx) {
 	}
 
 
@@ -383,12 +356,21 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#negateExp.
-	enterNegateExp(ctx) {
+	// Enter a parse tree produced by GrammarParser#opNegateExp.
+	enterOpNegateExp(ctx) {
 	}
 
-	// Exit a parse tree produced by GrammarParser#negateExp.
-	exitNegateExp(ctx) {
+	// Exit a parse tree produced by GrammarParser#opNegateExp.
+	exitOpNegateExp(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#atomNegateExp.
+	enterAtomNegateExp(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#atomNegateExp.
+	exitAtomNegateExp(ctx) {
 	}
 
 

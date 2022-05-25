@@ -36,26 +36,8 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#gotoStatement.
-	visitGotoStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by GrammarParser#gosubStatement.
 	visitGosubStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#onGotoStatement.
-	visitOnGotoStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#onGosubStatement.
-	visitOnGosubStatement(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -258,8 +240,14 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#negateExp.
-	visitNegateExp(ctx) {
+	// Visit a parse tree produced by GrammarParser#opNegateExp.
+	visitOpNegateExp(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#atomNegateExp.
+	visitAtomNegateExp(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
