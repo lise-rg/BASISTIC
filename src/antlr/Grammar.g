@@ -22,10 +22,7 @@ statements:     statement (';' statements)?                                     
 statement   : 
                 'DIM' ident=ID '(' list=integerList ')'                                                         #dimStatement
                 | 'FOR' ident=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'     #forStatement
-                | 'GOTO' label (';' statements)?                                                                #gotoStatement
                 | 'GOSUB' label                                                                                 #gosubStatement
-                | 'ON' expression 'GOTO' label                                                                  #onGotoStatement
-                | 'ON' expression 'GOSUB' label                                                                 #onGosubStatement
                 | 'IF' expression 'THEN' statements ('ELSE' statements)? 'ENDIF'                                #ifStatement
                 | 'WHILE' expression 'DO' statements 'WEND'                                                     #whileStatement
                 | 'DO' statements 'WHILE' expression                                                            #doWhileStatement
