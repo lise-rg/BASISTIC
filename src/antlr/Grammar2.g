@@ -32,14 +32,14 @@ statement   :
                 | 'DO' statements 'WHILE' expression                                                        #doWhileStatement
                 | 'INPUT' idList                                                                            #inputStatement
                 | 'PRINT' printList                                                                         #printStatement
-                | 'SPC' value=Integer                                                                             #spcStatement
+                | 'SPC' val=Integer                                                                             #spcStatement
                 | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                #drawlineStatement
                 | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                #drawrectStatement
                 | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                             #drawsquareStatement
                 | 'DRAWCIRLE' '(' expression ',' expression ',' expression ')'                              #drawcircleStatement
                 | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                           #drawtriangleStatement
                 | 'RETURN'                                                                                  #returnStatement
-		            | ('LET')? id=ID '=' exp=expression                                                                #idStatement
+		            | ('LET')? ident=ID '=' exp=expression                                                                #idStatement
               	;
                    
 idList  : ID ',' idList 
