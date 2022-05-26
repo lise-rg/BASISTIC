@@ -1,12 +1,12 @@
 export { DrawOutput };
 
 /***************************************************************************************************/
-/***		DrawOutput class																	 ***/
-/***																							 ***/
-/***		@authors : Florian BENMAHDJOUB, Etienne LECOANT										 ***/
-/***																							 ***/
-/***		The DrawOutput class is used to draw various shapes onto the interpreter's 	 		 ***/
-/***		graphic output : the canvas.														 ***/
+/***		DrawOutput class																	                                       ***/
+/***																							                                               ***/
+/***		@authors : Florian BENMAHDJOUB, Etienne LECOANT										                       ***/
+/***																							                                               ***/
+/***		The DrawOutput class is used to draw various shapes onto the interpreter's 	 		         ***/
+/***		graphic output : the canvas.														                                 ***/
 /***************************************************************************************************/
    
 class DrawOutput {

@@ -28,11 +28,11 @@ statement   :
                 | 'DO' statements 'WHILE' expression                                                            #doWhileStatement
                 | 'INPUT' '(' idList ')'                                                                        #inputStatement
                 | 'PRINT' '(' printList ')'                                                                     #printStatement
-                | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                    #drawlineStatement
-                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                    #drawrectStatement
-                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                                 #drawsquareStatement
-                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ')'                                 #drawcircleStatement
-                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                               #drawtriangleStatement
+                | 'DRAWLINE' '(' value ',' value ',' value ',' value ')'                                        #drawlineStatement
+                | 'DRAWRECT' '(' value ',' value ',' value ',' value ')'                                        #drawrectStatement
+                | 'DRAWSQUARE' '(' value ',' value ',' value ')'                                                #drawsquareStatement
+                | 'DRAWCIRCLE' '(' value ',' value ',' value ')'                                                #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' value ',' value ',' value ')'                                              #drawtriangleStatement
                 | 'RETURN' (';' statements)?                                                                    #returnStatement
                 | 'END' (';' statements)?                                                                       #endStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement

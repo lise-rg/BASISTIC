@@ -596,15 +596,11 @@ class Visitor extends GrammarVisitor {
   /***************************************************************************************************/
 
   visitDrawlineStatement(ctx) {
-
-    let x1 = this.visit(ctx.getChild(2));
-    this.checkNumber();
-    let y1 = this.visit(ctx.getChild(4));
-    this.checkNumber();
-    let x2 = this.visit(ctx.getChild(6));
-    this.checkNumber();
-    let y2 = this.visit(ctx.getChild(8));
-    this.checkNumber();
+    
+    var x1 = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y1 = parseInt(this.visit(ctx.getChild(4)), 10);
+    var x2 = parseInt(this.visit(ctx.getChild(6)), 10);
+    var y2 = parseInt(this.visit(ctx.getChild(8)), 10);
 
     if(Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
     if(Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
@@ -613,11 +609,11 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawLine(x1, y1, x2, y2);
   }
-
-  /**
-  * checks the types and passes the values to the DrawOutput class to draw the rectangle
-  * @param {type} ctx context of the current call
-  */
+  
+   /**
+   * checks the types and passes the values to the DrawOutput class to draw the rectangle
+   * @param {type} ctx context of the current call
+   */
   visitDrawrectStatement(ctx) {
 
     var x = parseInt(this.visit(ctx.getChild(2)), 10);
@@ -632,11 +628,11 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawRectangle(x, y, width, height);
   }
-
-  /**
-  * checks the types and passes the values to the DrawOutput class to draw the square
-  * @param {type} ctx context of the current call
-  */
+  
+   /**
+   * checks the types and passes the values to the DrawOutput class to draw the square
+   * @param {type} ctx context of the current call
+   */
   visitDrawsquareStatement(ctx) {
 
     var x = parseInt(this.visit(ctx.getChild(2)), 10);
@@ -649,19 +645,16 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawSquare(x, y, size);
   }
-
-  /**
-  * checks the types and passes the values to the DrawOutput class to draw the circle
-  * @param {type} ctx context of the current call
-  */
+  
+   /**
+   * checks the types and passes the values to the DrawOutput class to draw the circle
+   * @param {type} ctx context of the current call
+   */
   visitDrawcircleStatement(ctx) {
-
-    let x = this.visit(ctx.getChild(2));
-    this.checkNumber();
-    let y = this.visit(ctx.getChild(4));
-    this.checkNumber();
-    let radius = this.visit(ctx.getChild(6));
-    this.checkNumber();
+    
+    var x = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y = parseInt(this.visit(ctx.getChild(4)), 10);
+    var radius = parseInt(this.visit(ctx.getChild(6)), 10);
 
     if(Number.isNaN(x)) { this.abort('x is not a number.'); }
     if(Number.isNaN(y)) { this.abort('y is not a number.'); }
@@ -669,21 +662,22 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawCircle(x, y, radius);
   }
-
-  /**
-  * checks the types and passes the values to the DrawOutput class to draw the triangle
-  * @param {type} ctx context of the current call
-  */
+  
+   /**
+   * checks the types and passes the values to the DrawOutput class to draw the triangle
+   * @param {type} ctx context of the current call
+   */
   visitDrawtriangleStatement(ctx) {
+    
+    var x = parseInt(this.visit(ctx.getChild(2)), 10);
+    var y = parseInt(this.visit(ctx.getChild(4)), 10);
+    var size = parseInt(this.visit(ctx.getChild(6)), 10);
 
-    let x = this.visit(ctx.getChild(2));
-    this.checkNumber();
-    let y = this.visit(ctx.getChild(4));
-    this.checkNumber();
-    let size = this.visit(ctx.getChild(6));
-    this.checkNumber();
+    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if(Number.isNaN(size)) { this.abort('size is not a number.'); }
 
-    this.drawOut.drawTriangle(parseInt(x, 10), parseInt(y, 10), parseInt(size, 10));
+    this.drawOut.drawTriangle(x, y, size);
   }
 
 
