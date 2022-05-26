@@ -248,6 +248,10 @@ class Visitor extends GrammarVisitor {
         return Math.tan(expr);
       case 'LOG':
         return Math.log10(expr);
+      case 'PGCD' :
+        let exprb = this.visit(ctx.getChild(4));
+        this.checkNumber();
+        return this.pgcd(expr,exprb)
       default:
         this.abort('Unknown function ' + func + '.');
     }
@@ -683,4 +687,23 @@ class Visitor extends GrammarVisitor {
     this.drawOut.drawTriangle(parseInt(x, 10), parseInt(y, 10), parseInt(size, 10));
   }
 
+
+  /***************************************************************************************************/
+  /***		Secondary function                                                                       ***/
+  /***************************************************************************************************/
+  pgcd(a,b) {
+    a = Math.abs(a);
+    b = Math.abs(b);
+    if (b > a) {
+       var tmp = a; 
+       a = b; 
+       b = tmp;
+    }
+    while (true) {
+        if (b == 0) return a;
+        a %= b;
+        if (a == 0) return b;
+        b %= a;
+    }
+  }
 }

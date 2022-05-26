@@ -110,7 +110,8 @@ function:   'ABS' '(' expression ')'
             | 'SIN' '(' expression ')'                                                                  
             | 'SQR' '(' expression ')'                                                                   
             | 'TAN' '(' expression ')'
-            | 'LOG' '(' expression ')'     
+            | 'LOG' '(' expression ')'
+            | 'PGCD' '(' expression ',' expression ')'     
             ;                             
 
 constant:   Integer                                                       #constInt
