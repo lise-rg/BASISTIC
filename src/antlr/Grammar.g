@@ -36,6 +36,7 @@ statement   :
                 | 'RETURN' (';' statements)?                                                                    #returnStatement
                 | 'END' (';' statements)?                                                                       #endStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement
+                
               	;
                    
 idList:         head=ID (',' tail=idList)*                                                                      #listIdList  
@@ -105,13 +106,12 @@ function:   'ABS' '(' expression ')'
             | 'COS' '(' expression ')'                                                                     
             | 'EXP' '(' expression ')'                                                                                                   
             | 'INT' '(' expression ')'                                                                    
-            | 'LN'  '(' expression ')'                                                                
+            | 'LN' '(' expression ')'                                                                
             | 'RND' '(' expression ')'                                                                   
             | 'SIN' '(' expression ')'                                                                  
             | 'SQR' '(' expression ')'                                                                   
             | 'TAN' '(' expression ')'
-            | 'LOG' '(' expression ')'
-            | 'PGCD''(' expression ',' expression ')' 
+            | 'LOG' '(' expression ')'     
             ;                             
 
 constant:   Integer                                                       #constInt
