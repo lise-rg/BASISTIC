@@ -80,4 +80,52 @@ class DrawOutput {
     this.ctx.closePath();
     this.ctx.fill();
   }
+
+  /**
+   * draws a triangle onto the canvas at the given coordonates
+   * @param {rangeToClear} x the position on the x axis of the triangle's center
+   */
+   drawClear(range) {
+    switch (range) {
+      case 'all':
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        break;
+
+      case 'top':
+        this.ctx.clearRect(0, 0, this.width, this.height/2);
+        break;
+
+      case 'bottom':
+        this.ctx.clearRect(0, this.height/2, this.width, this.height);
+        break;
+
+      case 'half-left':
+        this.ctx.clearRect(0, 0, this.width/2, this.height);
+        break;
+
+      case 'half-right':
+        this.ctx.clearRect(this.width/2, 0, this.width, this.height);
+        break;
+
+      case 'top-left':
+        this.ctx.clearRect(0, 0, this.width/2, this.height/2);
+        break;
+          
+      case 'top-right':
+        this.ctx.clearRect(this.width/2, 0, this.width, this.height/2);
+        break;
+        
+      case 'bottom-left':
+        this.ctx.clearRect(0, this.height/2, this.width/2, this.height);
+        break;
+        
+      case 'bottom-right':
+        this.ctx.clearRect(this.width/2, this.height/2, this.width, this.height);
+        break;        
+
+      default:
+        break;
+    }
+    
+  }
 }
