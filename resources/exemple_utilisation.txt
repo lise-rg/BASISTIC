@@ -1,11 +1,11 @@
 EXEMPLES D'UTILISATION
 par L.RIBEIRO GOMES, K.NICOLLE, E.LE COANT et F.BENMAHDJOUB
 
-    Vous trouverez ci-dessous une suite d'exemples reprenant les différents cas d'utilisation de notre interpréteur BASISTIC.
+    Vous trouverez ci-dessous une suite d'exemples reprenant les différents cas d'utilisation de notre interpréteur BASISTIC™.
 
 I. INTERFACE
 
-1. La zone de texte : permet de saisir des instructions en langage BASIC augmenté.
+1. La zone de texte : permet de saisir des instructions en langage BASISTIC™.
 2. Import de fichier : permet d'importer un fichier contenant le code à interpréter
 3. Run : permet de lancer l'interprétation
 4. Interface graphique : affiche les résultats graphiques de l'interprétation
@@ -25,6 +25,35 @@ Il faut être très rigoureux vis-à-vis de la syntaxe, une simple erreur de pon
 
 Passons maintenant à un exemple plus intéressant.
 
-...
+[...]
 
-Ouah c'était très intéressant
+Ouah c'était très intéressant.
+
+
+III. FONCTIONNALITES
+
+Vous pouvez trouver un bouton "Browse...", sous la zone de texte. Ce dernier vous permet de choisir un fichier à importer directement
+dans la zone de texte puis de l'exécuter. Nous avons mis plusieurs fichiers contenant des exemples de programmes utilisant BASISTIC™
+à votre disposition pour essayer cette fonctionnalité.
+
+La prochaine fonctionnalité est importante, il s'agit du bouton "Export" / "Save" ? . Vous le trouverez [...].
+C'est toujours un bonne idée de sauvegarder votre code régulièrement. Au fur et à mesure que vous avancer dans votre code, 
+sauvegarder vos différentes version afin de pouvoir garder une trace de votre avancement.
+
+Vous pouvez également exporter les résultats graphiques que vous obtenez via l'interpréteur.
+
+
+IV. EXEMPLES ET REFERENCES
+
+Apprendre à programmer en BASISTIC™ implique beaucoup d'exploration et de tentatives pas forcément concluantes.
+C'est pourquoi, BASISTIC™ inclu des dizaines d'exemple qui démontres différentes fonctionnalités de l'interpréteur.
+Pour récupérer un exemple, il suffit de [...].
+Les exemples sont regroupés en catégories : [...]. Choisissez simplement une catégorie qui vous intérèsse et essayer un de nos exemples.
+
+En plus des exemples, nous mettons également à votre disposition la documentation complète de BASISTIC™. Vous pouvez y accéder en cliquant
+sur l'onglet documentation du menu. Cette documentation contient tous les élements de code, accompagnés de description et d'exemple 
+d'utilisation (beaucoup plus simple et plus court que ceux présents dans Exemple).
+Ces élements sont eux aussi rangés par catégories pour plus de facilité.
+
+
+Nous espérons que ces explications vous auront été utiles. Merci d'avoir choisi BASISTIC™.
