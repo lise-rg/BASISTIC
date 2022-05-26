@@ -130,11 +130,7 @@ export default class GrammarParser extends antlr4.Parser {
                             "'='", "'TO'", "'STEP'", "'FEND'", "'GOSUB'", 
                             "'IF'", "'THEN'", "'ELSE'", "'ENDIF'", "'WHILE'", 
                             "'DO'", "'WEND'", "'INPUT'", "'PRINT'", "'DRAWLINE'", 
-<<<<<<< HEAD
-                            "','", "'DRAWRECT'", "'DRAWSQUARE'", "'DRAWCIRLE'", 
-=======
                             "','", "'DRAWRECT'", "'DRAWSQUARE'", "'DRAWCIRCLE'", 
->>>>>>> 48acf2fc354a61d8a12c5968adf631ab77f1dad2
                             "'DRAWTRIANGLE'", "'RETURN'", "'END'", "'LET'", 
                             "'OR'", "'AND'", "'NOT'", "'<>'", "'>'", "'>='", 
                             "'<'", "'<='", "'+'", "'-'", "'*'", "'/'", "'^'", 
@@ -730,30 +726,18 @@ export default class GrammarParser extends antlr4.Parser {
 	            localctx = new ListIntegerListContext(this, localctx);
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 197;
-<<<<<<< HEAD
 	            localctx.head = this.match(GrammarParser.Integer);
 	            this.state = 198;
 	            this.match(GrammarParser.T__21);
 	            this.state = 199;
 	            localctx.tail = this.integerList();
-=======
-	            this.match(GrammarParser.Integer);
-	            this.state = 198;
-	            this.match(GrammarParser.T__21);
-	            this.state = 199;
-	            this.integerList();
->>>>>>> 48acf2fc354a61d8a12c5968adf631ab77f1dad2
 	            break;
 
 	        case 2:
 	            localctx = new AtomIntegerListContext(this, localctx);
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 200;
-<<<<<<< HEAD
 	            localctx.atom = this.match(GrammarParser.Integer);
-=======
-	            this.match(GrammarParser.Integer);
->>>>>>> 48acf2fc354a61d8a12c5968adf631ab77f1dad2
 	            break;
 
 	        }
@@ -785,30 +769,18 @@ export default class GrammarParser extends antlr4.Parser {
 	            localctx = new ListExpressionListContext(this, localctx);
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 203;
-<<<<<<< HEAD
 	            localctx.head = this.expression();
 	            this.state = 204;
 	            this.match(GrammarParser.T__21);
 	            this.state = 205;
 	            localctx.tail = this.expressionList();
-=======
-	            this.expression();
-	            this.state = 204;
-	            this.match(GrammarParser.T__21);
-	            this.state = 205;
-	            this.expressionList();
->>>>>>> 48acf2fc354a61d8a12c5968adf631ab77f1dad2
 	            break;
 
 	        case 2:
 	            localctx = new AtomExpressionListContext(this, localctx);
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 207;
-<<<<<<< HEAD
 	            localctx.atom = this.expression();
-=======
-	            this.expression();
->>>>>>> 48acf2fc354a61d8a12c5968adf631ab77f1dad2
 	            break;
 
 	        }
