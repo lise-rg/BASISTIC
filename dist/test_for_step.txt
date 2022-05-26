@@ -1,5 +1,4 @@
 LET A = 56;
-PRINT(A);
 FOR I = 0 TO A STEP 20
 PRINT(I)
 FEND
