@@ -557,6 +557,23 @@ class Visitor extends GrammarVisitor {
   }
 
   /**
+   * modExp
+   */
+
+  visitOpModExp(ctx) {
+    let left = this.visit(ctx.left);
+    this.checkNumber();
+    let right = this.visit(ctx.right);
+    this.checkNumber();
+
+    return left%right;
+  }
+
+  visitAtomModExp(ctx) {
+    return this.visit(ctx.atom);
+  }
+
+  /**
    * powerExp
    */
 

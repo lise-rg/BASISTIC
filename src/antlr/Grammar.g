@@ -83,8 +83,12 @@ addExp:     left=multExp op=('+'|'-') right=addExp                        #opAdd
             | atom=multExp                                                #atomAddExp
             ;
 
-multExp:    left=negateExp op=('*'|'/') right=multExp                     #opMultExp
-            | atom=negateExp                                              #atomMultExp
+multExp:    left=modExp op=('*'|'/') right=multExp                        #opMultExp
+            | atom=modExp                                                 #atomMultExp
+            ;
+
+modExp:     left=negateExp '%' right=modExp                            #opModExp
+            | atom=negateExp                                              #atomModExp
             ;
 
 negateExp:  '-' expr=powerExp                                             #opNegateExp
