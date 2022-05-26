@@ -36,10 +36,11 @@ statement   :
                 | 'RETURN' (';' statements)?                                                                    #returnStatement
                 | 'END' (';' statements)?                                                                       #endStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement
-                
+                | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                             #arrayStatement
               	;
                    
-idList:         head=ID (',' tail=idList)*                                                                      #listIdList  
+idList:         idhead=ID (',' idtail=idList)?                                                                    #listIdList
+                | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                                  #arrayIdList
                 ;
 
 valueList      : value ',' valueList 
@@ -144,6 +145,6 @@ Real:       Integer '.' Integer
 WS:         [\n\t\r ] -> skip
             ;
 
-COMMENT: //tout ce qui suit un caractere '//' sur une ligne est un commentaire
-  '//' [\u0020\u0021\u0023-\u00ff]* -> skip
-  ;
+COMMENT:  //tout ce qui suit un caractere '//' sur une ligne est un commentaire
+          '//' [\u0020\u0021\u0023-\u00ff]* -> skip
+          ;

@@ -1,0 +1,18 @@
+DIM arr(3);
+
+GOSUB _fill;
+LET i = 0;
+LET res = 0;
+WHILE i < 3 DO
+  res = res + arr(i);
+  i = i + 1
+WEND;
+PRINT("Somme = " : res);
+END;
+_fill:
+LET i = 0;
+WHILE i < 3 DO
+  INPUT(arr(i));
+   i = i + 1
+WEND
+RETURN
