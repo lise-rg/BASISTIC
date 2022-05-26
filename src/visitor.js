@@ -588,20 +588,20 @@ class Visitor extends GrammarVisitor {
     return str;
   }
 
-  /**
-  * Drawing functions
-  */
+  /***************************************************************************************************/
+  /***		Drawing functions                                                                        ***/
+  /***************************************************************************************************/
 
   visitDrawlineStatement(ctx) {
 
     let x1 = this.visit(ctx.getChild(2));
-    checkNumber();
+    this.checkNumber();
     let y1 = this.visit(ctx.getChild(4));
-    checkNumber();
+    this.checkNumber();
     let x2 = this.visit(ctx.getChild(6));
-    checkNumber();
+    this.checkNumber();
     let y2 = this.visit(ctx.getChild(8));
-    checkNumber();
+    this.checkNumber();
 
     if(Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
     if(Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
@@ -654,11 +654,11 @@ class Visitor extends GrammarVisitor {
   visitDrawcircleStatement(ctx) {
 
     let x = this.visit(ctx.getChild(2));
-    checkNumber();
+    this.checkNumber();
     let y = this.visit(ctx.getChild(4));
-    checkNumber();
+    this.checkNumber();
     let radius = this.visit(ctx.getChild(6));
-    checkNumber();
+    this.checkNumber();
 
     if(Number.isNaN(x)) { this.abort('x is not a number.'); }
     if(Number.isNaN(y)) { this.abort('y is not a number.'); }
@@ -674,11 +674,11 @@ class Visitor extends GrammarVisitor {
   visitDrawtriangleStatement(ctx) {
 
     let x = this.visit(ctx.getChild(2));
-    checkNumber();
+    this.checkNumber();
     let y = this.visit(ctx.getChild(4));
-    checkNumber();
+    this.checkNumber();
     let size = this.visit(ctx.getChild(6));
-    checkNumber();
+    this.checkNumber();
 
     this.drawOut.drawTriangle(parseInt(x, 10), parseInt(y, 10), parseInt(size, 10));
   }
