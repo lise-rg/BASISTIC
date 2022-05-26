@@ -604,10 +604,10 @@ class Visitor extends GrammarVisitor {
 
   visitDrawlineStatement(ctx) {
     
-    var x1 = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y1 = parseInt(this.visit(ctx.getChild(4)), 10);
-    var x2 = parseInt(this.visit(ctx.getChild(6)), 10);
-    var y2 = parseInt(this.visit(ctx.getChild(8)), 10);
+    let x1 = parseInt(this.visit(ctx.getChild(2)), 10);
+    let y1 = parseInt(this.visit(ctx.getChild(4)), 10);
+    let x2 = parseInt(this.visit(ctx.getChild(6)), 10);
+    let y2 = parseInt(this.visit(ctx.getChild(8)), 10);
 
     if (Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
     if (Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
@@ -623,10 +623,10 @@ class Visitor extends GrammarVisitor {
    */
   visitDrawrectStatement(ctx) {
 
-    var x = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y = parseInt(this.visit(ctx.getChild(4)), 10);
-    var width = parseInt(this.visit(ctx.getChild(6)), 10);
-    var height = parseInt(this.visit(ctx.getChild(8)), 10);
+    let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    let width = parseInt(this.visit(ctx.getChild(6)), 10);
+    let height = parseInt(this.visit(ctx.getChild(8)), 10);
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
@@ -642,9 +642,9 @@ class Visitor extends GrammarVisitor {
    */
   visitDrawsquareStatement(ctx) {
 
-    var x = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y = parseInt(this.visit(ctx.getChild(4)), 10);
-    var size = parseInt(this.visit(ctx.getChild(6)), 10);
+    let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    let size = parseInt(this.visit(ctx.getChild(6)), 10);
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
@@ -659,9 +659,9 @@ class Visitor extends GrammarVisitor {
    */
   visitDrawcircleStatement(ctx) {
     
-    var x = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y = parseInt(this.visit(ctx.getChild(4)), 10);
-    var radius = parseInt(this.visit(ctx.getChild(6)), 10);
+    let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    let radius = parseInt(this.visit(ctx.getChild(6)), 10);
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
@@ -676,9 +676,9 @@ class Visitor extends GrammarVisitor {
    */
   visitDrawtriangleStatement(ctx) {
     
-    var x = parseInt(this.visit(ctx.getChild(2)), 10);
-    var y = parseInt(this.visit(ctx.getChild(4)), 10);
-    var size = parseInt(this.visit(ctx.getChild(6)), 10);
+    let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    let size = parseInt(this.visit(ctx.getChild(6)), 10);
 
     if(Number.isNaN(x)) { this.abort('x is not a number.'); }
     if(Number.isNaN(y)) { this.abort('y is not a number.'); }
@@ -687,6 +687,36 @@ class Visitor extends GrammarVisitor {
     this.drawOut.drawTriangle(x, y, size);
   }
 
+  /**
+   * checks the selected range to be cleared and passes the values to the DrawOutput class to clear the canvas
+   * @param {type} ctx context of the current call
+   */
+   visitDrawclearStatement(ctx) {
+
+    let range = String(this.visit(ctx.getChild(2)));
+
+    switch (range) {
+      case 'none':
+        break;
+
+      case 'all':
+      case 'top':
+      case 'bottom':
+      case 'half-left':
+      case 'half-right':
+      case 'top-left':
+      case 'top-right':
+      case 'bottom-left':
+      case 'bottom-right':
+        this.drawOut.drawClear(range);
+        break;
+
+      default:
+        this.abort(range + ' is not a recognized range to clear.');
+        break;
+    }
+  }
+  
 
   /***************************************************************************************************/
   /***		Secondary function                                                                       ***/

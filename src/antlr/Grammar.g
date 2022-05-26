@@ -33,6 +33,7 @@ statement   :
                 | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                                 #drawsquareStatement
                 | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ')'                                 #drawcircleStatement
                 | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                               #drawtriangleStatement
+                | 'DRAWCLEAR' '(' expression ')'                                                                #drawclearStatement
                 | 'RETURN' (';' statements)?                                                                    #returnStatement
                 | 'END' (';' statements)?                                                                       #endStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement
