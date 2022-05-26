@@ -70,6 +70,11 @@ class Visitor extends GrammarVisitor {
       this.abort('number expected but got ' + this.currentType + ' instead.');
   }
 
+  checkInteger() {
+    if (this.currentType !== 'integer')
+      this.abort('integer expected but got ' + this.currentType + ' instead.')
+  }
+
   checkBoolean() {
     if (this.currentType !== 'boolean')
       this.abort('boolean expected but got ' + this.currentType + ' instead.');
@@ -79,6 +84,36 @@ class Visitor extends GrammarVisitor {
     if (!this.labelDict.contains(name)) {
       this.abort('Could not find label ' + name + '.');
     }
+  }
+
+  assignAtIndex(name, value) {
+
+    this.checkVariableDeclared(name);
+    let arr = this.varDict.getValue(name);
+    this.assignAtIndexRec(arr, [...this.indexArray].reverse(), value);
+    this.indexArray = [];
+  }
+
+  assignAtIndexRec(array, indices, value) {
+
+    let index = indices.pop();
+
+    if (index < 0 || index >= array.length)
+      this.abort('index out of bounds \'(' + this.indexArray + ')\'.');
+
+    if (indices.length === 0) {
+
+      if (array[index].constructor.name === 'Array')
+        this.abort('missing indices \'(' + this.indexArray + ')\'.');
+
+      array[index] = value;
+      return;
+    }
+
+    if (array[index].constructor.name !== 'Array')
+      this.abort('extraneous indices \'(' + this.indexArray + ')\'.');
+
+    this.assignAtIndexRec(array[index], indices, value);
   }
 
   // TODO
@@ -220,6 +255,16 @@ class Visitor extends GrammarVisitor {
     }
   }
 
+  visitArrayStatement(ctx) {
+    let name = ctx.array.text;
+    let value = this.visit(ctx.exp);
+    this.checkInteger();
+
+    this.visit(ctx.index);
+
+    this.assignAtIndex(name, value);
+  }
+
   visitFunction(ctx) {
     let func = ctx.getChild(0).getText();
     let expr = this.visit(ctx.getChild(2));
@@ -247,18 +292,18 @@ class Visitor extends GrammarVisitor {
         return Math.tan(expr);
       case 'LOG':
         return Math.log10(expr);
-      case 'PGCD' :
+      case 'PGCD':
         let exprb = this.visit(ctx.getChild(4));
         this.checkNumber();
-        return this.pgcd(expr,exprb);
+        return this.pgcd(expr, exprb);
       default:
         this.abort('Unknown function ' + func + '.');
     }
   }
 
   visitListIdList(ctx) {
-    let head = ctx.head.text;
-    let tail = ctx.tail;
+    let head = ctx.idhead.text;
+    let tail = ctx.idtail;
 
     this.checkVariableDeclared(head);
 
@@ -291,6 +336,36 @@ class Visitor extends GrammarVisitor {
           alert('Cannot reassign value for variables with type \'' + this.varDict.getType(head) + '\'.');
           continue;
       }
+
+      break;
+    }
+
+    if (tail !== null)
+      this.visit(tail);
+  }
+
+  visitArrayIdList(ctx) {
+    let head = ctx.arrayhead.text;
+    let tail = ctx.arraytail;
+
+    this.checkVariableDeclared(head);
+
+    this.visit(ctx.index);
+
+    let userinpt = '';
+
+    while (true) {
+      userinpt = prompt(head + '(' + this.indexArray + ') = ?');
+      if (userinpt === null || userinpt === '')
+        continue;
+
+
+      if (!userinpt.match('[0-9]+')) {
+        alert('Integer expected.');
+        continue;
+      }
+
+      this.assignAtIndex(head, parseInt(userinpt));
 
       break;
     }
@@ -482,6 +557,23 @@ class Visitor extends GrammarVisitor {
   }
 
   /**
+   * modExp
+   */
+
+  visitOpModExp(ctx) {
+    let left = this.visit(ctx.left);
+    this.checkNumber();
+    let right = this.visit(ctx.right);
+    this.checkNumber();
+
+    return left%right;
+  }
+
+  visitAtomModExp(ctx) {
+    return this.visit(ctx.atom);
+  }
+
+  /**
    * powerExp
    */
 
@@ -529,15 +621,13 @@ class Visitor extends GrammarVisitor {
 
     // Get the index array (array containing the n indices of the nd array)
     this.visit(ctx.index);
-    console.table(this.indexArray);
 
     let arr = this.varDict.getValue(id);
     let index;
     for (let i = 0; i < this.indexArray.length; i++) {
       index = this.indexArray[i];
-      if (index < 0 || index >= arr.length) {
-        this.abort('index out of bounds (' + index + ').');
-      }
+      if (index < 0 || index >= arr.length)
+        this.abort('index out of bounds \'(' + this.indexArray + ')\'.');
 
       if (arr.constructor.name !== 'Array') {
         this.abort('extraneous indices in \'' + id + '(' + this.indexArray + ')\'.');
@@ -557,7 +647,7 @@ class Visitor extends GrammarVisitor {
 
   visitListExpressionList(ctx) {
     let head = this.visit(ctx.head);
-    this.checkNumber();
+    this.checkInteger();
     let tail = ctx.tail;
 
     this.indexArray.push(head);
@@ -567,7 +657,7 @@ class Visitor extends GrammarVisitor {
 
   visitAtomExpressionList(ctx) {
     let atom = this.visit(ctx.atom);
-    this.checkNumber();
+    this.checkInteger();
 
     this.indexArray.push(atom);
   }
@@ -616,11 +706,11 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawLine(x1, y1, x2, y2);
   }
-  
-   /**
-   * checks the types and passes the values to the DrawOutput class to draw the rectangle
-   * @param {type} ctx context of the current call
-   */
+
+  /**
+  * checks the types and passes the values to the DrawOutput class to draw the rectangle
+  * @param {type} ctx context of the current call
+  */
   visitDrawrectStatement(ctx) {
 
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
@@ -635,11 +725,11 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawRectangle(x, y, width, height);
   }
-  
-   /**
-   * checks the types and passes the values to the DrawOutput class to draw the square
-   * @param {type} ctx context of the current call
-   */
+
+  /**
+  * checks the types and passes the values to the DrawOutput class to draw the square
+  * @param {type} ctx context of the current call
+  */
   visitDrawsquareStatement(ctx) {
 
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
@@ -652,11 +742,11 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawSquare(x, y, size);
   }
-  
-   /**
-   * checks the types and passes the values to the DrawOutput class to draw the circle
-   * @param {type} ctx context of the current call
-   */
+
+  /**
+  * checks the types and passes the values to the DrawOutput class to draw the circle
+  * @param {type} ctx context of the current call
+  */
   visitDrawcircleStatement(ctx) {
     
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
@@ -669,20 +759,20 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawCircle(x, y, radius);
   }
-  
-   /**
-   * checks the types and passes the values to the DrawOutput class to draw the triangle
-   * @param {type} ctx context of the current call
-   */
+
+  /**
+  * checks the types and passes the values to the DrawOutput class to draw the triangle
+  * @param {type} ctx context of the current call
+  */
   visitDrawtriangleStatement(ctx) {
     
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let size = parseInt(this.visit(ctx.getChild(6)), 10);
 
-    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if(Number.isNaN(size)) { this.abort('size is not a number.'); }
+    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if (Number.isNaN(size)) { this.abort('size is not a number.'); }
 
     this.drawOut.drawTriangle(x, y, size);
   }
@@ -721,19 +811,19 @@ class Visitor extends GrammarVisitor {
   /***************************************************************************************************/
   /***		Secondary function                                                                       ***/
   /***************************************************************************************************/
-  pgcd(a,b) {
+  pgcd(a, b) {
     a = Math.abs(a);
     b = Math.abs(b);
     if (b > a) {
-       var tmp = a; 
-       a = b; 
-       b = tmp;
+      var tmp = a;
+      a = b;
+      b = tmp;
     }
     while (true) {
-        if (b === 0) return a;
-        a %= b;
-        if (a === 0) return b;
-        b %= a;
+      if (b === 0) return a;
+      a %= b;
+      if (a === 0) return b;
+      b %= a;
     }
   }
 }

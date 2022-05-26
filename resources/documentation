@@ -93,10 +93,10 @@ LOG(EXP(10)) returns 10
 
 -----------------------------------------------------------------------------
 
-RND()
-Returns a random number between 0 and 1 (exclusive).
+RND(arg)
+Returns a random number between 0 and arg (exclusive).
 Example:
-INT(RND()*100) returns a random integer between 0 and 100.
+RND(arg) returns a random integer between 0 and arg.
 
 -----------------------------------------------------------------------------
 
@@ -120,6 +120,13 @@ TAN(arg)
 Returns the tangeant of arg
 Example:
 TAN(PI) returns 0
+
+-----------------------------------------------------------------------------
+
+PGCD(arg1,arg2)
+Returns the PGCD between the 2 arguments
+Example:
+PGDC(25,5) returns 5
 
 -----------------------------------------------------------------------------
 
