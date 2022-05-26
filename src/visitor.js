@@ -224,7 +224,6 @@ class Visitor extends GrammarVisitor {
     let func = ctx.getChild(0).getText();
     let expr = this.visit(ctx.getChild(2));
     this.checkNumber();
-
     switch (func) {
       case 'ABS':
         return Math.abs(expr);
@@ -251,7 +250,7 @@ class Visitor extends GrammarVisitor {
       case 'PGCD' :
         let exprb = this.visit(ctx.getChild(4));
         this.checkNumber();
-        return this.pgcd(expr,exprb)
+        return this.pgcd(expr,exprb);
       default:
         this.abort('Unknown function ' + func + '.');
     }

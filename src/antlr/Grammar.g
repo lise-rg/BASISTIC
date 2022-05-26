@@ -105,13 +105,13 @@ function:   'ABS' '(' expression ')'
             | 'COS' '(' expression ')'                                                                     
             | 'EXP' '(' expression ')'                                                                                                   
             | 'INT' '(' expression ')'                                                                    
-            | 'LN' '(' expression ')'                                                                
+            | 'LN'  '(' expression ')'                                                                
             | 'RND' '(' expression ')'                                                                   
             | 'SIN' '(' expression ')'                                                                  
             | 'SQR' '(' expression ')'                                                                   
             | 'TAN' '(' expression ')'
             | 'LOG' '(' expression ')'
-            | 'PGCD' '(' expression ',' expression ')'     
+            | 'PGCD''(' expression ',' expression ')' 
             ;                             
 
 constant:   Integer                                                       #constInt
