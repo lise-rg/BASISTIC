@@ -158,6 +158,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#drawclearareaStatement.
+	enterDrawclearareaStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#drawclearareaStatement.
+	exitDrawclearareaStatement(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#returnStatement.
 	enterReturnStatement(ctx) {
 	}
@@ -185,12 +194,30 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#arrayStatement.
+	enterArrayStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#arrayStatement.
+	exitArrayStatement(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#listIdList.
 	enterListIdList(ctx) {
 	}
 
 	// Exit a parse tree produced by GrammarParser#listIdList.
 	exitListIdList(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#arrayIdList.
+	enterArrayIdList(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#arrayIdList.
+	exitArrayIdList(ctx) {
 	}
 
 
@@ -371,6 +398,24 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by GrammarParser#atomMultExp.
 	exitAtomMultExp(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#opModExp.
+	enterOpModExp(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#opModExp.
+	exitOpModExp(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#atomModExp.
+	enterAtomModExp(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#atomModExp.
+	exitAtomModExp(ctx) {
 	}
 
 

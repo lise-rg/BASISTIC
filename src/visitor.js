@@ -776,7 +776,7 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawTriangle(x, y, size);
   }
-
+  
   /**
    * checks the selected range to be cleared and passes the values to the DrawOutput class to clear the canvas
    * @param {type} ctx context of the current call
@@ -806,7 +806,26 @@ class Visitor extends GrammarVisitor {
         break;
     }
   }
-  
+
+  /**
+   * checks the selected area to be cleared and passes the values to the DrawOutput class to clear the canvas
+   * @param {type} ctx context of the current call
+   */
+   visitDrawclearareaStatement(ctx) {
+
+    let x1 = parseInt(this.visit(ctx.getChild(2)), 10);
+    let y1 = parseInt(this.visit(ctx.getChild(4)), 10);
+    let x2 = parseInt(this.visit(ctx.getChild(6)), 10);
+    let y2 = parseInt(this.visit(ctx.getChild(8)), 10);
+
+    if (Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
+    if (Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
+    if (Number.isNaN(x2)) { this.abort('x2 is not a number.'); }
+    if (Number.isNaN(y2)) { this.abort('y2 is not a number.'); }
+
+    
+    this.drawOut.drawClearArea(x1, y1, x2, y2);
+  }
 
   /***************************************************************************************************/
   /***		Secondary function                                                                       ***/

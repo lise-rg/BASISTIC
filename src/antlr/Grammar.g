@@ -34,6 +34,7 @@ statement   :
                 | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ')'                                 #drawcircleStatement
                 | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                               #drawtriangleStatement
                 | 'DRAWCLEAR' '(' expression ')'                                                                #drawclearStatement
+                | 'DRAWCLEARAREA' '(' expression ',' expression ',' expression ',' expression ')'               #drawclearareaStatement
                 | 'RETURN' (';' statements)?                                                                    #returnStatement
                 | 'END' (';' statements)?                                                                       #endStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement

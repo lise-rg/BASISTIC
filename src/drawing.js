@@ -82,8 +82,8 @@ class DrawOutput {
   }
 
   /**
-   * draws a triangle onto the canvas at the given coordonates
-   * @param {rangeToClear} x the position on the x axis of the triangle's center
+   * clears a specific range on the canvas, given by the value passed in arguments
+   * @param {string} range the area to be cleared
    */
    drawClear(range) {
     switch (range) {
@@ -127,5 +127,16 @@ class DrawOutput {
         break;
     }
     
+  }
+
+  /**
+   * clears a rectangle between the given coordonates
+   * @param {number} x1 the position on the x axis of the area's start
+   * @param {number} y1 the position on the y axis of the area's start
+   * @param {number} x2 the position on the x axis of the area's end
+   * @param {number} y2 the position on the y axis of the area's end
+   */
+  drawClearArea(x1, y1, x2, y2) {
+    this.ctx.clearRect(x1, y1, x2, y2);
   }
 }
