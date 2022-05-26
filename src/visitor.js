@@ -13,6 +13,7 @@ class Visitor extends GrammarVisitor {
     this.currentType = 'none';
 
     this.currentArray = null;
+    this.indexArray = [];
 
     this.varDict = new VariableDict();
     this.labelDict = labelDict;
@@ -95,7 +96,6 @@ class Visitor extends GrammarVisitor {
     this.currentArray = arr;
     this.visit(ctx.list);
     this.varDict.add(name, 'array', arr);
-    console.table(arr);
   }
 
   visitListIntegerList(ctx) {
@@ -526,9 +526,33 @@ class Visitor extends GrammarVisitor {
   visitArrayValue(ctx) {
     let id = ctx.array.text;
     this.checkVariableDeclared(id);
-    this.currentType = this.varDict.getType(id);
-    this.currentArray = this.varDict.getValue(id);
-    return this.visit(ctx.index);
+
+    // Get the index array (array containing the n indices of the nd array)
+    this.visit(ctx.index);
+    console.table(this.indexArray);
+
+    let arr = this.varDict.getValue(id);
+    let index;
+    for (let i = 0; i < this.indexArray.length; i++) {
+      index = this.indexArray[i];
+      if (index < 0 || index >= arr.length) {
+        this.abort('index out of bounds (' + index + ').');
+      }
+
+      if (arr.constructor.name !== 'Array') {
+        this.abort('extraneous indices in \'' + id + '(' + this.indexArray + ')\'.');
+      }
+
+      arr = arr[index];
+    }
+
+    if (arr.constructor.name === 'Array') {
+      this.abort('missing indices in \'' + id + '(' + this.indexArray + ')\'.')
+    }
+
+    this.indexArray = [];
+
+    return arr;
   }
 
   visitListExpressionList(ctx) {
@@ -536,33 +560,16 @@ class Visitor extends GrammarVisitor {
     this.checkNumber();
     let tail = ctx.tail;
 
-    if (this.currentArray.constructor.name !== 'Array') {
-      this.abort('invalid number of indices');
-    }
+    this.indexArray.push(head);
 
-    if (head < 0 || head >= this.currentArray.length) {
-      this.abort('index out of bounds (' + head + ')')
-    }
-
-    this.currentArray = this.currentArray[head];
-
-    return this.visit(tail);
+    this.visit(tail);
   }
 
   visitAtomExpressionList(ctx) {
     let atom = this.visit(ctx.atom);
     this.checkNumber();
 
-    if (this.currentArray.constructor.name !== 'Array' ||
-      this.currentArray[atom].constructor.name === 'Array') {
-      this.abort('invalid number of indices');
-    }
-
-    if (atom < 0 || atom >= this.currentArray.length) {
-      this.abort('index out of bounds (' + atom + ')');
-    }
-
-    return this.currentArray[atom];
+    this.indexArray.push(atom);
   }
 
   visitConstValue(ctx) {
@@ -602,10 +609,10 @@ class Visitor extends GrammarVisitor {
     var x2 = parseInt(this.visit(ctx.getChild(6)), 10);
     var y2 = parseInt(this.visit(ctx.getChild(8)), 10);
 
-    if(Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
-    if(Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
-    if(Number.isNaN(x2)) { this.abort('x2 is not a number.'); }
-    if(Number.isNaN(y2)) { this.abort('y2 is not a number.'); }
+    if (Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
+    if (Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
+    if (Number.isNaN(x2)) { this.abort('x2 is not a number.'); }
+    if (Number.isNaN(y2)) { this.abort('y2 is not a number.'); }
 
     this.drawOut.drawLine(x1, y1, x2, y2);
   }
@@ -621,10 +628,10 @@ class Visitor extends GrammarVisitor {
     var width = parseInt(this.visit(ctx.getChild(6)), 10);
     var height = parseInt(this.visit(ctx.getChild(8)), 10);
 
-    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if(Number.isNaN(width)) { this.abort('width is not a number.'); }
-    if(Number.isNaN(height)) { this.abort('height is not a number.'); }
+    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if (Number.isNaN(width)) { this.abort('width is not a number.'); }
+    if (Number.isNaN(height)) { this.abort('height is not a number.'); }
 
     this.drawOut.drawRectangle(x, y, width, height);
   }
@@ -639,9 +646,9 @@ class Visitor extends GrammarVisitor {
     var y = parseInt(this.visit(ctx.getChild(4)), 10);
     var size = parseInt(this.visit(ctx.getChild(6)), 10);
 
-    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if(Number.isNaN(size)) { this.abort('size is not a number.'); }
+    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if (Number.isNaN(size)) { this.abort('size is not a number.'); }
 
     this.drawOut.drawSquare(x, y, size);
   }
@@ -656,9 +663,9 @@ class Visitor extends GrammarVisitor {
     var y = parseInt(this.visit(ctx.getChild(4)), 10);
     var radius = parseInt(this.visit(ctx.getChild(6)), 10);
 
-    if(Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if(Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if(Number.isNaN(radius)) { this.abort('radius is not a number.'); }
+    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
+    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
+    if (Number.isNaN(radius)) { this.abort('radius is not a number.'); }
 
     this.drawOut.drawCircle(x, y, radius);
   }
@@ -693,9 +700,9 @@ class Visitor extends GrammarVisitor {
        b = tmp;
     }
     while (true) {
-        if (b == 0) return a;
+        if (b === 0) return a;
         a %= b;
-        if (a == 0) return b;
+        if (a === 0) return b;
         b %= a;
     }
   }
