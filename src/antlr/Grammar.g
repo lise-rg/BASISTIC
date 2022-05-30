@@ -29,10 +29,10 @@ statement   :
                 | 'INPUT' '(' idList ')'                                                                        #inputStatement
                 | 'PRINT' '(' printList ')'                                                                     #printStatement
                 | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                    #drawlineStatement
-                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                    #drawrectStatement
-                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                                 #drawsquareStatement
-                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ')'                                 #drawcircleStatement
-                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                               #drawtriangleStatement
+                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ',' expression ')'     #drawrectStatement
+                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ',' expression ')'                  #drawsquareStatement
+                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ',' expression ')'                  #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ',' expression ')'                #drawtriangleStatement
                 | 'DRAWCLEAR' '(' expression ')'                                                                #drawclearStatement
                 | 'DRAWCLEARAREA' '(' expression ',' expression ',' expression ',' expression ')'               #drawclearareaStatement
                 | 'RETURN' (';' statements)?                                                                    #returnStatement
@@ -41,8 +41,8 @@ statement   :
                 | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                             #arrayStatement
               	;
                    
-idList:         idhead=ID (',' idtail=idList)?                                                                    #listIdList
-                | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                                  #arrayIdList
+idList:         idhead=ID (',' idtail=idList)?                                                                  #listIdList
+                | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                             #arrayIdList
                 ;
 
 valueList      : value ',' valueList 

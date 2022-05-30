@@ -729,13 +729,14 @@ class Visitor extends GrammarVisitor {
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let width = parseInt(this.visit(ctx.getChild(6)), 10);
     let height = parseInt(this.visit(ctx.getChild(8)), 10);
+    let color = String(this.visit(ctx.getChild(10)));
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
     if (Number.isNaN(width)) { this.abort('width is not a number.'); }
     if (Number.isNaN(height)) { this.abort('height is not a number.'); }
 
-    this.drawOut.drawRectangle(x, y, width, height);
+    this.drawOut.drawRectangle(x, y, width, height, color);
   }
 
   /**
@@ -747,12 +748,13 @@ class Visitor extends GrammarVisitor {
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let size = parseInt(this.visit(ctx.getChild(6)), 10);
+    let color = String(this.visit(ctx.getChild(8)));
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
     if (Number.isNaN(size)) { this.abort('size is not a number.'); }
 
-    this.drawOut.drawSquare(x, y, size);
+    this.drawOut.drawSquare(x, y, size, color);
   }
 
   /**
@@ -764,12 +766,13 @@ class Visitor extends GrammarVisitor {
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let radius = parseInt(this.visit(ctx.getChild(6)), 10);
+    let color = String(this.visit(ctx.getChild(8)));
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
     if (Number.isNaN(radius)) { this.abort('radius is not a number.'); }
 
-    this.drawOut.drawCircle(x, y, radius);
+    this.drawOut.drawCircle(x, y, radius, color);
   }
 
   /**
@@ -781,12 +784,13 @@ class Visitor extends GrammarVisitor {
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let size = parseInt(this.visit(ctx.getChild(6)), 10);
+    let color = String(this.visit(ctx.getChild(8)));
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
     if (Number.isNaN(size)) { this.abort('size is not a number.'); }
 
-    this.drawOut.drawTriangle(x, y, size);
+    this.drawOut.drawTriangle(x, y, size, color);
   }
   
   /**
