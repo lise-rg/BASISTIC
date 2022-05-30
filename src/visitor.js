@@ -20,6 +20,8 @@ class Visitor extends GrammarVisitor {
     this.drawOut = new DrawOutput();
 
     this.subroutines = 0;
+
+    this.end = false;
   }
 
 
@@ -118,6 +120,12 @@ class Visitor extends GrammarVisitor {
 
   // TODO
 
+  visitStart(ctx) {
+    this.visitChildren(ctx);
+    if (!this.end)
+      this.abort('END statement expected but not found. Interpretation might have failed.');
+  }
+
   /**
    * Statements
    */
@@ -162,6 +170,7 @@ class Visitor extends GrammarVisitor {
 
   visitEndStatement(ctx) {
     this.printConsole('Done');
+    this.end = true;
     return;
   }
 
@@ -199,8 +208,11 @@ class Visitor extends GrammarVisitor {
   visitGosubStatement(ctx) {
     let label = ctx.getChild(1).getText();
     this.checkLabel(label);
+    let subrountinesNb = this.subroutines;
     this.subroutines++;
     this.visit(this.labelDict.getNode(label));
+    if (this.subroutines !== subrountinesNb)
+      this.abort('Last subroutine did not end. No matching RETURN statement could be found. Interpretation might have failed.');
   }
 
   visitReturnStatement(ctx) {
