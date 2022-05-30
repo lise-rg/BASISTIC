@@ -31,12 +31,21 @@ class Visitor extends GrammarVisitor {
    */
   abort(msg) {
     this.printConsole('Error: ' + msg);
-    throw new Error();
+    throw new Error(msg);
+  }
+
+  /**
+   * prints a warning message
+   * @param {string} msg 
+   */
+  warning(msg) {
+    this.printConsole('Warning: ' + msg);
   }
 
   /**
    * prints text to the console
    * @param {string} msg
+   * @param {boolean} nl prints a newline after the message if set to true
    */
   printConsole(msg, nl = true) {
     document.getElementById('output-area').value += msg;
@@ -65,29 +74,44 @@ class Visitor extends GrammarVisitor {
   }
 
   /**
-   * thrown an error if the last evaluated expression / ID / constant is not a number (i.e. integer or real)
+   * throws an error if the last evaluated expression / ID / constant is not a number (i.e. integer or real)
    */
   checkNumber() {
     if (this.currentType !== 'integer' && this.currentType !== 'real' && this.currentType !== 'boolean')
       this.abort('number expected but got ' + this.currentType + ' instead.');
   }
 
+  /**
+   * throws an error if the last evaluated expression is not an integer
+   */
   checkInteger() {
     if (this.currentType !== 'integer')
       this.abort('integer expected but got ' + this.currentType + ' instead.')
   }
 
+  /**
+   * throws an error if the last evaluated expression is not a boolean
+   */
   checkBoolean() {
     if (this.currentType !== 'boolean')
       this.abort('boolean expected but got ' + this.currentType + ' instead.');
   }
 
+  /**
+   * throws an error if given label does not exist
+   * @param {string} name 
+   */
   checkLabel(name) {
     if (!this.labelDict.contains(name)) {
       this.abort('Could not find label ' + name + '.');
     }
   }
 
+  /**
+   * assigns a new value to a cell in an array stored in varDict. Index and subindices are stored in indexArray.
+   * @param {string} name 
+   * @param {integer} value 
+   */
   assignAtIndex(name, value) {
 
     this.checkVariableDeclared(name);
@@ -118,12 +142,16 @@ class Visitor extends GrammarVisitor {
     this.assignAtIndexRec(array[index], indices, value);
   }
 
-  // TODO
+  /**
+  *************************************************************************
+  * Implementation of GrammarVisitor interface
+  * ***********************************************************************
+   */
 
   visitStart(ctx) {
     this.visitChildren(ctx);
     if (!this.end)
-      this.abort('END statement expected but not found. Interpretation might have failed.');
+      this.warning('END statement expected but not found. Interpretation might have failed.');
   }
 
   /**

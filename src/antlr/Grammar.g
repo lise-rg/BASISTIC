@@ -41,8 +41,8 @@ statement   :
                 | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                             #arrayStatement
               	;
                    
-idList:         idhead=ID (',' idtail=idList)?                                                                    #listIdList
-                | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                                  #arrayIdList
+idList:         idhead=ID (',' idtail=idList)?                                                                  #listIdList
+                | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                             #arrayIdList
                 ;
 
 valueList      : value ',' valueList 
@@ -89,7 +89,7 @@ multExp:    left=modExp op=('*'|'/') right=multExp                        #opMul
             | atom=modExp                                                 #atomMultExp
             ;
 
-modExp:     left=negateExp '%' right=modExp                            #opModExp
+modExp:     left=negateExp '%' right=modExp                               #opModExp
             | atom=negateExp                                              #atomModExp
             ;
 
