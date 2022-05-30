@@ -20,6 +20,8 @@ class Visitor extends GrammarVisitor {
     this.drawOut = new DrawOutput();
 
     this.subroutines = 0;
+
+    this.end = false;
   }
 
 
@@ -29,12 +31,21 @@ class Visitor extends GrammarVisitor {
    */
   abort(msg) {
     this.printConsole('Error: ' + msg);
-    throw new Error();
+    throw new Error(msg);
+  }
+
+  /**
+   * prints a warning message
+   * @param {string} msg 
+   */
+  warning(msg) {
+    this.printConsole('Warning: ' + msg);
   }
 
   /**
    * prints text to the console
    * @param {string} msg
+   * @param {boolean} nl prints a newline after the message if set to true
    */
   printConsole(msg, nl = true) {
     document.getElementById('output-area').value += msg;
@@ -63,29 +74,44 @@ class Visitor extends GrammarVisitor {
   }
 
   /**
-   * thrown an error if the last evaluated expression / ID / constant is not a number (i.e. integer or real)
+   * throws an error if the last evaluated expression / ID / constant is not a number (i.e. integer or real)
    */
   checkNumber() {
     if (this.currentType !== 'integer' && this.currentType !== 'real' && this.currentType !== 'boolean')
       this.abort('number expected but got ' + this.currentType + ' instead.');
   }
 
+  /**
+   * throws an error if the last evaluated expression is not an integer
+   */
   checkInteger() {
     if (this.currentType !== 'integer')
       this.abort('integer expected but got ' + this.currentType + ' instead.')
   }
 
+  /**
+   * throws an error if the last evaluated expression is not a boolean
+   */
   checkBoolean() {
     if (this.currentType !== 'boolean')
       this.abort('boolean expected but got ' + this.currentType + ' instead.');
   }
 
+  /**
+   * throws an error if given label does not exist
+   * @param {string} name 
+   */
   checkLabel(name) {
     if (!this.labelDict.contains(name)) {
       this.abort('Could not find label ' + name + '.');
     }
   }
 
+  /**
+   * assigns a new value to a cell in an array stored in varDict. Index and subindices are stored in indexArray.
+   * @param {string} name 
+   * @param {integer} value 
+   */
   assignAtIndex(name, value) {
 
     this.checkVariableDeclared(name);
@@ -116,7 +142,17 @@ class Visitor extends GrammarVisitor {
     this.assignAtIndexRec(array[index], indices, value);
   }
 
-  // TODO
+  /**
+  *************************************************************************
+  * Implementation of GrammarVisitor interface
+  * ***********************************************************************
+   */
+
+  visitStart(ctx) {
+    this.visitChildren(ctx);
+    if (!this.end)
+      this.warning('END statement expected but not found. Interpretation might have failed.');
+  }
 
   /**
    * Statements
@@ -162,6 +198,7 @@ class Visitor extends GrammarVisitor {
 
   visitEndStatement(ctx) {
     this.printConsole('Done');
+    this.end = true;
     return;
   }
 
@@ -199,8 +236,11 @@ class Visitor extends GrammarVisitor {
   visitGosubStatement(ctx) {
     let label = ctx.getChild(1).getText();
     this.checkLabel(label);
+    let subrountinesNb = this.subroutines;
     this.subroutines++;
     this.visit(this.labelDict.getNode(label));
+    if (this.subroutines !== subrountinesNb)
+      this.abort('Last subroutine did not end. No matching RETURN statement could be found. Interpretation might have failed.');
   }
 
   visitReturnStatement(ctx) {
@@ -717,13 +757,14 @@ class Visitor extends GrammarVisitor {
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let width = parseInt(this.visit(ctx.getChild(6)), 10);
     let height = parseInt(this.visit(ctx.getChild(8)), 10);
+    let color = String(this.visit(ctx.getChild(10)));
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
     if (Number.isNaN(width)) { this.abort('width is not a number.'); }
     if (Number.isNaN(height)) { this.abort('height is not a number.'); }
 
-    this.drawOut.drawRectangle(x, y, width, height);
+    this.drawOut.drawRectangle(x, y, width, height, color);
   }
 
   /**
@@ -735,12 +776,13 @@ class Visitor extends GrammarVisitor {
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let size = parseInt(this.visit(ctx.getChild(6)), 10);
+    let color = String(this.visit(ctx.getChild(8)));
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
     if (Number.isNaN(size)) { this.abort('size is not a number.'); }
 
-    this.drawOut.drawSquare(x, y, size);
+    this.drawOut.drawSquare(x, y, size, color);
   }
 
   /**
@@ -752,12 +794,13 @@ class Visitor extends GrammarVisitor {
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let radius = parseInt(this.visit(ctx.getChild(6)), 10);
+    let color = String(this.visit(ctx.getChild(8)));
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
     if (Number.isNaN(radius)) { this.abort('radius is not a number.'); }
 
-    this.drawOut.drawCircle(x, y, radius);
+    this.drawOut.drawCircle(x, y, radius, color);
   }
 
   /**
@@ -769,14 +812,15 @@ class Visitor extends GrammarVisitor {
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let size = parseInt(this.visit(ctx.getChild(6)), 10);
+    let color = String(this.visit(ctx.getChild(8)));
 
     if (Number.isNaN(x)) { this.abort('x is not a number.'); }
     if (Number.isNaN(y)) { this.abort('y is not a number.'); }
     if (Number.isNaN(size)) { this.abort('size is not a number.'); }
 
-    this.drawOut.drawTriangle(x, y, size);
+    this.drawOut.drawTriangle(x, y, size, color);
   }
-
+  
   /**
    * checks the selected range to be cleared and passes the values to the DrawOutput class to clear the canvas
    * @param {type} ctx context of the current call
@@ -806,7 +850,26 @@ class Visitor extends GrammarVisitor {
         break;
     }
   }
-  
+
+  /**
+   * checks the selected area to be cleared and passes the values to the DrawOutput class to clear the canvas
+   * @param {type} ctx context of the current call
+   */
+   visitDrawclearareaStatement(ctx) {
+
+    let x1 = parseInt(this.visit(ctx.getChild(2)), 10);
+    let y1 = parseInt(this.visit(ctx.getChild(4)), 10);
+    let x2 = parseInt(this.visit(ctx.getChild(6)), 10);
+    let y2 = parseInt(this.visit(ctx.getChild(8)), 10);
+
+    if (Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
+    if (Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
+    if (Number.isNaN(x2)) { this.abort('x2 is not a number.'); }
+    if (Number.isNaN(y2)) { this.abort('y2 is not a number.'); }
+
+    
+    this.drawOut.drawClearArea(x1, y1, x2, y2);
+  }
 
   /***************************************************************************************************/
   /***		Secondary function                                                                       ***/

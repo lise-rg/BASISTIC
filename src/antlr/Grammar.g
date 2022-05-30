@@ -29,19 +29,20 @@ statement   :
                 | 'INPUT' '(' idList ')'                                                                        #inputStatement
                 | 'PRINT' '(' printList ')'                                                                     #printStatement
                 | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                    #drawlineStatement
-                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ')'                    #drawrectStatement
-                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                                 #drawsquareStatement
-                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ')'                                 #drawcircleStatement
-                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                               #drawtriangleStatement
+                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ',' expression ')'     #drawrectStatement
+                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ',' expression ')'                  #drawsquareStatement
+                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ',' expression ')'                  #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ',' expression ')'                #drawtriangleStatement
                 | 'DRAWCLEAR' '(' expression ')'                                                                #drawclearStatement
+                | 'DRAWCLEARAREA' '(' expression ',' expression ',' expression ',' expression ')'               #drawclearareaStatement
                 | 'RETURN' (';' statements)?                                                                    #returnStatement
                 | 'END' (';' statements)?                                                                       #endStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement
                 | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                             #arrayStatement
               	;
                    
-idList:         idhead=ID (',' idtail=idList)?                                                                    #listIdList
-                | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                                  #arrayIdList
+idList:         idhead=ID (',' idtail=idList)?                                                                  #listIdList
+                | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                             #arrayIdList
                 ;
 
 valueList      : value ',' valueList 
@@ -88,7 +89,7 @@ multExp:    left=modExp op=('*'|'/') right=multExp                        #opMul
             | atom=modExp                                                 #atomMultExp
             ;
 
-modExp:     left=negateExp '%' right=modExp                            #opModExp
+modExp:     left=negateExp '%' right=modExp                               #opModExp
             | atom=negateExp                                              #atomModExp
             ;
 

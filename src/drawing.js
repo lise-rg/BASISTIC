@@ -38,8 +38,8 @@ class DrawOutput {
    * @param {number} y the position on the y axis of the square's upper left corner
    * @param {number} size the width and height of the square
    */
-  drawSquare(x, y, size) {
-    this.drawRectangle(x, y, size, size);
+  drawSquare(x, y, size, color) {
+    this.drawRectangle(x, y, size, size, color);
   }
 
   /**
@@ -49,8 +49,10 @@ class DrawOutput {
    * @param {number} width the width of the rectangle
    * @param {number} height the height of the rectangle
    */
-  drawRectangle(x, y, width, height) {
+  drawRectangle(x, y, width, height, color) {
+    this.ctx.fillStyle = color;
     this.ctx.fillRect(x, y, width, height);
+    this.ctx.fillStyle = "black";
   }
 
   /**
@@ -59,11 +61,13 @@ class DrawOutput {
    * @param {number} y the position on the y axis of the circle's center
    * @param {number} radius the radius of the circle
    */
-  drawCircle(x, y, radius) {
+  drawCircle(x, y, radius, color) {
+    this.ctx.fillStyle = color;
     this.ctx.beginPath();
     this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
     this.ctx.closePath();
     this.ctx.fill();
+    this.ctx.fillStyle = "black";
   }
 
   /**
@@ -72,18 +76,20 @@ class DrawOutput {
    * @param {number} y the position on the y axis of the triangle's center
    * @param {number} size the size of the triangle's sides
    */
-  drawTriangle(x, y, size) {
+  drawTriangle(x, y, size, color) {
+    this.ctx.fillStyle = color;
     this.ctx.beginPath();
     this.ctx.moveTo(x-(size/2), y+(size/2));
     this.ctx.lineTo(x, y-(size/2));
     this.ctx.lineTo(x+(size/2), y+(size/2));
     this.ctx.closePath();
     this.ctx.fill();
+    this.ctx.fillStyle = "black";
   }
 
   /**
-   * draws a triangle onto the canvas at the given coordonates
-   * @param {rangeToClear} x the position on the x axis of the triangle's center
+   * clears a specific range on the canvas, given by the value passed in arguments
+   * @param {string} range the area to be cleared
    */
    drawClear(range) {
     switch (range) {
@@ -127,5 +133,16 @@ class DrawOutput {
         break;
     }
     
+  }
+
+  /**
+   * clears a rectangle between the given coordonates
+   * @param {number} x1 the position on the x axis of the area's start
+   * @param {number} y1 the position on the y axis of the area's start
+   * @param {number} x2 the position on the x axis of the area's end
+   * @param {number} y2 the position on the y axis of the area's end
+   */
+  drawClearArea(x1, y1, x2, y2) {
+    this.ctx.clearRect(x1, y1, x2, y2);
   }
 }
