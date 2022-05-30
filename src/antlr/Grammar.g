@@ -33,6 +33,8 @@ statement   :
                 | 'DRAWSQUARE' '(' expression ',' expression ',' expression ')'                                 #drawsquareStatement
                 | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ')'                                 #drawcircleStatement
                 | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ')'                               #drawtriangleStatement
+                | 'DRAWCLEAR' '(' expression ')'                                                                #drawclearStatement
+                | 'DRAWCLEARAREA' '(' expression ',' expression ',' expression ',' expression ')'               #drawclearareaStatement
                 | 'RETURN' (';' statements)?                                                                    #returnStatement
                 | 'END' (';' statements)?                                                                       #endStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement
@@ -83,8 +85,12 @@ addExp:     left=multExp op=('+'|'-') right=addExp                        #opAdd
             | atom=multExp                                                #atomAddExp
             ;
 
-multExp:    left=negateExp op=('*'|'/') right=multExp                     #opMultExp
-            | atom=negateExp                                              #atomMultExp
+multExp:    left=modExp op=('*'|'/') right=multExp                        #opMultExp
+            | atom=modExp                                                 #atomMultExp
+            ;
+
+modExp:     left=negateExp '%' right=modExp                            #opModExp
+            | atom=negateExp                                              #atomModExp
             ;
 
 negateExp:  '-' expr=powerExp                                             #opNegateExp

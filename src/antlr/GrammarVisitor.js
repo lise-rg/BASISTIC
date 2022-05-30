@@ -102,6 +102,18 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by GrammarParser#drawclearStatement.
+	visitDrawclearStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#drawclearareaStatement.
+	visitDrawclearareaStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by GrammarParser#returnStatement.
 	visitReturnStatement(ctx) {
 	  return this.visitChildren(ctx);
@@ -120,8 +132,20 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by GrammarParser#arrayStatement.
+	visitArrayStatement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by GrammarParser#listIdList.
 	visitListIdList(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#arrayIdList.
+	visitArrayIdList(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -242,6 +266,18 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by GrammarParser#atomMultExp.
 	visitAtomMultExp(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#opModExp.
+	visitOpModExp(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by GrammarParser#atomModExp.
+	visitAtomModExp(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

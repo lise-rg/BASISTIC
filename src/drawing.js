@@ -80,4 +80,63 @@ class DrawOutput {
     this.ctx.closePath();
     this.ctx.fill();
   }
+
+  /**
+   * clears a specific range on the canvas, given by the value passed in arguments
+   * @param {string} range the area to be cleared
+   */
+   drawClear(range) {
+    switch (range) {
+      case 'all':
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        break;
+
+      case 'top':
+        this.ctx.clearRect(0, 0, this.width, this.height/2);
+        break;
+
+      case 'bottom':
+        this.ctx.clearRect(0, this.height/2, this.width, this.height);
+        break;
+
+      case 'half-left':
+        this.ctx.clearRect(0, 0, this.width/2, this.height);
+        break;
+
+      case 'half-right':
+        this.ctx.clearRect(this.width/2, 0, this.width, this.height);
+        break;
+
+      case 'top-left':
+        this.ctx.clearRect(0, 0, this.width/2, this.height/2);
+        break;
+          
+      case 'top-right':
+        this.ctx.clearRect(this.width/2, 0, this.width, this.height/2);
+        break;
+        
+      case 'bottom-left':
+        this.ctx.clearRect(0, this.height/2, this.width/2, this.height);
+        break;
+        
+      case 'bottom-right':
+        this.ctx.clearRect(this.width/2, this.height/2, this.width, this.height);
+        break;        
+
+      default:
+        break;
+    }
+    
+  }
+
+  /**
+   * clears a rectangle between the given coordonates
+   * @param {number} x1 the position on the x axis of the area's start
+   * @param {number} y1 the position on the y axis of the area's start
+   * @param {number} x2 the position on the x axis of the area's end
+   * @param {number} y2 the position on the y axis of the area's end
+   */
+  drawClearArea(x1, y1, x2, y2) {
+    this.ctx.clearRect(x1, y1, x2, y2);
+  }
 }
