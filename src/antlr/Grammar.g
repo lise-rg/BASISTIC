@@ -89,7 +89,7 @@ multExp:    left=modExp op=('*'|'/') right=multExp                        #opMul
             | atom=modExp                                                 #atomMultExp
             ;
 
-modExp:     left=negateExp '%' right=modExp                            #opModExp
+modExp:     left=negateExp '%' right=modExp                               #opModExp
             | atom=negateExp                                              #atomModExp
             ;
 
