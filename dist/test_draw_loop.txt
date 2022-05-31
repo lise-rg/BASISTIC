@@ -1,13 +1,35 @@
+_pickcolor {
+  a = RND(3);
+  IF a = 0 THEN col = "red";
+  ENDIF;
+  IF a = 1 THEN col = "cyan";
+  ENDIF;
+  IF a = 2 THEN col = "blue";
+  ENDIF;
+  IF a = 3 THEN col = "purple";
+  ENDIF;
+}
+
 {
   phase = 0;
+  timer = 0;
+  col = "";
+  GOSUB _pickcolor;
 }
 
 [
-  DRAWRECT(0, 0, 480, 360, "red");
+  DRAWRECT(0, 0, 480, 360, col);
   FOR i = 0 TO 10
     radians = ((phase + i * 36) / 180) * 3.1415;
     y = 360/2 + 80 * SIN(radians);
     DRAWCIRCLE(i * 48 + 24, y, 20, "yellow");
   FEND;
-  phase = phase + 8;
+  phase = (phase + 8) % 360;
+  
+  timer = timer + 1;
+  
+  IF timer = 30 THEN 
+    timer = 0;
+    GOSUB _pickcolor;
+  ENDIF;
 ]
