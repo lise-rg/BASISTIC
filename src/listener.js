@@ -30,7 +30,7 @@ class Listener extends GrammarListener {
   }
 
   enterSubroutines(ctx) {
-    let label = ctx.lab.text;
+    let label = ctx.lb.getText();
     let statements = ctx.st;
 
     if (this.labelDict.contains(label))

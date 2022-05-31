@@ -12,13 +12,13 @@ options {
 // partie syntaxique :  description de la grammaire //
 // les non-terminaux doivent commencer par une minuscule
 
-start:          subroutines? 'START' main=statements 'END' ('[' drawloop=statements ']')?
+start:          subroutines? ('{' main=statements '}')? ('[' drawloop=statements ']')?
                 ;
 
-subroutines:    (lab=label '{' st=statements '}')*      
+subroutines:    (lb=label '{' st=statements '}')+      
                 ;
 
-statements:     statement ';' (statements)?                                                                                                                                                                                                
+statements:     statement ';' (statements)?                                                                                                                                                                                                                                                             
                 ;
 
 statement   : 
@@ -37,8 +37,6 @@ statement   :
                 | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ',' expression ')'                #drawtriangleStatement
                 | 'DRAWCLEAR' '(' expression ')'                                                                #drawclearStatement
                 | 'DRAWCLEARAREA' '(' expression ',' expression ',' expression ',' expression ')'               #drawclearareaStatement
-                | 'RETURN' (';' statements)?                                                                    #returnStatement
-                | 'END' (';' statements)?                                                                       #endStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement
                 | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                             #arrayStatement
               	;
