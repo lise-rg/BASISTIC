@@ -7,6 +7,7 @@ grammar Grammar;
 
 options {
   language=Javascript; // k=1;
+  caseInsensitive=true;
 }
 
 // partie syntaxique :  description de la grammaire //
@@ -136,7 +137,7 @@ label:      '_' ID
      
 // zone lexicale //
 
-ID :        [A-Za-z]+[0-9_]*
+ID :        [A-Z]+[0-9_]*
             ;
 
 Integer:    [0-9]+

@@ -309,7 +309,7 @@ class Visitor extends GrammarVisitor {
     let func = ctx.getChild(0).getText();
     let expr = this.visit(ctx.getChild(2));
     this.checkNumber();
-    switch (func) {
+    switch (func.toUpperCase()) {
       case 'ABS':
         return Math.abs(expr);
       case 'ATN':
