@@ -12,11 +12,13 @@ options {
 // partie syntaxique :  description de la grammaire //
 // les non-terminaux doivent commencer par une minuscule
 
-start:          statements
+start:          subroutines? 'START' main=statements 'END' ('[' drawloop=statements ']')?
                 ;
 
-statements:     statement (';' statements)?                                                                     #statementStatements
-                | label ':' (statements)?                                                                       #labelStatements                                                                  
+subroutines:    (lab=label '{' st=statements '}')*      
+                ;
+
+statements:     statement ';' (statements)?                                                                                                                                                                                                
                 ;
 
 statement   : 
