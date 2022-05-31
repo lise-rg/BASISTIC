@@ -12,14 +12,14 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#statementStatements.
-	visitStatementStatements(ctx) {
+	// Visit a parse tree produced by GrammarParser#subroutines.
+	visitSubroutines(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by GrammarParser#labelStatements.
-	visitLabelStatements(ctx) {
+	// Visit a parse tree produced by GrammarParser#statements.
+	visitStatements(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -110,18 +110,6 @@ export default class GrammarVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by GrammarParser#drawclearareaStatement.
 	visitDrawclearareaStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#returnStatement.
-	visitReturnStatement(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by GrammarParser#endStatement.
-	visitEndStatement(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
