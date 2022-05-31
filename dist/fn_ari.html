@@ -46,48 +46,58 @@
 
     </nav>
 
-
     <div class="row" style="display:flex; flex:10; flex-direction:row; justify-content:center; overflow-y: scroll;">
 
-      <div class="block"> 
-        <b>MANIPULATION DE DONNEES</b> </br> </br>
-        LET, DATA, READ, RESTORE, DIM
-      </div>
+        <button class="collapsible">Opérateurs Arithmétiques</button>
+        <div class="content">
+          <p>+, -, *, /, ^, %</p>
+        </div>
+        <button class="collapsible">Opérateurs de comparaison</button>
+        <div class="content">
+          <p>=, <>, <, <=, >, >=</p>
+        </div>
+        <button class="collapsible">Opérateurs Logiques</button>
+        <div class="content">
+          <p>AND, OR, NOT</p>
+        </div>
+        <button class="collapsible">Constantes</button>
+        <div class="content">
+          <p>PI </p>
+        </div>
+        <button class="collapsible">Open Section 3</button>
+        <div class="content">
+          <p>...</p>
+        </div>
+        <button class="collapsible">Open Section 4</button>
+        <div class="content">
+          <p>...</p>
+        </div>
+        <button class="collapsible">Open Section 5</button>
+        <div class="content">
+          <p>...</p>
+        </div>
+        <button class="collapsible">Open Section 6</button>
+        <div class="content">
+          <p>...</p>
+        </div>
 
-      <div class="block">
-        <b>CONTROLE DU DEROULEMENT DE PROGRAMME</b> </br> </br>
-        IF, FOR, WHILE, REPEAT, DO WHILE, GOTO, GOSUB, DEF FN, ON GOTO
-      </div>
 
-      <div class="block"> 
-        <b>ENTREES / SORTIES</b> </br> </br>
-        LIST, PRINT, INPUT, TAB, SPC, PLAY
-      </div>
-
-      <div class="block"> 
-        <a class="nav_link" href="fn_ari.html"> <b>FONCTIONS ARITHMETIQUES</b> </a> 
-        </br> </br> <, >, =, ≤, ≥, !=</br>AND, OR, NOT
-      </div>
-
-      <div class="block"> 
-        <b>FONCTIONS MATHEMATIQUES</b> </br> </br>
-        ABS, ATN, COS, EXP, INT, LOG, RND, SIN, SQR, TAN, MAX, MIN
-      </div>
-
-      <div class="block"> 
-        <b>FONCTIONS GRAPHIQUES</b> </br> </br>
-        DRAWSQUARE, DRAWCIRCLE, DRAWTRIANGLE, DRAWRECTANGLE, DRAWLINE, CLEAR
-      </div>
-
-      <div class="block">
-        <b>FONCTIONS AUDIO</b> </br> </br>
-        PLAY
-      </div>
-
-      <div class="block">
-        <b>AUTRES</b> </br> </br>
-        STOP, RETURN, END, LABEL
-      </div>
+        <script>
+          var coll = document.getElementsByClassName("collapsible");
+          var i;
+          
+          for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+              this.classList.toggle("active");
+              var content = this.nextElementSibling;
+              if (content.style.maxHeight){
+                content.style.maxHeight = null;
+              } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+              } 
+            });
+          }
+          </script>
 
     </div>
 
