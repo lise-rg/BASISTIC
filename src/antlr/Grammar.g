@@ -7,16 +7,19 @@ grammar Grammar;
 
 options {
   language=Javascript; // k=1;
+  caseInsensitive=true;
 }
 
 // partie syntaxique :  description de la grammaire //
 // les non-terminaux doivent commencer par une minuscule
 
-start:          statements
+start:          subroutines? ('main' '{' main=statements '}')? ('update' '{' drawloop=statements '}')?
                 ;
 
-statements:     statement (';' statements)?                                                                     #statementStatements
-                | label ':' (statements)?                                                                       #labelStatements                                                                  
+subroutines:    (lb=label '{' st=statements '}')+      
+                ;
+
+statements:     statement ';' (statements)?                                                                                                                                                                                                                                                             
                 ;
 
 statement   : 
@@ -35,8 +38,6 @@ statement   :
                 | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ',' expression ')'                #drawtriangleStatement
                 | 'DRAWCLEAR' '(' expression ')'                                                                #drawclearStatement
                 | 'DRAWCLEARAREA' '(' expression ',' expression ',' expression ',' expression ')'               #drawclearareaStatement
-                | 'RETURN' (';' statements)?                                                                    #returnStatement
-                | 'END' (';' statements)?                                                                       #endStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement
                 | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                             #arrayStatement
               	;
@@ -138,7 +139,7 @@ label:      '_' ID
      
 // zone lexicale //
 
-ID :        [A-Za-z]+[0-9_]*
+ID :        [A-Z]+[0-9_]*
             ;
 
 Integer:    [0-9]+

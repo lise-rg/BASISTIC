@@ -4,6 +4,8 @@ import { DrawOutput } from './drawing.js';
 
 import GrammarVisitor from './antlr/GrammarVisitor.js';
 
+var drawLoopInterval;
+
 class Visitor extends GrammarVisitor {
 
 
@@ -19,9 +21,8 @@ class Visitor extends GrammarVisitor {
     this.labelDict = labelDict;
     this.drawOut = new DrawOutput();
 
-    this.subroutines = 0;
-
-    this.end = false;
+    this.drawLoop = null;
+    this.drawLoopInterval = null;
   }
 
 
@@ -142,6 +143,10 @@ class Visitor extends GrammarVisitor {
     this.assignAtIndexRec(array[index], indices, value);
   }
 
+  updateDrawing() {
+    this.visit(this.drawLoop);
+  }
+
   /**
   *************************************************************************
   * Implementation of GrammarVisitor interface
@@ -149,9 +154,19 @@ class Visitor extends GrammarVisitor {
    */
 
   visitStart(ctx) {
-    this.visitChildren(ctx);
-    if (!this.end)
-      this.warning('END statement expected but not found. Interpretation might have failed.');
+    let date = new Date();
+    this.printConsole('--- Interpretation Started. ---');
+
+    if (ctx.main !== null) {
+      this.visit(ctx.main);
+    }
+
+    clearInterval(drawLoopInterval);
+
+    this.drawLoop = ctx.drawloop;
+    if (this.drawLoop !== null) {
+      drawLoopInterval = setInterval(this.updateDrawing.bind(this), 20);
+    }
   }
 
   /**
@@ -196,12 +211,6 @@ class Visitor extends GrammarVisitor {
     return;
   }
 
-  visitEndStatement(ctx) {
-    this.printConsole('Done');
-    this.end = true;
-    return;
-  }
-
   visitForStatement(ctx) {
     let name = ctx.ident.text;
     let value = this.visit(ctx.getChild(3));
@@ -236,19 +245,7 @@ class Visitor extends GrammarVisitor {
   visitGosubStatement(ctx) {
     let label = ctx.getChild(1).getText();
     this.checkLabel(label);
-    let subrountinesNb = this.subroutines;
-    this.subroutines++;
     this.visit(this.labelDict.getNode(label));
-    if (this.subroutines !== subrountinesNb)
-      this.abort('Last subroutine did not end. No matching RETURN statement could be found. Interpretation might have failed.');
-  }
-
-  visitReturnStatement(ctx) {
-    if (this.subroutines > 0)
-      this.subroutines--;
-    else
-      this.abort('Extraneous RETURN. No calling point could be found.');
-    return;
   }
 
   visitIfStatement(ctx) {
@@ -284,15 +281,18 @@ class Visitor extends GrammarVisitor {
     let type = '';
     let value = this.visit(ctx.exp);
 
-    if (this.varDict.contains(name)) {
-      type = this.varDict.getType(name);
-      if (type == this.currentType) this.varDict.assign(name, value);
-      else this.abort('Incorrect type for variable ' + name)
-    }
-    else {
+    if (!this.varDict.contains(name)) {
       type = this.currentType;
       this.varDict.add(name, type, value);
+      return;
     }
+
+    type = this.varDict.getType(name);
+    if (((this.currentType === 'real' || this.currentType === 'integer') &&
+      (type === 'real' || type === 'integer')) || type === this.currentType)
+      this.varDict.assign(name, value);
+    else
+      this.abort('Incorrect type for variable ' + name);
   }
 
   visitArrayStatement(ctx) {
@@ -310,7 +310,7 @@ class Visitor extends GrammarVisitor {
     let expr = this.visit(ctx.getChild(2));
     let exprb = null;
     this.checkNumber();
-    switch (func) {
+    switch (func.toUpperCase()) {
       case 'ABS':
         return Math.abs(expr);
       case 'ATN':
@@ -615,7 +615,7 @@ class Visitor extends GrammarVisitor {
     let right = this.visit(ctx.right);
     this.checkNumber();
 
-    return left%right;
+    return left % right;
   }
 
   visitAtomModExp(ctx) {
@@ -742,7 +742,7 @@ class Visitor extends GrammarVisitor {
   /***************************************************************************************************/
 
   visitDrawlineStatement(ctx) {
-    
+
     let x1 = parseInt(this.visit(ctx.getChild(2)), 10);
     let y1 = parseInt(this.visit(ctx.getChild(4)), 10);
     let x2 = parseInt(this.visit(ctx.getChild(6)), 10);
@@ -799,7 +799,7 @@ class Visitor extends GrammarVisitor {
   * @param {type} ctx context of the current call
   */
   visitDrawcircleStatement(ctx) {
-    
+
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let radius = parseInt(this.visit(ctx.getChild(6)), 10);
@@ -817,7 +817,7 @@ class Visitor extends GrammarVisitor {
   * @param {type} ctx context of the current call
   */
   visitDrawtriangleStatement(ctx) {
-    
+
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
     let size = parseInt(this.visit(ctx.getChild(6)), 10);
@@ -829,12 +829,12 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawTriangle(x, y, size, color);
   }
-  
+
   /**
    * checks the selected range to be cleared and passes the values to the DrawOutput class to clear the canvas
    * @param {type} ctx context of the current call
    */
-   visitDrawclearStatement(ctx) {
+  visitDrawclearStatement(ctx) {
 
     let range = String(this.visit(ctx.getChild(2)));
 
@@ -864,7 +864,7 @@ class Visitor extends GrammarVisitor {
    * checks the selected area to be cleared and passes the values to the DrawOutput class to clear the canvas
    * @param {type} ctx context of the current call
    */
-   visitDrawclearareaStatement(ctx) {
+  visitDrawclearareaStatement(ctx) {
 
     let x1 = parseInt(this.visit(ctx.getChild(2)), 10);
     let y1 = parseInt(this.visit(ctx.getChild(4)), 10);
@@ -876,7 +876,7 @@ class Visitor extends GrammarVisitor {
     if (Number.isNaN(x2)) { this.abort('x2 is not a number.'); }
     if (Number.isNaN(y2)) { this.abort('y2 is not a number.'); }
 
-    
+
     this.drawOut.drawClearArea(x1, y1, x2, y2);
   }
 

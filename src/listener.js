@@ -29,9 +29,9 @@ class Listener extends GrammarListener {
     return this.labelDict;
   }
 
-  enterLabelStatements(ctx) {
-    let label = ctx.getChild(0).getText();
-    let statements = ctx.getChild(2);
+  enterSubroutines(ctx) {
+    let label = ctx.lb.getText();
+    let statements = ctx.st;
 
     if (this.labelDict.contains(label))
       this.abort('label ' + label + ' used more than once.');
