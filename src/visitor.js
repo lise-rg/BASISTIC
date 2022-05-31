@@ -308,6 +308,7 @@ class Visitor extends GrammarVisitor {
   visitFunction(ctx) {
     let func = ctx.getChild(0).getText();
     let expr = this.visit(ctx.getChild(2));
+    let exprb = null;
     this.checkNumber();
     switch (func) {
       case 'ABS':
@@ -333,9 +334,17 @@ class Visitor extends GrammarVisitor {
       case 'LOG':
         return Math.log10(expr);
       case 'PGCD':
-        let exprb = this.visit(ctx.getChild(4));
+        exprb = this.visit(ctx.getChild(4));
         this.checkNumber();
         return this.pgcd(expr, exprb);
+      case 'MIN':
+        exprb = this.visit(ctx.getChild(4));
+        this.checkNumber();
+        return Math.min(expr, exprb);
+      case 'MAX':
+        exprb = this.visit(ctx.getChild(4));
+        this.checkNumber();
+        return Math.max(expr, exprb);
       default:
         this.abort('Unknown function ' + func + '.');
     }

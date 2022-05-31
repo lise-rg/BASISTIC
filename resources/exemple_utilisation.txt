@@ -14,16 +14,20 @@ I. INTERFACE
 
 II. PREMIER PROGRAMME
 
-Dans l'éditeur, entrez le texte suivant : DRAWCIRCLE(200,220,50) .
-Cette ligne de code signifie que vous allez dessiner un cercle dont le centre sera à 200 pixels du bord gauche, 220 pixels du bord haut et qui aura un rayon de 50 pixels.
-Si vous avez saisi cette ligne de code correctement, vous allez voir un cercle apparaître dans l'interface graphique après avoir cliquer sur le bouton "run".
+Dans l'éditeur, entrer le text suivant : main { } . Vous venez de créer la boucle principale qui contiendra toutes les instructions du 
+code. 
+Maintenant, entre les deux accolades,  entrez le texte suivant : DRAWCIRCLE(200,220,50); .
+Cette ligne de code signifie que vous allez dessiner un cercle dont le centre sera à 200 pixels du bord gauche, 220 pixels du bord haut 
+et qui aura un rayon de 50 pixels. Si vous avez saisi cette ligne de code correctement, vous allez voir un cercle apparaître dans 
+l'interface graphique après avoir cliquer sur le bouton "run".
 
-Si vous ne l'avez pas saisi correctement, une erreur devrait apparaître dans la console. Si cela arrive, vérifiez que vous avez parfaitement recopié l'exemple : 
-les nombres devraient être compris entre deux parenthèses et avoir une virgule entre chacun d'entre eux.
+Si vous ne l'avez pas saisi correctement, une erreur devrait apparaître dans la console. Si cela arrive, vérifiez que vous avez 
+parfaitement recopié l'exemple : les nombres devraient être compris entre deux parenthèses et avoir une virgule entre chacun d'entre eux.
 
 Il faut être très rigoureux vis-à-vis de la syntaxe, une simple erreur de ponctuation peut empêcher le bon fonctionnement du programme.
 
 Passons maintenant à un exemple plus intéressant.
+
 
 [...]
 
