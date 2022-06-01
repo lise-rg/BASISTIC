@@ -68,6 +68,10 @@ window.onload = function () {
       let codeType = "text/plain;charset=utf-8";
       let codeName = "program.txt"
 
+      if ($('#import-button').get(0).files.length > 0) {
+        codeName = $('#import-button').get(0).files[0].name;
+      }
+
       let blob = new Blob([codeContent],{ type: codeType });
 
       FileSaver.saveAs(blob, codeName);
