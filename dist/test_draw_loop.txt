@@ -1,12 +1,12 @@
 _pickcolor {
   a = rnd(3);
-  if a = 0 then col = "red";
+  if a = 0 then col = "red"; ball = "cyan";
   endif;
-  if a = 1 then col = "cyan";
+  if a = 1 then col = "cyan"; ball = "red";
   endif;
-  if a = 2 then col = "blue";
+  if a = 2 then col = "blue"; ball = "yellow";
   endif;
-  if a = 3 then col = "purple";
+  if a = 3 then col = "magenta"; ball = "green";
   endif;
 }
 
@@ -14,6 +14,7 @@ main {
   phase = 0;
   timer = 0;
   col = "";
+  ball = "";
   gosub _pickcolor;
 }
 
@@ -22,7 +23,7 @@ update {
   for i = 0 to 10
     angle = phase + i * 36;
     y = SCREEN_H/2 + 80 * sin(dtr(angle));
-    drawcircle(i * 48 + 24, y, 20, "yellow");
+    drawcircle(i * 48 + 24, y, 20, ball);
   fend;
   phase = (phase + 8) % 360;
   

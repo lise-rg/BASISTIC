@@ -1,0 +1,78 @@
+_bounce {
+ 
+}
+
+main { 
+  ballnb = 20;
+
+  dim ballx(20);
+  dim bally(20);
+  dim balldir(20);
+  
+  for i = 0 to 20
+    ballx(i) = SCREEN_W / 2;
+    bally(i) = SCREEN_H / 2;
+    balldir(i) = rnd(360);
+  fend;
+  
+  dir = 0;
+  x = 0;
+  y = 0;
+  
+  size = 50;
+  radius = size / 2;
+  speed = 5;
+  fgcol = "black";
+  bgcol = "white";
+  tmp = "";
+  timer = 0;
+}
+
+update {
+  drawrect(0, 0, SCREEN_W, SCREEN_H, bgcol);
+  
+  for i = 0 to 20
+  
+     dir = balldir(i);
+     x = ballx(i);
+     y = bally(i);
+    
+    x = x + speed * cos(dtr(dir));
+    y = y - speed * sin(dtr(dir));
+    
+    if x - radius < 0 then
+      x = radius;
+      if dir < 180 then dir = rnd(70) + 10;
+      else dir = rnd(70) + 280;
+      endif;
+      gosub _bounce;
+    elif x + radius > SCREEN_W then
+      x = SCREEN_W - radius;
+      if dir < 180 then dir = rnd(70) + 100;
+      else dir = rnd(70) + 190;
+      endif;
+      gosub _bounce;
+    endif;
+    
+    if y - radius < 0 then
+      y = radius;
+      if dir < 90 then dir = rnd(70) + 280;
+      else dir = rnd(70) + 190;
+      endif;
+      gosub _bounce;
+    elif y + radius > SCREEN_H then
+      y = SCREEN_H - radius;
+      if dir < 270 then dir = rnd(70) + 100;
+      else dir = rnd(70) + 10;
+      endif;
+      gosub _bounce;
+    endif;
+    
+    dir = dir % 360;
+    
+    drawcircle(x, y, radius, fgcol);
+    
+    ballx(i) = x;
+    bally(i) = y;
+    balldir(i) = dir;
+}

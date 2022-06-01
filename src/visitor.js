@@ -267,11 +267,33 @@ class Visitor extends GrammarVisitor {
   }
 
   visitIfStatement(ctx) {
-    let cond = this.visit(ctx.getChild(1));
+    let cond = this.visit(ctx.cond);
     this.checkNumber();
+    let alt = ctx.alt;
 
-    if (cond == 1) this.visit(ctx.getChild(3));
-    else if (ctx.getChild(5) !== null) this.visit(ctx.getChild(5));
+    if (cond > 0) {
+      this.visit(ctx.st);
+    }
+    else if (alt !== null) {
+      this.visit(alt);
+    }
+  }
+
+  visitElifAlternative(ctx) {
+    let cond = this.visit(ctx.cond);
+    this.checkNumber();
+    let alt = ctx.alt;
+
+    if (cond > 0) {
+      this.visit(ctx.elifst);
+    }
+    else if (alt !== null) {
+      this.visit(alt);
+    }
+  }
+
+  visitElseAlernative(ctx) {
+    this.visit(ctx.elsest);
   }
 
   visitWhileStatement(ctx) {

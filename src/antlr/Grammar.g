@@ -26,7 +26,7 @@ statement   :
                 'DIM' ident=ID '(' list=integerList ')'                                                         #dimStatement
                 | 'FOR' ident=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'     #forStatement
                 | 'GOSUB' label                                                                                 #gosubStatement
-                | 'IF' expression 'THEN' statements ('ELSE' statements)? 'ENDIF'                                #ifStatement
+                | 'IF' cond=expression 'THEN' st=statements (alt=alternatives)? 'ENDIF'                         #ifStatement
                 | 'WHILE' expression 'DO' statements 'WEND'                                                     #whileStatement
                 | 'DO' statements 'WHILE' expression                                                            #doWhileStatement
                 | 'INPUT' '(' idList ')'                                                                        #inputStatement
@@ -41,6 +41,10 @@ statement   :
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement
                 | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                             #arrayStatement
               	;
+
+alternatives:   'ELIF' cond=expression 'THEN' elifst=statements (alt=alternatives)?                             #elifAlternative
+                | 'ELSE' elsest=statements                                                                      #elseAlternative
+                ;
                    
 idList:         idhead=ID (',' idtail=idList)?                                                                  #listIdList
                 | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                             #arrayIdList
