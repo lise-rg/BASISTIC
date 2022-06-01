@@ -862,13 +862,20 @@ class Visitor extends GrammarVisitor {
 
   visitDrawlineStatement(ctx) {
 
-    let x1 = parseInt(this.visit(ctx.getChild(2)), 10);
+    //Gets and parses the x1 position, and checks if the value is valid
+    let x1 = parseInt(this.visit(ctx.x1), 10);
     this.checkNumber();
-    let y1 = parseInt(this.visit(ctx.getChild(4)), 10);
+    
+    //Gets and parses the y1 position, and checks if the value is valid
+    let y1 = parseInt(this.visit(ctx.y1), 10);
     this.checkNumber();
-    let x2 = parseInt(this.visit(ctx.getChild(6)), 10);
+
+    //Gets and parses the x2 position, and checks if the value is valid
+    let x2 = parseInt(this.visit(ctx.x2), 10);
     this.checkNumber();
-    let y2 = parseInt(this.visit(ctx.getChild(8)), 10);
+    
+    //Gets and parses the y2 position, and checks if the value is valid
+    let y2 = parseInt(this.visit(ctx.y2), 10);
     this.checkNumber();
 
     this.drawOut.drawLine(x1, y1, x2, y2);
@@ -879,26 +886,33 @@ class Visitor extends GrammarVisitor {
   * @param {type} ctx context of the current call
   */
   visitDrawrectStatement(ctx) {
-
-    let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    //Gets and parses the x position, and checks if the value is valid
+    let x = parseInt(this.visit(ctx.x), 10);
     this.checkNumber();
 
-    let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    //Gets and parses the y position, and checks if the value is valid
+    let y = parseInt(this.visit(ctx.y), 10);
     this.checkNumber();
 
-    let width = parseInt(this.visit(ctx.getChild(6)), 10);
+    //Gets and parses the width, and checks if the value is valid
+    let width = parseInt(this.visit(ctx.width), 10);
     this.checkNumber();
 
-    let height = parseInt(this.visit(ctx.getChild(8)), 10);
+    //Gets and parses the height, and checks if the value is valid
+    let height = parseInt(this.visit(ctx.height), 10);
     this.checkNumber();
 
-    let color = "black";
-    if (ctx.color !== null) {
-      color = String(this.visit(ctx.getChild(10)));
-      this.checkString();
-    }
+    //Gets color, and checks if the value is valid
+    let color = String(this.visit(ctx.color));
+    this.checkString();
 
-    this.drawOut.drawRectangle(x, y, width, height, color);
+    //Gets the drawing mode, and checks if the value is valid
+    let drawmode = this.visit(ctx.drawmode);
+    this.checkNumber();
+    if (drawmode > 0) { drawmode = true; } 
+    else              { drawmode = false; }
+
+    this.drawOut.drawRectangle(x, y, width, height, color, drawmode);
   }
 
   /**
@@ -906,23 +920,29 @@ class Visitor extends GrammarVisitor {
   * @param {type} ctx context of the current call
   */
   visitDrawsquareStatement(ctx) {
-
-    let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    //Gets and parses the x position, and checks if the value is valid
+    let x = parseInt(this.visit(ctx.x), 10);
     this.checkNumber();
 
-    let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    //Gets and parses the y position, and checks if the value is valid
+    let y = parseInt(this.visit(ctx.y), 10);
     this.checkNumber();
 
-    let size = parseInt(this.visit(ctx.getChild(6)), 10);
+    //Gets and parses the size, and checks if the value is valid
+    let size = parseInt(this.visit(ctx.size), 10);
     this.checkNumber();
 
-    let color = "black";
-    if (ctx.color !== null) {
-      color = String(this.visit(ctx.getChild(8)));
-      this.checkString();
-    }
+    //Gets color, and checks if the value is valid
+    let color = String(this.visit(ctx.color));
+    this.checkString();
 
-    this.drawOut.drawSquare(x, y, size, color);
+    //Gets the drawing mode, and checks if the value is valid
+    let drawmode = this.visit(ctx.drawmode);
+    this.checkNumber();
+    if (drawmode > 0) { drawmode = true; } 
+    else              { drawmode = false; }
+
+    this.drawOut.drawSquare(x, y, size, color, drawmode);
   }
 
   /**
@@ -930,23 +950,29 @@ class Visitor extends GrammarVisitor {
   * @param {type} ctx context of the current call
   */
   visitDrawcircleStatement(ctx) {
-
-    let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    //Gets and parses the x position, and checks if the value is valid
+    let x = parseInt(this.visit(ctx.x), 10);
     this.checkNumber();
 
-    let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    //Gets and parses the y position, and checks if the value is valid
+    let y = parseInt(this.visit(ctx.y), 10);
     this.checkNumber();
 
-    let radius = parseInt(this.visit(ctx.getChild(6)), 10);
+    //Gets and parses the radius, and checks if the value is valid
+    let radius = parseInt(this.visit(ctx.radius), 10);
     this.checkNumber();
     
-    let color = "black";
-    if (ctx.color !== null) {
-      color = String(this.visit(ctx.getChild(8)));
-      this.checkString();
-    }
-    
-    this.drawOut.drawCircle(x, y, radius, color);
+    //Gets color, and checks if the value is valid
+    let color = String(this.visit(ctx.color));
+    this.checkString();
+
+    //Gets the drawing mode, and checks if the value is valid
+    let drawmode = this.visit(ctx.drawmode);
+    this.checkNumber();
+    if (drawmode > 0) { drawmode = true; } 
+    else              { drawmode = false; }
+
+    this.drawOut.drawCircle(x, y, radius, color, drawmode);
   }
 
   /**
@@ -955,22 +981,29 @@ class Visitor extends GrammarVisitor {
   */
   visitDrawtriangleStatement(ctx) {
 
-    let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    //Gets and parses the x position, and checks if the value is valid
+    let x = parseInt(this.visit(ctx.x), 10);
     this.checkNumber();
 
-    let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    //Gets and parses the y position, and checks if the value is valid
+    let y = parseInt(this.visit(ctx.y), 10);
     this.checkNumber();
 
-    let size = parseInt(this.visit(ctx.getChild(6)), 10);
+    //Gets and parses the size, and checks if the value is valid
+    let size = parseInt(this.visit(ctx.size), 10);
     this.checkNumber();
 
-    let color = "black";
-    if (ctx.color !== null) {
-      color = String(this.visit(ctx.getChild(8)));
-      this.checkString();
-    }
+    //Gets color, and checks if the value is valid
+    let color = String(this.visit(ctx.color));
+    this.checkString();
 
-    this.drawOut.drawTriangle(x, y, size, color);
+    //Gets the drawing mode, and checks if the value is valid
+    let drawmode = this.visit(ctx.drawmode);
+    this.checkNumber();
+    if (drawmode > 0) { drawmode = true; } 
+    else              { drawmode = false; }
+
+    this.drawOut.drawTriangle(x, y, size, color, drawmode);
   }
 
   /**
@@ -979,7 +1012,9 @@ class Visitor extends GrammarVisitor {
    */
   visitDrawclearStatement(ctx) {
 
-    let range = String(this.visit(ctx.getChild(2)));
+    //Gets the range and checks if the value is valid
+    let range = String(this.visit(ctx.range));
+    this.checkString();
 
     switch (range) {
       case 'none':
@@ -1009,13 +1044,20 @@ class Visitor extends GrammarVisitor {
    */
   visitDrawclearareaStatement(ctx) {
 
-    let x1 = parseInt(this.visit(ctx.getChild(2)), 10);
+    //Gets and parses the x1 position, and checks if the value is valid
+    let x1 = parseInt(this.visit(ctx.x1), 10);
     this.checkNumber();
-    let y1 = parseInt(this.visit(ctx.getChild(4)), 10);
+
+    //Gets and parses the y1 position, and checks if the value is valid
+    let y1 = parseInt(this.visit(ctx.y1), 10);
     this.checkNumber();
-    let x2 = parseInt(this.visit(ctx.getChild(6)), 10);
+
+    //Gets and parses the x2 position, and checks if the value is valid
+    let x2 = parseInt(this.visit(ctx.x2), 10);
     this.checkNumber();
-    let y2 = parseInt(this.visit(ctx.getChild(8)), 10);
+
+    //Gets and parses the y2 position, and checks if the value is valid
+    let y2 = parseInt(this.visit(ctx.y2), 10);
     this.checkNumber();
 
     this.drawOut.drawClearArea(x1, y1, x2, y2);

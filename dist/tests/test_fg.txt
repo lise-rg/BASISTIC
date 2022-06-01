@@ -10,22 +10,22 @@ main {
     FOR C = 0 TO COLS
       IF R%2 THEN
         IF C = 0 THEN
-          DRAWRECT(C*(BW+SPACE),R*(BH+SPACE),BW/2,BH,"DarkGoldenRod");
+          DRAWRECT(C*(BW+SPACE), R*(BH+SPACE), BW/2, BH, "DarkGoldenRod", 1);
         ELSE
-          DRAWRECT(C*(BW+SPACE)-BW/2,R*(BH+SPACE),BW,BH,"DarkGoldenRod");
+          DRAWRECT(C*(BW+SPACE)-BW/2, R*(BH+SPACE), BW, BH, "DarkGoldenRod", 1);
         ENDIF;
       ELSE
-        DRAWRECT(C*(BW+SPACE),R*(BH+SPACE),BW,BH,"DarkGoldenRod");
+        DRAWRECT(C*(BW+SPACE), R*(BH+SPACE), BW, BH, "DarkGoldenRod", 1);
       ENDIF;
     FEND;
   FEND;
   
   DRAWCLEARAREA(120,120,240,130);
   
-  DRAWLINE(125,125,355,125);
-  DRAWRECT(125,130,50,70,"Red");
-  DRAWSQUARE(125,210,20,"Blue");
-  DRAWCIRCLE(240,185,50,"Green");
-  DRAWTRIANGLE(320,200,50,"Pink");
-  DRAWLINE(125,245,355,245);
+  DRAWLINE(125, 125, 355, 125);
+  DRAWRECT(125, 130, 50, 70, "Red", 1);
+  DRAWSQUARE(125, 210, 20, "Blue", 1);
+  DRAWCIRCLE(240, 185, 50, "Green", 1);
+  DRAWTRIANGLE(320, 200, 50, "Pink", 1);
+  DRAWLINE(125, 245, 355, 245);
 }

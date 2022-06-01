@@ -23,31 +23,31 @@ statements:     statement ';' (statements)?
                 ;
 
 statement   : 
-                'DIM' ident=ID '(' list=integerList ')'                                                         #dimStatement
-                | 'FOR' ident=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'     #forStatement
-                | 'GOSUB' label                                                                                 #gosubStatement
-                | 'IF' cond=expression 'THEN' st=statements (alt=alternatives)? 'ENDIF'                         #ifStatement
-                | 'WHILE' expression 'DO' statements 'WEND'                                                     #whileStatement
-                | 'DO' statements 'WHILE' expression                                                            #doWhileStatement
-                | 'INPUT' '(' idList ')'                                                                        #inputStatement
-                | 'PRINT' '(' printList ')'                                                                     #printStatement
-                | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                    #drawlineStatement
-                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression (',' color=expression)? ')'     #drawrectStatement
-                | 'DRAWSQUARE' '(' expression ',' expression ',' expression (',' color=expression)? ')'                  #drawsquareStatement
-                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression (',' color=expression)? ')'                  #drawcircleStatement
-                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression (',' color=expression)? ')'                #drawtriangleStatement
-                | 'DRAWCLEAR' '(' expression ')'                                                                #drawclearStatement
-                | 'DRAWCLEARAREA' '(' expression ',' expression ',' expression ',' expression ')'               #drawclearareaStatement
-		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement
-                | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                             #arrayStatement
+                'DIM' ident=ID '(' list=integerList ')'                                                                                                              #dimStatement
+                | 'FOR' ident=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'                                                          #forStatement
+                | 'GOSUB' label                                                                                                                                      #gosubStatement
+                | 'IF' cond=expression 'THEN' st=statements (alt=alternatives)? 'ENDIF'                                                                              #ifStatement
+                | 'WHILE' expression 'DO' statements 'WEND'                                                                                                          #whileStatement
+                | 'DO' statements 'WHILE' expression                                                                                                                 #doWhileStatement
+                | 'INPUT' '(' idList ')'                                                                                                                             #inputStatement
+                | 'PRINT' '(' printList ')'                                                                                                                          #printStatement
+                | 'DRAWLINE' '(' x1=expression ',' y1=expression ',' x2=expression ',' y2=expression ')'                                                             #drawlineStatement
+                | 'DRAWRECT' '(' x=expression ',' y=expression ',' width=expression ',' height=expression ',' color=expression ',' drawmode=expression ')'           #drawrectStatement
+                | 'DRAWSQUARE' '(' x=expression ',' y=expression ',' size=expression ',' color=expression ',' drawmode=expression ')'                                #drawsquareStatement
+                | 'DRAWCIRCLE' '(' x=expression ',' y=expression ',' radius=expression ',' color=expression ',' drawmode=expression ')'                              #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' x=expression ',' y=expression ',' size=expression ',' color=expression ',' drawmode=expression ')'                              #drawtriangleStatement
+                | 'DRAWCLEAR' '(' range=expression ')'                                                                                                                     #drawclearStatement
+                | 'DRAWCLEARAREA' '(' x1=expression ',' y1=expression ',' x2=expression ',' y2=expression ')'                                                                    #drawclearareaStatement
+		            | ('LET')? ident=ID '=' exp=expression                                                                                                               #idStatement
+                | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                                                                                  #arrayStatement
               	;
 
-alternatives:   'ELIF' cond=expression 'THEN' elifst=statements (alt=alternatives)?                             #elifAlternative
-                | 'ELSE' elsest=statements                                                                      #elseAlternative
+alternatives:   'ELIF' cond=expression 'THEN' elifst=statements (alt=alternatives)?                                                                 #elifAlternative
+                | 'ELSE' elsest=statements                                                                                                          #elseAlternative
                 ;
                    
-idList:         idhead=ID (',' idtail=idList)?                                                                  #listIdList
-                | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                             #arrayIdList
+idList:         idhead=ID (',' idtail=idList)?                                                                                                      #listIdList
+                | arrayhead=ID '(' index=expressionList ')' (',' arraytail=idList)?                                                                 #arrayIdList
                 ;
 
 valueList      : value ',' valueList 
