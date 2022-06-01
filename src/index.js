@@ -69,7 +69,7 @@ window.onload = function () {
       let codeName = "program.txt"
 
       let blob = new Blob([codeContent],{ type: codeType });
-      
+
       FileSaver.saveAs(blob, codeName);
     }
   );
@@ -78,6 +78,5 @@ window.onload = function () {
 // Clean the IO interface
 function clean() {
   $('#output-area').val('');
-
-  $('#draw-output').get(0).width = $('#draw-output').get(0).width;
+  $('#draw-output').get(0).getContext('2d').clearRect(0, 0, $('#draw-output').width, $('#draw-output').height);
 }
