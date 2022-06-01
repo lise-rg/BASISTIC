@@ -6,7 +6,9 @@ import { Listener } from './listener.js';
 import { BasicErrorListener } from './errorListener.js';
 import { OutputConsole } from './console.js';
 import Prism from './prism/prism.js';
+import Prism from './../modules/prism/prism.js';
 import CodeFlask from 'codeflask';
+import FileSaver from './../modules/file-saver/FileSaver.js';
 
 var visitor, listener, errorListener;
 var outConsole = new OutputConsole('output-area');
@@ -72,11 +74,23 @@ window.onload = function () {
       }
     }
   );
+
+  // Attach a listener on the "Save" button
+  $('#save-button').click(
+    function () {
+      let codeContent = flask.getCode();
+      let codeType = "text/plain;charset=utf-8";
+      let codeName = "program.txt"
+
+      let blob = new Blob([codeContent],{ type: codeType });
+
+      FileSaver.saveAs(blob, codeName);
+    }
+  );
 }
 
 // Clean the IO interface
 function clean() {
   $('#output-area').val('');
-
-  $('#draw-output').get(0).width = $('#draw-output').get(0).width;
+  $('#draw-output').get(0).getContext('2d').clearRect(0, 0, $('#draw-output').width, $('#draw-output').height);
 }
