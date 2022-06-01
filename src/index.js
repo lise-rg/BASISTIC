@@ -96,5 +96,5 @@ window.onload = function () {
 // Clean the IO interface
 function clean() {
   $('#output-area').val('');
-  $('#draw-output').get(0).getContext('2d').clearRect(0, 0, $('#draw-output').width, $('#draw-output').height);
+  $('#draw-output').get(0).getContext('2d').clearRect(0, 0, $('#draw-output').get(0).width, $('#draw-output').get(0).height);
 }
