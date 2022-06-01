@@ -1,7 +1,6 @@
 export { Visitor };
 import { VariableDict } from './variableDict.js';
 import { DrawOutput } from './drawing.js';
-import { OutputConsole } from './console.js';
 
 import GrammarVisitor from './antlr/GrammarVisitor.js';
 
@@ -10,7 +9,7 @@ var drawLoopInterval;
 class Visitor extends GrammarVisitor {
 
 
-  constructor(labelDict, outConsole) {
+  constructor(labelDict, outConsole, keyboardListener) {
     super();
 
     this.currentType = 'none';
@@ -25,6 +24,7 @@ class Visitor extends GrammarVisitor {
     this.drawLoop = null;
 
     this.outConsole = outConsole;
+    this.keyboardListener = keyboardListener;
 
     // init constant variables
     this.varDict.add('PI', 'real', Math.PI, false);
@@ -343,7 +343,7 @@ class Visitor extends GrammarVisitor {
     this.assignAtIndex(name, value);
   }
 
-  visitFunction(ctx) {
+  visitIntFunction(ctx) {
     let func = ctx.getChild(0).getText();
 
     let result;
@@ -404,7 +404,9 @@ class Visitor extends GrammarVisitor {
         break;
       case 'RTG':
         result = e1 / Math.PI * 180;
-        break;
+      case 'STR':
+        this.currentType = 'string';
+        return e1.toString();
       case 'GCD':
         result = gcd(e1, e2);
         break;
@@ -422,6 +424,44 @@ class Visitor extends GrammarVisitor {
     }
 
     this.evalNumberType(result);
+    return result;
+  }
+
+  visitStrFunction(ctx) {
+    let func = ctx.getChild(0).getText();
+
+    let result;
+
+    let e1 = this.visit(ctx.getChild(2));
+    this.checkString();
+
+    let e2 = null;
+
+    if (ctx.getChildCount() > 4) {
+      e2 = this.visit(ctx.getChild(4));
+      this.checkString();
+    }
+
+    switch (func.toUpperCase()) {
+      case 'KEYPRESSED':
+        this.currentType = 'integer';
+        if (this.keyboardListener.isPressed(e1))
+          result = 1;
+        else
+          result = 0;
+        break;
+      case 'KEYRELEASED':
+        this.currentType = 'string';
+        if (this.keyboardListener.isReleased(e1))
+          result = 1;
+        else
+          result = 0;
+        break;
+      case 'STRCAT':
+        this.currentType = 'string';
+        result = e1 + e2;
+    }
+
     return result;
   }
 

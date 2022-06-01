@@ -1,6 +1,5 @@
 import GrammarListener from "./antlr/GrammarListener";
 import { LabelDict } from "./labelDict.js";
-import { OutputConsole } from "./console";
 export { Listener };
 
 class Listener extends GrammarListener {

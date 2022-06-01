@@ -5,12 +5,14 @@ import { Visitor } from './visitor.js';
 import { Listener } from './listener.js';
 import { BasicErrorListener } from './errorListener.js';
 import { OutputConsole } from './console.js';
+import { KeyboardListener } from './keyboardListener.js';
 import Prism from './../modules/prism/prism.js';
 import CodeFlask from 'codeflask';
 import FileSaver from './../modules/file-saver/FileSaver.js';
 
-var visitor, listener, errorListener;
+var visitor, listener;
 var outConsole = new OutputConsole('output-area');
+var keyboardListener = new KeyboardListener();
 
 
 //Wait for the document to be loaded and ready
@@ -26,6 +28,9 @@ window.onload = function () {
 
   // Clean the console 
   clean();
+
+  document.addEventListener('keydown', (e)=>keyboardListener.updatePressedKeys(e));
+  document.addEventListener('keyup', (e)=>keyboardListener.updateReleasedKeys(e))
 
   // Attach a listener on the "Run" button (of the interpreter)
   $('#run-button').click(
@@ -56,7 +61,7 @@ window.onload = function () {
       antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, tree);
 
       // Creates the Visitor and starts the interpretation
-      visitor = new Visitor(listener.getLabelDict(), outConsole);
+      visitor = new Visitor(listener.getLabelDict(), outConsole, keyboardListener);
       visitor.visit(tree);
     }
   );
