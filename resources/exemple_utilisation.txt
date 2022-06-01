@@ -6,10 +6,8 @@ par L.RIBEIRO GOMES, K.NICOLLE, E.LE COANT et F.BENMAHDJOUB
 I. INTERFACE
 
 1. La zone de texte : permet de saisir des instructions en langage BASISTIC™.
-2. Import de fichier : permet d'importer un fichier contenant le code à interpréter
-3. Run : permet de lancer l'interprétation
-4. Interface graphique : affiche les résultats graphiques de l'interprétation
-5. Console : affiche les résultats textuels de l'interprétation
+2. Interface graphique : affiche les résultats graphiques de l'interprétation
+3. Console : affiche les résultats textuels de l'interprétation
 
 
 II. PREMIER PROGRAMME
