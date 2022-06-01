@@ -1,5 +1,12 @@
-_bounce {
- 
+_drawbg {
+  r = 128 * cos(dtr(bgcolphi)) + 128;
+  b = 128 * sin(dtr(bgcolphi)) + 128;
+  for j = 0 to SCREEN_H
+    bgcol = rgb(r, j * (255 / SCREEN_H), b);
+    drawrect(0, j, SCREEN_W, j + 1, bgcol);
+  fend;
+  
+  bgcolphi = (bgcolphi + 3) % 360;
 }
 
 main { 
@@ -8,11 +15,15 @@ main {
   dim ballx(20);
   dim bally(20);
   dim balldir(20);
+  dim ballcol(20, 3);
   
   for i = 0 to 20
     ballx(i) = SCREEN_W / 2;
     bally(i) = SCREEN_H / 2;
     balldir(i) = rnd(360);
+    ballcol(i, 0) = rnd(255);
+    ballcol(i, 1) = rnd(255);
+    ballcol(i, 2) = rnd(255);
   fend;
   
   dir = 0;
@@ -23,13 +34,13 @@ main {
   radius = size / 2;
   speed = 5;
   fgcol = "black";
-  bgcol = "white";
   tmp = "";
-  timer = 0;
+  
+  bgcolphi = 0;
 }
 
 update {
-  drawrect(0, 0, SCREEN_W, SCREEN_H, bgcol);
+  gosub _drawbg;
   
   for i = 0 to 20
   
@@ -45,13 +56,11 @@ update {
       if dir < 180 then dir = rnd(70) + 10;
       else dir = rnd(70) + 280;
       endif;
-      gosub _bounce;
     elif x + radius > SCREEN_W then
       x = SCREEN_W - radius;
       if dir < 180 then dir = rnd(70) + 100;
       else dir = rnd(70) + 190;
       endif;
-      gosub _bounce;
     endif;
     
     if y - radius < 0 then
@@ -59,20 +68,22 @@ update {
       if dir < 90 then dir = rnd(70) + 280;
       else dir = rnd(70) + 190;
       endif;
-      gosub _bounce;
     elif y + radius > SCREEN_H then
       y = SCREEN_H - radius;
       if dir < 270 then dir = rnd(70) + 100;
       else dir = rnd(70) + 10;
       endif;
-      gosub _bounce;
     endif;
     
     dir = dir % 360;
+    
+    fgcol = rgb(ballcol(i, 0), ballcol(i, 1), ballcol(i, 2));
     
     drawcircle(x, y, radius, fgcol);
     
     ballx(i) = x;
     bally(i) = y;
     balldir(i) = dir;
+    
+    fend;
 }

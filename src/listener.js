@@ -1,11 +1,13 @@
 import GrammarListener from "./antlr/GrammarListener";
 import { LabelDict } from "./labelDict.js";
+import { OutputConsole } from "./console";
 export { Listener };
 
 class Listener extends GrammarListener {
-  constructor() {
+  constructor(outConsole) {
     super();
     this.labelDict = new LabelDict();
+    this.outConsole = outConsole;
   }
 
   /**
@@ -13,16 +15,8 @@ class Listener extends GrammarListener {
    * @param {string} msg
    */
    abort(msg) {
-    this.printConsole('Error: ' + msg);
+    this.outConsole.print('Error: ' + msg);
     throw new Error();
-  }
-
-  /**
-   * prints text to the console
-   * @param {string} msg
-   */
-   printConsole(msg) {
-    document.getElementById('output-area').value += msg + '\n';
   }
 
   getLabelDict() {

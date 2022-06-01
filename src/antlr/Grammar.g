@@ -129,6 +129,7 @@ function:   'ABS' '(' expression ')'
             | 'GCD' '(' expression ',' expression ')'    
             | 'MIN' '(' expression ',' expression ')'
             | 'MAX' '(' expression ',' expression ')'
+            | 'RGB' '(' expression ',' expression ',' expression ')'
             ;                             
 
 constant:   Integer                                                       #constInt

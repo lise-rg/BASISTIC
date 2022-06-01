@@ -185,6 +185,24 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#elifAlternative.
+	enterElifAlternative(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#elifAlternative.
+	exitElifAlternative(ctx) {
+	}
+
+
+	// Enter a parse tree produced by GrammarParser#elseAlternative.
+	enterElseAlternative(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#elseAlternative.
+	exitElseAlternative(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#listIdList.
 	enterListIdList(ctx) {
 	}
