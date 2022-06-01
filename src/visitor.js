@@ -343,6 +343,10 @@ class Visitor extends GrammarVisitor {
     this.assignAtIndex(name, value);
   }
 
+  visitFunction(ctx) {
+    return this.visit(ctx.getChild(0));
+  }
+
   visitIntFunction(ctx) {
     let func = ctx.getChild(0).getText();
 
