@@ -18,10 +18,10 @@ main {
 }
 
 update {
-  DRAWRECT(0, 0, 480, 360, col);
+  DRAWRECT(0, 0, SCREEN_W, SCREEN_H, col);
   FOR i = 0 TO 10
-    radians = ((phase + i * 36) / 180) * 3.1415;
-    y = 360/2 + 80 * SIN(radians);
+    angle = phase + i * 36;
+    y = SCREEN_H/2 + 80 * SIN(DTR(angle));
     DRAWCIRCLE(i * 48 + 24, y, 20, "yellow");
   FEND;
   phase = (phase + 8) % 360;

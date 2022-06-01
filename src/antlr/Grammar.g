@@ -120,7 +120,9 @@ function:   'ABS' '(' expression ')'
             | 'SQR' '(' expression ')'                                                                   
             | 'TAN' '(' expression ')'
             | 'LOG' '(' expression ')'
-            | 'PGCD' '(' expression ',' expression ')'    
+            | 'DTR' '(' expression ')'
+            | 'RTD' '(' expression ')'
+            | 'GCD' '(' expression ',' expression ')'    
             | 'MIN' '(' expression ',' expression ')'
             | 'MAX' '(' expression ',' expression ')'
             ;                             
@@ -139,7 +141,7 @@ label:      '_' ID
      
 // zone lexicale //
 
-ID :        [A-Z]+[0-9_]*
+ID :        [A-Z][A-Z0-9_]*
             ;
 
 Integer:    [0-9]+

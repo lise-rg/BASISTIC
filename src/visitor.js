@@ -22,7 +22,11 @@ class Visitor extends GrammarVisitor {
     this.drawOut = new DrawOutput();
 
     this.drawLoop = null;
-    this.drawLoopInterval = null;
+
+    // init constant variables
+    this.varDict.add('PI', 'real', Math.PI, false);
+    this.varDict.add('SCREEN_W', 'integer', 480, false);
+    this.varDict.add('SCREEN_H', 'integer', 360, false);
   }
 
 
@@ -32,6 +36,7 @@ class Visitor extends GrammarVisitor {
    */
   abort(msg) {
     this.printConsole('Error: ' + msg);
+    clearInterval(drawLoopInterval);
     throw new Error(msg);
   }
 
@@ -63,6 +68,17 @@ class Visitor extends GrammarVisitor {
     if (bool)
       return 1;
     return 0;
+  }
+
+  /**
+   * Sets currentType to 'real' or 'integer' depending on n's type.
+   * @param {number} n 
+   */
+  evalNumberType(n) {
+    if (n === Math.floor(n))
+      this.currentType = 'integer';
+    else
+      this.currentType = 'real';
   }
 
   /**
@@ -311,47 +327,75 @@ class Visitor extends GrammarVisitor {
 
   visitFunction(ctx) {
     let func = ctx.getChild(0).getText();
-    let expr = this.visit(ctx.getChild(2));
-    let exprb = null;
+
+    let result;
+
+    let e1 = this.visit(ctx.getChild(2));
+    this.checkNumber();
+
+    let e2 = null;
+
+    if (ctx.getChildCount() > 4) {
+      e2 = this.visit(ctx.getChild(4));
+      this.checkNumber();
+    }
+    
     this.checkNumber();
     switch (func.toUpperCase()) {
       case 'ABS':
-        return Math.abs(expr);
+        result = Math.abs(e1);
+        break;
       case 'ATN':
-        return Math.atan(expr);
+        result = Math.atan(e1);
+        break;
       case 'COS':
-        return Math.cos(expr);
+        result = Math.cos(e1);
+        break;
       case 'EXP':
-        return Math.exp(expr);
+        result = Math.exp(e1);
+        break;
       case 'INT':
-        return Math.floor(expr);
+        result = Math.floor(e1);
+        break;
       case 'LN':
-        return Math.log(expr);
+        result = Math.log(e1);
+        break;
       case 'RND':
-        return Math.floor(Math.random() * expr);
+        result = Math.floor(Math.random() * parseInt(e1));
+        break;
       case 'SIN':
-        return Math.sin(expr);
+        result = Math.sin(e1);
+        break;
       case 'SQR':
-        return Math.sqrt(expr);
+        result = Math.sqrt(e1);
+        break;
       case 'TAN':
-        return Math.tan(expr);
+        result = Math.tan(e1);
+        break;
       case 'LOG':
-        return Math.log10(expr);
-      case 'PGCD':
-        exprb = this.visit(ctx.getChild(4));
-        this.checkNumber();
-        return this.pgcd(expr, exprb);
+        result = Math.log10(e1);
+        break;
+      case 'DTR':
+        result = e1 / 180 * Math.PI;
+        break;
+      case 'RTG':
+        result = e1 / Math.PI * 180;
+        break;
+      case 'GCD':
+        result = this.gcd(e1, e2);
+        break;
       case 'MIN':
-        exprb = this.visit(ctx.getChild(4));
-        this.checkNumber();
-        return Math.min(expr, exprb);
+        result = Math.min(e1, e2);
+        break;
       case 'MAX':
-        exprb = this.visit(ctx.getChild(4));
-        this.checkNumber();
-        return Math.max(expr, exprb);
+        result = Math.max(e1, e2);
+        break;
       default:
         this.abort('Unknown function ' + func + '.');
     }
+
+    this.evalNumberType(result);
+    return result;
   }
 
   visitListIdList(ctx) {
@@ -891,9 +935,16 @@ class Visitor extends GrammarVisitor {
   /***************************************************************************************************/
   /***		Secondary function                                                                       ***/
   /***************************************************************************************************/
-  pgcd(a, b) {
-    a = Math.abs(a);
-    b = Math.abs(b);
+
+  /**
+   * 
+   * @param {integer} a 
+   * @param {integer} b 
+   * @returns 
+   */
+  gcd(a, b) {
+    a = parseInt(Math.abs(a));
+    b = parseInt(Math.abs(b));
     if (b > a) {
       var tmp = a;
       a = b;
