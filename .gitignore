@@ -7,3 +7,5 @@ src/antlr/GrammarLexer.interp
 src/antlr/Grammar.tokens
 src/antlr/Grammar.interp
 src/antlr/GrammarVisitor.js
+dist/main.js
+src/antlr/Grammar.interp

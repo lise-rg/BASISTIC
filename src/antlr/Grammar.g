@@ -120,7 +120,9 @@ function:   'ABS' '(' expression ')'
             | 'SQR' '(' expression ')'                                                                   
             | 'TAN' '(' expression ')'
             | 'LOG' '(' expression ')'
-            | 'PGCD' '(' expression ',' expression ')'     
+            | 'PGCD' '(' expression ',' expression ')'    
+            | 'MIN' '(' expression ',' expression ')'
+            | 'MAX' '(' expression ',' expression ')'
             ;                             
 
 constant:   Integer                                                       #constInt
