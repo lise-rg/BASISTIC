@@ -58,7 +58,7 @@ class DrawOutput {
     this.setColor(color); 
 
     //Sets the rotation
-    //this.rotate(rotation);
+    this.rotate(rotation);
 
     //Draws the path
     this.ctx.beginPath();
@@ -67,6 +67,9 @@ class DrawOutput {
 
     //Draws the selected path
     this.draw(drawmode); 
+
+    //Resets the rotation
+    this.rotate(rotation * -1);
 
     //Resets the color back to default 
     this.resetColor(); 
@@ -94,6 +97,9 @@ class DrawOutput {
 
     //Draws the selected path
     this.draw(drawmode);
+
+    //Resets the rotation
+    this.rotate(rotation * -1);
 
     //Resets the color back to default 
     this.resetColor();
@@ -123,6 +129,9 @@ class DrawOutput {
 
     //Draws the selected path
     this.draw(drawmode);
+
+    //Resets the rotation
+    this.rotate(rotation * -1);
 
     //Resets the color back to default 
     this.resetColor();
