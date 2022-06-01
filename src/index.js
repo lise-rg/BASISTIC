@@ -3,8 +3,9 @@ import GrammarLexer from './antlr/GrammarLexer.js';
 import GrammarParser from './antlr/GrammarParser.js';
 import { Visitor } from './visitor.js';
 import { Listener } from './listener.js';
-import Prism from './prism/prism.js';
+import Prism from './../modules/prism/prism.js';
 import CodeFlask from 'codeflask';
+import FileSaver from './../modules/file-saver/FileSaver.js';
 
 var visitor, listener;
 
@@ -57,6 +58,19 @@ window.onload = function () {
       fileRd.onload = function () {
         flask.updateCode(fileRd.result)
       }
+    }
+  );
+
+  // Attach a listener on the "Save" button
+  $('#save-button').click(
+    function () {
+      let codeContent = flask.getCode();
+      let codeType = "text/plain;charset=utf-8";
+      let codeName = "program.txt"
+
+      let blob = new Blob([codeContent],{ type: codeType });
+      
+      FileSaver.saveAs(blob, codeName);
     }
   );
 }
