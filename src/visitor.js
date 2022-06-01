@@ -1,6 +1,7 @@
 export { Visitor };
 import { VariableDict } from './variableDict.js';
 import { DrawOutput } from './drawing.js';
+import { OutputConsole } from './console.js';
 
 import GrammarVisitor from './antlr/GrammarVisitor.js';
 
@@ -9,7 +10,7 @@ var drawLoopInterval;
 class Visitor extends GrammarVisitor {
 
 
-  constructor(labelDict) {
+  constructor(labelDict, outConsole) {
     super();
 
     this.currentType = 'none';
@@ -23,41 +24,21 @@ class Visitor extends GrammarVisitor {
 
     this.drawLoop = null;
 
+    this.outConsole = outConsole;
+
     // init constant variables
     this.varDict.add('PI', 'real', Math.PI, false);
     this.varDict.add('SCREEN_W', 'integer', 480, false);
     this.varDict.add('SCREEN_H', 'integer', 360, false);
   }
 
-
   /**
    * prints an error message and halts the execution of the interpreter
    * @param {string} msg
    */
   abort(msg) {
-    this.printConsole('Error: ' + msg);
     clearInterval(drawLoopInterval);
-    throw new Error(msg);
-  }
-
-  /**
-   * prints a warning message
-   * @param {string} msg 
-   */
-  warning(msg) {
-    this.printConsole('Warning: ' + msg);
-  }
-
-  /**
-   * prints text to the console
-   * @param {string} msg
-   * @param {boolean} nl prints a newline after the message if set to true
-   */
-  printConsole(msg, nl = true) {
-    document.getElementById('output-area').value += msg;
-    if (nl)
-      document.getElementById('output-area').value += '\n';
-    document.getElementById('output-area').scrollTop = document.getElementById('output-area').scrollHeight;
+    throw new Error('Runtime error: ' + msg);
   }
 
   /**
@@ -104,6 +85,14 @@ class Visitor extends GrammarVisitor {
   checkInteger() {
     if (this.currentType !== 'integer')
       this.abort('integer expected but got ' + this.currentType + ' instead.')
+  }
+
+  /**
+   * throws an error if the last evaluated expression is not a string
+   */
+  checkString() {
+    if (this.currentType !== 'string')
+      this.abort('string exprected but got ' + this.currentType + ' instead.');
   }
 
   /**
@@ -170,8 +159,8 @@ class Visitor extends GrammarVisitor {
    */
 
   visitStart(ctx) {
-    let date = new Date();
-    this.printConsole('--- Interpretation Started. ---');
+
+    this.outConsole.print('Start.');
 
     if (ctx.main !== null) {
       this.visit(ctx.main);
@@ -180,8 +169,12 @@ class Visitor extends GrammarVisitor {
     clearInterval(drawLoopInterval);
 
     this.drawLoop = ctx.drawloop;
+
     if (this.drawLoop !== null) {
       drawLoopInterval = setInterval(this.updateDrawing.bind(this), 20);
+    }
+    else {
+      this.outConsole.print('Done.');
     }
   }
 
@@ -511,13 +504,13 @@ class Visitor extends GrammarVisitor {
   visitListPrintList(ctx) {
     let head = this.visit(ctx.head);
     let separator = ctx.sep.text;
-    this.printConsole(head, separator === ',');
+    this.outConsole.print(head, separator === ',');
     let tail = this.visit(ctx.tail);
   }
 
   visitAtomPrintList(ctx) {
     let atom = this.visit(ctx.atom);
-    this.printConsole(atom);
+    this.outConsole.print(atom);
   }
 
   /**
@@ -848,15 +841,15 @@ class Visitor extends GrammarVisitor {
   visitDrawrectStatement(ctx) {
 
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    this.checkNumber();
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    this.checkNumber();
     let width = parseInt(this.visit(ctx.getChild(6)), 10);
+    this.checkNumber();
     let height = parseInt(this.visit(ctx.getChild(8)), 10);
+    this.checkNumber();
     let color = String(this.visit(ctx.getChild(10)));
-
-    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if (Number.isNaN(width)) { this.abort('width is not a number.'); }
-    if (Number.isNaN(height)) { this.abort('height is not a number.'); }
+    this.checkString();
 
     this.drawOut.drawRectangle(x, y, width, height, color);
   }
@@ -868,13 +861,13 @@ class Visitor extends GrammarVisitor {
   visitDrawsquareStatement(ctx) {
 
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    this.checkNumber();
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    this.checkNumber();
     let size = parseInt(this.visit(ctx.getChild(6)), 10);
+    this.checkNumber();
     let color = String(this.visit(ctx.getChild(8)));
-
-    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if (Number.isNaN(size)) { this.abort('size is not a number.'); }
+    this.checkString();
 
     this.drawOut.drawSquare(x, y, size, color);
   }
@@ -886,13 +879,13 @@ class Visitor extends GrammarVisitor {
   visitDrawcircleStatement(ctx) {
 
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    this.checkNumber();
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    this.checkNumber();
     let radius = parseInt(this.visit(ctx.getChild(6)), 10);
+    this.checkNumber();
     let color = String(this.visit(ctx.getChild(8)));
-
-    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if (Number.isNaN(radius)) { this.abort('radius is not a number.'); }
+    this.checkString();
 
     this.drawOut.drawCircle(x, y, radius, color);
   }
@@ -904,13 +897,13 @@ class Visitor extends GrammarVisitor {
   visitDrawtriangleStatement(ctx) {
 
     let x = parseInt(this.visit(ctx.getChild(2)), 10);
+    this.checkNumber();
     let y = parseInt(this.visit(ctx.getChild(4)), 10);
+    this.checkNumber();
     let size = parseInt(this.visit(ctx.getChild(6)), 10);
+    this.checkNumber();
     let color = String(this.visit(ctx.getChild(8)));
-
-    if (Number.isNaN(x)) { this.abort('x is not a number.'); }
-    if (Number.isNaN(y)) { this.abort('y is not a number.'); }
-    if (Number.isNaN(size)) { this.abort('size is not a number.'); }
+    this.checkString();
 
     this.drawOut.drawTriangle(x, y, size, color);
   }
@@ -952,15 +945,13 @@ class Visitor extends GrammarVisitor {
   visitDrawclearareaStatement(ctx) {
 
     let x1 = parseInt(this.visit(ctx.getChild(2)), 10);
+    this.checkNumber();
     let y1 = parseInt(this.visit(ctx.getChild(4)), 10);
+    this.checkNumber();
     let x2 = parseInt(this.visit(ctx.getChild(6)), 10);
+    this.checkNumber();
     let y2 = parseInt(this.visit(ctx.getChild(8)), 10);
-
-    if (Number.isNaN(x1)) { this.abort('x1 is not a number.'); }
-    if (Number.isNaN(y1)) { this.abort('y1 is not a number.'); }
-    if (Number.isNaN(x2)) { this.abort('x2 is not a number.'); }
-    if (Number.isNaN(y2)) { this.abort('y2 is not a number.'); }
-
+    this.checkNumber();
 
     this.drawOut.drawClearArea(x1, y1, x2, y2);
   }

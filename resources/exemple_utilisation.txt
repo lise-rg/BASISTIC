@@ -6,10 +6,8 @@ par L.RIBEIRO GOMES, K.NICOLLE, E.LE COANT et F.BENMAHDJOUB
 I. INTERFACE
 
 1. La zone de texte : permet de saisir des instructions en langage BASISTIC™.
-2. Import de fichier : permet d'importer un fichier contenant le code à interpréter
-3. Run : permet de lancer l'interprétation
-4. Interface graphique : affiche les résultats graphiques de l'interprétation
-5. Console : affiche les résultats textuels de l'interprétation
+2. Interface graphique : affiche les résultats graphiques de l'interprétation
+3. Console : affiche les résultats textuels de l'interprétation
 
 
 II. PREMIER PROGRAMME
@@ -57,9 +55,13 @@ Les dix cercles bleu devraient osciller de manière sinusoïdale.
 
 III. FONCTIONNALITES
 
-Vous pouvez trouver un bouton "Browse...", sous la zone de texte. Ce dernier vous permet de choisir un fichier à importer directement
+Vous pouvez trouver un bouton "Parcourir...", sous la zone de texte. Ce dernier vous permet de choisir un fichier à importer directement
 dans la zone de texte puis de l'exécuter. Nous avons mis plusieurs fichiers contenant des exemples de programmes utilisant BASISTIC™
 à votre disposition pour essayer cette fonctionnalité.
+
+La prochaine fonctionnalité est importante, il s'agit du bouton "Save". Vous le trouverez sur la droite du bouton "Parcourir".
+C'est toujours un bonne idée de sauvegarder votre progression régulièrement. Au fur et à mesure que vous avancer dans votre code, 
+sauvegarder vos différentes version afin de pouvoir garder une trace de votre avancement.
 
 PALETTE DE COULEUR ?
 AUTRE ?

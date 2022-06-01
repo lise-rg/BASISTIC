@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="stylesheet" href="../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
   <script type="text/javascript" src="../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../modules/collapsible/collapsible.js"></script>
 </head>
 
 <body class="main" style="height: 100%; min-height: 100%; padding: 2% 0% 2% 0%;">
@@ -80,24 +81,6 @@
         <div class="content">
           <p>...</p>
         </div>
-
-
-        <script>
-          var coll = document.getElementsByClassName("collapsible");
-          var i;
-          
-          for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-              this.classList.toggle("active");
-              var content = this.nextElementSibling;
-              if (content.style.maxHeight){
-                content.style.maxHeight = null;
-              } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-              } 
-            });
-          }
-          </script>
 
     </div>
 
