@@ -32,10 +32,10 @@ statement   :
                 | 'INPUT' '(' idList ')'                                                                        #inputStatement
                 | 'PRINT' '(' printList ')'                                                                     #printStatement
                 | 'DRAWLINE' '(' expression ',' expression ',' expression ',' expression ')'                    #drawlineStatement
-                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression ',' expression ')'     #drawrectStatement
-                | 'DRAWSQUARE' '(' expression ',' expression ',' expression ',' expression ')'                  #drawsquareStatement
-                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression ',' expression ')'                  #drawcircleStatement
-                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression ',' expression ')'                #drawtriangleStatement
+                | 'DRAWRECT' '(' expression ',' expression ',' expression ',' expression (',' color=expression)? ')'     #drawrectStatement
+                | 'DRAWSQUARE' '(' expression ',' expression ',' expression (',' color=expression)? ')'                  #drawsquareStatement
+                | 'DRAWCIRCLE' '(' expression ',' expression ',' expression (',' color=expression)? ')'                  #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' expression ',' expression ',' expression (',' color=expression)? ')'                #drawtriangleStatement
                 | 'DRAWCLEAR' '(' expression ')'                                                                #drawclearStatement
                 | 'DRAWCLEARAREA' '(' expression ',' expression ',' expression ',' expression ')'               #drawclearareaStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                          #idStatement

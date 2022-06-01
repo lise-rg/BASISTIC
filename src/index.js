@@ -5,7 +5,6 @@ import { Visitor } from './visitor.js';
 import { Listener } from './listener.js';
 import { BasicErrorListener } from './errorListener.js';
 import { OutputConsole } from './console.js';
-import Prism from './prism/prism.js';
 import Prism from './../modules/prism/prism.js';
 import CodeFlask from 'codeflask';
 import FileSaver from './../modules/file-saver/FileSaver.js';
