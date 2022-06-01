@@ -38,7 +38,7 @@ class DrawOutput {
    * @param {number} y the position on the y axis of the square's upper left corner
    * @param {number} size the width and height of the square
    */
-  drawSquare(x, y, size, color) {
+  drawSquare(x, y, size, color = "black") {
     this.drawRectangle(x, y, size, size, color);
   }
 
@@ -49,7 +49,7 @@ class DrawOutput {
    * @param {number} width the width of the rectangle
    * @param {number} height the height of the rectangle
    */
-  drawRectangle(x, y, width, height, color) {
+  drawRectangle(x, y, width, height, color = "black") {
     this.ctx.fillStyle = color;
     this.ctx.fillRect(x, y, width, height);
     this.ctx.fillStyle = "black";
@@ -61,7 +61,7 @@ class DrawOutput {
    * @param {number} y the position on the y axis of the circle's center
    * @param {number} radius the radius of the circle
    */
-  drawCircle(x, y, radius, color) {
+  drawCircle(x, y, radius, color = "black") {
     this.ctx.fillStyle = color;
     this.ctx.beginPath();
     this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
@@ -76,7 +76,7 @@ class DrawOutput {
    * @param {number} y the position on the y axis of the triangle's center
    * @param {number} size the size of the triangle's sides
    */
-  drawTriangle(x, y, size, color) {
+  drawTriangle(x, y, size, color = "black") {
     this.ctx.fillStyle = color;
     this.ctx.beginPath();
     this.ctx.moveTo(x-(size/2), y+(size/2));
