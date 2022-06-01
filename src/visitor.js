@@ -343,6 +343,10 @@ class Visitor extends GrammarVisitor {
     this.assignAtIndex(name, value);
   }
 
+  visitFunction(ctx) {
+    return this.visit(ctx.getChild(0));
+  }
+
   visitIntFunction(ctx) {
     let func = ctx.getChild(0).getText();
 
@@ -451,7 +455,7 @@ class Visitor extends GrammarVisitor {
           result = 0;
         break;
       case 'KEYRELEASED':
-        this.currentType = 'string';
+        this.currentType = 'integer';
         if (this.keyboardListener.isReleased(e1))
           result = 1;
         else
@@ -865,7 +869,7 @@ class Visitor extends GrammarVisitor {
     //Gets and parses the x1 position, and checks if the value is valid
     let x1 = parseInt(this.visit(ctx.x1), 10);
     this.checkNumber();
-    
+
     //Gets and parses the y1 position, and checks if the value is valid
     let y1 = parseInt(this.visit(ctx.y1), 10);
     this.checkNumber();
@@ -873,7 +877,7 @@ class Visitor extends GrammarVisitor {
     //Gets and parses the x2 position, and checks if the value is valid
     let x2 = parseInt(this.visit(ctx.x2), 10);
     this.checkNumber();
-    
+
     //Gets and parses the y2 position, and checks if the value is valid
     let y2 = parseInt(this.visit(ctx.y2), 10);
     this.checkNumber();
@@ -887,19 +891,19 @@ class Visitor extends GrammarVisitor {
   */
   visitDrawrectStatement(ctx) {
     //Gets and parses the x position, and checks if the value is valid
-    let x = parseInt(this.visit(ctx.x), 10);
+    let x = parseInt(this.visit(ctx.x));
     this.checkNumber();
 
     //Gets and parses the y position, and checks if the value is valid
-    let y = parseInt(this.visit(ctx.y), 10);
+    let y = parseInt(this.visit(ctx.y));
     this.checkNumber();
 
     //Gets and parses the width, and checks if the value is valid
-    let width = parseInt(this.visit(ctx.width), 10);
+    let width = parseInt(this.visit(ctx.width));
     this.checkNumber();
 
     //Gets and parses the height, and checks if the value is valid
-    let height = parseInt(this.visit(ctx.height), 10);
+    let height = parseInt(this.visit(ctx.height));
     this.checkNumber();
 
     //Gets and parses the rotation, and checks if the value is valid
@@ -913,8 +917,8 @@ class Visitor extends GrammarVisitor {
     //Gets the drawing mode, and checks if the value is valid
     let drawmode = this.visit(ctx.drawmode);
     this.checkNumber();
-    if (drawmode > 0) { drawmode = true; } 
-    else              { drawmode = false; }
+    if (drawmode > 0) { drawmode = true; }
+    else { drawmode = false; }
 
     this.drawOut.drawRectangle(x, y, width, height, rotation, color, drawmode);
   }
@@ -947,8 +951,8 @@ class Visitor extends GrammarVisitor {
     //Gets the drawing mode, and checks if the value is valid
     let drawmode = this.visit(ctx.drawmode);
     this.checkNumber();
-    if (drawmode > 0) { drawmode = true; } 
-    else              { drawmode = false; }
+    if (drawmode > 0) { drawmode = true; }
+    else { drawmode = false; }
 
     this.drawOut.drawSquare(x, y, size, rotation, color, drawmode);
   }
@@ -981,8 +985,8 @@ class Visitor extends GrammarVisitor {
     //Gets the drawing mode, and checks if the value is valid
     let drawmode = this.visit(ctx.drawmode);
     this.checkNumber();
-    if (drawmode > 0) { drawmode = true; } 
-    else              { drawmode = false; }
+    if (drawmode > 0) { drawmode = true; }
+    else { drawmode = false; }
 
     this.drawOut.drawCircle(x, y, radius, rotation, color, drawmode);
   }
@@ -1016,8 +1020,8 @@ class Visitor extends GrammarVisitor {
     //Gets the drawing mode, and checks if the value is valid
     let drawmode = this.visit(ctx.drawmode);
     this.checkNumber();
-    if (drawmode > 0) { drawmode = true; } 
-    else              { drawmode = false; }
+    if (drawmode > 0) { drawmode = true; }
+    else { drawmode = false; }
 
     this.drawOut.drawTriangle(x, y, size, rotation, color, drawmode);
   }

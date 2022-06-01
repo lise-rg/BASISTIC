@@ -226,5 +226,6 @@ class DrawOutput {
     else { 
       this.ctx.stroke(); 
     }
+    this.ctx.closePath();
   }
 }
