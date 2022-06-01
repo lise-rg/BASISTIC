@@ -32,10 +32,10 @@ statement   :
                 | 'INPUT' '(' idList ')'                                                                                                                             #inputStatement
                 | 'PRINT' '(' printList ')'                                                                                                                          #printStatement
                 | 'DRAWLINE' '(' x1=expression ',' y1=expression ',' x2=expression ',' y2=expression ')'                                                             #drawlineStatement
-                | 'DRAWRECT' '(' x=expression ',' y=expression ',' width=expression ',' height=expression ',' color=expression ',' drawmode=expression ')'           #drawrectStatement
-                | 'DRAWSQUARE' '(' x=expression ',' y=expression ',' size=expression ',' color=expression ',' drawmode=expression ')'                                #drawsquareStatement
-                | 'DRAWCIRCLE' '(' x=expression ',' y=expression ',' radius=expression ',' color=expression ',' drawmode=expression ')'                              #drawcircleStatement
-                | 'DRAWTRIANGLE' '(' x=expression ',' y=expression ',' size=expression ',' color=expression ',' drawmode=expression ')'                              #drawtriangleStatement
+                | 'DRAWRECT' '(' x=expression ',' y=expression ',' width=expression ',' height=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'           #drawrectStatement
+                | 'DRAWSQUARE' '(' x=expression ',' y=expression ',' size=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'                                #drawsquareStatement
+                | 'DRAWCIRCLE' '(' x=expression ',' y=expression ',' radius=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'                              #drawcircleStatement
+                | 'DRAWTRIANGLE' '(' x=expression ',' y=expression ',' size=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'                              #drawtriangleStatement
                 | 'DRAWCLEAR' '(' range=expression ')'                                                                                                                     #drawclearStatement
                 | 'DRAWCLEARAREA' '(' x1=expression ',' y1=expression ',' x2=expression ',' y2=expression ')'                                                                    #drawclearareaStatement
 		            | ('LET')? ident=ID '=' exp=expression                                                                                                               #idStatement
