@@ -40,8 +40,8 @@ class DrawOutput {
    * @param {string} color the color in which the square will be painted
    * @param {boolean} drawmode true if the square should be fully painted, false if it should only be outlined
    */
-  drawSquare(x, y, size, color, drawmode) {
-    this.drawRectangle(x, y, size, size, color, drawmode);
+  drawSquare(x, y, size, rotation, color, drawmode) {
+    this.drawRectangle(x, y, size, size, rotation, color, drawmode);
   }
 
   /**
@@ -53,12 +53,17 @@ class DrawOutput {
    * @param {string} color the color in which the rectangle will be painted
    * @param {boolean} drawmode true if the rectangle should be fully painted, false if it should only be outlined
    */
-  drawRectangle(x, y, width, height, color, drawmode) {
+  drawRectangle(x, y, width, height, rotation, color, drawmode) {
     //Sets the color
     this.setColor(color); 
 
+    //Sets the rotation
+    //this.rotate(rotation);
+
     //Draws the path
+    this.ctx.beginPath();
     this.ctx.rect(x, y, width, height); 
+    this.ctx.closePath();
 
     //Draws the selected path
     this.draw(drawmode); 
@@ -75,9 +80,12 @@ class DrawOutput {
    * @param {string} color the color in which the circle will be painted
    * @param {boolean} drawmode true if the circle should be fully painted, false if it should only be outlined
    */
-  drawCircle(x, y, radius, color, drawmode) {
+  drawCircle(x, y, radius, rotation, color, drawmode) {
     //Sets the color
     this.setColor(color); 
+
+    //Sets the rotation
+    this.rotate(rotation);
 
     //Draws the path
     this.ctx.beginPath();
@@ -99,9 +107,12 @@ class DrawOutput {
    * @param {string} color the color in which the triangle will be painted
    * @param {boolean} drawmode true if the triangle should be fully painted, false if it should only be outlined
    */
-  drawTriangle(x, y, size, color, drawmode) {
+  drawTriangle(x, y, size, rotation, color, drawmode) {
     //Sets the color
     this.setColor(color); 
+
+    //Sets the rotation
+    this.rotate(rotation);
 
     //Draws the path
     this.ctx.beginPath();
@@ -194,6 +205,14 @@ class DrawOutput {
   resetColor() {
     this.ctx.strokeStyle = "black";
     this.ctx.fillStyle = "black";
+  }
+
+  /**
+   * set the canvas up to rotate the next shape that is drawn
+   * @param {number} angle the angle of rotation in degrees
+   */
+  rotate(angle) {
+    this.ctx.rotate((Math.PI / 180) * angle);
   }
 
   /**

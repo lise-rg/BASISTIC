@@ -906,6 +906,10 @@ class Visitor extends GrammarVisitor {
     let height = parseInt(this.visit(ctx.height));
     this.checkNumber();
 
+    //Gets and parses the rotation, and checks if the value is valid
+    let rotation = parseInt(this.visit(ctx.rotation), 10);
+    this.checkNumber();
+
     //Gets color, and checks if the value is valid
     let color = String(this.visit(ctx.color));
     this.checkString();
@@ -916,7 +920,7 @@ class Visitor extends GrammarVisitor {
     if (drawmode > 0) { drawmode = true; }
     else { drawmode = false; }
 
-    this.drawOut.drawRectangle(x, y, width, height, color, drawmode);
+    this.drawOut.drawRectangle(x, y, width, height, rotation, color, drawmode);
   }
 
   /**
@@ -936,6 +940,10 @@ class Visitor extends GrammarVisitor {
     let size = parseInt(this.visit(ctx.size), 10);
     this.checkNumber();
 
+    //Gets and parses the rotation, and checks if the value is valid
+    let rotation = parseInt(this.visit(ctx.rotation), 10);
+    this.checkNumber();
+
     //Gets color, and checks if the value is valid
     let color = String(this.visit(ctx.color));
     this.checkString();
@@ -946,7 +954,7 @@ class Visitor extends GrammarVisitor {
     if (drawmode > 0) { drawmode = true; }
     else { drawmode = false; }
 
-    this.drawOut.drawSquare(x, y, size, color, drawmode);
+    this.drawOut.drawSquare(x, y, size, rotation, color, drawmode);
   }
 
   /**
@@ -965,6 +973,10 @@ class Visitor extends GrammarVisitor {
     //Gets and parses the radius, and checks if the value is valid
     let radius = parseInt(this.visit(ctx.radius), 10);
     this.checkNumber();
+    
+    //Gets and parses the rotation, and checks if the value is valid
+    let rotation = parseInt(this.visit(ctx.rotation), 10);
+    this.checkNumber();
 
     //Gets color, and checks if the value is valid
     let color = String(this.visit(ctx.color));
@@ -976,7 +988,7 @@ class Visitor extends GrammarVisitor {
     if (drawmode > 0) { drawmode = true; }
     else { drawmode = false; }
 
-    this.drawOut.drawCircle(x, y, radius, color, drawmode);
+    this.drawOut.drawCircle(x, y, radius, rotation, color, drawmode);
   }
 
   /**
@@ -997,6 +1009,10 @@ class Visitor extends GrammarVisitor {
     let size = parseInt(this.visit(ctx.size), 10);
     this.checkNumber();
 
+    //Gets and parses the rotation, and checks if the value is valid
+    let rotation = parseInt(this.visit(ctx.rotation), 10);
+    this.checkNumber();
+
     //Gets color, and checks if the value is valid
     let color = String(this.visit(ctx.color));
     this.checkString();
@@ -1007,7 +1023,7 @@ class Visitor extends GrammarVisitor {
     if (drawmode > 0) { drawmode = true; }
     else { drawmode = false; }
 
-    this.drawOut.drawTriangle(x, y, size, color, drawmode);
+    this.drawOut.drawTriangle(x, y, size, rotation, color, drawmode);
   }
 
   /**
