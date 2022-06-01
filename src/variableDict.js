@@ -7,10 +7,11 @@ class Variable {
    * @param {string} type ('integer', 'real', 'string', 'non', 'list')
    * @param {*} value 
    */
-  constructor(name, type, value) {
+  constructor(name, type, value, mutable) {
     this.name = name;
     this.type = type; 
     this.value = value;
+    this.mutable = mutable;
   }
 }
 
@@ -27,8 +28,8 @@ class VariableDict {
    * @param {string} type 
    * @param {*} value 
    */
-  add(name, type, value) {
-    this.dict.push(new Variable(name, type, value));
+  add(name, type, value, mutable=true) {
+    this.dict.push(new Variable(name, type, value, mutable));
     this.size++;
   }
 
@@ -56,6 +57,19 @@ class VariableDict {
         return true;
     }
     return false;
+  }
+
+  /**
+   * 
+   * @param {string} name 
+   * @returns true if given variable is mutable
+   */
+  isMutable(name) {
+    let i = 0;
+    while (i < this.size && this.dict[i].name !== name) {
+      i++;
+    }
+    return this.dict[i].mutable;
   }
 
   /**

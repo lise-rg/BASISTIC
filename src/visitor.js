@@ -287,12 +287,16 @@ class Visitor extends GrammarVisitor {
       return;
     }
 
+    if (!this.varDict.isMutable(name)) {
+      this.abort('constant ' + name + ' is not mutable.');
+    }
+
     type = this.varDict.getType(name);
     if (((this.currentType === 'real' || this.currentType === 'integer') &&
       (type === 'real' || type === 'integer')) || type === this.currentType)
       this.varDict.assign(name, value);
     else
-      this.abort('Incorrect type for variable ' + name);
+      this.abort('Incorrect type for variable ' + name + '.');
   }
 
   visitArrayStatement(ctx) {
@@ -346,6 +350,10 @@ class Visitor extends GrammarVisitor {
     let tail = ctx.idtail;
 
     this.checkVariableDeclared(head);
+
+    if (!this.varDict.isMutable(head)) {
+      this.abort('constant ' + head + ' is not mutable.');
+    }
 
     let userinpt = '';
 
