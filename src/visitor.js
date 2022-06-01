@@ -358,9 +358,15 @@ class Visitor extends GrammarVisitor {
     this.checkNumber();
 
     let e2 = null;
+    let e3 = null;
 
     if (ctx.getChildCount() > 4) {
       e2 = this.visit(ctx.getChild(4));
+      this.checkNumber();
+    }
+
+    if (ctx.getChildCount() > 5) {
+      e3 = this.visit(ctx.getChild(6));
       this.checkNumber();
     }
 
@@ -406,7 +412,7 @@ class Visitor extends GrammarVisitor {
         result = e1 / Math.PI * 180;
         break;
       case 'GCD':
-        result = this.gcd(e1, e2);
+        result = gcd(e1, e2);
         break;
       case 'MIN':
         result = Math.min(e1, e2);
@@ -414,6 +420,9 @@ class Visitor extends GrammarVisitor {
       case 'MAX':
         result = Math.max(e1, e2);
         break;
+      case 'RGB':
+        this.currentType = 'string';
+        return rgbToHex(e1, e2, e3);
       default:
         this.abort('Unknown function ' + func + '.');
     }
@@ -955,30 +964,54 @@ class Visitor extends GrammarVisitor {
 
     this.drawOut.drawClearArea(x1, y1, x2, y2);
   }
+}
 
-  /***************************************************************************************************/
-  /***		Secondary function                                                                       ***/
-  /***************************************************************************************************/
+/***************************************************************************************************/
+/***		Secondary functions                                                                    ***/
+/***************************************************************************************************/
 
-  /**
-   * 
-   * @param {integer} a 
-   * @param {integer} b 
-   * @returns 
-   */
-  gcd(a, b) {
-    a = parseInt(Math.abs(a));
-    b = parseInt(Math.abs(b));
-    if (b > a) {
-      var tmp = a;
-      a = b;
-      b = tmp;
-    }
-    while (true) {
-      if (b === 0) return a;
-      a %= b;
-      if (a === 0) return b;
-      b %= a;
-    }
+/**
+ * 
+ * @param {integer} a 
+ * @param {integer} b 
+ * @returns the gcd of a and b
+ */
+function gcd(a, b) {
+  a = parseInt(Math.abs(a));
+  b = parseInt(Math.abs(b));
+  if (b > a) {
+    var tmp = a;
+    a = b;
+    b = tmp;
   }
+  while (true) {
+    if (b === 0) return a;
+    a %= b;
+    if (a === 0) return b;
+    b %= a;
+  }
+}
+
+/**
+ * @param {number} n a number between 0 and 255
+ * @returns the hex value of n as a string with leading 0 if needed
+ */
+function decToHex(n) {
+  n = parseInt(n);
+  if (n > 255)
+    n = 255;
+  else if (n < 0)
+    n = 0;
+
+  let hex = n.toString(16);
+  if (hex.length === 1)
+    hex = '0' + hex;
+
+  return hex;
+}
+
+function rgbToHex(r, g, b) {
+  let res = '#';
+  res += decToHex(r) + decToHex(g) + decToHex(b);
+  return res;
 }
