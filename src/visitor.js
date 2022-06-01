@@ -451,7 +451,7 @@ class Visitor extends GrammarVisitor {
           result = 0;
         break;
       case 'KEYRELEASED':
-        this.currentType = 'string';
+        this.currentType = 'integer';
         if (this.keyboardListener.isReleased(e1))
           result = 1;
         else
