@@ -68,12 +68,12 @@ _reset {
 }
 
 _collision {
-  if ball_x > left_x and ball_x < left_x + paddle_w and
-  ball_y > left_y and ball_y < left_y + paddle_h then
+  if ball_x - ball_rad > left_x and ball_x - ball_rad < left_x + paddle_w and
+  ball_y + ball_rad > left_y  and ball_y - ball_rad < left_y + paddle_h then
     ball_x = left_x + paddle_w + ball_rad;
     ball_dir = rnd(90) - 45;
-  elif ball_x > right_x and ball_x < right_x + paddle_w and
-  ball_y > right_y and ball_y < right_y + paddle_h then
+  elif ball_x + ball_rad > right_x and ball_x - ball_rad < right_x + paddle_w and
+  ball_y + ball_rad > right_y and ball_y - ball_rad < right_y + paddle_h then
     ball_x = right_x - ball_rad;
     ball_dir = rnd(90) + 135;
   endif;
@@ -119,7 +119,12 @@ update {
   
   // Draw background and paddles
   drawrect(0, 0, SCREEN_W, SCREEN_H, 0, "black", 1);
-  drawrect(left_x, left_y, paddle_w, paddle_h, 0, "white", 1);
-  drawrect(right_x, right_y, paddle_w, paddle_h, 0, "white", 1);
+  
+  for i = 0 to SCREEN_H / 20
+    drawrect(SCREEN_W/2-1, i * 20, 2, 10, 0, "green", 1);
+  fend;
+  
+  drawrect(left_x, left_y, paddle_w, paddle_h, 0, "red", 1);
+  drawrect(right_x, right_y, paddle_w, paddle_h, 0, "blue", 1);
   drawcircle(ball_x, ball_y, ball_rad, 0, "white", 1);
 }
