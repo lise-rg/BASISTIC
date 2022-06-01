@@ -113,7 +113,11 @@ value:      '(' expr=expression ')'                                       #exprV
             | constv=constant                                             #constValue
             ;
 
-function:   'ABS' '(' expression ')'                                                                  
+function:   intFunction 
+            | strFunction
+            ;
+
+intFunction:  'ABS' '(' expression ')'                                                                  
             | 'ATN' '(' expression ')'                                                                      
             | 'COS' '(' expression ')'                                                                     
             | 'EXP' '(' expression ')'                                                                                                   
@@ -126,11 +130,17 @@ function:   'ABS' '(' expression ')'
             | 'LOG' '(' expression ')'
             | 'DTR' '(' expression ')'
             | 'RTD' '(' expression ')'
+            | 'STR' '(' expression ')'
             | 'GCD' '(' expression ',' expression ')'    
             | 'MIN' '(' expression ',' expression ')'
             | 'MAX' '(' expression ',' expression ')'
             | 'RGB' '(' expression ',' expression ',' expression ')'
-            ;                             
+            ;                 
+
+strFunction:  'KEYPRESSED' '(' expression ')'     
+            | 'KEYRELEASED' '(' expression ')'
+            | 'STRCAT' '(' expression ',' expression ')'       
+            ;
 
 constant:   Integer                                                       #constInt
             | String                                                      #constString
