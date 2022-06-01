@@ -42,21 +42,22 @@ window.onload = function () {
       let parser = new GrammarParser(tokens);
       parser.removeErrorListeners();
       parser.addErrorListener(new BasicErrorListener(outConsole));
+      let tree;
 
       try {
-        let tree = parser.start();
-
-        // Creates the Listener and generates the labels' dictionnary
-        listener = new Listener(outConsole);
-        antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, tree);
-
-        // Creates the Visitor and starts the interpretation
-        visitor = new Visitor(listener.getLabelDict(), outConsole);
-        visitor.visit(tree);
-
+        tree = parser.start();
       } catch (error) {
         outConsole.print(error);
+        return;
       }
+
+      // Creates the Listener and generates the labels' dictionnary
+      listener = new Listener(outConsole);
+      antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, tree);
+
+      // Creates the Visitor and starts the interpretation
+      visitor = new Visitor(listener.getLabelDict(), outConsole);
+      visitor.visit(tree);
     }
   );
 
