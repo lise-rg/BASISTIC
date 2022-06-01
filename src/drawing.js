@@ -58,7 +58,7 @@ class DrawOutput {
     this.setColor(color); 
 
     //Sets the rotation
-    //this.rotate(rotation);
+    this.rotate(rotation, x + 0.5 * width, y + 0.5 * height);
 
     //Draws the path
     this.ctx.beginPath();
@@ -67,6 +67,9 @@ class DrawOutput {
 
     //Draws the selected path
     this.draw(drawmode); 
+
+    //Resets the rotation
+    this.rotate(rotation * -1, x + 0.5 * width, y + 0.5 * height);
 
     //Resets the color back to default 
     this.resetColor(); 
@@ -85,7 +88,7 @@ class DrawOutput {
     this.setColor(color); 
 
     //Sets the rotation
-    this.rotate(rotation);
+    this.rotate(rotation, x, y);
 
     //Draws the path
     this.ctx.beginPath();
@@ -94,6 +97,9 @@ class DrawOutput {
 
     //Draws the selected path
     this.draw(drawmode);
+
+    //Resets the rotation
+    this.rotate(rotation * -1, x, y);
 
     //Resets the color back to default 
     this.resetColor();
@@ -112,7 +118,7 @@ class DrawOutput {
     this.setColor(color); 
 
     //Sets the rotation
-    this.rotate(rotation);
+    this.rotate(rotation, x, y);
 
     //Draws the path
     this.ctx.beginPath();
@@ -123,6 +129,9 @@ class DrawOutput {
 
     //Draws the selected path
     this.draw(drawmode);
+
+    //Resets the rotation
+    this.rotate(rotation * -1, x, y);
 
     //Resets the color back to default 
     this.resetColor();
@@ -211,8 +220,10 @@ class DrawOutput {
    * set the canvas up to rotate the next shape that is drawn
    * @param {number} angle the angle of rotation in degrees
    */
-  rotate(angle) {
+  rotate(angle, offsetX, offsetY) {
+    this.ctx.translate(offsetX, offsetY); 
     this.ctx.rotate((Math.PI / 180) * angle);
+    this.ctx.translate(-offsetX, -offsetY); 
   }
 
   /**
