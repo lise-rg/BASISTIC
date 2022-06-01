@@ -38,7 +38,8 @@ class Visitor extends GrammarVisitor {
    */
   abort(msg) {
     clearInterval(drawLoopInterval);
-    throw new Error('Runtime error: ' + msg);
+    this.outConsole.print('Runtime error: ' + msg);
+    throw new Error(msg);
   }
 
   /**
