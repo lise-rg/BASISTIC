@@ -95,3 +95,39 @@ input.import {
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
 }
+
+/*****************************************************
+                    CODE AREA
+******************************************************/
+
+.codeflask {
+    background-color: white;
+}
+
+.token.keyword {
+    color: rgb(68, 0, 255)
+}
+
+.token.label {
+    color: rgb(0, 134, 0);
+}
+
+.token.function {
+    color: rgb(255, 123, 0);
+}
+
+.token.string {
+    color: red;
+}
+
+.token.number {
+    color: rgb(255, 64, 214);
+}
+
+.token.blocks {
+    color: blueviolet;
+}
+
+.token.comment {
+    color: rgb(0, 158, 108)
+}

@@ -3,6 +3,7 @@ import GrammarLexer from './antlr/GrammarLexer.js';
 import GrammarParser from './antlr/GrammarParser.js';
 import { Visitor } from './visitor.js';
 import { Listener } from './listener.js';
+import Prism from './prism/prism.js';
 import CodeFlask from 'codeflask';
 
 var visitor, listener;
@@ -10,7 +11,13 @@ var visitor, listener;
 //Wait for the document to be loaded and ready
 window.onload = function () {
 
-  const flask = new CodeFlask('#input-area', { language: 'js', lineNumbers: true });
+  const flask = new CodeFlask('#input-area',
+    {
+      language: 'basic', lineNumbers: true,
+      highlighter: Prism.highlightElement,
+      defaultTheme: false
+    });
+  flask.addLanguage('basic', Prism.languages.basic);
 
   // Clean the console 
   clean();
