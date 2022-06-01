@@ -244,7 +244,9 @@ class Visitor extends GrammarVisitor {
     this.checkNumber();
 
     let step = 1;
-    if (ctx.step !== null) step = parseInt(ctx.step.text);
+    if (ctx.step !== null) {
+      step = parseInt(ctx.step.text);
+    }
 
     for (let i = parseInt(value); i < end; i = i + step) {
       this.varDict.assign(name, i);
@@ -339,7 +341,7 @@ class Visitor extends GrammarVisitor {
       e2 = this.visit(ctx.getChild(4));
       this.checkNumber();
     }
-    
+
     this.checkNumber();
     switch (func.toUpperCase()) {
       case 'ABS':

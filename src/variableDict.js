@@ -43,7 +43,7 @@ class VariableDict {
         this.dict.splice(i, 1);
       }
     }
-    size--;
+    this.size--;
   }
 
   /**
