@@ -66,6 +66,7 @@ input.import {
     background-color: rgb(96, 113, 128);
     color: white;
     border: none;
+    outline: none;
     text-align: left;
     font-size: 15px;
     padding: 1%;
@@ -90,11 +91,26 @@ input.import {
     /** symbole - **/
 }
 
-.content {
+div.content {
+    padding: 0 18px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    background-color: #f1f1f1;
+    background-color: #f8f8f8;
+}
+
+p.content {
+    padding-top: 15px;
+}
+
+code.segment { 
+    background-color: rgb(245, 242, 240);
+    border: 1px solid rgb(206, 210, 213);
+    margin-top: 20px;
+    display: block;
+    padding: 20px 0px 20px 30px;
+    font-family: monospace;
+    border-radius: 10px;
 }
 
 /*****************************************************

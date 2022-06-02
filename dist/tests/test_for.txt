@@ -1,3 +1,5 @@
-FOR I = 1 TO 5
-PRINT(I)
-FEND
+main {
+	FOR I = 0 TO 8 STEP 2
+		PRINT(I);
+	FEND;
+}

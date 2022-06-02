@@ -1,4 +1,0 @@
-LET A = 56;
-FOR I = 0 TO A STEP 20
-PRINT(I)
-FEND

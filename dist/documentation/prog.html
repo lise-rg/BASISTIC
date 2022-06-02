@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>BASISTIC</title>
+  <link rel="icon" href="../../resources/img/icon.png">
+  <link rel="stylesheet" href="../stylesheet.css">
+  <link rel="stylesheet" href="../../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../modules/collapsible/collapsible.js"></script>
+</head>
+
+<body class="main" style="height: 100%; min-height: 100%; padding: 2% 0% 2% 0%;">
+
+  <div class="container" style="height: 100%; min-height: 100%; display:flex; flex-direction:column; flex:1;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius:5px; padding:0px; height: 60px; min-height: 60px;">
+
+      <img class="logo" src="../../resources/img/animlogo.png" alt="Logo de l'application">
+
+      <div class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="../main.html">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC/blob/master/README.md">README</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC">Github</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://processing.org/tutorials/gettingstarted">Example</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../doc.html"><strong>Documentation</strong></a>
+          </li>
+
+        </ul>
+      </div>
+
+    </nav>
+
+    <div class="col-12" style="display:flex; flex:1;flex-direction:column; justify-content:center;">
+
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">IF THEN ELIF / ELSE</button>
+        <div class="content">
+          <p class="content">
+            Exécute conditionnellement un groupe d'instructions, en fonction de la valeur d'une expression.</br>
+            Syntaxe : <code>IF [expression] THEN [statements] ELIF [expression] [statements] ELSE [statements] ENDIF</code></br>
+            Exemple :</br>
+            <code class="segment">
+              IF 2 + 3 > 9 THEN PRINT(1);</br>
+              ELIF MIN(3, 2) = 5 THEN PRINT(2);</br>
+              ELSE PRINT(3);</br>
+              ENDIF;</br>
+            </code></br>
+            <b>IF [expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition.</br>
+            <b>THEN [statements] :</b> Requis. Une ou plusieurs instructions qui seront exécutées si la condition s'évalue à vrai.</br>
+            <b>ELIF [expression] [statements] :</b> Optionnel. La condition et les instructions sont requises si le <code>ELIF</code> est présent.</br>
+            <b>ELSE [statements] :</b> Optionnel. Les instructions sont requises si le <code>ELSE</code> est présent et seront exécutées si aucune des conditions précedentes n'est satisfaite.</br>
+            <b>ENDIF :</b> Requis. Met fin au bloc d'instruction <code>IF</code>.</br>
+          </p>
+        </div>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">FOR</button>
+        <div class="content">
+          <p class="content">
+            Répète un groupe d'instructions un nombre de fois spécifié.</br>
+            Syntaxe : <code>FOR ID = [expression] TO [expression] STEP Integer [statements] FEND </code></br>
+            Exemple :</br>
+            <code class="segment">
+              FOR I = 0 TO 8 STEP 2</br>
+                PRINT(I);</br>
+              FEND;</br>
+            </code></br>
+            <b>FOR ID :</b> Requis. <code>ID</code> est la variable numérique de contrôle de la boucle.</br>
+            <b>[expression] :</b> Requis. Expression numérique. La valeur initiale de <code>ID</code>.</br>
+            <b>TO [expression] :</b> Requis. Expression numérique. La valeur finale de <code>ID</code>.</br>
+            <b>STEP Integer :</b> Optionnel. Valeur du pas de la boucle.</br>
+            <b>[statements] :</b> Requis. Une ou plusieurs instructions qui seront exécutées à chaque tour de boucle.</br>
+            <b>FEND :</b> Requis. Met fin au bloc d'instruction <code>FOR</code>.</br>
+          </p>
+        </div>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">WHILE</button>
+        <div class="content">
+          <p class="content">
+            Exécute une série d'instructions tant qu'une condition donnée est vraie.</br>
+            Syntaxe : <code> WHILE [expression] DO [statements] WEND </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = 5;</br>
+              WHILE A <> 1 DO</br>
+                PRINT(A);</br>
+                A = A - 1;</br>
+              WEND;</br>
+            </code></br>
+            <b>WHILE [expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition de boucle.</br>
+            <b>DO [statements] :</b> Requis. Une ou plusieurs instructions qui seront exécutées à chaque tour de boucle.</br>
+            <b>WEND :</b> Requis. Met fin au bloc d'instruction <code>WHILE</code>.</br>
+          </p>
+        </div>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DO WHILE</button>
+        <div class="content">
+          <p class="content">
+            Répète un bloc d'instructions tant qu'une condition booléenne est vraie.</br>
+            Syntaxe : <code> DO [statements] WHILE [expression] </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = 5;</br>
+              DO </br>
+                PRINT(A);</br>
+                A = A - 1;</br>
+              WHILE A > 1;</br>
+            </code></br>
+            <b>DO [statements] :</b> Requis. Une ou plusieurs instructions répétées tant que la condition est vraie.</br>
+            <b>WHILE [expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition de boucle.</br>
+          </p>
+        </div>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">GOSUB</button>
+        <div class="content">
+          <p class="content">
+            Branche et revient d'une sous-routine.</br>
+            Syntaxe : <code> GOSUB [label] </code></br>
+            Exemple :</br>
+            <code class="segment">
+              _increase {</br>
+                A = A + 3;</br>
+                PRINT(A);</br>
+              }</br>
+              </br>
+              main {</br>
+                LET A = 0;</br>
+                WHILE A < 10 DO</br>
+                  GOSUB _increase;</br>
+                WEND;</br>
+              }</br>
+            </code></br>
+            <b>GOSUB :</b> Requis. Démarre la définition du <code>GOSUB</code></br>
+            <b>[label] :</b> Requis. Nom du la sous-routine à exécuter.</br>
+          </p>
+        </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

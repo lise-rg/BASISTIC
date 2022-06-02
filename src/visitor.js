@@ -357,18 +357,17 @@ class Visitor extends GrammarVisitor {
 
     let e2 = null;
     let e3 = null;
-
+    
     if (ctx.getChildCount() > 4) {
       e2 = this.visit(ctx.getChild(4));
       this.checkNumber();
     }
 
-    if (ctx.getChildCount() > 5) {
+    if (ctx.getChildCount() > 6) {
       e3 = this.visit(ctx.getChild(6));
       this.checkNumber();
     }
 
-    this.checkNumber();
     switch (func.toUpperCase()) {
       case 'ABS':
         result = Math.abs(e1);
