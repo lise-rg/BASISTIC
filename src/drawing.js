@@ -29,7 +29,7 @@ class DrawOutput {
     this.ctx.moveTo(x1, y1);
     this.ctx.lineTo(x2, y2);
     this.ctx.closePath();
-    this.ctx.stroke();
+    this.draw(false);
   }
 
   /**
@@ -37,9 +37,11 @@ class DrawOutput {
    * @param {number} x the position on the x axis of the square's upper left corner
    * @param {number} y the position on the y axis of the square's upper left corner
    * @param {number} size the width and height of the square
+   * @param {string} color the color in which the square will be painted
+   * @param {boolean} drawmode true if the square should be fully painted, false if it should only be outlined
    */
-  drawSquare(x, y, size, color = "black") {
-    this.drawRectangle(x, y, size, size, color);
+  drawSquare(x, y, size, rotation, color, drawmode) {
+    this.drawRectangle(x, y, size, size, rotation, color, drawmode);
   }
 
   /**
@@ -48,11 +50,29 @@ class DrawOutput {
    * @param {number} y the position on the y axis of the rectangle's upper left corner
    * @param {number} width the width of the rectangle
    * @param {number} height the height of the rectangle
+   * @param {string} color the color in which the rectangle will be painted
+   * @param {boolean} drawmode true if the rectangle should be fully painted, false if it should only be outlined
    */
-  drawRectangle(x, y, width, height, color = "black") {
-    this.ctx.fillStyle = color;
-    this.ctx.fillRect(x, y, width, height);
-    this.ctx.fillStyle = "black";
+  drawRectangle(x, y, width, height, rotation, color, drawmode) {
+    //Sets the color
+    this.setColor(color); 
+
+    //Sets the rotation
+    this.rotate(rotation, x + 0.5 * width, y + 0.5 * height);
+
+    //Draws the path
+    this.ctx.beginPath();
+    this.ctx.rect(x, y, width, height); 
+    this.ctx.closePath();
+
+    //Draws the selected path
+    this.draw(drawmode); 
+
+    //Resets the rotation
+    this.rotate(rotation * -1, x + 0.5 * width, y + 0.5 * height);
+
+    //Resets the color back to default 
+    this.resetColor(); 
   }
 
   /**
@@ -60,14 +80,29 @@ class DrawOutput {
    * @param {number} x the position on the x axis of the circle's center
    * @param {number} y the position on the y axis of the circle's center
    * @param {number} radius the radius of the circle
+   * @param {string} color the color in which the circle will be painted
+   * @param {boolean} drawmode true if the circle should be fully painted, false if it should only be outlined
    */
-  drawCircle(x, y, radius, color = "black") {
-    this.ctx.fillStyle = color;
+  drawCircle(x, y, radius, rotation, color, drawmode) {
+    //Sets the color
+    this.setColor(color); 
+
+    //Sets the rotation
+    this.rotate(rotation, x, y);
+
+    //Draws the path
     this.ctx.beginPath();
     this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
     this.ctx.closePath();
-    this.ctx.fill();
-    this.ctx.fillStyle = "black";
+
+    //Draws the selected path
+    this.draw(drawmode);
+
+    //Resets the rotation
+    this.rotate(rotation * -1, x, y);
+
+    //Resets the color back to default 
+    this.resetColor();
   }
 
   /**
@@ -75,16 +110,31 @@ class DrawOutput {
    * @param {number} x the position on the x axis of the triangle's center
    * @param {number} y the position on the y axis of the triangle's center
    * @param {number} size the size of the triangle's sides
+   * @param {string} color the color in which the triangle will be painted
+   * @param {boolean} drawmode true if the triangle should be fully painted, false if it should only be outlined
    */
-  drawTriangle(x, y, size, color = "black") {
-    this.ctx.fillStyle = color;
+  drawTriangle(x, y, size, rotation, color, drawmode) {
+    //Sets the color
+    this.setColor(color); 
+
+    //Sets the rotation
+    this.rotate(rotation, x, y);
+
+    //Draws the path
     this.ctx.beginPath();
     this.ctx.moveTo(x-(size/2), y+(size/2));
     this.ctx.lineTo(x, y-(size/2));
     this.ctx.lineTo(x+(size/2), y+(size/2));
     this.ctx.closePath();
-    this.ctx.fill();
-    this.ctx.fillStyle = "black";
+
+    //Draws the selected path
+    this.draw(drawmode);
+
+    //Resets the rotation
+    this.rotate(rotation * -1, x, y);
+
+    //Resets the color back to default 
+    this.resetColor();
   }
 
   /**
@@ -92,44 +142,46 @@ class DrawOutput {
    * @param {string} range the area to be cleared
    */
    drawClear(range) {
+    //Switch on the selected range
     switch (range) {
-      case 'all':
+      case 'all': //Clears the whole canvas
         this.ctx.clearRect(0, 0, this.width, this.height);
         break;
 
-      case 'top':
+      case 'top': //Clears the top of the canvas
         this.ctx.clearRect(0, 0, this.width, this.height/2);
         break;
 
-      case 'bottom':
+      case 'bottom': //Clears the bottom of the canvas
         this.ctx.clearRect(0, this.height/2, this.width, this.height);
         break;
 
-      case 'half-left':
+      case 'half-left': //Clears the left-half of the canvas
         this.ctx.clearRect(0, 0, this.width/2, this.height);
         break;
 
-      case 'half-right':
+      case 'half-right': //Clears the right-half of the canvas
         this.ctx.clearRect(this.width/2, 0, this.width, this.height);
         break;
 
-      case 'top-left':
+      case 'top-left': //Clears the top-left quarter of the canvas
         this.ctx.clearRect(0, 0, this.width/2, this.height/2);
         break;
           
-      case 'top-right':
+      case 'top-right': //Clears the top-right quarter of the canvas
         this.ctx.clearRect(this.width/2, 0, this.width, this.height/2);
         break;
         
-      case 'bottom-left':
+      case 'bottom-left': //Clears the bottom-left quarter of the canvas
         this.ctx.clearRect(0, this.height/2, this.width/2, this.height);
         break;
         
-      case 'bottom-right':
+      case 'bottom-right': //Clears the bottom-right quarter of the canvas
         this.ctx.clearRect(this.width/2, this.height/2, this.width, this.height);
         break;        
 
-      default:
+      default: //Failsafe case, this technically should never be reached
+        Error("Error: Unrecognized range to clear the canvas.");
         break;
     }
     
@@ -144,5 +196,47 @@ class DrawOutput {
    */
   drawClearArea(x1, y1, x2, y2) {
     this.ctx.clearRect(x1, y1, x2, y2);
+  }
+
+  /**
+   * sets the fill and stroke colors to the desired one (defaults to black)
+   * @param {string} color the color to be set
+   */
+  setColor(color = "black") {
+    this.ctx.fillStyle = color;
+    this.ctx.strokeStyle = color;
+  }
+
+  /**
+   * resets the fill and stroke colors back to black
+   * @param {string} color the color to be set
+   */
+  resetColor() {
+    this.ctx.strokeStyle = "black";
+    this.ctx.fillStyle = "black";
+  }
+
+  /**
+   * set the canvas up to rotate the next shape that is drawn
+   * @param {number} angle the angle of rotation in degrees
+   */
+  rotate(angle, offsetX, offsetY) {
+    this.ctx.translate(offsetX, offsetY); 
+    this.ctx.rotate((Math.PI / 180) * angle);
+    this.ctx.translate(-offsetX, -offsetY); 
+  }
+
+  /**
+   * draws a previously defined shape according to the drawmode
+   * @param {boolean} drawmode true if the shape should be fully painted, false if it should only be outlined 
+   */
+  draw(drawmode = true) {
+    if (drawmode) { 
+      this.ctx.fill(); 
+    }
+    else { 
+      this.ctx.stroke(); 
+    }
+    this.ctx.closePath();
   }
 }
