@@ -881,8 +881,12 @@ class Visitor extends GrammarVisitor {
     //Gets and parses the y2 position, and checks if the value is valid
     let y2 = parseInt(this.visit(ctx.y2), 10);
     this.checkNumber();
+    
+    //Gets color, and checks if the value is valid
+    let color = String(this.visit(ctx.color));
+    this.checkString();
 
-    this.drawOut.drawLine(x1, y1, x2, y2);
+    this.drawOut.drawLine(x1, y1, x2, y2, color);
   }
 
   /**

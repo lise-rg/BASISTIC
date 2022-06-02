@@ -24,12 +24,21 @@ class DrawOutput {
    * @param {number} x2 the position on the x axis of the line's end
    * @param {number} y2 the position on the y axis of the line's end
    */
-  drawLine(x1, y1, x2, y2) {
+  drawLine(x1, y1, x2, y2, color) {
+    //Sets the color
+    this.setColor(color); 
+    
+    //Draws the path
     this.ctx.beginPath();
     this.ctx.moveTo(x1, y1);
     this.ctx.lineTo(x2, y2);
     this.ctx.closePath();
+
+    //Draws the selected path
     this.draw(false);
+    
+    //Resets the color back to default 
+    this.resetColor(); 
   }
 
   /**
