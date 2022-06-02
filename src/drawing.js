@@ -16,9 +16,39 @@ class DrawOutput {
     this.width = this.canvas.width;
     this.height = this.canvas.height;
   }
-   
+  
   /**
-   * checks the types and passes the values to the DrawOutput class to draw the line
+   * draws text onto the canvas at the specified position
+   * @param {string} text the text to be drawn on the canvas
+   * @param {number} x the position on the x axis of the upper left corner of the text
+   * @param {number} y the position on the y axis of the upper left corner of the text
+   * @param {string} font the font in which to draw the text
+   * @param {number} maxWidth the maximum width the text can take (optional)
+   */
+   drawText(text, x, y, font, drawmode, maxWidth = -1) {
+    this.textBaseline = "top";
+    this.ctx.font = font;
+
+    if (maxWidth !== -1) {
+      if (drawmode) {
+        this.ctx.fillText(text, x, y, maxWidth);
+      }
+      else {
+        this.ctx.strokeText(text, x, y, maxWidth);
+      }
+    }
+    else {
+      if (drawmode) {
+        this.ctx.fillText(text, x, y);
+      }
+      else {
+        this.ctx.strokeText(text, x, y);
+      }
+    }
+  }
+
+  /**
+   * draws a line onto the canvas with the specified color
    * @param {number} x1 the position on the x axis of the line's start
    * @param {number} y1 the position on the y axis of the line's start
    * @param {number} x2 the position on the x axis of the line's end
@@ -36,7 +66,7 @@ class DrawOutput {
 
     //Draws the selected path
     this.draw(false);
-    
+
     //Resets the color back to default 
     this.resetColor(); 
   }
