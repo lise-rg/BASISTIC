@@ -30,6 +30,8 @@ class Visitor extends GrammarVisitor {
     this.varDict.add('PI', 'real', Math.PI, false);
     this.varDict.add('SCREEN_W', 'integer', 480, false);
     this.varDict.add('SCREEN_H', 'integer', 360, false);
+    this.varDict.add('true', 'integer', 1, false);
+    this.varDict.add('false', 'integer', 0, false);
   }
 
   /**
@@ -862,6 +864,42 @@ class Visitor extends GrammarVisitor {
   /***************************************************************************************************/
   /***		Drawing functions                                                                        ***/
   /***************************************************************************************************/
+  
+  visitDrawtextStatement(ctx) {
+    //Gets and parses the x2 position, and checks if the value is valid
+    let text = String(this.visit(ctx.text));
+    this.checkString();
+
+    //Gets and parses the x1 position, and checks if the value is valid
+    let x = parseInt(this.visit(ctx.x), 10);
+    this.checkNumber();
+
+    //Gets and parses the y1 position, and checks if the value is valid
+    let y = parseInt(this.visit(ctx.y), 10);
+    this.checkNumber();
+
+    //Gets and parses the x2 position, and checks if the value is valid
+    let font = String(this.visit(ctx.font));
+    this.checkString();
+
+    //Gets the drawing mode, and checks if the value is valid
+    let drawmode = this.visit(ctx.drawmode);
+    this.checkNumber();
+    if (drawmode > 0) { drawmode = true; }
+    else { drawmode = false; }
+
+    //Gets and parses the y2 position, and checks if the value is valid
+    let maxWidth = -1;
+    if (ctx.maxWidth !== null) {
+      maxWidth = parseInt(this.visit(ctx.maxWidth), 10);
+      this.checkNumber();
+      if (maxWidth < 0) {
+        maxWidth = -1;
+      }
+    }
+
+    this.drawOut.drawText(text, x, y, font, drawmode, maxWidth);
+  }
 
   visitDrawlineStatement(ctx) {
 
@@ -880,8 +918,12 @@ class Visitor extends GrammarVisitor {
     //Gets and parses the y2 position, and checks if the value is valid
     let y2 = parseInt(this.visit(ctx.y2), 10);
     this.checkNumber();
+    
+    //Gets color, and checks if the value is valid
+    let color = String(this.visit(ctx.color));
+    this.checkString();
 
-    this.drawOut.drawLine(x1, y1, x2, y2);
+    this.drawOut.drawLine(x1, y1, x2, y2, color);
   }
 
   /**

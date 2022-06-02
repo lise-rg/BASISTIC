@@ -23,23 +23,24 @@ statements:     statement ';' (statements)?
                 ;
 
 statement   : 
-                'DIM' ident=ID '(' list=integerList ')'                                                                                                              #dimStatement
-                | 'FOR' ident=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'                                                          #forStatement
-                | 'GOSUB' label                                                                                                                                      #gosubStatement
-                | 'IF' cond=expression 'THEN' st=statements (alt=alternatives)? 'ENDIF'                                                                              #ifStatement
-                | 'WHILE' expression 'DO' statements 'WEND'                                                                                                          #whileStatement
-                | 'DO' statements 'WHILE' expression                                                                                                                 #doWhileStatement
-                | 'INPUT' '(' idList ')'                                                                                                                             #inputStatement
-                | 'PRINT' '(' printList ')'                                                                                                                          #printStatement
-                | 'DRAWLINE' '(' x1=expression ',' y1=expression ',' x2=expression ',' y2=expression ')'                                                             #drawlineStatement
+                'DIM' ident=ID '(' list=integerList ')'                                                                                                                                      #dimStatement
+                | 'FOR' ident=ID '=' expression 'TO' expression ('STEP' step=Integer)? st=statements 'FEND'                                                                                  #forStatement
+                | 'GOSUB' label                                                                                                                                                              #gosubStatement
+                | 'IF' cond=expression 'THEN' st=statements (alt=alternatives)? 'ENDIF'                                                                                                      #ifStatement
+                | 'WHILE' expression 'DO' statements 'WEND'                                                                                                                                  #whileStatement
+                | 'DO' statements 'WHILE' expression                                                                                                                                         #doWhileStatement
+                | 'INPUT' '(' idList ')'                                                                                                                                                     #inputStatement
+                | 'PRINT' '(' printList ')'                                                                                                                                                  #printStatement
+                | 'DRAWTEXT' '(' text=expression ',' x=expression ',' y=expression ',' font=expression ',' drawmode=expression (',' maxWidth=expression)? ')'                                #drawtextStatement
+                | 'DRAWLINE' '(' x1=expression ',' y1=expression ',' x2=expression ',' y2=expression ',' color=expression ')'                                                                #drawlineStatement
                 | 'DRAWRECT' '(' x=expression ',' y=expression ',' width=expression ',' height=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'           #drawrectStatement
                 | 'DRAWSQUARE' '(' x=expression ',' y=expression ',' size=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'                                #drawsquareStatement
                 | 'DRAWCIRCLE' '(' x=expression ',' y=expression ',' radius=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'                              #drawcircleStatement
                 | 'DRAWTRIANGLE' '(' x=expression ',' y=expression ',' size=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'                              #drawtriangleStatement
-                | 'DRAWCLEAR' '(' range=expression ')'                                                                                                                     #drawclearStatement
-                | 'DRAWCLEARAREA' '(' x1=expression ',' y1=expression ',' x2=expression ',' y2=expression ')'                                                                    #drawclearareaStatement
-		            | ('LET')? ident=ID '=' exp=expression                                                                                                               #idStatement
-                | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                                                                                  #arrayStatement
+                | 'DRAWCLEAR' '(' range=expression ')'                                                                                                                                       #drawclearStatement
+                | 'DRAWCLEARAREA' '(' x1=expression ',' y1=expression ',' x2=expression ',' y2=expression ')'                                                                                #drawclearareaStatement
+		            | ('LET')? ident=ID '=' exp=expression                                                                                                                                       #idStatement
+                | ('LET')? array=ID '(' index=expressionList ')' '=' exp=expression                                                                                                          #arrayStatement
               	;
 
 alternatives:   'ELIF' cond=expression 'THEN' elifst=statements (alt=alternatives)?                                                                 #elifAlternative

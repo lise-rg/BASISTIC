@@ -3,7 +3,7 @@ _drawbg {
   b = 128 * sin(dtr(bgcolphi)) + 128;
   for j = 0 to SCREEN_H
     bgcol = rgb(r, j * (255 / SCREEN_H), b);
-    drawrect(0, j, SCREEN_W, j + 1, bgcol);
+    drawrect(0, j, SCREEN_W, j + 1, 0, bgcol, 1);
   fend;
   
   bgcolphi = (bgcolphi + 3) % 360;
@@ -79,7 +79,7 @@ update {
     
     fgcol = rgb(ballcol(i, 0), ballcol(i, 1), ballcol(i, 2));
     
-    drawcircle(x, y, radius, fgcol);
+    drawcircle(x, y, radius, 0, fgcol, 1);
     
     ballx(i) = x;
     bally(i) = y;
