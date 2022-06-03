@@ -34,6 +34,10 @@ class Visitor extends GrammarVisitor {
     this.varDict.add('false', 'integer', 0, false);
   }
 
+  stop() {
+    clearInterval(drawLoopInterval);
+  }
+
   /**
    * prints an error message and halts the execution of the interpreter
    * @param {string} msg

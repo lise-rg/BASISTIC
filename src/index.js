@@ -66,6 +66,16 @@ window.onload = function () {
     }
   );
 
+  $('#stop-button').click(
+    function () {
+
+      //Stops the interpretation
+      visitor.stop();
+
+      outConsole.print('Stopped.');
+    }
+  );
+
   // Attach a listener on the "Upload file" button
   $('#import-button').change(
     function (filelist) {
