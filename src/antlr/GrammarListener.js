@@ -104,6 +104,15 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by GrammarParser#playStatement.
+	enterPlayStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by GrammarParser#playStatement.
+	exitPlayStatement(ctx) {
+	}
+
+
 	// Enter a parse tree produced by GrammarParser#drawtextStatement.
 	enterDrawtextStatement(ctx) {
 	}

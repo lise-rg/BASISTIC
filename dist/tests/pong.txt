@@ -25,7 +25,10 @@ _moveBall {
     
   endif;
   
-  if ball_x < 0 or ball_x > SCREEN_W then gosub _reset;
+  if ball_x < 0 or ball_x > SCREEN_W then 
+    play("okay.mp3", 50);
+    gosub _reset;
+    
   endif;
 }
 
@@ -70,10 +73,12 @@ _reset {
 _collision {
   if ball_x - ball_rad > left_x and ball_x - ball_rad < left_x + paddle_w and
   ball_y + ball_rad > left_y  and ball_y - ball_rad < left_y + paddle_h then
+    play("hitmark.mp3", 50);
     ball_x = left_x + paddle_w + ball_rad;
     ball_dir = rnd(90) - 45;
   elif ball_x + ball_rad > right_x and ball_x - ball_rad < right_x + paddle_w and
   ball_y + ball_rad > right_y and ball_y - ball_rad < right_y + paddle_h then
+    play("hitmark.mp3", 50);
     ball_x = right_x - ball_rad;
     ball_dir = rnd(90) + 135;
   endif;
