@@ -180,6 +180,7 @@ class Visitor extends GrammarVisitor {
     this.drawLoop = ctx.drawloop;
 
     if (this.drawLoop !== null) {
+      this.keyboardListener.clearKeys();
       drawLoopInterval = setInterval(this.updateDrawing.bind(this), 20);
     }
     else {

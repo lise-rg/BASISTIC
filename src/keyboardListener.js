@@ -6,6 +6,11 @@ class KeyboardListener {
     this.releasedKeys = [];
   }
 
+  clearKeys() {
+    this.pressedKeys = [];
+    this.releasedKeys = [];
+  }
+
   updatePressedKeys(event) {
     let key = event.key;
     this.pressedKeys[key] = true;

@@ -1,0 +1,133 @@
+_drawChecker {
+  col = 0;
+  
+  for i = 0 to width
+    col = i % 2;
+    for j = 0 to height
+      if col % 2 = 0 then
+        drawsquare(i * size, j * size, size, 0, "#beff64", 1);
+      else
+        drawsquare(i * size, j * size, size, 0, "#a6e056", 1);
+      endif;
+      col = col + 1;
+    fend;
+  fend;
+}
+
+_drawObjects {
+  for i = 0 to tail + 1
+    drawsquare(snake_x(i) * size, snake_y(i) * size, size, 0, rgb(0, i * (255 / tail), 255), 1);
+  fend;
+  
+  drawsquare(fruit_x * size, fruit_y * size, size, 0, "red", 1);
+}
+
+_isSpaceFree {
+  free = 1;
+  for i = 0 to tail + 1
+    if fruit_x = snake_x(i) and fruit_y = snake_y(i) then
+      free = 0;
+    endif;
+  fend;
+}
+
+_getFruit {
+  do
+    fruit_x = rnd(width);
+    fruit_y = rnd(height);
+    gosub _isSpaceFree;
+  while free = 0;
+}
+
+_moveSnake {
+
+  if keypressed("ArrowUp") and dir <> 3 then 
+    dir = 1;
+  elif keypressed("ArrowRight") and dir <> 4 then
+    dir = 2;
+  elif keypressed("ArrowDown") and dir <> 1 then
+    dir = 3;
+  elif keypressed("ArrowLeft") and dir <> 2 then
+    dir = 4;
+  endif;
+  
+  if dir <> 0 then
+  
+    tail_x = snake_x(tail);
+    tail_y = snake_y(tail);
+  
+    for i = 0 to tail
+      snake_x(tail - i) = snake_x(tail - (i + 1));
+      snake_y(tail - i) = snake_y(tail - (i + 1));
+    fend;
+  
+    if dir = 1 then
+      snake_y(0) = snake_y(0) - 1;
+    elif dir = 2 then
+      snake_x(0) = snake_x(0) + 1;
+    elif dir = 3 then
+      snake_y(0) = snake_y(0) + 1;
+    elif dir = 4 then
+      snake_x(0) = snake_x(0) - 1;
+    endif;
+    
+    for i = 1 to tail + 1
+      if snake_x(i) = snake_x(0) and snake_y(i) = snake_y(0) then
+        print("Game Over.", "Score : " : str(score));
+        over = 1;
+      endif;
+    fend;
+    
+    if snake_x(0) < 0 or snake_x(0) >= width or
+      snake_y(0) < 0 or snake_y(0) >= height then
+        print("Game Over.", "Score : " : str(score));
+        over = 1;
+    endif;
+    
+    if snake_x(0) = fruit_x and snake_y(0) = fruit_y and tail < 99 then
+      tail = tail + 1;
+      snake_x(tail) = tail_x;
+      snake_y(tail) = tail_y;
+      score = score + 1;
+      gosub _getFruit;
+    endif;
+    
+  endif;
+}
+
+main {
+
+  timer = 0;
+  over = 0;
+  
+  score = 0;
+
+  size = 20;
+  width = 24;
+  height = 18;
+  
+  dir = 0; // 0 = none, 1 = up, 2 = right, 3 = down, 4 = left
+  
+  dim snake_x(100);
+  dim snake_y(100);
+  
+  snake_x(0) = 3; snake_y(0) = 8;
+  snake_x(1) = 2; snake_y(1) = 8;
+  
+  tail = 1;
+  
+  fruit_x = 10;
+  fruit_y = 8;
+}
+
+update {
+
+  if timer % 5 = 0 and not over then
+    gosub _moveSnake;
+  endif;
+
+  gosub _drawChecker;
+  gosub _drawObjects;
+  
+  timer = (timer + 1) % 50;
+}
