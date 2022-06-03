@@ -147,21 +147,23 @@
             labels veuillez vous référer à l'onglet label de la documentation.</p>
 
             <p>Supprimez ce que vous avez écrit précedement dans la zone de texte et essayer le programme suivant :</p>
-
-            <p>main {
-                let phase = 0;
-            }
-
-            update {
-              DRAWCLEAR("all");
-              FOR i = 0 TO 10
-                radians = ((phase + i * 36) / 180) * 3.1415;
-                y = 360/2 + 80 * SIN(radians);
-                DRAWCIRCLE(i * 48 + 24, y, 20, "lightblue");
-              FEND;
-              phase = (phase + 8) % 360;
-              ENDIF;
-            }</p>
+            
+            <code class="segment">
+              main {</br>
+                let phase = 0;</br>
+              }</br>
+              </br>
+              update {</br>
+                DRAWCLEAR("all");</br>
+                FOR i = 0 TO 10</br>
+                  radians = ((phase + i * 36) / 180) * 3.1415;</br>
+                  y = 360/2 + 80 * SIN(radians);</br>
+                  DRAWCIRCLE(i * 48 + 24, y, 20, "lightblue");</br>
+                FEND;</br>
+                phase = (phase + 8) % 360;</br>
+                ENDIF;</br>
+              }</br>
+            </code>
 
             <p>Les détails de l'implémentation du code ne seront pas expliqués sur cette page mais vous pourrez retrouver tous les détails du 
             fonctionnement dans la documentation. Pour l'instant, essayer simplement de lancer l'exécution du code. Vous devriez obtenir 
