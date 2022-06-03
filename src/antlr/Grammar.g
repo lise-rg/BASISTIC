@@ -119,20 +119,20 @@ function:   intFunction
             | strFunction
             ;
 
-intFunction:  'ABS' '(' expression ')'                                                                  
+intFunction:  'LN' '(' expression ')'                                                                  
+            | 'ABS' '(' expression ')'                                                                
             | 'ATN' '(' expression ')'                                                                      
             | 'COS' '(' expression ')'                                                                     
             | 'EXP' '(' expression ')'                                                                                                   
             | 'INT' '(' expression ')'                                                                    
-            | 'LN' '(' expression ')'                                                                
             | 'RND' '(' expression ')'                                                                   
             | 'SIN' '(' expression ')'                                                                  
-            | 'SQR' '(' expression ')'                                                                   
             | 'TAN' '(' expression ')'
             | 'LOG' '(' expression ')'
             | 'DTR' '(' expression ')'
             | 'RTD' '(' expression ')'
             | 'STR' '(' expression ')'
+            | 'SQRT' '(' expression ')'                                                                   
             | 'GCD' '(' expression ',' expression ')'    
             | 'MIN' '(' expression ',' expression ')'
             | 'MAX' '(' expression ',' expression ')'

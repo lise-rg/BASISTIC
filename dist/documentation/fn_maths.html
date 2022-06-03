@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>BASISTIC</title>
+  <link rel="icon" href="../../resources/img/icon.png">
+  <link rel="stylesheet" href="../stylesheet.css">
+  <link rel="stylesheet" href="../../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../modules/collapsible/collapsible.js"></script>
+</head>
+
+<body class="main" style="height: 100%; min-height: 100%; padding: 2% 0% 2% 0%;">
+
+  <div class="container" style="height: 100%; min-height: 100%; display:flex; flex-direction:column; flex:1;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius:5px; padding:0px; height: 60px; min-height: 60px;">
+
+      <img class="logo" src="../../resources/img/animlogo.png" alt="Logo de l'application">
+
+      <div class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="../main.html">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC/blob/master/README.md">README</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC">Github</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://processing.org/tutorials/gettingstarted">Example</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../doc.html"><strong>Documentation</strong></a>
+          </li>
+
+        </ul>
+      </div>
+
+    </nav>
+
+    <div class="col-12" style="flex:1;flex-direction:column; justify-content:center;">
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">EXP</button>
+        <div class="content">
+          <p class="content">
+            Retourne l'exponentielle d'un nombre donné.</br>
+            Syntaxe : <code> EXP ( [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = EXP(0);</br>
+              PRINT(A);</br>
+            </code></br>
+            <b>EXP :</b> Requis. Démarre la définition de la méthode <code>EXP</code>.</br>
+            <b>[expression] :</b> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+          </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">INT</button>
+        <div class="content">
+          <p class="content">
+            Retourne la partie entière d'un nombre donné.</br>
+            Syntaxe : <code> INT ( [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = INT(-3.5);</br>
+              PRINT(A);</br>
+            </code></br>
+            <strong>INT :</strong> Requis. Démarre la définition de la méthode <code>INT</code>.</br>
+            <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+          </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">LN</button>
+        <div class="content">
+          <p class="content">
+            Retourne le logarithme népérien d'un nombre donné.</br>
+            Syntaxe : <code> LN ( [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = LN(e);</br>
+              PRINT(A);</br>
+            </code></br>
+            <strong>LN :</strong> Requis. Démarre la définition de la méthode <code>LN</code>.</br>
+            <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+          </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">LOG</button>
+        <div class="content">
+          <p class="content">
+            Retourne le logarithme en base 10 d'un nombre donné.</br>
+            Syntaxe : <code> LOG ( [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = LOG(20);</br>
+              PRINT(A);</br>
+            </code></br>
+            <strong>LOG :</strong> Requis. Démarre la définition de la méthode <code>LOG</code>.</br>
+            <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+          </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">RND</button>
+        <div class="content">
+          <p class="content">
+            Retourne un nombre aléatoire compris entre 0 et le nombre donné en paramètre.</br>
+            Syntaxe : <code> RND ( [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = RND(10);</br>
+              PRINT(A);</br>
+            </code></br>
+            <strong>RND :</strong> Requis. Démarre la définition de la méthode <code>RND</code>.</br>
+            <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+          </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">SQRT</button>
+        <div class="content">
+          <p class="content">
+            Retourne la racine carrée d'un nombre donné.</br>
+            Syntaxe : <code> SQRT ( [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = SQRT(16);</br>
+              PRINT(A);</br>
+            </code></br>
+            <strong>SQRT :</strong> Requis. Démarre la définition de la méthode <code>SQRT</code>.</br>
+            <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+          </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">MIN</button>
+        <div class="content">
+          <p class="content">
+            Retourne la valeur minimale entre deux nombres donnés.</br>
+            Syntaxe : <code> MIN ( [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = MIN(-3.5);</br>
+              PRINT(A);</br>
+            </code></br>
+            <strong>MIN :</strong> Requis. Démarre la définition de la méthode <code>MIN</code>.</br>
+            <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+          </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">MAX</button>
+      <div class="content">
+        <p class="content">
+          Retourne la valeur maximale entre deux nombres donnés.</br>
+          Syntaxe : <code> MAX ( [expression] , [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = MAX(-3.5, 9);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>MAX :</strong> Requis. Démarre la définition de la méthode <code>MAX</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DTR</button>
+      <div class="content">
+        <p class="content">
+          Retourne la valeur en radian d'un nombre donné en degré.</br>
+          Syntaxe : <code> DTR ( [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = DTR(90);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>DTR :</strong> Requis. Démarre la définition de la méthode <code>DTR</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">RTD</button>
+      <div class="content">
+        <p class="content">
+          Retourne la valeur en degré d'un nombre donné en radian.</br>
+          Syntaxe : <code> RTD ( [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = RTD(0.2);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>RTD :</strong> Requis. Démarre la définition de la méthode <code>RTD</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">ABS</button>
+      <div class="content">
+        <p class="content">
+          Retourne la valeur absolue d'un nombre donné.</br>
+          Syntaxe : <code> ABS ( [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = ABS(-3.5);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>ABS :</strong> Requis. Démarre la définition de la méthode <code>ABS</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">ATN</button>
+      <div class="content">
+        <p class="content">
+          Retourne l'arctangente d'un nombre donné sous la forme d'une valeur comprise entre -PI/2 et PI/2 radians.</br>
+          Syntaxe : <code> ATN ( [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = ATN(-PI/2);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>ATN :</strong> Requis. Démarre la définition de la méthode <code>ATN</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">TAN</button>
+      <div class="content">
+        <p class="content">
+          Retourne la tangente d'un nombre donné.</br>
+          Syntaxe : <code> TAN ( [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = TAN(1);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>TAN :</strong> Requis. Démarre la définition de la méthode <code>TAN</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">COS</button>
+      <div class="content">
+        <p class="content">
+          Retourne le cosinus d'un nombre donné.</br>
+          Syntaxe : <code> COS ( [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = COS(PI/2);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>COS :</strong> Requis. Démarre la définition de la méthode <code>COS</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">SIN</button>
+      <div class="content">
+        <p class="content">
+          Retourne le sinus d'un nombre donné.</br>
+          Syntaxe : <code> SIN ( [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = SIN(-PI/2);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>SIN :</strong> Requis. Démarre la définition de la méthode <code>SIN</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">GCD</button>
+      <div class="content">
+        <p class="content">
+          Retourne le PGCD de deux nombres donnés.</br>
+          Syntaxe : <code> PGCD ( [expression] , [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = GCD(221, 782);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>GCD :</strong> Requis. Démarre la définition de la méthode <code>GCD</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">STR</button>
+      <div class="content">
+        <p class="content">
+          Retourne une String du nombre donné.</br>
+          Syntaxe : <code> STR ( [expression] ) </code></br>
+          Exemple :</br>
+          <code class="segment">
+            LET A = STR(3 + 4);</br>
+            PRINT(A);</br>
+          </code></br>
+          <strong>STR :</strong> Requis. Démarre la définition de la méthode <code>STR</code>.</br>
+          <strong>[expression] :</strong> Requis. Nombre entier, réel en ou toute expression numérique valide.</br>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
