@@ -32,7 +32,7 @@ statement   :
                 | 'INPUT' '(' idList ')'                                                                                                                                                     #inputStatement
                 | 'PRINT' '(' printList ')'                                                                                                                                                  #printStatement
                 | 'PLAY' '(' filename=expression ',' volume=expression ')'                                                                                                                                         #playStatement
-                | 'DRAWTEXT' '(' text=expression ',' x=expression ',' y=expression ',' font=expression ',' drawmode=expression (',' maxWidth=expression)? ')'                                #drawtextStatement
+                | 'DRAWTEXT' '(' text=expression ',' x=expression ',' y=expression ',' font=expression ',' color=expression ',' drawmode=expression (',' maxWidth=expression)? ')'                                #drawtextStatement
                 | 'DRAWLINE' '(' x1=expression ',' y1=expression ',' x2=expression ',' y2=expression ',' color=expression ')'                                                                #drawlineStatement
                 | 'DRAWRECT' '(' x=expression ',' y=expression ',' width=expression ',' height=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'           #drawrectStatement
                 | 'DRAWSQUARE' '(' x=expression ',' y=expression ',' size=expression ',' rotation=expression ',' color=expression ',' drawmode=expression ')'                                #drawsquareStatement

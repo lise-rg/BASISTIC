@@ -904,6 +904,10 @@ class Visitor extends GrammarVisitor {
     let font = String(this.visit(ctx.font));
     this.checkString();
 
+    //Gets color, and checks if the value is valid
+    let color = String(this.visit(ctx.color));
+    this.checkString();
+
     //Gets the drawing mode, and checks if the value is valid
     let drawmode = this.visit(ctx.drawmode);
     this.checkNumber();
@@ -920,7 +924,7 @@ class Visitor extends GrammarVisitor {
       }
     }
 
-    this.drawOut.drawText(text, x, y, font, drawmode, maxWidth);
+    this.drawOut.drawText(text, x, y, font, color, drawmode, maxWidth);
   }
 
   visitDrawlineStatement(ctx) {

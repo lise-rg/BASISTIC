@@ -25,9 +25,10 @@ class DrawOutput {
    * @param {string} font the font in which to draw the text
    * @param {number} maxWidth the maximum width the text can take (optional)
    */
-   drawText(text, x, y, font, drawmode, maxWidth = -1) {
+   drawText(text, x, y, font, color, drawmode, maxWidth = -1) {
     this.textBaseline = "top";
     this.ctx.font = font;
+    this.setColor(color); 
 
     if (maxWidth !== -1) {
       if (drawmode) {
@@ -45,6 +46,8 @@ class DrawOutput {
         this.ctx.strokeText(text, x, y);
       }
     }
+
+    this.resetColor();
   }
 
   /**

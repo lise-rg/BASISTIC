@@ -1,0 +1,107 @@
+_playerMovement {
+
+  if move = 1 then
+    player_y = player_y + player_yspd;
+    
+    if player_yspd < 12 then
+      player_yspd = player_yspd + 1;
+    endif;
+  endif;
+  
+  if player_y - player_rad > SCREEN_H then
+    move = 2;
+  endif;
+
+  if keypressed("ArrowUp") and player_y > 0 and player_yspd > -4 then 
+    if move = 0 then 
+      move = 1;
+    endif;
+    player_yspd = -6;
+  endif;
+}
+
+_pipeUpdate {
+
+  if move = 1 then
+    pipe_x = pipe_x - 2;
+  endif;
+  
+  if pipe_x < -pipe_w then
+    top_h = 40 + rnd((SCREEN_H - 80) - space_size);
+    pipe_x = SCREEN_W;
+  endif;
+  
+  // Check collisions
+  if player_x + player_rad > pipe_x and player_x - player_rad < pipe_x + pipe_w
+  and (player_y - player_rad < top_h or player_y + player_rad > top_h + space_size) then
+    move = 2;
+  endif;
+  
+  if player_x = pipe_x + pipe_w + 10 then
+    score = score + 1;
+  endif;
+  
+  // Top pipe drawing
+  drawrect(pipe_x - 2, 0, pipe_w + 4, top_h + 2, 0, "black", 1);
+  drawrect(pipe_x, 0, pipe_w, top_h, 0, "#00e348", 1);
+  
+  drawrect(pipe_x - 7, top_h - 22, pipe_w + 14, 24, 0, "black", 1);
+  drawrect(pipe_x - 5, top_h - 20, pipe_w + 10, 20, 0, "#00e348", 1);
+  
+  // Bottom pipe drawing
+  drawrect(pipe_x - 2, top_h + space_size - 2, pipe_w + 4, bottom_h + 2, 0, "black", 1);
+  drawrect(pipe_x, top_h + space_size, pipe_w, bottom_h, 0, "#00e348", 1);
+  
+  drawrect(pipe_x - 7, top_h + space_size - 2, pipe_w + 14, 24, 0, "black", 1);
+  drawrect(pipe_x - 5, top_h + space_size, pipe_w + 10, 20, 0, "#00e348", 1);
+}
+
+main {
+
+  move = 0;
+  
+  score = 0;
+
+  player_x = 100;
+  player_y = 100;
+  player_rad = 10;
+  
+  player_yspd = 0;
+  
+  dim pipes(2, 2);
+  pipe_id = 0;
+  
+  pipe_w = 60;
+  space_size = 90;
+  bottom_h = 0;
+  
+  for pipe_id = 0 to 2
+    pipes(pipe_id, 0) = SCREEN_W + pipe_id * 270;
+    pipes(pipe_id, 1) = 40 + rnd((SCREEN_H - 80) - space_size);
+  fend;
+}
+
+update {
+
+  gosub _playerMovement;
+
+  drawrect(0, 0, SCREEN_W, SCREEN_H, 0, "#4287f5", 1);
+  
+  for pipe_id = 0 to 2
+    pipe_x = pipes(pipe_id, 0);
+    top_h = pipes(pipe_id, 1);
+    bottom_h = SCREEN_H - space_size - top_h;
+    gosub _pipeUpdate;
+    pipes(pipe_id, 0) = pipe_x;
+    pipes(pipe_id, 1) = top_h;
+  fend;
+  
+  drawcircle(player_x, player_y, player_rad + 2, 0, "black", 1);
+  drawcircle(player_x, player_y, player_rad, 0, "yellow", 1);
+  
+  drawtext(str(score), 20, 50, "20px Arial", "white", 1);
+  
+  if move = 2 then
+    drawtext("GAME OVER", SCREEN_W / 2 - 160, SCREEN_H / 2, "50px Arial", "red", 1);
+  endif;
+}
