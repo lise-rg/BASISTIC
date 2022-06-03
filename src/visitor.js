@@ -1,7 +1,8 @@
 export { Visitor };
+
 import { VariableDict } from './variableDict.js';
 import { DrawOutput } from './drawing.js';
-
+import { AudioOutput } from './audio.js';
 import GrammarVisitor from './antlr/GrammarVisitor.js';
 
 var drawLoopInterval;
@@ -20,6 +21,7 @@ class Visitor extends GrammarVisitor {
     this.varDict = new VariableDict();
     this.labelDict = labelDict;
     this.drawOut = new DrawOutput();
+    this.audioOut = new AudioOutput();
 
     this.drawLoop = null;
 
@@ -863,6 +865,22 @@ class Visitor extends GrammarVisitor {
     let str = ctx.getChild(0).getText();
     str = str.substring(1, str.length - 1); // Removes the quotation marks
     return str;
+  }
+
+  /***************************************************************************************************/
+  /***		Audio functions                                                                          ***/
+  /***************************************************************************************************/
+  
+  visitPlayStatement(ctx) {
+    //Gets and parses the filename, and checks if the value is valid
+    let filename = String(this.visit(ctx.filename));
+    this.checkString();
+
+    //Gets and parses the volume, and checks if the value is valid
+    let volume = parseInt(this.visit(ctx.volume), 10);
+    this.checkNumber();
+
+    this.audioOut.playAudio(filename, volume);
   }
 
   /***************************************************************************************************/
