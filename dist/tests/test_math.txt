@@ -1,11 +1,18 @@
-PRINT(ABS(-6));     //6
-PRINT(ATN(90));     //1,55968567
-PRINT(COS(90));     //-0.44807361612
-PRINT(EXP(0));      //1
-PRINT(INT(35.5));   //35
-PRINT(LOG(20));     //1.30102999566
-PRINT(LN(10));      //2.30258509299
+main {
+PRINT(ABS(-6));        //6
+PRINT(ATN(90));        //1,55968567
+PRINT(COS(90));        //-0.44807361612
+PRINT(EXP(0));         //1
+PRINT(INT(35.5));      //35
+PRINT(LOG(20));        //1.30102999566
+PRINT(LN(10));         //2.30258509299
 PRINT(RND(10));     
-PRINT(SIN(90));     //0.8939966636
-PRINT(SQR(16));     //4
-PRINT(TAN(90));     //-1.99520041221
+PRINT(SIN(90));        //0.8939966636
+PRINT(SQRT(16));        //4
+PRINT(TAN(90));        //-1.99520041221
+PRINT(MIN(3.5, 9);     //3.5
+PRINT(MAX(3.5, 9);     //9
+PRINT(GCD(221, 782));  //17
+PRINT(DTR(90));        //1.5708
+PRINT(RTD(0.2));        //11.4592
+}

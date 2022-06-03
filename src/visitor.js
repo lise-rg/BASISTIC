@@ -395,7 +395,7 @@ class Visitor extends GrammarVisitor {
       case 'SIN':
         result = Math.sin(e1);
         break;
-      case 'SQR':
+      case 'SQRT':
         result = Math.sqrt(e1);
         break;
       case 'TAN':
