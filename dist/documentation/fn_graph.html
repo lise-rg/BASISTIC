@@ -51,43 +51,182 @@
 
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWSQUARE</button>
         <div class="content">
-          <p>DRAWSQUARE</p>
+          <p class="content">
+            Dessine un carré sur l'interface graphique.</br>
+            Syntaxe : <code> DRAWSQUARE ( [expression] , [expression] , [expression] , [expression] , [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              DRAWSQUARE(100, 100, 50, 45, "purple", 0);</br>
+            </code></br>
+            <b>DRAWSQUARE :</b> Requis. Démarre la définition de la méthode <code>DRAWSQUARE</code>.</br>
+            <b>[expression] : </b> Requis.
+            <ol type = "1">
+              <li>Expression numérique valide. x (position par rapport au bord gauche de l'interface graphique).</li>
+              <li>Expression numérique valide. y (position par rapport au bord haut de l'interface graphique).</li>
+              <li>Expression numérique valide. Taille du carré (longueur des cotés).</li>
+              <li>Expression numérique valide. Orientation du carré en degré.</li>
+              <li>String ou RGB. Couleur, nom de la couleur en String, code hexadécimal ou code couleur RGB (voir section RGB).</li>
+              <li>0 ou 1. Carré vide ou plein.</li>
+           </ol>
+          </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWCIRCLE</button>
         <div class="content">
-          <p>DRAWCIRCLE</p>
+          <p class="content">
+            Dessine un cercle sur l'interface graphique.</br>
+            Syntaxe : <code> DRAWCIRCLE ( [expression] , [expression] , [expression] , [expression] , [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              DRAWCIRCLE(100, 100, 50, 45, "purple", 0);</br>
+            </code></br>
+            <b>DRAWSQUARE :</b> Requis. Démarre la définition de la méthode <code>DRAWCIRCLE</code>.</br>
+            <b>[expression] : </b> Requis.
+            <ol type = "1">
+              <li>Expression numérique valide. x (position du centre par rapport au bord gauche de l'interface graphique).</li>
+              <li>Expression numérique valide. y (position du centre par rapport au bord haut de l'interface graphique).</li>
+              <li>Expression numérique valide. Taille du cercle (longueur du rayon).</li>
+              <li>Expression numérique valide. Orientation du cercle en degré.</li>
+              <li>String ou RGB. Couleur, nom de la couleur en String, code hexadécimal ou code couleur RGB (voir section RGB).</li>
+              <li>0 ou 1. Cercle vide ou plein.</li>
+           </ol>
+          </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWTRIANGLE</button>
         <div class="content">
-          <p>DRAWTRIANGLE</p>
+          <p class="content">
+            Dessine un triangle équilatéral sur l'interface graphique.</br>
+            Syntaxe : <code> DRAWTRIANGLE ( [expression] , [expression] , [expression] , [expression] , [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              DRAWTRIANGLE(100, 100, 50, 45, "purple", 0);</br>
+            </code></br>
+            <b>DRAWTRIANGLE :</b> Requis. Démarre la définition de la méthode <code>DRAWTRIANGLE</code>.</br>
+            <b>[expression] : </b> Requis.
+            <ol type = "1">
+              <li>Expression numérique valide. x (position du centre par rapport au bord gauche de l'interface graphique).</li>
+              <li>Expression numérique valide. y (position du centre par rapport au bord haut de l'interface graphique).</li>
+              <li>Expression numérique valide. Taille du triangle (longueur des côtés).</li>
+              <li>Expression numérique valide. Orientation du triangle en degré.</li>
+              <li>String ou RGB. Couleur, nom de la couleur en String, code hexadécimal ou code couleur RGB (voir section RGB).</li>
+              <li>0 ou 1. Triangle vide ou plein.</li>
+           </ol>
+          </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWRECTANGLE</button>
         <div class="content">
-          <p>DRAWRECTANGLE</p>
+          <p class="content">
+            Dessine un rectangle sur l'interface graphique.</br>
+            Syntaxe : <code> DRAWRECTANGLE ( [expression] , [expression] , [expression] , [expression] , [expression] , [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              DRAWRECTANGLE(100, 100, 100, 50, 45, "purple", 0);</br>
+            </code></br>
+            <b>DRAWRECTANGLE :</b> Requis. Démarre la définition de la méthode <code>DRAWRECTANGLE</code>.</br>
+            <b>[expression] : </b> Requis.
+            <ol type = "1">
+              <li>Expression numérique valide. x (position par rapport au bord gauche de l'interface graphique).</li>
+              <li>Expression numérique valide. y (position par rapport au bord haut de l'interface graphique).</li>
+              <li>Expression numérique valide. Largeur du rectangle.</li>
+              <li>Expression numérique valide. Hauteur du rectangle.</li>
+              <li>Expression numérique valide. Orientation du rectangle en degré.</li>
+              <li>String ou RGB. Couleur, nom de la couleur en String, code hexadécimal ou code couleur RGB (voir section RGB).</li>
+              <li>0 ou 1. Rectangle vide ou plein.</li>
+           </ol>
+          </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWLINE</button>
         <div class="content">
-          <p>DRAWLINE</p>
+          <p class="content">
+            Dessine une ligne sur l'interface graphique.</br>
+            Syntaxe : <code> DRAWLINE ( [expression] , [expression] , [expression] , [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              DRAWLINE(100, 100, 50, 100, "purple");</br>
+            </code></br>
+            <b>DRAWLINE :</b> Requis. Démarre la définition de la méthode <code>DRAWLINE</code>.</br>
+            <b>[expression] : </b> Requis.
+            <ol type = "1">
+              <li>Expression numérique valide. x1 (position du point de départ par rapport au bord gauche de l'interface graphique).</li>
+              <li>Expression numérique valide. y1 (position du point de départ par rapport au bord haut de l'interface graphique).</li>
+              <li>Expression numérique valide. x2 (position du point d'arrivée par rapport au bord gauche de l'interface graphique).</li>
+              <li>Expression numérique valide. y2 (position du point d'arrivée par rapport au bord haut de l'interface graphique).</li>
+              <li>String ou RGB. Couleur, nom de la couleur en String, code hexadécimal ou code couleur RGB (voir section RGB).</li>
+           </ol>
+          </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWCLEAR</button>
         <div class="content">
-          <p> DRAWCLEAR</p>
+          <p class="content">
+            Nettoyer toute, ou une zone de l'interface graphique.</br>
+            Syntaxe : <code> DRAWCLEAR ( [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              DRAWRECT(0, 0, SCREEN_W, SCREEN_H, 0, "purple", 1);</br>
+              DRAWCLEAR("half-left");</br>
+            </code></br>
+            <b>DRAWCLEAR :</b> Requis. Démarre la définition de la méthode <code>DRAWCLEAR</code>.</br>
+            <b>[expression] : </b> Requis. String. Zone à nettoyer parmi les zones suivantes : all, none, top, bottom, half_left, half-right, top-left, top-right, bottom-left, bottom-right.
+          </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWCLEARAREA</button>
         <div class="content">
-          <p>DRAWCLEARAREA</p>
+          <p class="content">
+            Nettoyer toute, ou une zone de l'interface graphique.</br>
+            Syntaxe : <code> DRAWCLEARAREA ( [expression] , [expression] , [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              DRAWRECT(0, 0, SCREEN_W, SCREEN_H, 0, "purple", 1);</br>
+              DRAWCLEARAREA(25, 25, 100, 50);</br>
+            </code></br>
+            <b>DRAWCLEARAREA :</b> Requis. Démarre la définition de la méthode <code>DRAWCLEARAREA</code>.</br>
+            <b>[expression] : </b> Requis.
+            <ol type = "1">
+              <li>Expression numérique valide. x1 (position par rapport au bord gauche de l'interface graphique).</li>
+              <li>Expression numérique valide. y1 (position par rapport au bord haut de l'interface graphique).</li>
+              <li>Expression numérique valide. x2 (position par rapport au bord gauche de l'interface graphique).</li>
+              <li>Expression numérique valide. y2 (position par rapport au bord haut de l'interface graphique).</li>
+            </ol>
+          </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWTEXT</button>
         <div class="content">
-          <p>DRAWTEXT</p>
+          <p class="content">
+            Ecrit un texte sur l'interface graphique.</br>
+            Syntaxe : <code> DRAWTEXT ( [expression] , [expression] , [expression] , [expression] , [expression] , [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              DRAWTEXT("BASISTIC", 75, 150, "20px Arial", 1, 100);</br>
+            </code></br>
+            <b>DRAWTEXT :</b> Requis. Démarre la définition de la méthode <code>DRAWTEXT</code>.</br>
+            <b>[expression] : </b> Requis.
+            <ol type = "1">
+              <li>String. Texte à afficher.</li>
+              <li>Expression numérique valide. x (position par rapport au bord gauche de l'interface graphique).</li>
+              <li>Expression numérique valide. y (position par rapport au bord haut de l'interface graphique).</li>
+              <li>String. Charactéristiques du texte (police, taille...).</li>
+              <li>String ou RGB. Couleur, nom de la couleur en String, code hexadécimal ou code couleur RGB (voir section RGB)</li>
+              <li>0 ou 1. Texte vide ou plein.</li>
+            </ol>
+            <b>[expression] : </b> Optionnel. Expression numérique valide. Largeur maximale de la zone de texte.
+          </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">RGB</button>
         <div class="content">
-          <p>RGB</p>
-        </div>
-        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">UPDATE</button>
-        <div class="content">
-          <p>RGB</p>
+          <p class="content">
+            Selection d'un couleur. Chaque paramètre (rouge, vert et bleu) définit l'intensité de la couleur sous la forme d'un entier compris entre 0 et 255.</br>
+            Syntaxe : <code> RGB ( [expression] , [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              RGB(123, 124, 250);</br>
+            </code></br>
+            <b>RGB :</b> Requis. Démarre la définition de la méthode <code>RGB</code>.</br>
+            <b>[expression] : </b> Requis.
+            <ol type = "1">
+              <li>Expression numérique valide. Intensité de la couleur rouge.</li>
+              <li>Expression numérique valide.  Intensité de la couleur verte.</li>
+              <li>Expression numérique valide.  Intensité de la couleur bleu.</li>
+            </ol>
+          </p>
         </div>
 
     </div>
