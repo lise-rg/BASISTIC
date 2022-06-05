@@ -49,13 +49,76 @@
 
     <div class="col-12" style="flex:1;flex-direction:column; justify-content:center;">
 
-        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">LABEL</button>
-        <div class="content">
-          <p>LABEL</p>
-        </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">CONSTANTE</button>
         <div class="content">
-          <p>CONSTANTE</p>
+          <p class="content">
+            Le langage BASISTIC™ contient les constantes pré-définies suivantes :</br> 
+            <ul>
+              <li>PI</li>
+              <li>SCREEN_H : hauteur de l'interface graphique.</li>
+              <li>SCREEN_W : largeur de l'interface graphique.</li>
+              <li>true : possibilité de saisir 1 ou true pour un booléen.</li>
+              <li>false : possibilité de saisir 0 ou false pour un booléen.</li>
+            </ul>
+          </p>
+        </div>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">MAIN</button>
+        <div class="content">
+          <p class="content">
+            S'exécute une unique fois lorsque l'on presse le bouton Run.</br>
+            Syntaxe : <code> main { } </code></br> 
+          </p>
+        </div>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">LABEL</button>
+        <div class="content">
+          <p class="content">
+            Sous-routine qui sera exécutée lors d'un appel avec GOSUB.</br> 
+            Syntaxe : <code> _ID { } </code>
+            <code class="segment">
+              _increase {</br>
+                A = A + 3;</br>
+                PRINT(A);</br>
+              }
+            </code></br>
+            <strong>_ :</strong> Requis. Démarre la définition du label.</br>
+            <strong>ID :</strong> Requis. String. Nom du label.</br>
+          </p>
+        </div>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">UPDATE</button>
+        <div class="content">
+          <p class="content">
+            S'exécute dès lors que la boucle main est finie et ce jusqu'à ce que l'on presse le bouton Stop.</br> 
+            Syntaxe : <code> update { } </code></br> 
+          </p>
+        </div>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">STR</button>
+          <div class="content">
+            <p class="content">
+              Retourne une String du nombre donné en paramètre.</br>
+              Syntaxe : <code> STR ( [expression] ) </code></br>
+              Exemple :</br>
+              <code class="segment">
+                LET A = STR(3 + 4);</br>
+                PRINT(A);</br>
+              </code></br>
+              <strong>STR :</strong> Requis. Démarre la définition de la méthode <code>STR</code>.</br>
+              <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
+            </p>
+        </div>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">STRCAT</button>
+        <div class="content">
+          <p class="content">
+            Concatène deux String passées en paramètre.</br>
+            Syntaxe : <code> STRCAT ( [expression] , [expression] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = STRCAT("hello ", "world");</br>
+              PRINT(A);</br>
+            </code></br>
+            <strong>STRCAT :</strong> Requis. Démarre la définition de la méthode <code>STRCAT</code>.</br>
+            <strong>[expression] :</strong> Requis. String.</br>
+            <strong>[expression] :</strong> Requis. String.</br>
+          </p>
         </div>
     </div>
 

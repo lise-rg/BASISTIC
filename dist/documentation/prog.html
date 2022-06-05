@@ -61,7 +61,8 @@
               ELSE PRINT(3);</br>
               ENDIF;</br>
             </code></br>
-            <b>IF [expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition.</br>
+            <b>IF :</b> Requis. Démarre la définition de l'instruction <code>IF</code>.</br>
+            <b>[expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition.</br>
             <b>THEN [statements] :</b> Requis. Une ou plusieurs instructions qui seront exécutées si la condition s'évalue à vrai.</br>
             <b>ELIF [expression] [statements] :</b> Optionnel. La condition et les instructions sont requises si le <code>ELIF</code> est présent.</br>
             <b>ELSE [statements] :</b> Optionnel. Les instructions sont requises si le <code>ELSE</code> est présent et seront exécutées si aucune des conditions précedentes n'est satisfaite.</br>
@@ -79,7 +80,8 @@
                 PRINT(I);</br>
               FEND;</br>
             </code></br>
-            <b>FOR ID :</b> Requis. <code>ID</code> est la variable numérique de contrôle de la boucle.</br>
+            <b>FOR :</b> Requis. Démarre la définition de la boucle <code>FOR</code>.</br>
+            <b>ID :</b> Requis. Variable numérique de contrôle de la boucle.</br>
             <b>[expression] :</b> Requis. Expression numérique. La valeur initiale de <code>ID</code>.</br>
             <b>TO [expression] :</b> Requis. Expression numérique. La valeur finale de <code>ID</code>.</br>
             <b>STEP Integer :</b> Optionnel. Valeur du pas de la boucle.</br>
@@ -100,7 +102,8 @@
                 A = A - 1;</br>
               WEND;</br>
             </code></br>
-            <b>WHILE [expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition de boucle.</br>
+            <b>WHILE :</b> Requis. Démarre la définition de l'instruction <code>WHILE</code>.</br>
+            <b>[expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition de boucle.</br>
             <b>DO [statements] :</b> Requis. Une ou plusieurs instructions qui seront exécutées à chaque tour de boucle.</br>
             <b>WEND :</b> Requis. Met fin au bloc d'instruction <code>WHILE</code>.</br>
           </p>
@@ -118,7 +121,8 @@
                 A = A - 1;</br>
               WHILE A > 1;</br>
             </code></br>
-            <b>DO [statements] :</b> Requis. Une ou plusieurs instructions répétées tant que la condition est vraie.</br>
+            <b>DO :</b> Requis. Démarre la définition de l'instruction <code>DO WHILE</code>.</br>
+            <b>[statements] :</b> Requis. Une ou plusieurs instructions répétées tant que la condition est vraie.</br>
             <b>WHILE [expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition de boucle.</br>
           </p>
         </div>
