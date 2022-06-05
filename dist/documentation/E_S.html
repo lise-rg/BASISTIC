@@ -49,25 +49,68 @@
 
     <div class="col-12" style="flex:1;flex-direction:column; justify-content:center;">
 
-        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">LIST</button>
-        <div class="content">
-          <p>LIST</p>
-        </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">PRINT</button>
         <div class="content">
-          <p>PRINT</p>
+          <p class="content">
+            Affiche le contenu passé en paramètre dans la console.</br>
+            Syntaxe : <code> PRINT ( [expression] : [expression] ) </code>
+            Exemple : </br>
+            <code class="segment">
+              PRINT("4 + 3 = " : 4+3);</br>
+            </code></br>
+            <b>PRINT :</b> Requis. Démarre la définition de la méthode <code>PRINT</code>.</br>
+            <b>[expression] :</b> Requis. Toute expression valide.</br>
+            <b>: [expression] :</b> Optionnel. Pour afficher plusieurs expressions, il suffit de les séparer par un <code>:</code>.</br>
+          </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">INPUT</button>
         <div class="content">
-          <p>INPUT</p>
+          <p class="content">
+            Permet à l'utilisateur de saisir la valeur d'une ou plusieurs variables.</br>
+            Syntaxe : <code> INPUT ( [idList] ) </code></br>
+            Exemple :</br>
+            <code class="segment">
+              LET A = 0;</br>
+              LET B = "";</br>
+              INPUT(A, B);</br>
+              PRINT(A : " " : B);</br>
+            </code></br>
+            <b>INPUT :</b> Requis. Démarre la définition de la méthode <code>INPUT</code>.</br>
+            <b>[idList] :</b> Requis. Un ou plusieurs identifiant de variables (préalablement créées) séparés par des virgules.</br>
         </div>
-        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">TAB</button>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">KEYPRESSED</button>
         <div class="content">
-          <p>TAB</p>
+          <p class="content">
+            Vrai si la touche passée en paramètre est pressée, faux sinon.</br>
+            Syntaxe : <code> KEYPRESSED ( [expression] ) </code>
+            Exemple : </br>
+            <code class="segment">
+              update {</br>
+                IF(KEYPRESSED("t")) THEN</br>
+                  PRINT("hello");</br>
+                ENDIF;</br>
+              }</br>
+            </code></br>
+            <b>KEYPRESSED :</b> Requis. Démarre la définition de la méthode <code>KEYPRESSED</code>.</br>
+            <b>[expression] :</b> Requis. String. Touche du clavier à surveiller.</br>
+          </p>
         </div>
-        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">SPC</button>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">KEYRELEASED</button>
         <div class="content">
-          <p>SPC</p>
+          <p class="content">
+            Vrai si la touche passée en paramètre vient d'être relachée, faux sinon.</br>
+            Syntaxe : <code> KEYRELEASED ( [expression] ) </code>
+            Exemple : </br>
+            <code class="segment">
+              update {</br>
+                IF(KEYPRELEASED(";")) THEN</br>
+                  PRINT("goodbye");</br>
+                ENDIF;</br>
+              }</br>
+            </code></br>
+            <b>KEYRELEASED :</b> Requis. Démarre la définition de la méthode <code>KEYRELEASED</code>.</br>
+            <b>[expression] :</b> Requis. String. Touche du clavier à surveiller.</br>
+          </p>
         </div>
 
     </div>

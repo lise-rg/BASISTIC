@@ -24,11 +24,10 @@ parfaitement recopié l'exemple : les nombres devraient être compris entre deux
 Il faut être très rigoureux vis-à-vis de la syntaxe, une simple erreur de ponctuation peut empêcher le bon fonctionnement du programme.
 
 Passons maintenant à un exemple plus intéressant.
-Un code en BASISTIC™ se décompose en plusieurs parties.
-La boucle main qui s'exécute une fois lorsque l'on presse le bouton Run, et la boucle update, qui s'exécute dès lors que la boucle main
-est finie et ce jusqu'à ce que l'on presse le bouton Stop. A cela peut s'ajouter différents sous-programme identifiés par des labels.
-Dans l'exemple qui suit, nous nous concentrerons sur l'utilisation de la boucle update, pour en savoir plus sur l'utilisation des 
-labels veuillez vous référer à l'onglet label de la documentation.
+Un code en BASISTIC™ se décompose en plusieurs parties. La boucle main qui s'exécute une fois lorsque l'on presse le bouton Run, et la 
+boucle update, qui s'exécute dès lors que la boucle main est finie et ce jusqu'à ce que l'on presse le bouton Stop. A cela peut s'ajouter 
+différents sous-programme identifiés par des labels. Dans l'exemple qui suit, nous nous concentrerons sur l'utilisation de la boucle 
+update, pour en savoir plus sur l'utilisation des labels veuillez vous référer à l'onglet label de la documentation.
 
 Supprimez ce que vous avez écrit précedement dans la zone de texte et essayer le programme suivant :
 
@@ -62,6 +61,9 @@ dans la zone de texte puis de l'exécuter. Nous avons mis plusieurs fichiers con
 La prochaine fonctionnalité est importante, il s'agit du bouton "Save". Vous le trouverez sur la droite du bouton "Parcourir".
 C'est toujours un bonne idée de sauvegarder votre progression régulièrement. Au fur et à mesure que vous avancer dans votre code, 
 sauvegarder vos différentes version afin de pouvoir garder une trace de votre avancement.
+
+Lorsque vous utilisez la boucle update, sauf indication contraire, l'interprétation ne s'arrêtera pas d'elle même. Il
+vous faudra alors appuyer sur le bouton "Stop" dès que vous souhaiterez interrompre l'interprétation.
 
 PALETTE DE COULEUR ?
 AUTRE ?
