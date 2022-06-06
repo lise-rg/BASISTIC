@@ -56,7 +56,7 @@
             Exécute conditionnellement un groupe d'instructions, en fonction de la valeur d'une expression.</br>
             Syntaxe : <code class="language-BASIC">IF [expression] THEN [statements] ELIF [expression] [statements] ELSE [statements] ENDIF</code></br>
             Exemple :</br>
-            <pre><code class="language-BASIC">
+            <pre class="segment"><code class="language-BASIC">
             IF 2 + 3 > 9 THEN PRINT(1);
             ELIF MIN(3, 2) = 5 THEN PRINT(2);
             ELSE PRINT(3);
@@ -76,7 +76,7 @@
             Répète un groupe d'instructions un nombre de fois spécifié.</br>
             Syntaxe : <code class="language-BASIC">FOR ID = [expression] TO [expression] STEP Integer [statements] FEND </code></br>
             Exemple :</br>
-            <pre><code class="language-BASIC">
+            <pre class="segment"><code class="language-BASIC">
             FOR I = 0 TO 8 STEP 2
               PRINT(I);
             FEND;
@@ -96,7 +96,7 @@
             Exécute une série d'instructions tant qu'une condition donnée est vraie.</br>
             Syntaxe : <code class="language-BASIC"> WHILE [expression] DO [statements] WEND </code></br>
             Exemple :</br>
-            <pre><code class="language-BASIC">
+            <pre class="segment"><code class="language-BASIC">
             LET A = 5;
             WHILE A <> 1 DO
               PRINT(A);
@@ -115,7 +115,7 @@
             Répète un bloc d'instructions tant qu'une condition booléenne est vraie.</br>
             Syntaxe : <code class="language-BASIC"> DO [statements] WHILE [expression] </code></br>
             Exemple :</br>
-            <pre><code class="language-BASIC">
+            <pre class="segment"><code class="language-BASIC">
             LET A = 5;
             DO
               PRINT(A);
@@ -133,7 +133,7 @@
             Branche et revient d'une sous-routine.</br>
             Syntaxe : <code class="language-BASIC"> GOSUB [label] </code></br>
             Exemple :</br>
-            <pre><code class="language-BASIC">
+            <pre class="segment"><code class="language-BASIC">
             _increase {
               A = A + 3;
               PRINT(A);
