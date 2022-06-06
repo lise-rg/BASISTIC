@@ -7,6 +7,7 @@
   <link rel="icon" href="../../resources/img/icon.png">
   <link rel="stylesheet" href="../stylesheet.css">
   <link rel="stylesheet" href="../../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../../modules/prism/prism.js"></script>
   <script type="text/javascript" src="../../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../../modules/collapsible/collapsible.js"></script>
 </head>
@@ -27,11 +28,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC/blob/master/README.md">README</a>
+            <a class="nav-link" href="https://github.com/lise-rg/BASIC/blob/master/README.md">README</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC">Github</a>
+            <a class="nav-link" href="https://github.com/lise-rg/BASIC">Github</a>
           </li>
 
           <li class="nav-item">
@@ -53,75 +54,75 @@
         <div class="content">
           <p class="content">
             Exécute conditionnellement un groupe d'instructions, en fonction de la valeur d'une expression.</br>
-            Syntaxe : <code>IF [expression] THEN [statements] ELIF [expression] [statements] ELSE [statements] ENDIF</code></br>
+            Syntaxe : <code class="language-BASIC">IF [expression] THEN [statements] ELIF [expression] [statements] ELSE [statements] ENDIF</code></br>
             Exemple :</br>
-            <code class="segment">
-              IF 2 + 3 > 9 THEN PRINT(1);</br>
-              ELIF MIN(3, 2) = 5 THEN PRINT(2);</br>
-              ELSE PRINT(3);</br>
-              ENDIF;</br>
-            </code></br>
-            <b>IF :</b> Requis. Démarre la définition de l'instruction <code>IF</code>.</br>
+            <pre><code class="language-BASIC">
+            IF 2 + 3 > 9 THEN PRINT(1);
+            ELIF MIN(3, 2) = 5 THEN PRINT(2);
+            ELSE PRINT(3);
+            ENDIF;
+            </code></pre>
+            <b>IF :</b> Requis. Démarre la définition de l'instruction <code class="language-BASIC">IF</code>.</br>
             <b>[expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition.</br>
             <b>THEN [statements] :</b> Requis. Une ou plusieurs instructions qui seront exécutées si la condition s'évalue à vrai.</br>
-            <b>ELIF [expression] [statements] :</b> Optionnel. La condition et les instructions sont requises si le <code>ELIF</code> est présent.</br>
-            <b>ELSE [statements] :</b> Optionnel. Les instructions sont requises si le <code>ELSE</code> est présent et seront exécutées si aucune des conditions précedentes n'est satisfaite.</br>
-            <b>ENDIF :</b> Requis. Met fin au bloc d'instruction <code>IF</code>.</br>
+            <b>ELIF [expression] [statements] :</b> Optionnel. La condition et les instructions sont requises si le <code class="language-BASIC">ELIF</code> est présent.</br>
+            <b>ELSE [statements] :</b> Optionnel. Les instructions sont requises si le <code class="language-BASIC">ELSE</code> est présent et seront exécutées si aucune des conditions précedentes n'est satisfaite.</br>
+            <b>ENDIF :</b> Requis. Met fin au bloc d'instruction <code class="language-BASIC">IF</code>.</br>
           </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">FOR</button>
         <div class="content">
           <p class="content">
             Répète un groupe d'instructions un nombre de fois spécifié.</br>
-            Syntaxe : <code>FOR ID = [expression] TO [expression] STEP Integer [statements] FEND </code></br>
+            Syntaxe : <code class="language-BASIC">FOR ID = [expression] TO [expression] STEP Integer [statements] FEND </code></br>
             Exemple :</br>
-            <code class="segment">
-              FOR I = 0 TO 8 STEP 2</br>
-                PRINT(I);</br>
-              FEND;</br>
-            </code></br>
-            <b>FOR :</b> Requis. Démarre la définition de la boucle <code>FOR</code>.</br>
+            <pre><code class="language-BASIC">
+            FOR I = 0 TO 8 STEP 2
+              PRINT(I);
+            FEND;
+            </code></pre>
+            <b>FOR :</b> Requis. Démarre la définition de la boucle <code class="language-BASIC">FOR</code>.</br>
             <b>ID :</b> Requis. Variable numérique de contrôle de la boucle.</br>
-            <b>[expression] :</b> Requis. Expression numérique. La valeur initiale de <code>ID</code>.</br>
-            <b>TO [expression] :</b> Requis. Expression numérique. La valeur finale de <code>ID</code>.</br>
+            <b>[expression] :</b> Requis. Expression numérique. La valeur initiale de <code class="language-BASIC">ID</code>.</br>
+            <b>TO [expression] :</b> Requis. Expression numérique. La valeur finale de <code class="language-BASIC">ID</code>.</br>
             <b>STEP Integer :</b> Optionnel. Valeur du pas de la boucle.</br>
             <b>[statements] :</b> Requis. Une ou plusieurs instructions qui seront exécutées à chaque tour de boucle.</br>
-            <b>FEND :</b> Requis. Met fin au bloc d'instruction <code>FOR</code>.</br>
+            <b>FEND :</b> Requis. Met fin au bloc d'instruction <code class="language-BASIC">FOR</code>.</br>
           </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">WHILE</button>
         <div class="content">
           <p class="content">
             Exécute une série d'instructions tant qu'une condition donnée est vraie.</br>
-            Syntaxe : <code> WHILE [expression] DO [statements] WEND </code></br>
+            Syntaxe : <code class="language-BASIC"> WHILE [expression] DO [statements] WEND </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = 5;</br>
-              WHILE A <> 1 DO</br>
-                PRINT(A);</br>
-                A = A - 1;</br>
-              WEND;</br>
-            </code></br>
-            <b>WHILE :</b> Requis. Démarre la définition de l'instruction <code>WHILE</code>.</br>
+            <pre><code class="language-BASIC">
+            LET A = 5;
+            WHILE A <> 1 DO
+              PRINT(A);
+              A = A - 1;
+            WEND;
+            </code></pre>
+            <b>WHILE :</b> Requis. Démarre la définition de l'instruction <code class="language-BASIC">WHILE</code>.</br>
             <b>[expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition de boucle.</br>
             <b>DO [statements] :</b> Requis. Une ou plusieurs instructions qui seront exécutées à chaque tour de boucle.</br>
-            <b>WEND :</b> Requis. Met fin au bloc d'instruction <code>WHILE</code>.</br>
+            <b>WEND :</b> Requis. Met fin au bloc d'instruction <code class="language-BASIC">WHILE</code>.</br>
           </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DO WHILE</button>
         <div class="content">
           <p class="content">
             Répète un bloc d'instructions tant qu'une condition booléenne est vraie.</br>
-            Syntaxe : <code> DO [statements] WHILE [expression] </code></br>
+            Syntaxe : <code class="language-BASIC"> DO [statements] WHILE [expression] </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = 5;</br>
-              DO </br>
-                PRINT(A);</br>
-                A = A - 1;</br>
-              WHILE A > 1;</br>
-            </code></br>
-            <b>DO :</b> Requis. Démarre la définition de l'instruction <code>DO WHILE</code>.</br>
+            <pre><code class="language-BASIC">
+            LET A = 5;
+            DO
+              PRINT(A);
+              A = A - 1;
+            WHILE A > 1;
+            </code></pre>
+            <b>DO :</b> Requis. Démarre la définition de l'instruction <code class="language-BASIC">DO WHILE</code>.</br>
             <b>[statements] :</b> Requis. Une ou plusieurs instructions répétées tant que la condition est vraie.</br>
             <b>WHILE [expression] :</b> Requis. Expression qui doit s'évaluer en vrai ou faux. C'est la condition de boucle.</br>
           </p>
@@ -130,22 +131,22 @@
         <div class="content">
           <p class="content">
             Branche et revient d'une sous-routine.</br>
-            Syntaxe : <code> GOSUB [label] </code></br>
+            Syntaxe : <code class="language-BASIC"> GOSUB [label] </code></br>
             Exemple :</br>
-            <code class="segment">
-              _increase {</br>
-                A = A + 3;</br>
-                PRINT(A);</br>
-              }</br>
-              </br>
-              main {</br>
-                LET A = 0;</br>
-                WHILE A < 10 DO</br>
-                  GOSUB _increase;</br>
-                WEND;</br>
-              }</br>
-            </code></br>
-            <b>GOSUB :</b> Requis. Démarre la définition du <code>GOSUB</code>.</br>
+            <pre><code class="language-BASIC">
+            _increase {
+              A = A + 3;
+              PRINT(A);
+            }
+            
+            main {
+              LET A = 0;
+              WHILE A < 10 DO
+                GOSUB _increase;
+              WEND;
+            }
+            </code></pre>
+            <b>GOSUB :</b> Requis. Démarre la définition du <code class="language-BASIC">GOSUB</code>.</br>
             <b>[label] :</b> Requis. Nom du la sous-routine à exécuter.</br>
           </p>
         </div>

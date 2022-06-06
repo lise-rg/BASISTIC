@@ -7,6 +7,7 @@
   <link rel="icon" href="../../resources/img/icon.png">
   <link rel="stylesheet" href="../stylesheet.css">
   <link rel="stylesheet" href="../../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../../modules/prism/prism.js"></script>
   <script type="text/javascript" src="../../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../../modules/collapsible/collapsible.js"></script>
 </head>
@@ -53,12 +54,12 @@
         <div class="content">
           <p class="content">
             Joue un son parmi ceux disponibles.</br>
-            Syntaxe : <code> PLAY ( [expression] , [expression] ) </code></br>
+            Syntaxe : <code  class="language-BASIC"> PLAY ( [expression] , [expression] ) </code></br>
             Exemple :</br>
-            <code class="segment">
-              PLAY("okay.mp3", 50);</br>
-            </code></br>
-            <b>PLAY :</b> Requis. Démarre la définition de la méthode <code>PLAY</code>.</br>
+            <pre><code  class="language-BASIC">
+            PLAY("okay.mp3", 50);
+            </code></pre>
+            <b>PLAY :</b> Requis. Démarre la définition de la méthode <code  class="language-BASIC">PLAY</code>.</br>
             <b>[expression] : </b> Requis. Nom du fichier à lire à selectionner parmi les sons suivant : hitmark, okay.
             <b>[expression] : </b> Requis. Volume sonore.
           </p> 

@@ -7,6 +7,7 @@
   <link rel="icon" href="../../resources/img/icon.png">
   <link rel="stylesheet" href="../stylesheet.css">
   <link rel="stylesheet" href="../../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../../modules/prism/prism.js"></script>
   <script type="text/javascript" src="../../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../../modules/collapsible/collapsible.js"></script>
 </head>
@@ -53,12 +54,12 @@
         <div class="content">
           <p class="content">
             Calcule une valeur et l'affecte à une nouvelle variable.</br>
-            Syntaxe : <code> LET ID = [expression] </code></br>
+            Syntaxe : <code class="language-BASISTIC"> LET ID = [expression] </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = 4 * 5;</br>
-            </code></br>
-            <b>LET :</b> Optionnel. Démarre la définition de la méthode <code>LET</code>.</br>
+            <pre><code class="language-BASISTIC">
+            LET A = 4 * 5;
+            </code></pre>
+            <b>LET :</b> Optionnel. Démarre la définition de la méthode <code class="language-BASISTIC">LET</code>.</br>
             <b>ID :</b> Requis. String. Nom de la nouvelle variable.</br>
             <b>[expression] :</b> Requis. Toute expression valide.</br>
           </p>
@@ -67,18 +68,18 @@
         <div class="content">
           <p class="content">
             Déclare un tableau de une ou plusieurs dimensions.</br>
-            Syntaxe : <code> DIM ID = ( [integerList] ) </code></br>
+            Syntaxe : <code class="language-BASISTIC"> DIM ID = ( [integerList] ) </code></br>
             Exemple :</br>
-            <code class="segment">
-              DIM tab(3, 2);</br>
-              FOR i = 0 TO 3</br>
-                FOR j = 0 TO 2</br>
-                  tab(i, j) = i + j;</br>
-                  PRINT(i : ", " : j : " : "  : tab(i, j));</br>
-                FEND;</br>
-              FEND;</br>
-            </code></br>
-            <b>DIM :</b> Requis. Démarre la définition de la méthode <code>DIM</code>.</br>
+            <pre><code class="language-BASISTIC">
+            DIM tab(3, 2);
+            FOR i = 0 TO 3
+              FOR j = 0 TO 2
+                tab(i, j) = i + j;
+                PRINT(i : ", " : j : " : "  : tab(i, j));
+              FEND;
+            FEND;
+            </code></pre>
+            <b>DIM :</b> Requis. Démarre la définition de la méthode <code class="language-BASISTIC">DIM</code>.</br>
             <b>ID :</b> Requis. String. Nom du nouveau tableau.</br>
             <b>[intergerList] :</b> Requis. Suite de nombres entiers séparés par des virgules.</br>
           </p>
@@ -86,13 +87,13 @@
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">LET (DIM)</button>
         <div class="content">
           <p class="content">
-            Calcule une valeur et l'affecte à une case du tableau de nom <code>ID</code>.</br>
-            Syntaxe : <code> LET ID ( [expressionList] ) = [expression] </code></br>
+            Calcule une valeur et l'affecte à une case du tableau de nom <code class="language-BASISTIC">ID</code>.</br>
+            Syntaxe : <code class="language-BASISTIC"> LET ID ( [expressionList] ) = [expression] </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A(2, 3) = 4 * 5;</br>
-            </code></br>
-            <b>LET :</b> Optionnel. Démarre la définition de la méthode <code>LET</code>.</br>
+            <pre><code class="language-BASISTIC">
+            LET A(2, 3) = 4 * 5;
+            </code></pre>
+            <b>LET :</b> Optionnel. Démarre la définition de la méthode <code class="language-BASISTIC">LET</code>.</br>
             <b>ID :</b> Requis. String. Nom du tableau.</br>
             <b>[expressionList] :</b> Requis. Suite de nombres entiers, réels ou toute expression numérique valide, séparés par des virgules.</br>
             <b>[expression] :</b> Requis. Toute expression valide.</br>

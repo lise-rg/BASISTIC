@@ -7,6 +7,7 @@
   <link rel="icon" href="../../resources/img/icon.png">
   <link rel="stylesheet" href="../stylesheet.css">
   <link rel="stylesheet" href="../../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../../modules/prism/prism.js"></script>
   <script type="text/javascript" src="../../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../../modules/collapsible/collapsible.js"></script>
 </head>
@@ -66,20 +67,20 @@
         <div class="content">
           <p class="content">
             S'exécute une unique fois lorsque l'on presse le bouton Run.</br>
-            Syntaxe : <code> main { } </code></br> 
+            Syntaxe : <code class="language-BASIC"> main { } </code></br> 
           </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">LABEL</button>
         <div class="content">
           <p class="content">
             Sous-routine qui sera exécutée lors d'un appel avec GOSUB.</br> 
-            Syntaxe : <code> _ID { } </code>
-            <code class="segment">
-              _increase {</br>
-                A = A + 3;</br>
-                PRINT(A);</br>
-              }
-            </code></br>
+            Syntaxe : <code class="language-BASIC"> _ID { } </code></br>
+            <pre><code class="language-BASIC">
+            _increase {
+              A = A + 3;
+              PRINT(A);
+            }
+            </code></pre>
             <strong>_ :</strong> Requis. Démarre la définition du label.</br>
             <strong>ID :</strong> Requis. String. Nom du label.</br>
           </p>
@@ -88,20 +89,20 @@
         <div class="content">
           <p class="content">
             S'exécute dès lors que la boucle main est finie et ce jusqu'à ce que l'on presse le bouton Stop.</br> 
-            Syntaxe : <code> update { } </code></br> 
+            Syntaxe : <code class="language-BASIC"> update { } </code></br> 
           </p>
         </div>
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">STR</button>
           <div class="content">
             <p class="content">
               Retourne une String du nombre donné en paramètre.</br>
-              Syntaxe : <code> STR ( [expression] ) </code></br>
+              Syntaxe : <code class="language-BASIC"> STR ( [expression] ) </code></br>
               Exemple :</br>
-              <code class="segment">
-                LET A = STR(3 + 4);</br>
-                PRINT(A);</br>
-              </code></br>
-              <strong>STR :</strong> Requis. Démarre la définition de la méthode <code>STR</code>.</br>
+              <pre><code class="language-BASIC">
+              LET A = STR(3 + 4);
+              PRINT(A);
+              </code></pre>
+              <strong>STR :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">STR</code>.</br>
               <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
             </p>
         </div>
@@ -109,13 +110,13 @@
         <div class="content">
           <p class="content">
             Concatène deux String passées en paramètre.</br>
-            Syntaxe : <code> STRCAT ( [expression] , [expression] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> STRCAT ( [expression] , [expression] ) </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = STRCAT("hello ", "world");</br>
-              PRINT(A);</br>
-            </code></br>
-            <strong>STRCAT :</strong> Requis. Démarre la définition de la méthode <code>STRCAT</code>.</br>
+            <pre><code class="language-BASIC">
+            LET A = STRCAT("hello ", "world");
+            PRINT(A);
+            </code></pre>
+            <strong>STRCAT :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">STRCAT</code>.</br>
             <strong>[expression] :</strong> Requis. String.</br>
             <strong>[expression] :</strong> Requis. String.</br>
           </p>

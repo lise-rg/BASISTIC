@@ -7,6 +7,7 @@
   <link rel="icon" href="../../resources/img/icon.png">
   <link rel="stylesheet" href="../stylesheet.css">
   <link rel="stylesheet" href="../../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../../modules/prism/prism.js"></script>
   <script type="text/javascript" src="../../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../../modules/collapsible/collapsible.js"></script>
 </head>
@@ -27,11 +28,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC/blob/master/README.md">README</a>
+            <a class="nav-link" href="https://github.com/lise-rg/BASIC/blob/master/README.md">README</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC">Github</a>
+            <a class="nav-link" href="https://github.com/lise-rg/BASIC">Github</a>
           </li>
 
           <li class="nav-item">
@@ -52,13 +53,13 @@
         <div class="content">
           <p class="content">
             Retourne l'exponentielle d'un nombre donné.</br>
-            Syntaxe : <code> EXP ( [expression] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> EXP ( [expression] ) </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = EXP(0);</br>
-              PRINT(A);</br>
-            </code></br>
-            <b>EXP :</b> Requis. Démarre la définition de la méthode <code>EXP</code>.</br>
+            <pre><code class="language-BASIC">
+            LET A = EXP(0);
+            PRINT(A);
+            </code></pre>
+            <b>EXP :</b> Requis. Démarre la définition de la méthode <code class="language-BASIC">EXP</code>.</br>
             <b>[expression] :</b> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
           </p>
       </div>
@@ -66,13 +67,13 @@
         <div class="content">
           <p class="content">
             Retourne la partie entière d'un nombre donné.</br>
-            Syntaxe : <code> INT ( [expression] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> INT ( [expression] ) </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = INT(-3.5);</br>
-              PRINT(A);</br>
-            </code></br>
-            <strong>INT :</strong> Requis. Démarre la définition de la méthode <code>INT</code>.</br>
+            <pre><code class="language-BASIC">
+            LET A = INT(-3.5);
+            PRINT(A);
+            </pre></code>
+            <strong>INT :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">INT</code>.</br>
             <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
           </p>
       </div>
@@ -80,13 +81,13 @@
         <div class="content">
           <p class="content">
             Retourne le logarithme népérien d'un nombre donné.</br>
-            Syntaxe : <code> LN ( [expression] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> LN ( [expression] ) </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = LN(e);</br>
-              PRINT(A);</br>
-            </code></br>
-            <strong>LN :</strong> Requis. Démarre la définition de la méthode <code>LN</code>.</br>
+            <pre><code class="language-BASIC">
+            LET A = LN(e);
+            PRINT(A);
+            </code></pre>
+            <strong>LN :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">LN</code>.</br>
             <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
           </p>
       </div>
@@ -94,13 +95,13 @@
         <div class="content">
           <p class="content">
             Retourne le logarithme en base 10 d'un nombre donné.</br>
-            Syntaxe : <code> LOG ( [expression] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> LOG ( [expression] ) </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = LOG(20);</br>
-              PRINT(A);</br>
-            </code></br>
-            <strong>LOG :</strong> Requis. Démarre la définition de la méthode <code>LOG</code>.</br>
+            <pre><code class="language-BASIC">
+            LET A = LOG(20);
+            PRINT(A);
+            </code></pre>
+            <strong>LOG :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">LOG</code>.</br>
             <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
           </p>
       </div>
@@ -108,13 +109,13 @@
         <div class="content">
           <p class="content">
             Retourne un nombre aléatoire compris entre 0 et le nombre donné en paramètre.</br>
-            Syntaxe : <code> RND ( [expression] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> RND ( [expression] ) </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = RND(10);</br>
-              PRINT(A);</br>
-            </code></br>
-            <strong>RND :</strong> Requis. Démarre la définition de la méthode <code>RND</code>.</br>
+            <pre><code class="language-BASIC">
+            LET A = RND(10);
+            PRINT(A);
+            </code></pre>
+            <strong>RND :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">RND</code>.</br>
             <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
           </p>
       </div>
@@ -122,13 +123,13 @@
         <div class="content">
           <p class="content">
             Retourne la racine carrée d'un nombre donné.</br>
-            Syntaxe : <code> SQRT ( [expression] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> SQRT ( [expression] ) </code></br>
             Exemple :</br>
-            <code class="segment">
-              LET A = SQRT(16);</br>
-              PRINT(A);</br>
-            </code></br>
-            <strong>SQRT :</strong> Requis. Démarre la définition de la méthode <code>SQRT</code>.</br>
+            <pre><code class="language-BASIC">
+            LET A = SQRT(16);
+            PRINT(A);
+            </code></pre>
+            <strong>SQRT :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">SQRT</code>.</br>
             <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
           </p>
       </div>
@@ -136,13 +137,13 @@
         <div class="content">
           <p class="content">
             Retourne la valeur minimale entre deux nombres donnés.</br>
-            Syntaxe : <code> MIN ( [expression] , [expression] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> MIN ( [expression] , [expression] ) </code></br>
             Exemple :</br>
-            <code class="segment">
+            <code class="language-BASIC">
               LET A = MIN(-3.5);</br>
               PRINT(A);</br>
             </code></br>
-            <strong>MIN :</strong> Requis. Démarre la définition de la méthode <code>MIN</code>.</br>
+            <strong>MIN :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">MIN</code>.</br>
             <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
           </p>
       </div>
@@ -150,13 +151,13 @@
       <div class="content">
         <p class="content">
           Retourne la valeur maximale entre deux nombres donnés.</br>
-          Syntaxe : <code> MAX ( [expression] , [expression] ) </code></br>
+          Syntaxe : <code class="language-BASIC"> MAX ( [expression] , [expression] ) </code></br>
           Exemple :</br>
-          <code class="segment">
-            LET A = MAX(-3.5, 9);</br>
-            PRINT(A);</br>
-          </code></br>
-          <strong>MAX :</strong> Requis. Démarre la définition de la méthode <code>MAX</code>.</br>
+          <pre><code class="language-BASIC">
+          LET A = MAX(-3.5, 9);
+          PRINT(A);
+          </code></pre>
+          <strong>MAX :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">MAX</code>.</br>
           <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
         </p>
       </div>
@@ -164,13 +165,13 @@
       <div class="content">
         <p class="content">
           Retourne la valeur en radian d'un nombre donné en degré.</br>
-          Syntaxe : <code> DTR ( [expression] ) </code></br>
+          Syntaxe : <code class="language-BASIC"> DTR ( [expression] ) </code></br>
           Exemple :</br>
-          <code class="segment">
-            LET A = DTR(90);</br>
-            PRINT(A);</br>
-          </code></br>
-          <strong>DTR :</strong> Requis. Démarre la définition de la méthode <code>DTR</code>.</br>
+          <pre><code class="language-BASIC">
+          LET A = DTR(90);
+          PRINT(A);
+          </code></pre>
+          <strong>DTR :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">DTR</code>.</br>
           <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
         </p>
       </div>
@@ -178,13 +179,13 @@
       <div class="content">
         <p class="content">
           Retourne la valeur en degré d'un nombre donné en radian.</br>
-          Syntaxe : <code> RTD ( [expression] ) </code></br>
+          Syntaxe : <code class="language-BASIC"> RTD ( [expression] ) </code></br>
           Exemple :</br>
-          <code class="segment">
-            LET A = RTD(0.2);</br>
-            PRINT(A);</br>
-          </code></br>
-          <strong>RTD :</strong> Requis. Démarre la définition de la méthode <code>RTD</code>.</br>
+          <pre><code class="language-BASIC">
+          LET A = RTD(0.2);
+          PRINT(A);
+          </code></pre>
+          <strong>RTD :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">RTD</code>.</br>
           <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
         </p>
       </div>
@@ -192,13 +193,13 @@
       <div class="content">
         <p class="content">
           Retourne la valeur absolue d'un nombre donné.</br>
-          Syntaxe : <code> ABS ( [expression] ) </code></br>
+          Syntaxe : <code class="language-BASIC"> ABS ( [expression] ) </code></br>
           Exemple :</br>
-          <code class="segment">
-            LET A = ABS(-3.5);</br>
-            PRINT(A);</br>
-          </code></br>
-          <strong>ABS :</strong> Requis. Démarre la définition de la méthode <code>ABS</code>.</br>
+          <pre><code class="language-BASIC">
+          LET A = ABS(-3.5);
+          PRINT(A);
+          </code></pre>
+          <strong>ABS :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">ABS</code>.</br>
           <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
         </p>
       </div>
@@ -206,13 +207,13 @@
       <div class="content">
         <p class="content">
           Retourne l'arctangente d'un nombre donné sous la forme d'une valeur comprise entre -PI/2 et PI/2 radians.</br>
-          Syntaxe : <code> ATN ( [expression] ) </code></br>
+          Syntaxe : <code class="language-BASIC"> ATN ( [expression] ) </code></br>
           Exemple :</br>
-          <code class="segment">
-            LET A = ATN(-PI/2);</br>
-            PRINT(A);</br>
-          </code></br>
-          <strong>ATN :</strong> Requis. Démarre la définition de la méthode <code>ATN</code>.</br>
+          <pre><code class="language-BASIC">
+          LET A = ATN(-PI/2);
+          PRINT(A);
+          </code></pre>
+          <strong>ATN :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">ATN</code>.</br>
           <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
         </p>
       </div>
@@ -220,13 +221,13 @@
       <div class="content">
         <p class="content">
           Retourne la tangente d'un nombre donné.</br>
-          Syntaxe : <code> TAN ( [expression] ) </code></br>
+          Syntaxe : <code class="language-BASIC"> TAN ( [expression] ) </code></br>
           Exemple :</br>
-          <code class="segment">
-            LET A = TAN(1);</br>
-            PRINT(A);</br>
-          </code></br>
-          <strong>TAN :</strong> Requis. Démarre la définition de la méthode <code>TAN</code>.</br>
+          <pre><code class="language-BASIC">
+          LET A = TAN(1);
+          PRINT(A);
+          </code></pre>
+          <strong>TAN :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">TAN</code>.</br>
           <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
         </p>
       </div>
@@ -234,13 +235,13 @@
       <div class="content">
         <p class="content">
           Retourne le cosinus d'un nombre donné.</br>
-          Syntaxe : <code> COS ( [expression] ) </code></br>
+          Syntaxe : <code class="language-BASIC"> COS ( [expression] ) </code></br>
           Exemple :</br>
-          <code class="segment">
-            LET A = COS(PI/2);</br>
-            PRINT(A);</br>
-          </code></br>
-          <strong>COS :</strong> Requis. Démarre la définition de la méthode <code>COS</code>.</br>
+          <pre><code class="language-BASIC">
+          LET A = COS(PI/2);
+          PRINT(A);
+          </code></pre>
+          <strong>COS :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">COS</code>.</br>
           <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
         </p>
       </div>
@@ -248,13 +249,13 @@
       <div class="content">
         <p class="content">
           Retourne le sinus d'un nombre donné.</br>
-          Syntaxe : <code> SIN ( [expression] ) </code></br>
+          Syntaxe : <code class="language-BASIC"> SIN ( [expression] ) </code></br>
           Exemple :</br>
-          <code class="segment">
-            LET A = SIN(-PI/2);</br>
-            PRINT(A);</br>
-          </code></br>
-          <strong>SIN :</strong> Requis. Démarre la définition de la méthode <code>SIN</code>.</br>
+          <pre><code class="language-BASIC">
+          LET A = SIN(-PI/2);
+          PRINT(A);
+          </code></pre>
+          <strong>SIN :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">SIN</code>.</br>
           <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
         </p>
       </div>
@@ -262,13 +263,13 @@
       <div class="content">
         <p class="content">
           Retourne le PGCD de deux nombres donnés.</br>
-          Syntaxe : <code> PGCD ( [expression] , [expression] ) </code></br>
+          Syntaxe : <code class="language-BASIC"> PGCD ( [expression] , [expression] ) </code></br>
           Exemple :</br>
-          <code class="segment">
-            LET A = GCD(221, 782);</br>
-            PRINT(A);</br>
-          </code></br>
-          <strong>GCD :</strong> Requis. Démarre la définition de la méthode <code>GCD</code>.</br>
+          <pre><code class="language-BASIC">
+          LET A = GCD(221, 782);
+          PRINT(A);
+          </code></pre>
+          <strong>GCD :</strong> Requis. Démarre la définition de la méthode <code class="language-BASIC">GCD</code>.</br>
           <strong>[expression] :</strong> Requis. Nombre entier, réel ou toute expression numérique valide.</br>
         </p>
       </div>
