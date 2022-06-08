@@ -12,11 +12,11 @@ Voici le fichier qui vous donnera les instructions nécessaires à l'utilisation
 
 2. Pour aller plus loin
     Si vous voulez rajouter des instructions au langage BASISTIC c'est possible. Pour cela il faut :
-        1. Modifier la grammaire intitulé Grammar.g qui se trouve dans le dossier src puis dans le dossier antlr.
-        2. Une fois l'instruction ajouté à la grammaire, il faut modifier le fichier visitor.js afin d'écrire en javascript ce que fera l'instruction ajouté.
-        3. Executer le fichier script.bat (sous windows) ou script.sh (sous linux), éxécution nécessaire si vous avez modifé la grammaire.
-        4. Ensuite ouvrir un terminal, aller à la racine du projet et éxécuter la commande npm run build(III).
-        5. Rouvrir le main (ou actualisez le) et normalement l'instrcution sera utilisable.
+    1. Modifier la grammaire intitulé Grammar.g qui se trouve dans le dossier src puis dans le dossier antlr.
+    2. Une fois l'instruction ajouté à la grammaire, il faut modifier le fichier visitor.js afin d'écrire en javascript ce que fera l'instruction ajouté.
+    3. Executer le fichier script.bat (sous windows) ou script.sh (sous linux), éxécution nécessaire si vous avez modifé la grammaire.
+    4. Ensuite ouvrir un terminal, aller à la racine du projet et éxécuter la commande npm run build(III).
+    5. Rouvrir le main (ou actualisez le) et normalement l'instrcution sera utilisable.
 
 3. Si vous n'avez NPM d'installé :
     1. Installation
