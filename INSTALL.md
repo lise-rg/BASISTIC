@@ -1,24 +1,27 @@
 # BASISTIC
-Bonjour
+Projet ISTIC
 
 Voici le fichier qui vous donnera les instructions nécessaires à l'utilisation de notre interpréteur "BASISTIC".
 
-1. Utilisation
-    1. Importer de GIT tous les fichiers du projet.
-    2. Aller dans le dossier dist et ouvrir le fichier main.html. 
-    3. Une fois la page web ouverte, écrire son code dans la zone prévu à cette effet à gauche ou bien importer un fichier écrit en BASISTIC avec le bouton "Choose file".
-    4. Des fichiers de test préfait sont disponible dans le dossier test.
-    5. Clicker sur le bouton RUN et observer le résultat.
+## Mise en route et utilisation...
 
-2. Pour aller plus loin
-    Si vous voulez rajouter des instructions au langage BASISTIC c'est possible. Pour cela il faut :
-    1. Modifier la grammaire intitulé Grammar.g qui se trouve dans le dossier src puis dans le dossier antlr.
-    2. Une fois l'instruction ajouté à la grammaire, il faut modifier le fichier visitor.js afin d'écrire en javascript ce que fera l'instruction ajouté.
-    3. Executer le fichier script.bat (sous windows) ou script.sh (sous linux), éxécution nécessaire si vous avez modifé la grammaire.
-    4. Ensuite ouvrir un terminal, aller à la racine du projet et éxécuter la commande npm run build(III).
-    5. Rouvrir le main (ou actualisez le) et normalement l'instrcution sera utilisable.
+1. Importez les fichiers du projet depuis Git;
+2. Rendez-vous dans le répertoire <emplacement_du_projet>/dist et ouvrez main.html;
+3. Une fois la page ouverte, vous pouvez saisir votre code dans l'editeur ou bien importer un fichier écrit en BASISTIC avec le bouton "Choose file";
+4. Vous pouvez utiliser des fichiers de démonstration dans le répertoire <emplacement_du_projet>/dist/test;
+5. Pressez sur le bouton "Run" et observez le résultat.
 
-3. Si vous n'avez NPM d'installé :
+## Pour aller plus loin
+
+Il est possible d'ajouter des instructions au langage BASISTIC. Pour cela il faut :
+1. Rendez-vous dans le répertoire <emplacement_du_projet>/src/antlr et modifiez la grammaire dans le fichier Grammar.g;
+2. Une fois votre instruction ajouté à la grammaire, il vous faut generer de nouveaux Parser et Lexer, grâce au fichier script.bat (sous windows) ou script.sh (sous linux). Vous devez executer ce fichier après chaque modification de la grammaire;
+3. Rendez-vous ensuite dans le répertoire <emplacement_du_projet>/src/ et ouvrez le fichier visitor.js. Ajoutez une fonction pour traiter la nouvelle instruction que vous venez d'ajouter. 
+4. Ouvez un terminal et placez vous dans le à la racine du répertoire du projet. Ensuite, executez la commande suivante :
+```npm run build```
+5. Ouvrez le fichier main.html et testez vos modifications.
+
+## Si vous n'avez NPM d'installé :
     1. Installation
         Installer Node.js (https://nodejs.org/en/download/) avec les paramètres par défaut.
         Vérifier l’installation en tapant npm -v dans un terminal
