@@ -881,7 +881,11 @@ class Visitor extends GrammarVisitor {
     let volume = parseInt(this.visit(ctx.volume), 10);
     this.checkNumber();
 
-    this.audioOut.playAudio(filename, volume);
+    //Gets and parses the file type (url or local file), and checks if the value is valid
+    let type = String(this.visit(ctx.type));
+    this.checkString();
+
+    this.audioOut.playAudio(filename, volume, type);
   }
 
   /***************************************************************************************************/
