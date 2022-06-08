@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>BASISTIC</title>
+  <title>BASIC</title>
   <link rel="icon" href="../../resources/img/icon.png">
   <link rel="stylesheet" href="../stylesheet.css">
   <link rel="stylesheet" href="../../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
@@ -28,11 +28,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC/blob/master/README.md">README</a>
+            <a class="nav-link" href="https://github.com/lise-rg/BASIC/blob/master/README.md">README</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC">Github</a>
+            <a class="nav-link" href="https://github.com/lise-rg/BASIC">Github</a>
           </li>
 
           <li class="nav-item">
@@ -54,12 +54,12 @@
         <div class="content">
           <p class="content">
             Calcule une valeur et l'affecte à une nouvelle variable.</br>
-            Syntaxe : <code class="language-BASISTIC"> LET ID = [expression] </code></br>
+            Syntaxe : <code class="language-BASIC"> LET ID = [expression] </code></br>
             Exemple :</br>
-            <pre class="segment"><code class="language-BASISTIC">
+            <pre class="segment"><code class="language-BASIC">
             LET A = 4 * 5;
             </code></pre>
-            <b>LET :</b> Optionnel. Démarre la définition de la méthode <code class="language-BASISTIC">LET</code>.</br>
+            <b>LET :</b> Optionnel. Démarre la définition de la méthode <code class="language-BASIC">LET</code>.</br>
             <b>ID :</b> Requis. String. Nom de la nouvelle variable.</br>
             <b>[expression] :</b> Requis. Toute expression valide.</br>
           </p>
@@ -68,9 +68,9 @@
         <div class="content">
           <p class="content">
             Déclare un tableau de une ou plusieurs dimensions.</br>
-            Syntaxe : <code class="language-BASISTIC"> DIM ID = ( [integerList] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> DIM ID = ( [integerList] ) </code></br>
             Exemple :</br>
-            <pre class="segment"><code class="language-BASISTIC">
+            <pre class="segment"><code class="language-BASIC">
             DIM tab(3, 2);
             FOR i = 0 TO 3
               FOR j = 0 TO 2
@@ -79,7 +79,7 @@
               FEND;
             FEND;
             </code></pre>
-            <b>DIM :</b> Requis. Démarre la définition de la méthode <code class="language-BASISTIC">DIM</code>.</br>
+            <b>DIM :</b> Requis. Démarre la définition de la méthode <code class="language-BASIC">DIM</code>.</br>
             <b>ID :</b> Requis. String. Nom du nouveau tableau.</br>
             <b>[intergerList] :</b> Requis. Suite de nombres entiers séparés par des virgules.</br>
           </p>
@@ -87,13 +87,13 @@
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">LET (DIM)</button>
         <div class="content">
           <p class="content">
-            Calcule une valeur et l'affecte à une case du tableau de nom <code class="language-BASISTIC">ID</code>.</br>
-            Syntaxe : <code class="language-BASISTIC"> LET ID ( [expressionList] ) = [expression] </code></br>
+            Calcule une valeur et l'affecte à une case du tableau de nom <code class="language-BASIC">ID</code>.</br>
+            Syntaxe : <code class="language-BASIC"> LET ID ( [expressionList] ) = [expression] </code></br>
             Exemple :</br>
-            <pre class="segment"><code class="language-BASISTIC">
+            <pre class="segment"><code class="language-BASIC">
             LET A(2, 3) = 4 * 5;
             </code></pre>
-            <b>LET :</b> Optionnel. Démarre la définition de la méthode <code class="language-BASISTIC">LET</code>.</br>
+            <b>LET :</b> Optionnel. Démarre la définition de la méthode <code class="language-BASIC">LET</code>.</br>
             <b>ID :</b> Requis. String. Nom du tableau.</br>
             <b>[expressionList] :</b> Requis. Suite de nombres entiers, réels ou toute expression numérique valide, séparés par des virgules.</br>
             <b>[expression] :</b> Requis. Toute expression valide.</br>
