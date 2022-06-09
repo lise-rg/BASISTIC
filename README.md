@@ -3,32 +3,38 @@ Projet ISTIC
 
 Interpréteur de BASIC, augmenté de fonctions graphiques et audio, en ligne.
 
-1. But du projet :
-    Créer un interpréteur de BASIC avec l'ajout de nouvelles fonctionnalités ainsi que de fonctions audio et graphiques.
+#### But du projet
 
-2. Fonctionnalités supportées :
-    - instructions mathématiques
-    - dessin de formes basiques
-    - boucles et affichage
+Créer un interpréteur de BASIC avec l'ajout de nouvelles fonctionnalités ainsi que de fonctions audio et graphiques.
 
-3.Fonctionnalités à developper dans le futur :
-    - ???
+#### Fonctionnalités supportées
 
-4. Licence :
-    - Libre de droit?
+- instructions mathématiques
+- dessin de formes basiques
+- boucles et affichage
 
-5. Technologies utilisées :
-    - HTML
-    - CSS
-    - Webpack
-    - NodeJS
-    - Javascript
+#### Fonctionnalités à developper dans le futur
 
-6. Participants :
-    - Florian BENMAHDJOUB
-    - Etienne LE COANT
-    - Lise RIBEIRO GOMES
-    - Kelenn NICOLLE
+- ???
 
-7. Captures d'écran :
+#### Licence
+
+- Reprise pour usage commercial interdit. Les auteurs d'origine doivent êtres cités.
+
+#### Technologies utilisées
+
+- HTML
+- CSS
+- Webpack
+- NodeJS
+- Javascript
+
+#### Participants
+
+- Florian BENMAHDJOUB
+- Etienne LE COANT
+- Lise RIBEIRO GOMES
+- Kelenn NICOLLE
+
+#### Captures d'écran
     
