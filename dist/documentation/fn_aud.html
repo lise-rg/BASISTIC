@@ -53,15 +53,16 @@
         <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">PLAY</button>
         <div class="content">
           <p class="content">
-            Joue un son parmi ceux disponibles.</br>
-            Syntaxe : <code  class="language-BASIC"> PLAY ( [expression] , [expression] ) </code></br>
+            Joue un son parmi ceux disponibles sur BASISTIC™, ou désigné par une adresse url.</br>
+            Syntaxe : <code  class="language-BASIC"> PLAY ( [expression] , [expression] , [expression] ) </code></br>
             Exemple :</br>
             <pre class="segment"><code  class="language-BASIC">
-            PLAY("okay.mp3", 50);
+            PLAY("okay.mp3", 50, "file");
             </code></pre>
             <b>PLAY :</b> Requis. Démarre la définition de la méthode <code  class="language-BASIC">PLAY</code>.</br>
-            <b>[expression] : </b> Requis. Nom du fichier à lire à selectionner parmi les sons suivant : hitmark, okay.
-            <b>[expression] : </b> Requis. Volume sonore.
+            <b>[expression] : </b> Requis. Nom du fichier à lire à selectionner parmi les sons suivant : hitmark, okay. Ou adresse du son à jouer (url ou chemin d'accès).</br>
+            <b>[expression] : </b> Requis. Volume sonore.</br>
+            <b>[expression] : </b> Requis. Type du fichier passé : <code  class="language-BASIC">file</code> ou <code  class="language-BASIC">url</code>.</br>
           </p> 
         </div>
     </div>
