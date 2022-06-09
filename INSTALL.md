@@ -3,6 +3,8 @@ Projet ISTIC
 
 Voici le fichier qui vous donnera les instructions nécessaires à l'utilisation de notre interpréteur "BASISTIC".
 
+Une [version en ligne](https://basistic.000webhostapp.com/) est disponible si vous souhaitez essayer l'application sans avoir à l'installer sur votre machine.
+
 ## Mise en route et utilisation...
 
 Dans le cadre de votre première utilisation, vous pouvez suivre les étapes suivantes et ainsi avoir une idée du fonctionnement de l'application.
