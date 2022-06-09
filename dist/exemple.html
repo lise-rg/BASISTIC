@@ -7,6 +7,7 @@
   <link rel="icon" href="../resources/img/icon.png">
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="stylesheet" href="../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../modules/prism/prism.js"></script>
   <script type="text/javascript" src="../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
 </head>
 
@@ -56,206 +57,106 @@
 
       <div class="row" style="display:flex; flex:10; flex-direction:row; justify-content:center; ">
 
-        <div class="row">
-          <div class="col-12">
-            <br/>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="title" style="text-align:center;">
-            <strong>EXEMPLES D'UTILISATION par L.RIBEIRO GOMES, K.NICOLLE, E.LE COANT et F.BENMAHDJOUB</strong>
-          </div>
-
-          <div class="intro" style="text-align:center;">
-            Vous trouverez ci-dessous une suite d'exemples reprenant les différents cas d'utilisation de notre interpréteur BASISTIC™.
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <br/>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-12">
-            <strong>I. INTERFACE</strong>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <br/>
-          </div>
-        </div>
-        
-        <div class="row">
-
-          <div class="col-6">
-            <div class="row">
-              <img class="interface" style="text-align:center;" src="./../resources/img/interface.png">
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="row">
-              <p>1. La zone de texte : permet de saisir des instructions en langage BASISTIC™.</p>
-              <p>2. Interface graphique : affiche les résultats graphiques de l'interprétation</p>
-              <p>3. Console : affiche les résultats textuels de l'interprétation</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <br/>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <strong>II. PREMIER PROGRAMME</strong>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <br/>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <p>Dans l'éditeur, entrer le text suivant : main { } . Vous venez de créer la boucle principale qui contiendra toutes les instructions de 
-            votre code. 
-            Maintenant, entre les deux accolades, entrez le texte suivant : DRAWCIRCLE(200,220,50); END; .
-            Cette ligne de code signifie que vous allez dessiner un cercle dont le centre sera à 200 pixels du bord gauche, 220 pixels du bord haut 
-            et qui aura un rayon de 50 pixels. Si vous avez saisi cette ligne de code correctement, vous allez voir un cercle apparaître dans 
-            l'interface graphique après avoir cliquer sur le bouton "run".</p>
-
-            <p>Si vous ne l'avez pas saisi correctement, une erreur devrait apparaître dans la console. Si cela arrive, vérifiez que vous avez 
-            parfaitement recopié l'exemple : les nombres devraient être compris entre deux parenthèses et avoir une virgule entre chacun d'entre eux.
-            Il faut être très rigoureux vis-à-vis de la syntaxe, une simple erreur de ponctuation peut empêcher le bon fonctionnement du programme.</p>
-
-            <p>Passons maintenant à un exemple plus intéressant.
-            Un code en BASISTIC™ se décompose en plusieurs parties.
-            La boucle main qui s'exécute une fois lorsque l'on presse le bouton Run, et la boucle update, qui s'exécute dès lors que la boucle main
-            est finie et ce jusqu'à ce que l'on presse le bouton Stop. A cela peut s'ajouter différents sous-programme identifiés par des labels.
-            Dans l'exemple qui suit, nous nous concentrerons sur l'utilisation de la boucle update, pour en savoir plus sur l'utilisation des 
-            labels veuillez vous référer à l'onglet label de la documentation.</p>
-
-            <p>Supprimez ce que vous avez écrit précedement dans la zone de texte et essayer le programme suivant :</p>
+        <div class="exemple">
+          
+          <header style="text-align:center;"></br><strong>EXEMPLES D'UTILISATION par L.RIBEIRO GOMES, K.NICOLLE, E.LE COANT et F.BENMAHDJOUB</strong></header>
+          <header style="text-align:center;">Vous trouverez ci-dessous une suite d'exemples reprenant les différents cas d'utilisation de notre interpréteur BASISTIC™.</header>
             
-            <code class="segment">
-              main {</br>
-                let phase = 0;</br>
-              }</br>
-              </br>
-              update {</br>
-                DRAWCLEAR("all");</br>
-                FOR i = 0 TO 10</br>
-                  radians = ((phase + i * 36) / 180) * 3.1415;</br>
-                  y = 360/2 + 80 * SIN(radians);</br>
-                  DRAWCIRCLE(i * 48 + 24, y, 20, 0, "lightblue" ,1);</br>
-                FEND;</br>
-                phase = (phase + 8) % 360;</br>
-              }</br>
-            </code>
-
-            <p>Les détails de l'implémentation du code ne seront pas expliqués sur cette page mais vous pourrez retrouver tous les détails du 
-            fonctionnement dans la documentation. Pour l'instant, essayer simplement de lancer l'exécution du code. Vous devriez obtenir 
-            le résultat suivant :</p>
-            <img class="résultat" style="text-align:center;" src="./../resources/img/res_prg1.png">
-            <p>Les dix cercles bleu devraient osciller de manière sinusoïdale.</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <br/>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-12">
-            <strong>III. FONCTIONNALITES</strong>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <br/>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-12">
-            <p>Vous pouvez trouver un bouton "Parcourir...", sous la zone de texte. Ce dernier vous permet de choisir un fichier à importer directement
-            dans la zone de texte puis de l'exécuter. Nous avons mis plusieurs fichiers contenant des exemples de programmes utilisant BASISTIC™
-            à votre disposition pour essayer cette fonctionnalité.</p>
-
-            <p>La prochaine fonctionnalité est importante, il s'agit du bouton "Save". Vous le trouverez sur la droite du bouton "Parcourir".
-            C'est toujours un bonne idée de sauvegarder votre progression régulièrement. Au fur et à mesure que vous avancer dans votre code, 
-            sauvegarder vos différentes version afin de pouvoir garder une trace de votre avancement.</p>
-
-            <p>Lorsque vous utilisez la boucle update, sauf indication contraire, l'interprétation ne s'arrêtera pas d'elle même. Il
-              vous faudra alors appuyer sur le bouton "Stop" dès que vous souhaiterez interrompre l'interprétation.</p>
-
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <br/>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-12">
-            <strong>IV. EXEMPLES ET REFERENCES</strong>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <br/>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-12">
-            <p>Apprendre à programmer en BASISTIC™ implique beaucoup d'exploration et de tentatives pas forcément concluantes.
-            C'est pourquoi, BASISTIC™ inclu des dizaines d'exemple qui démontres différentes fonctionnalités de l'interpréteur.
-            Pour récupérer un exemple, il suffit de [...].
-            Les exemples sont regroupés en catégories : [...]. Choisissez simplement une catégorie qui vous intérèsse et essayer un de nos exemples.</p>
-
-            <p>En plus des exemples, nous mettons également à votre disposition la documentation complète de BASISTIC™. Vous pouvez y accéder en cliquant
-            sur l'onglet documentation du menu. Vous trouverez alors la liste des toutes les fonctions déjà implémentées dans BASISTIC™. Ces élements 
-            sont eux aussi rangés par catégories pour plus de facilité. Il suffit de cliquer sur la catégorie qui vous intéresse pour 
-            accéder à tous les élements de code, accompagnés de description et d'exemple d'utilisation (beaucoup plus simple et plus court que 
-            ceux présents dans Exemple).</p>
-
-            <p>Nous espérons que ces explications vous auront été utiles. Merci d'avoir choisi BASISTIC™.</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <br/>
-        </div>
-      </div>
-      
-    </div>
-
-  </div>
+          <h4><strong>I. INTERFACE</strong></h4>
   
-  <div class="row">
-    <div class="col-12">
-      <br/>
-    </div>
-  </div>
+          <p>Bienvenue dans BASISTIC ! Lorsque vous vous trouvez sur la page Home de l'interpréteur vous devriez vous retrouver avec l'interface suivante :</p>
+        
+          <ol>
+            <li><strong>Zone de texte</strong> : permet de saisir des instructions en langage BASISTIC™</li>
+            <li><strong>Interface graphique</strong> : affiche les résultats graphiques de l'interprétation</li>
+            <li><strong>Console</strong> : affiche les résultats textuels de l'interprétation</li>
+          </ol>
+          </br>
+          <span><img class="interface" style="text-align:center;" src="./../resources/img/interface.png"></span>
 
-</body>
+          <p style="text-align:center;"><i>Interface de l'interpréteur BASISTIC™</i></p>
+
+          <h4><strong>II. PREMIER PROGRAMME</strong></h4>
+          
+          <p class="exemple">Dans l'éditeur, entrez le text suivant : main { } . Vous venez de créer la boucle principale qui contiendra toutes les instructions de votre code. 
+          Maintenant, entre les deux accolades, entrez le texte suivant :   <code class="language-BASIC">DRAWCIRCLE(200, 220, 50, 0, "lightblue" ,1);</code> .
+          Cette ligne de code signifie que vous allez dessiner un cercle dont le centre sera à 200 pixels du bord gauche et 220 pixels du bord haut. 
+          Ce cercle aura un rayon de 50 pixels, une orientation de 0°, une couleur "lightblue" et la forme sera pleine. Si vous avez saisi cette ligne de code correctement, vous allez voir un cercle bleu apparaître dans 
+          l'interface graphique après avoir cliquer sur le bouton "run".</p>
+
+          <p class="exemple">Si vous ne l'avez pas saisi correctement, une erreur devrait apparaître dans la console. Si cela arrive, vérifiez que vous avez 
+          parfaitement recopié l'exemple : les nombres devraient être compris entre deux parenthèses et avoir une virgule entre chacun d'entre eux.
+          Il faut être très rigoureux vis-à-vis de la syntaxe, une simple erreur de ponctuation peut empêcher le bon fonctionnement du programme.</p>
+
+          <p class="exemple">Passons maintenant à un exemple plus intéressant.
+          Un code en BASISTIC™ se décompose en plusieurs parties.
+          La boucle main qui s'exécute une fois lorsque l'on presse le bouton Run, et la boucle update, qui s'exécute dès lors que la boucle main
+          est finie et ce jusqu'à ce que l'on presse le bouton Stop. A cela peut s'ajouter différents sous-programme identifiés par des labels.
+          Dans l'exemple qui suit, nous nous concentrerons sur l'utilisation de la boucle update, pour en savoir plus sur l'utilisation des 
+          labels veuillez vous référer à l'onglet "label" de la documentation.</p>
+
+          <p>Supprimez ce que vous avez écrit précedement dans la zone de texte et essayez le programme suivant :</p>
+          
+          <pre class="segment">
+            <code class="language-BASIC">
+              main {
+                let phase = 0;
+              }
+      
+              update {
+                DRAWCLEAR("all");
+                FOR i = 0 TO 10
+                  radians = ((phase + i * 36) / 180) * 3.1415;
+                  y = 360/2 + 80 * SIN(radians);
+                  DRAWCIRCLE(i * 48 + 24, y, 20, 0, "lightblue" ,1);
+                FEND;
+                phase = (phase + 8) % 360;
+              }
+            </code>
+          </pre>
+
+          <p class="exemple">Les détails de l'implémentation du code ne seront pas expliqués sur cette page mais vous pourrez retrouver tous les détails du 
+          fonctionnement dans la documentation. Pour l'instant, essayer simplement de lancer l'exécution du code. Vous devriez obtenir 
+          le résultat suivant :</p></br>
+          <img class="interface" style="text-align:center;" src="./../resources/img/res_prg1.png">
+          <p style="text-align:center;"><i>Dix cercles bleu oscillant de manière sinusoïdale</i></p>
+
+          <h4><strong>III. FONCTIONNALITES</strong></h4>
+              
+          <p class="exemple">Vous pouvez trouver un bouton "Parcourir...", sous la zone de texte. Ce dernier vous permet de choisir un fichier à importer directement
+          dans la zone de texte puis de l'exécuter. Nous avons mis plusieurs fichiers contenant des exemples de programmes utilisant BASISTIC™
+          à votre disposition pour essayer cette fonctionnalité.</p>
+
+          <p class="exemple">La prochaine fonctionnalité est importante, il s'agit du bouton "Save". Vous le trouverez sur la droite du bouton "Parcourir".
+          C'est toujours un bonne idée de sauvegarder votre progression régulièrement. Au fur et à mesure que vous avancer dans votre code, 
+          sauvegarder vos différentes version afin de pouvoir garder une trace de votre avancement.</p>
+
+          <p class="exemple">Lorsque vous utilisez la boucle update, sauf indication contraire, l'interprétation ne s'arrêtera pas d'elle même. Il
+            vous faudra alors appuyer sur le bouton "Stop" dès que vous souhaiterez interrompre l'interprétation.</p>
+      
+          <h4><strong>IV. EXEMPLES ET REFERENCES</strong></h4>
+
+          <p class="exemple">Apprendre à programmer en BASISTIC™ implique beaucoup d'exploration et de tentatives pas forcément concluantes.
+          C'est pourquoi, BASISTIC™ inclu des dizaines d'exemples qui démontrent différentes fonctionnalités de l'interpréteur.
+          Pour récupérer un exemple, il suffit de [...].
+          Les exemples sont regroupés en catégories : [...]. Choisissez simplement une catégorie qui vous intérèsse et essayez un de nos exemples.</p>
+
+          <p class="exemple">En plus des exemples, nous mettons également à votre disposition la documentation complète de BASISTIC™. Vous pouvez y accéder en cliquant
+          sur l'onglet documentation du menu. Vous trouverez alors la liste de toutes les fonctions déjà implémentées dans BASISTIC™. Ces élements 
+          sont eux aussi rangés par catégories pour plus de facilité. Il suffit de cliquer sur la catégorie qui vous intéresse pour 
+          accéder à tous les élements, accompagnés de descriptions et d'exemples d'utilisations (beaucoup plus simples et plus courts que 
+          ceux présents sur cette page).</p>
+
+          <p style="text-align:center ;"></br>Nous espérons que ces explications vous auront été utiles. Merci d'avoir choisi BASISTIC™.</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-12">
+        <br/>
+      </div>
+    </div>
+
+  </body>
 </html>

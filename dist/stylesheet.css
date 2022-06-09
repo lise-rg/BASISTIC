@@ -54,6 +54,35 @@ input.import {
 }
 
 /*****************************************************
+                    EXEMPLE
+******************************************************/
+
+div.exemple {
+    margin-left: 50px;
+    margin-right: 50px;
+    max-width: 95%;
+}
+
+h4 {
+    padding-top: 30px;
+}
+
+img.interface {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    max-width: 70%;
+    border-radius: 10px;
+    box-shadow : 0px 0px 20px 5px lightgray;
+}
+
+p.exemple {
+    text-indent: 2em;
+    text-align: justify;
+}
+
+/*****************************************************
                     COLLAPSIBLES
 ******************************************************/
 
