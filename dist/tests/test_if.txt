@@ -1,6 +1,0 @@
-main {
-	IF 2 + 3 > 9 THEN PRINT(1);
-	ELIF MIN(3, 2) = 5 THEN PRINT(2);
-	ELSE PRINT(3);
-	ENDIF;
-}

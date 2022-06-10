@@ -1,7 +1,0 @@
-main {
-  LET A = 5;
-  DO 
-    PRINT(A);
-    A = A - 1;
-  WHILE A > 1;
-}

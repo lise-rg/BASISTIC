@@ -1,21 +1,23 @@
 _prompt {
-DO
-  PRINT("Entrez un nombre entre 1 et 100.");
-  INPUT(guess);
-WHILE guess < 0;
+  DO
+    PRINT("Entrez un nombre entre 1 et 100.");
+    INPUT(guess);
+  WHILE guess < 0;
 }
 
 main {
-LET guess = -1;
-LET goal = RND(100);
+  LET guess = -1;
+  LET goal = RND(100);
+  LET end = 0;
 }
 
 update {
-WHILE guess <> goal DO
-  GOSUB _prompt;
-  IF guess < goal THEN PRINT("Plus grand!"); ENDIF;
-  IF guess > goal THEN PRINT("Plus petit!"); ENDIF;
-WEND;
-
-PRINT("Bien ouej");
+  WHILE guess <> goal DO
+    GOSUB _prompt;
+    IF guess < goal THEN PRINT("Plus grand!"); ENDIF;
+    IF guess > goal THEN PRINT("Plus petit!"); ENDIF;
+  WEND;
+  IF end <> 1 THEN PRINT("Bien ouej");
+  ENDIF;
+  end = 1;
 }

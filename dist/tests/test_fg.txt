@@ -1,4 +1,5 @@
 main {
+  // dessine les briques du mur
   LET BH = 20;
   LET BW = 50;
   LET SPACE = 5;
@@ -20,13 +21,15 @@ main {
     FEND;
   FEND;
   
+  // efface un rectangle blanc correspondant à l'affiche
   DRAWCLEARAREA(120,120,240,130);
   
+  // dessine les formes et le texte de l'affiche
   DRAWLINE(125, 125, 355, 125,"Cyan");
-  DRAWRECT(125, 130, 50, 70, 5, "Red", true);
-  DRAWSQUARE(125, 210, 20, -10, "Blue", true);
-  DRAWCIRCLE(240, 185, 50, 10, "Green", true);
-  DRAWTRIANGLE(320, 200, 50, 15, "Pink", true);
-  DRAWTEXT("Hello", 185, 200, "48px serif", true);
+  DRAWRECT(135, 140, 50, 70, 5, "Red", true);
+  DRAWSQUARE(135, 215, 20, -10, "Blue", true);
+  DRAWCIRCLE(250, 185, 50, 10, "Green", true);
+  DRAWTRIANGLE(330, 205, 50, 15, "Pink", true);
+  DRAWTEXT("Hello", 185, 200, "48px serif", "black", 1);
   DRAWLINE(125, 245, 355, 245, "Gray");
 }

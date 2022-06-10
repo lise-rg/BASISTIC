@@ -1,12 +1,12 @@
 _pickcolor {
-  a = rnd(3);
-  if a = 0 then col = "red"; ball = "cyan";
+  a = rnd(4);
+  if a = 0 then col = "pink"; ball = "cyan";
   endif;
   if a = 1 then col = "cyan"; ball = "red";
   endif;
-  if a = 2 then col = "blue"; ball = "yellow";
+  if a = 2 then col = "lightblue"; ball = "yellow";
   endif;
-  if a = 3 then col = "magenta"; ball = "green";
+  if a = 3 then col = "orange"; ball = "lightgreen";
   endif;
 }
 
@@ -19,11 +19,11 @@ main {
 }
 
 update {
-  drawrect(0, 0, SCREEN_W, SCREEN_H, col);
+  drawrect(0, 0, SCREEN_W, SCREEN_H, 0, col, 1);
   for i = 0 to 10
     angle = phase + i * 36;
     y = SCREEN_H/2 + 80 * sin(dtr(angle));
-    drawcircle(i * 48 + 24, y, 20, ball);
+    drawcircle(i * 48 + 24, y, 20, 0, ball, 1);
   fend;
   phase = (phase + 8) % 360;
   

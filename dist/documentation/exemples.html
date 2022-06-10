@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>BASISTIC</title>
+  <link rel="icon" href="../../resources/img/icon.png">
+  <link rel="stylesheet" href="../stylesheet.css">
+  <link rel="stylesheet" href="../../modules/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="../../modules/prism/prism.js"></script>
+  <script type="text/javascript" src="../../modules/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../modules/collapsible/collapsible.js"></script>
+</head>
+
+<body class="main" style="height: 100%; min-height: 100%; padding: 2% 0% 2% 0%;">
+
+  <div class="container" style="height: 100%; min-height: 100%; display:flex; flex-direction:column; flex:1;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius:5px; padding:0px; height: 60px; min-height: 60px;">
+
+      <img class="logo" src="../../resources/img/animlogo.png" alt="Logo de l'application">
+
+      <div class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="../main.html">Accueil</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../guide.html">Guide</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../doc.html"><strong>Documentation</strong></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC/blob/master/README.md">Read Me</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/lise-rg/BASISTIC">Github</a>
+          </li>
+
+        </ul>
+      </div>
+
+    </nav>
+
+    <div class="col-12" style="flex:1;flex-direction:column; justify-content:center;">
+
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">AFFICHE MURALE (FONCTIONS GRAPHIQUES)</button>
+        <div class="content">
+            <span><img class="exemple" style="text-align:center;" src="../../resources/img/affiche.png"></span>
+            <p style="text-align:center;"><i>Affiche composée de formes et de texte sur un mur de brique</i></p>
+            <p class="content">
+              <pre class="segment"><code class="language-BASIC">
+              main {
+                  // dessine les briques du mur
+                  LET BH = 20;
+                  LET BW = 50;
+                  LET SPACE = 5;
+                  
+                  LET ROWS = INT(360/(BH+SPACE))+1;
+                  LET COLS = INT(480/(BW+SPACE))+2;
+                  
+                  FOR R = 0 TO ROWS
+                      FOR C = 0 TO COLS
+                      IF R%2 THEN
+                          IF C = 0 THEN
+                          DRAWRECT(C*(BW+SPACE), R*(BH+SPACE), BW/2, BH, 0, "DarkGoldenRod", true);
+                          ELSE
+                          DRAWRECT(C*(BW+SPACE)-BW/2, R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
+                          ENDIF;
+                      ELSE
+                          DRAWRECT(C*(BW+SPACE), R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
+                      ENDIF;
+                      FEND;
+                  FEND;
+                  
+                  // efface un rectangle blanc correspondant à l'affiche
+                  DRAWCLEARAREA(120,120,240,130);
+                  
+                  // dessine les formes et le texte de l'affiche
+                  DRAWLINE(125, 125, 355, 125,"Cyan");
+                  DRAWRECT(135, 140, 50, 70, 5, "Red", true);
+                  DRAWSQUARE(135, 215, 20, -10, "Blue", true);
+                  DRAWCIRCLE(250, 185, 50, 10, "Green", true);
+                  DRAWTRIANGLE(330, 205, 50, 15, "Pink", true);
+                  DRAWTEXT("Hello", 185, 200, "48px serif", "black", 1);
+                  DRAWLINE(125, 245, 355, 245, "Gray");
+              }                  
+              </code></pre>
+            </p>
+        </div>
+
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">BALLES REBONDISSANTES (FONCTIONS GRAPHIQUES)</button>
+        <div class="content">
+            <span><img class="exemple" style="text-align:center;" src="../../resources/img/bouncing_balls.gif"></span>
+            <p style="text-align:center;"><i>Balles rebondissant aléatoirement sur fond coloré</i></p>
+            <p class="content">
+              <pre class="segment"><code class="language-BASIC">
+              _drawbg {
+                r = 128 * cos(dtr(bgcolphi)) + 128;
+                b = 128 * sin(dtr(bgcolphi)) + 128;
+                for j = 0 to SCREEN_H
+                  bgcol = rgb(r, j * (255 / SCREEN_H), b);
+                  drawrect(0, j, SCREEN_W, j + 1, 0, bgcol, 1);
+                fend;
+                
+                bgcolphi = (bgcolphi + 3) % 360;
+              }
+              
+              main { 
+                ballnb = 20;
+              
+                dim ballx(20);
+                dim bally(20);
+                dim balldir(20);
+                dim ballcol(20, 3);
+                
+                for i = 0 to 20
+                  ballx(i) = SCREEN_W / 2;
+                  bally(i) = SCREEN_H / 2;
+                  balldir(i) = rnd(360);
+                  ballcol(i, 0) = rnd(255);
+                  ballcol(i, 1) = rnd(255);
+                  ballcol(i, 2) = rnd(255);
+                fend;
+                
+                dir = 0;
+                x = 0;
+                y = 0;
+                
+                size = 50;
+                radius = size / 2;
+                speed = 5;
+                fgcol = "black";
+                tmp = "";
+                
+                bgcolphi = 0;
+              }
+              
+              update {
+                gosub _drawbg;
+                
+                for i = 0 to 20
+                
+                    dir = balldir(i);
+                    x = ballx(i);
+                    y = bally(i);
+                  
+                  x = x + speed * cos(dtr(dir));
+                  y = y - speed * sin(dtr(dir));
+                  
+                  if x - radius < 0 then
+                    x = radius;
+                    if dir < 180 then dir = rnd(70) + 10;
+                    else dir = rnd(70) + 280;
+                    endif;
+                  elif x + radius > SCREEN_W then
+                    x = SCREEN_W - radius;
+                    if dir < 180 then dir = rnd(70) + 100;
+                    else dir = rnd(70) + 190;
+                    endif;
+                  endif;
+                  
+                  if y - radius < 0 then
+                    y = radius;
+                    if dir < 90 then dir = rnd(70) + 280;
+                    else dir = rnd(70) + 190;
+                    endif;
+                  elif y + radius > SCREEN_H then
+                    y = SCREEN_H - radius;
+                    if dir < 270 then dir = rnd(70) + 100;
+                    else dir = rnd(70) + 10;
+                    endif;
+                  endif;
+                  
+                  dir = dir % 360;
+                  
+                  fgcol = rgb(ballcol(i, 0), ballcol(i, 1), ballcol(i, 2));
+                  
+                  drawcircle(x, y, radius, 0, fgcol, 1);
+                  
+                  ballx(i) = x;
+                  bally(i) = y;
+                  balldir(i) = dir;
+                  
+                  fend;
+              }               
+              </code></pre>
+            </p>
+        </div>
+
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">SNAKE (JEU)</button>
+        <div class="content">
+            <span><img class="exemple" style="text-align:center;" src="../../resources/img/snake.gif"></span>
+            <p style="text-align:center;"><i>Extrait d'une partie de Snake</i></p>
+            <p class="content">
+              <b>Snake</b> est un petit jeu vidéo dans lequel vous dirigez un serpent qui grandit et constitue ainsi un obstacle pour lui-même.
+              Vous devez faire manger au serpent un maximum de pommes pour atteindre le plus grand score possible.
+              Mais attention, à chaque fois que vous mangez une pomme, le serpent grandit!
+              Vous devez lui indiquer une direction à suivre (haut, bas, gauche, droite) grâce aux touches directionnelles du clavier
+              afin d'éviter que la tête du serpent ne touche les murs ou son propre corps, auquel cas il risque de mourir.
+              <pre class="segment"><code class="language-BASIC">
+              _drawChecker {
+                col = 0;
+                
+                for i = 0 to width
+                  col = i % 2;
+                  for j = 0 to height
+                    if col % 2 = 0 then
+                      drawsquare(i * size, j * size, size, 0, "#beff64", 1);
+                    else
+                      drawsquare(i * size, j * size, size, 0, "#a6e056", 1);
+                    endif;
+                    col = col + 1;
+                  fend;
+                fend;
+              }
+              
+              _drawObjects {
+                for i = 0 to tail + 1
+                  drawsquare(snake_x(i) * size, snake_y(i) * size, size, 0, rgb(0, i * (255 / tail), 255), 1);
+                fend;
+                
+                drawsquare(fruit_x * size, fruit_y * size, size, 0, "red", 1);
+              }
+              
+              _isSpaceFree {
+                free = 1;
+                for i = 0 to tail + 1
+                  if fruit_x = snake_x(i) and fruit_y = snake_y(i) then
+                    free = 0;
+                  endif;
+                fend;
+              }
+              
+              _getFruit {
+                do
+                  fruit_x = rnd(width);
+                  fruit_y = rnd(height);
+                  gosub _isSpaceFree;
+                while free = 0;
+              }
+              
+              _moveSnake {
+              
+                if keypressed("ArrowUp") and dir <> 3 then 
+                  dir = 1;
+                elif keypressed("ArrowRight") and dir <> 4 then
+                  dir = 2;
+                elif keypressed("ArrowDown") and dir <> 1 then
+                  dir = 3;
+                elif keypressed("ArrowLeft") and dir <> 2 then
+                  dir = 4;
+                endif;
+                
+                if dir <> 0 then
+                
+                  tail_x = snake_x(tail);
+                  tail_y = snake_y(tail);
+                
+                  for i = 0 to tail
+                    snake_x(tail - i) = snake_x(tail - (i + 1));
+                    snake_y(tail - i) = snake_y(tail - (i + 1));
+                  fend;
+                
+                  if dir = 1 then
+                    snake_y(0) = snake_y(0) - 1;
+                  elif dir = 2 then
+                    snake_x(0) = snake_x(0) + 1;
+                  elif dir = 3 then
+                    snake_y(0) = snake_y(0) + 1;
+                  elif dir = 4 then
+                    snake_x(0) = snake_x(0) - 1;
+                  endif;
+                  
+                  for i = 1 to tail + 1
+                    if snake_x(i) = snake_x(0) and snake_y(i) = snake_y(0) then
+                      print("Game Over.", "Score : " : str(score));
+                      over = 1;
+                    endif;
+                  fend;
+                  
+                  if snake_x(0) < 0 or snake_x(0) >= width or
+                    snake_y(0) < 0 or snake_y(0) >= height then
+                      print("Game Over.", "Score : " : str(score));
+                      over = 1;
+                  endif;
+                  
+                  if snake_x(0) = fruit_x and snake_y(0) = fruit_y and tail < 99 then
+                    tail = tail + 1;
+                    snake_x(tail) = tail_x;
+                    snake_y(tail) = tail_y;
+                    score = score + 1;
+                    gosub _getFruit;
+                  endif;
+                  
+                endif;
+              }
+              
+              main {
+              
+                timer = 0;
+                over = 0;
+                
+                score = 0;
+              
+                size = 20;
+                width = 24;
+                height = 18;
+                
+                dir = 0; // 0 = none, 1 = up, 2 = right, 3 = down, 4 = left
+                
+                dim snake_x(100);
+                dim snake_y(100);
+                
+                snake_x(0) = 3; snake_y(0) = 8;
+                snake_x(1) = 2; snake_y(1) = 8;
+                
+                tail = 1;
+                
+                fruit_x = 10;
+                fruit_y = 8;
+              }
+              
+              update {
+              
+                if timer % 5 = 0 and not over then
+                  gosub _moveSnake;
+                endif;
+              
+                gosub _drawChecker;
+                gosub _drawObjects;
+                
+                timer = (timer + 1) % 50;
+              }                
+              </code></pre>
+            </p>
+        </div>
+
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">FONCTIONS GRAPHIQUES (AFFICHE MURALE)</button>
+        <div class="content">
+            <span><img class="exemple" style="text-align:center;" src="../../resources/img/affiche.png"></span>
+            <p style="text-align:center;"><i>Affiche composée de formes et de texte sur un mur de brique</i></p>
+            <p class="content">
+              <pre class="segment"><code class="language-BASIC">
+                              
+              </code></pre>
+            </p>
+        </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
