@@ -2,7 +2,7 @@ _pickcolor {
   a = rnd(4);
   if a = 0 then col = "pink"; ball = "cyan";
   endif;
-  if a = 1 then col = "cyan"; ball = "red";
+  if a = 1 then col = "cyan"; ball = "coral";
   endif;
   if a = 2 then col = "lightblue"; ball = "yellow";
   endif;

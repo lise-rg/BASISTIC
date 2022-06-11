@@ -63,6 +63,11 @@ div.exemple {
     max-width: 95%;
 }
 
+div.exemple2 {
+    display: flex;
+    justify-content: space-between;
+}
+
 h4 {
     padding-top: 30px;
     padding-bottom: 5px;
