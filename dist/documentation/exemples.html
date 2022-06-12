@@ -481,6 +481,196 @@
         </p>
       </div>
 
+      <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">CASSE BRIQUES</button>
+      <div class="content">
+        <img class="exemple" src="../../resources/img/casse_briques.gif">
+        <p style="text-align:center; margin-left: auto; margin-right: auto;"><i>Extrait d'une partie de Casse-Briques</i></p>
+
+        <p class="content">
+          Le but du <b>Casse Briques</b> est de détruire un ensemble de briques grâce à une balle. Vous controllez une raquette que vous pouvez
+          déplacer horizontalement (grâce aux touches directionnelles).  
+          Vous devez empêcher la balle de tomber en l'interceptant avec la raquette. Si vous n'y arrivez pas c'est perdu.
+          Au contraire si vous parvenez à détruire toutes les briques vous avez gagné!
+          <pre class="segment"><code class="language-BASIC">
+          _start {
+            ball_dir = rnd(180);
+          }
+          
+          _moveBall {
+            ball_dir = ball_dir % 360;
+            if ball_dir < 0 then ball_dir = ball_dir + 360;
+            endif;
+          
+            ball_x = ball_x + ball_spd * cos(dtr(ball_dir));
+            ball_y = ball_y - ball_spd * sin(dtr(ball_dir));
+            
+            if (ball_y - ball_rad) < 0 then // bord haut
+              ball_y = ball_rad;
+              if ball_dir < 90 then ball_dir = rnd(60) + 280;
+              else ball_dir = rnd(60) + 190;
+              endif;
+            elif (ball_x - ball_rad) < 0 then // bord gauche
+              ball_x = ball_rad;
+              if ball_dir < 270 then ball_dir = 180 - rnd(60) + 100; 
+              else ball_dir = 180 - rnd(60) + 10;
+              endif;
+            elif (ball_x + ball_rad) > SCREEN_W then // bord droit
+              ball_x = SCREEN_W - ball_rad;
+              if ball_dir < 270 then ball_dir = rnd(60) + 100; 
+              else ball_dir = rnd(60) + 10;
+              endif;
+            endif;
+            
+            if ball_y > SCREEN_H then 
+              gosub _reset;
+              
+            endif;
+          }
+          
+          _movePaddle {
+              if left then paddle_x = paddle_x - paddle_spd; 
+              elif right then paddle_x = paddle_x + paddle_spd;
+              endif;
+              
+              if paddle_x < 0 then paddle_x = 0;
+              elif paddle_x + paddle_w > SCREEN_W then paddle_x = SCREEN_W - paddle_w;
+              endif;
+          }
+          
+          _checkPressedKeys {
+              if keypressed("ArrowLeft") then left = 1;
+              elif keyPressed("ArrowRight") then right = 1;
+              endif;
+              
+              if keyreleased("ArrowLeft") then left = 0;
+              elif keyreleased("ArrowRight") then right = 0;
+              endif;
+          }
+          
+          _reset { // a completer
+              paddle_x = SCREEN_W / 2 - paddle_w / 2;
+              paddle_y = SCREEN_H - 3 * paddle_h / 2;
+              ball_x = SCREEN_W / 2;
+              ball_y = SCREEN_H - 2 * paddle_h;
+              move = 0;
+              score = 0;
+              
+              for R = 1 to rows+1
+                for C = 0 to cols
+                    bricks(R-1, C, 0) = C * (brick_w + space);
+                    bricks(R-1, C, 1) = R * (brick_h + space);
+                    bricks(R-1, C, 2) = 1;
+                fend;
+              fend;
+          }
+          
+          _collisionPaddle {
+              if (ball_x - ball_rad) > paddle_x and (ball_x - ball_rad) < (paddle_x + paddle_w) and
+                (ball_y + ball_rad) > paddle_y and (ball_y - ball_rad) < (paddle_y + paddle_h) then
+                  ball_y = paddle_y - paddle_h - ball_rad;
+                  ball_dir = rnd(180);
+              endif;
+          }
+          
+          _collisionBrick {
+              for R = 1 to rows+1
+                  for C = 0 to cols
+                      if bricks(R-1, C, 2) = 1 and
+                          ball_x > bricks(R-1, C, 0) 
+                          and ball_x < (bricks(R-1, C, 0) + brick_w)
+                          and ball_y > bricks(R-1, C, 1)
+                          and ball_y < bricks(R-1, C, 1) + brick_h then 
+                          
+                          bricks(R-1, C, 2) = 0;
+                          ball_y = bricks(R-1, C, 1) + brick_h;
+                          ball_dir = 360 - rnd(180);
+                          score = score + 1;
+                      endif;
+                  fend;
+              fend;
+          }
+          
+          _drawbrick {
+            for R = 1 to rows+1
+              for C = 0 to cols
+                  if bricks(R-1, C, 2) = 1 then
+                    DRAWRECT(C * (brick_w + space), R * (brick_h + space), brick_w, 
+                      brick_h, 0, "blue", true);
+                  endif;
+              fend;
+            fend;
+          }
+          
+          _success {
+              // dessin étoile interface graphique
+              DRAWSQUARE(SCREEN_W/2-75, SCREEN_H/2-75, 150, 45, "yellow", 1);
+              DRAWSQUARE(SCREEN_W/2-75, SCREEN_H/2-75, 150, 0, "yellow", 1);
+              
+              // message interface graphique
+              DRAWTEXT("BRAVO !", 100, SCREEN_H/2+30, "80px Arial", "coral", 1);
+              DRAWTEXT("vous avez gagné :D", 155, SCREEN_H/2+55, "20px Arial", "coral", 1);
+          }
+          
+          main {
+              // paddle
+              paddle_spd = 4;
+              paddle_w = 100;
+              paddle_h = 20;
+              paddle_x = 20;
+              
+              score = 0;
+              
+              // balles
+              ball_rad = 10;
+              ball_dir = 0;
+              ball_spd = 5;
+              
+              // briques
+              brick_h = 20;
+              brick_w = 55;
+              space = 5;
+              rows = INT(360/(brick_h + space))/2;
+              cols = INT(480/(brick_w + space));
+              DIM bricks(7, 8, 3);
+              
+              gosub _reset;
+              
+              left = 0;
+              right = 0;
+          }
+          
+          update {
+              if score < 56 then
+                  gosub _checkPressedKeys;
+                  
+                  // Start game when arrow key pressed
+                  if (not move) and (left or right) then move = 1; gosub _start;
+                  endif;
+                  
+                  if move then 
+                  
+                    gosub _moveBall;
+                    gosub _movePaddle;
+                    gosub _collisionPaddle;
+                    gosub _collisionBrick;
+                    
+                  endif;
+                  
+                  // Draw background and paddles
+                  drawrect(0, 0, SCREEN_W, SCREEN_H, 0, "black", 1); // fond
+                  
+                  drawrect(paddle_x, paddle_y, paddle_w, paddle_h, 0, "red", 1); // paddle
+                  drawcircle(ball_x, ball_y, ball_rad, 0, "white", 1); // balle
+                  GOSUB _drawbrick;
+                
+              else
+                  GOSUB _success;
+              endif;
+          }
+          </code></pre>
+        </p>
+      </div>
+
       <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">SNAKE</button>
       <div class="content">
         <img class="exemple" src="../../resources/img/snake.gif">
