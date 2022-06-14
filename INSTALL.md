@@ -23,7 +23,8 @@ Une fois la page ouverte, vous pouvez :
 ![Image de l'application avec les points d'interet mis en avant](https://media.discordapp.net/attachments/494223712548159498/984083790177652757/Untitled.png)
 
 #### Etape 4
-Vous pouvez utiliser des fichiers de démonstration dans le répertoire `<emplacement_du_projet>/dist/test`;
+Vous pouvez utiliser des fichiers de démonstration présents dans le répertoire `<emplacement_du_projet>/dist/test`;  
+Vous pouvez également récupérer les exemples directement dans la section "Exemple" de la documentation.
 
 #### Etape 5
 Pressez sur le bouton "Run" et observez le résultat.
