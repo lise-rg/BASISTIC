@@ -11,12 +11,12 @@ main {
     FOR C = 0 TO COLS
       IF R%2 THEN
         IF C = 0 THEN
-          DRAWRECT(C*(BW+SPACE), R*(BH+SPACE), BW/2, BH, 0, "DarkGoldenRod", true);
+          DRAWRECTANGLE(C*(BW+SPACE), R*(BH+SPACE), BW/2, BH, 0, "DarkGoldenRod", true);
         ELSE
-          DRAWRECT(C*(BW+SPACE)-BW/2, R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
+          DRAWRECTANGLE(C*(BW+SPACE)-BW/2, R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
         ENDIF;
       ELSE
-        DRAWRECT(C*(BW+SPACE), R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
+        DRAWRECTANGLE(C*(BW+SPACE), R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
       ENDIF;
     FEND;
   FEND;
@@ -26,7 +26,7 @@ main {
   
   // dessine les formes et le texte de l'affiche
   DRAWLINE(125, 125, 355, 125,"Cyan");
-  DRAWRECT(135, 140, 50, 70, 5, "Red", true);
+  DRAWRECTANGLE(135, 140, 50, 70, 5, "Red", true);
   DRAWSQUARE(135, 215, 20, -10, "Blue", true);
   DRAWCIRCLE(250, 185, 50, 10, "Green", true);
   DRAWTRIANGLE(330, 205, 50, 15, "Pink", true);

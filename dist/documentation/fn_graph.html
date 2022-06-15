@@ -112,16 +112,16 @@
            </ol>
           </p>
         </div>
-        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWRECT</button>
+        <button class="collapsible" style="flex:1; width:100%; margin: 6px 0px 6px 0px;">DRAWRECTANGLE</button>
         <div class="content">
           <p class="content">
             Dessine un rect sur l'interface graphique.</br>
-            Syntaxe : <code class="language-BASIC"> DRAWRECT ( [expression] , [expression] , [expression] , [expression] , [expression] , [expression] , [expression] ) </code></br>
+            Syntaxe : <code class="language-BASIC"> DRAWRECTANGLE ( [expression] , [expression] , [expression] , [expression] , [expression] , [expression] , [expression] ) </code></br>
             Exemple :</br>
             <pre class="segment"><code class="language-BASIC">
-            DRAWRECT(100, 100, 100, 50, 45, "purple", 0);
+            DRAWRECTANGLE(100, 100, 100, 50, 45, "purple", 0);
             </code></pre>
-            <b>DRAWRECT :</b> Requis. Démarre la définition de la méthode <code class="language-BASIC">DRAWRECT</code>.</br>
+            <b>DRAWRECTANGLE :</b> Requis. Démarre la définition de la méthode <code class="language-BASIC">DRAWRECTANGLE</code>.</br>
             <b>[expression] : </b> Requis.
             <ol type = "1">
               <li>Expression numérique valide. x (position par rapport au bord gauche de l'interface graphique).</li>
@@ -161,7 +161,7 @@
             Syntaxe : <code class="language-BASIC"> DRAWCLEAR ( [expression] ) </code></br>
             Exemple :</br>
             <pre class="segment"><code class="language-BASIC">
-            DRAWRECT(0, 0, SCREEN_W, SCREEN_H, 0, "purple", 1);
+            DRAWRECTANGLE(0, 0, SCREEN_W, SCREEN_H, 0, "purple", 1);
             DRAWCLEAR("half-left");
             </code></pre>
             <b>DRAWCLEAR :</b> Requis. Démarre la définition de la méthode <code class="language-BASIC">DRAWCLEAR</code>.</br>
@@ -175,7 +175,7 @@
             Syntaxe : <code class="language-BASIC"> DRAWCLEARAREA ( [expression] , [expression] , [expression] , [expression] ) </code></br>
             Exemple :</br>
             <pre class="segment"><code class="language-BASIC">
-            DRAWRECT(0, 0, SCREEN_W, SCREEN_H, 0, "purple", 1);
+            DRAWRECTANGLE(0, 0, SCREEN_W, SCREEN_H, 0, "purple", 1);
             DRAWCLEARAREA(25, 25, 100, 50);
             </code></pre>
             <b>DRAWCLEARAREA :</b> Requis. Démarre la définition de la méthode <code class="language-BASIC">DRAWCLEARAREA</code>.</br>
