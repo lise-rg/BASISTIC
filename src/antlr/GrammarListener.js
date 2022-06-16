@@ -131,12 +131,12 @@ export default class GrammarListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by GrammarParser#drawrectStatement.
-	enterDrawrectStatement(ctx) {
+	// Enter a parse tree produced by GrammarParser#drawrectangleStatement.
+	enterDrawrectangleStatement(ctx) {
 	}
 
-	// Exit a parse tree produced by GrammarParser#drawrectStatement.
-	exitDrawrectStatement(ctx) {
+	// Exit a parse tree produced by GrammarParser#drawrectangleStatement.
+	exitDrawrectangleStatement(ctx) {
 	}
 
 

@@ -192,7 +192,7 @@ export default class GrammarParser extends antlr4.Parser {
                             "'STEP'", "'FEND'", "'GOSUB'", "'IF'", "'THEN'", 
                             "'ENDIF'", "'WHILE'", "'DO'", "'WEND'", "'INPUT'", 
                             "'PRINT'", "'PLAY'", "','", "'DRAWTEXT'", "'DRAWLINE'", 
-                            "'DRAWRECT'", "'DRAWSQUARE'", "'DRAWCIRCLE'", 
+                            "'DRAWRECTANGLE'", "'DRAWSQUARE'", "'DRAWCIRCLE'", 
                             "'DRAWTRIANGLE'", "'DRAWCLEAR'", "'DRAWCLEARAREA'", 
                             "'LET'", "'ELIF'", "'ELSE'", "':'", "'OR'", 
                             "'AND'", "'NOT'", "'<>'", "'>'", "'>='", "'<'", 
@@ -610,7 +610,7 @@ export default class GrammarParser extends antlr4.Parser {
 	            break;
 
 	        case 12:
-	            localctx = new DrawrectStatementContext(this, localctx);
+	            localctx = new DrawrectangleStatementContext(this, localctx);
 	            this.enterOuterAlt(localctx, 12);
 	            this.state = 174;
 	            this.match(GrammarParser.T__26);
@@ -3152,6 +3152,56 @@ class DoWhileStatementContext extends StatementContext {
 
 GrammarParser.DoWhileStatementContext = DoWhileStatementContext;
 
+class DrawrectangleStatementContext extends StatementContext {
+
+    constructor(parser, ctx) {
+        super(parser);
+        this.x = null; // ExpressionContext;
+        this.y = null; // ExpressionContext;
+        this.width = null; // ExpressionContext;
+        this.height = null; // ExpressionContext;
+        this.rotation = null; // ExpressionContext;
+        this.color = null; // ExpressionContext;
+        this.drawmode = null; // ExpressionContext;
+        super.copyFrom(ctx);
+    }
+
+	expression = function(i) {
+	    if(i===undefined) {
+	        i = null;
+	    }
+	    if(i===null) {
+	        return this.getTypedRuleContexts(ExpressionContext);
+	    } else {
+	        return this.getTypedRuleContext(ExpressionContext,i);
+	    }
+	};
+
+	enterRule(listener) {
+	    if(listener instanceof GrammarListener ) {
+	        listener.enterDrawrectangleStatement(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof GrammarListener ) {
+	        listener.exitDrawrectangleStatement(this);
+		}
+	}
+
+	accept(visitor) {
+	    if ( visitor instanceof GrammarVisitor ) {
+	        return visitor.visitDrawrectangleStatement(this);
+	    } else {
+	        return visitor.visitChildren(this);
+	    }
+	}
+
+
+}
+
+GrammarParser.DrawrectangleStatementContext = DrawrectangleStatementContext;
+
 class DrawtextStatementContext extends StatementContext {
 
     constructor(parser, ctx) {
@@ -3201,56 +3251,6 @@ class DrawtextStatementContext extends StatementContext {
 }
 
 GrammarParser.DrawtextStatementContext = DrawtextStatementContext;
-
-class DrawrectStatementContext extends StatementContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        this.x = null; // ExpressionContext;
-        this.y = null; // ExpressionContext;
-        this.width = null; // ExpressionContext;
-        this.height = null; // ExpressionContext;
-        this.rotation = null; // ExpressionContext;
-        this.color = null; // ExpressionContext;
-        this.drawmode = null; // ExpressionContext;
-        super.copyFrom(ctx);
-    }
-
-	expression = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExpressionContext);
-	    } else {
-	        return this.getTypedRuleContext(ExpressionContext,i);
-	    }
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof GrammarListener ) {
-	        listener.enterDrawrectStatement(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof GrammarListener ) {
-	        listener.exitDrawrectStatement(this);
-		}
-	}
-
-	accept(visitor) {
-	    if ( visitor instanceof GrammarVisitor ) {
-	        return visitor.visitDrawrectStatement(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
-	}
-
-
-}
-
-GrammarParser.DrawrectStatementContext = DrawrectStatementContext;
 
 class DrawsquareStatementContext extends StatementContext {
 

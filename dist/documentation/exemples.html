@@ -163,12 +163,12 @@
                   FOR C = 0 TO COLS
                   IF R%2 THEN
                       IF C = 0 THEN
-                      DRAWRECT(C*(BW+SPACE), R*(BH+SPACE), BW/2, BH, 0, "DarkGoldenRod", true);
+                      DRAWRECTANGLE(C*(BW+SPACE), R*(BH+SPACE), BW/2, BH, 0, "DarkGoldenRod", true);
                       ELSE
-                      DRAWRECT(C*(BW+SPACE)-BW/2, R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
+                      DRAWRECTANGLE(C*(BW+SPACE)-BW/2, R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
                       ENDIF;
                   ELSE
-                      DRAWRECT(C*(BW+SPACE), R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
+                      DRAWRECTANGLE(C*(BW+SPACE), R*(BH+SPACE), BW, BH, 0, "DarkGoldenRod", true);
                   ENDIF;
                   FEND;
               FEND;
@@ -178,7 +178,7 @@
               
               // dessine les formes et le texte de l'affiche
               DRAWLINE(125, 125, 355, 125,"Cyan");
-              DRAWRECT(135, 140, 50, 70, 5, "Red", true);
+              DRAWRECTANGLE(135, 140, 50, 70, 5, "Red", true);
               DRAWSQUARE(135, 215, 20, -10, "Blue", true);
               DRAWCIRCLE(250, 185, 50, 10, "Green", true);
               DRAWTRIANGLE(330, 205, 50, 15, "Pink", true);
@@ -216,7 +216,7 @@
           }
           
           update {
-            drawrect(0, 0, SCREEN_W, SCREEN_H, 0, col, 1);
+            drawrectangle(0, 0, SCREEN_W, SCREEN_H, 0, col, 1);
             for i = 0 to 10
               angle = phase + i * 36;
               y = SCREEN_H/2 + 80 * sin(dtr(angle));
@@ -246,7 +246,7 @@
             b = 128 * sin(dtr(bgcolphi)) + 128;
             for j = 0 to SCREEN_H
               bgcol = rgb(r, j * (255 / SCREEN_H), b);
-              drawrect(0, j, SCREEN_W, j + 1, 0, bgcol, 1);
+              drawrectangle(0, j, SCREEN_W, j + 1, 0, bgcol, 1);
             fend;
             
             bgcolphi = (bgcolphi + 3) % 360;
@@ -467,14 +467,14 @@
             endif;
             
             // Draw background and paddles
-            drawrect(0, 0, SCREEN_W, SCREEN_H, 0, "black", 1);
+            drawrectangle(0, 0, SCREEN_W, SCREEN_H, 0, "black", 1);
             
             for i = 0 to SCREEN_H / 20
-              drawrect(SCREEN_W/2-1, i * 20, 2, 10, 0, "green", 1);
+              drawrectangle(SCREEN_W/2-1, i * 20, 2, 10, 0, "green", 1);
             fend;
             
-            drawrect(left_x, left_y, paddle_w, paddle_h, 0, "red", 1);
-            drawrect(right_x, right_y, paddle_w, paddle_h, 0, "blue", 1);
+            drawrectangle(left_x, left_y, paddle_w, paddle_h, 0, "red", 1);
+            drawrectangle(right_x, right_y, paddle_w, paddle_h, 0, "blue", 1);
             drawcircle(ball_x, ball_y, ball_rad, 0, "white", 1);
           }
           </code></pre>
@@ -594,7 +594,7 @@
             for R = 1 to rows+1
               for C = 0 to cols
                   if bricks(R-1, C, 2) = 1 then
-                    DRAWRECT(C * (brick_w + space), R * (brick_h + space), brick_w, 
+                    DRAWRECTANGLE(C * (brick_w + space), R * (brick_h + space), brick_w, 
                       brick_h, 0, "blue", true);
                   endif;
               fend;
@@ -657,9 +657,9 @@
                   endif;
                   
                   // Draw background and paddles
-                  drawrect(0, 0, SCREEN_W, SCREEN_H, 0, "black", 1); // fond
+                  drawrectangle(0, 0, SCREEN_W, SCREEN_H, 0, "black", 1); // fond
                   
-                  drawrect(paddle_x, paddle_y, paddle_w, paddle_h, 0, "red", 1); // paddle
+                  drawrectangle(paddle_x, paddle_y, paddle_w, paddle_h, 0, "red", 1); // paddle
                   drawcircle(ball_x, ball_y, ball_rad, 0, "white", 1); // balle
                   GOSUB _drawbrick;
                 
@@ -872,18 +872,18 @@
             endif;
             
             // Top pipe drawing
-            drawrect(pipe_x - 2, 0, pipe_w + 4, top_h + 2, 0, "black", 1);
-            drawrect(pipe_x, 0, pipe_w, top_h, 0, "#00e348", 1);
+            drawrectangle(pipe_x - 2, 0, pipe_w + 4, top_h + 2, 0, "black", 1);
+            drawrectangle(pipe_x, 0, pipe_w, top_h, 0, "#00e348", 1);
             
-            drawrect(pipe_x - 7, top_h - 22, pipe_w + 14, 24, 0, "black", 1);
-            drawrect(pipe_x - 5, top_h - 20, pipe_w + 10, 20, 0, "#00e348", 1);
+            drawrectangle(pipe_x - 7, top_h - 22, pipe_w + 14, 24, 0, "black", 1);
+            drawrectangle(pipe_x - 5, top_h - 20, pipe_w + 10, 20, 0, "#00e348", 1);
             
             // Bottom pipe drawing
-            drawrect(pipe_x - 2, top_h + space_size - 2, pipe_w + 4, bottom_h + 2, 0, "black", 1);
-            drawrect(pipe_x, top_h + space_size, pipe_w, bottom_h, 0, "#00e348", 1);
+            drawrectangle(pipe_x - 2, top_h + space_size - 2, pipe_w + 4, bottom_h + 2, 0, "black", 1);
+            drawrectangle(pipe_x, top_h + space_size, pipe_w, bottom_h, 0, "#00e348", 1);
             
-            drawrect(pipe_x - 7, top_h + space_size - 2, pipe_w + 14, 24, 0, "black", 1);
-            drawrect(pipe_x - 5, top_h + space_size, pipe_w + 10, 20, 0, "#00e348", 1);
+            drawrectangle(pipe_x - 7, top_h + space_size - 2, pipe_w + 14, 24, 0, "black", 1);
+            drawrectangle(pipe_x - 5, top_h + space_size, pipe_w + 10, 20, 0, "#00e348", 1);
           }
           
           main {
@@ -915,7 +915,7 @@
           
             gosub _playerMovement;
           
-            drawrect(0, 0, SCREEN_W, SCREEN_H, 0, "#4287f5", 1);
+            drawrectangle(0, 0, SCREEN_W, SCREEN_H, 0, "#4287f5", 1);
             
             for pipe_id = 0 to 2
               pipe_x = pipes(pipe_id, 0);
