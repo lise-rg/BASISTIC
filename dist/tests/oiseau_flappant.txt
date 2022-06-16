@@ -42,18 +42,18 @@ _pipeUpdate {
   endif;
   
   // Top pipe drawing
-  drawrect(pipe_x - 2, 0, pipe_w + 4, top_h + 2, 0, "black", 1);
-  drawrect(pipe_x, 0, pipe_w, top_h, 0, "#00e348", 1);
+  drawrectangle(pipe_x - 2, 0, pipe_w + 4, top_h + 2, 0, "black", 1);
+  drawrectangle(pipe_x, 0, pipe_w, top_h, 0, "#00e348", 1);
   
-  drawrect(pipe_x - 7, top_h - 22, pipe_w + 14, 24, 0, "black", 1);
-  drawrect(pipe_x - 5, top_h - 20, pipe_w + 10, 20, 0, "#00e348", 1);
+  drawrectangle(pipe_x - 7, top_h - 22, pipe_w + 14, 24, 0, "black", 1);
+  drawrectangle(pipe_x - 5, top_h - 20, pipe_w + 10, 20, 0, "#00e348", 1);
   
   // Bottom pipe drawing
-  drawrect(pipe_x - 2, top_h + space_size - 2, pipe_w + 4, bottom_h + 2, 0, "black", 1);
-  drawrect(pipe_x, top_h + space_size, pipe_w, bottom_h, 0, "#00e348", 1);
+  drawrectangle(pipe_x - 2, top_h + space_size - 2, pipe_w + 4, bottom_h + 2, 0, "black", 1);
+  drawrectangle(pipe_x, top_h + space_size, pipe_w, bottom_h, 0, "#00e348", 1);
   
-  drawrect(pipe_x - 7, top_h + space_size - 2, pipe_w + 14, 24, 0, "black", 1);
-  drawrect(pipe_x - 5, top_h + space_size, pipe_w + 10, 20, 0, "#00e348", 1);
+  drawrectangle(pipe_x - 7, top_h + space_size - 2, pipe_w + 14, 24, 0, "black", 1);
+  drawrectangle(pipe_x - 5, top_h + space_size, pipe_w + 10, 20, 0, "#00e348", 1);
 }
 
 main {
@@ -85,7 +85,7 @@ update {
 
   gosub _playerMovement;
 
-  drawrect(0, 0, SCREEN_W, SCREEN_H, 0, "#4287f5", 1);
+  drawrectangle(0, 0, SCREEN_W, SCREEN_H, 0, "#4287f5", 1);
   
   for pipe_id = 0 to 2
     pipe_x = pipes(pipe_id, 0);

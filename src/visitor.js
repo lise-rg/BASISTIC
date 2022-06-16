@@ -961,7 +961,7 @@ class Visitor extends GrammarVisitor {
   * checks the types and passes the values to the DrawOutput class to draw the rectangle
   * @param {type} ctx context of the current call
   */
-  visitDrawrectStatement(ctx) {
+  visitDrawrectangleStatement(ctx) {
     //Gets and parses the x position, and checks if the value is valid
     let x = parseInt(this.visit(ctx.x));
     this.checkNumber();

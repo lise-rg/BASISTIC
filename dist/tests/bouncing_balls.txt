@@ -3,7 +3,7 @@ _drawbg {
   b = 128 * sin(dtr(bgcolphi)) + 128;
   for j = 0 to SCREEN_H
     bgcol = rgb(r, j * (255 / SCREEN_H), b);
-    drawrect(0, j, SCREEN_W, j + 1, 0, bgcol, 1);
+    drawrectangle(0, j, SCREEN_W, j + 1, 0, bgcol, 1);
   fend;
   
   bgcolphi = (bgcolphi + 3) % 360;

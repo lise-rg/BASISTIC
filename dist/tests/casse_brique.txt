@@ -100,7 +100,7 @@ _drawbrick {
   for R = 1 to rows+1
     for C = 0 to cols
         if bricks(R-1, C, 2) = 1 then
-          DRAWRECT(C * (brick_w + space), R * (brick_h + space), brick_w, 
+          drawrectangle(C * (brick_w + space), R * (brick_h + space), brick_w, 
             brick_h, 0, "blue", true);
         endif;
     fend;
@@ -163,9 +163,9 @@ update {
         endif;
         
         // Draw background and paddles
-        drawrect(0, 0, SCREEN_W, SCREEN_H, 0, "black", 1); // fond
+        drawrectangle(0, 0, SCREEN_W, SCREEN_H, 0, "black", 1); // fond
         
-        drawrect(paddle_x, paddle_y, paddle_w, paddle_h, 0, "red", 1); // paddle
+        drawrectangle(paddle_x, paddle_y, paddle_w, paddle_h, 0, "red", 1); // paddle
         drawcircle(ball_x, ball_y, ball_rad, 0, "white", 1); // balle
         GOSUB _drawbrick;
       
