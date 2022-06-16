@@ -15,11 +15,14 @@ Créer un interpréteur de BASIC avec l'ajout de nouvelles fonctionnalités ains
 
 #### Fonctionnalités à developper dans le futur
 
-- ???
+- filtres audio
+- palette de couleur
+- détection d'erreurs de syntaxe
 
 #### Licence
 
-- Reprise pour usage commercial interdit. Les auteurs d'origine doivent êtres cités.
+<a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3%2B-blue.svg" alt="License: GPL v3+"></a>
+
 
 #### Technologies utilisées
 
