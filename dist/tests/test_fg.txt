@@ -1,5 +1,5 @@
 main {
-  // dessine les briques du mur
+  // dessine les briques du murt
   LET BH = 20;
   LET BW = 50;
   LET SPACE = 5;
